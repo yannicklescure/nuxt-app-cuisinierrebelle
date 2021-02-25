@@ -1,34 +1,31 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        nuxt-app-cuisinierrebelle
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <div class="row">
+      <div v-for="item in items" :key="item.timestamp" class="col">
+        <Card :item="item" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+  export default {
+    data() {
+      return {
+        fetchedData: null
+      }
+    },
+    async fetch() {
+      this.fetchedData = await fetch(
+        'https://api.cuisinierrebelle.com/v1/state'
+      ).then(response => response.json())
+    },
+    computed: {
+      items () {
+        return this.fetchedData != null ? this.fetchedData.data.recipes : []
+      }
+    }
+  }
 </script>
 
 <style>
