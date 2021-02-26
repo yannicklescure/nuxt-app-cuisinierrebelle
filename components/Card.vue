@@ -1,6 +1,8 @@
 <template>
   <div ref="card" class="card">
-    <img :src="item.recipe.photo.card.url" :height="cardHeight" style="object-fit: cover" alt="">
+    <div class="card-body">
+      <img :src="item.recipe.photo.card.url" :width="cardWidth" :height="cardHeight" alt="">
+    </div>
   </div>
 </template>
 
@@ -20,3 +22,16 @@
     }
   }
 </script>
+
+<style scoped>
+  img {
+    object-fit: cover;
+  }
+  .card {
+    min-height: 100%;
+  }
+
+  .card-body {
+    padding: 0;
+  }
+</style>

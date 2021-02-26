@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div v-for="item in items" :key="item.timestamp" class="col col-md-4 col-lg-3">
+      <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
         <Card :item="item" />
       </div>
     </div>
@@ -36,6 +36,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.col-12, .col-md-4, .col-lg-3 {
+  padding: 8px 16px;
 }
 
 .title {
