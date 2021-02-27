@@ -16,9 +16,28 @@
         cardHeight: 0
       }
     },
+    methods: {
+      matchInfoBox () {
+        this.cardWidth = this.$refs.card.clientWidth
+        this.cardHeight = parseInt(this.cardWidth / 1.618)
+      }
+    },
+    created() {
+      if (process.client) {
+        window.addEventListener("resize", this.matchInfoBox);
+      }
+    },
+    destroyed() {
+      if (process.client) {
+        window.removeEventListener("resize", this.matchInfoBox);
+      }
+    },
     mounted() {
-      this.cardWidth = this.$refs.card.clientWidth
-      this.cardHeight = parseInt(this.cardWidth / 1.618)
+      this.$nextTick(() => {
+        // The whole view is rendered, so I can safely access or query
+        // the DOM. ¯\_(ツ)_/¯
+        this.matchInfoBox()
+      })
     }
   }
 </script>
