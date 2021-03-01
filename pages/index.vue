@@ -30,12 +30,9 @@ export default {
     this.getStoreData()
   },
   computed: {
-    ...mapGetters([
-      'recipes',
-    ]),
-    items () {
-      return this.recipes
-    }
+    ...mapGetters({
+      items: 'recipes/listSorted',
+    }),
   },
 }
 </script>

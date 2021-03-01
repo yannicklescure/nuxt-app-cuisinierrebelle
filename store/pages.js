@@ -1,34 +1,34 @@
-import * as api from '../api'
+import * as api from '~/api'
 
 export const state = () => ({
-  pages: [],
+  list: [],
 })
 
 export const getters = {
   page (state) {
-    return keyword => state.data.pages.filter( item => {
+    return keyword => state.list.filter( item => {
       return item.slug === keyword
     })[0];
   },
   pages (state) {
-    return state.data.pages.sort((a, b) => (a.title > b.title) ? 1 : -1)
+    return state.pages.sort((a, b) => (a.title > b.title) ? 1 : -1)
   },
 }
 
 export const mutations = {
   setPages: (state, payload) => {
-    state.data.pages = payload.data.pages
+    state.pages = payload.data.pages
   },
   pageNew: (state, payload) => {
-    state.data.pages.push(payload.data)
+    state.pages.push(payload.data)
   },
   pageEdit: (state, payload) => {
-    const page = state.data.pages.filter(r => r.id === payload.data.id)[0]
+    const page = state.pages.filter(r => r.id === payload.data.id)[0]
     // console.log(page)
     if (page) {
-      const position = state.data.pages.indexOf(page)
+      const position = state.pages.indexOf(page)
       // console.log(position)
-      state.data.pages[position] = payload.data
+      state.pages[position] = payload.data
     }
   },
 }

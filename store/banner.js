@@ -1,7 +1,7 @@
-import * as api from '../api'
+import * as api from '~/api'
 
 export const state = () => ({
-  bannerImage: {
+  image: {
     id: null,
     link: {
       download: null,
@@ -16,7 +16,7 @@ export const state = () => ({
 
 export const getters = {
   bannerImage (state) {
-    return state.bannerImage
+    return state.image
   },
 }
 
@@ -24,7 +24,7 @@ export const mutations = {
   setBannerImage: (state, payload) => {
     // console.log(payload)
     // state.bannerImage = payload
-    state.bannerImage = payload.data.bannerImage
+    state.banner.image = payload.data.bannerImage
   },
 }
 
