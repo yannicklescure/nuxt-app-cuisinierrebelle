@@ -54,10 +54,10 @@ const fetchUsers = (context, payload) => {
 
 export const actions = {
   async getStoreData (context, payload) {
-    console.log('get store data')
+    // console.log('get store data')
     await api.fetchState()
       .then(response => {
-        console.log(response)
+        // console.log(response)
         context.commit("setStoreData", response.data)
       })
       .catch(error => {
@@ -903,7 +903,7 @@ export const mutations = {
   },
 
   setStoreData: (state, payload) => {
-    console.log(state)
+    // console.log(state)
     state.isAuthenticated = payload.data.isAuthenticated
     state.lastUpdated = payload.data.lastUpdated
     state.recipes = payload.data.recipes
