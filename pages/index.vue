@@ -9,23 +9,35 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        fetchedData: null
-      }
-    },
-    async fetch() {
-      this.fetchedData = await fetch(
-        'https://api.cuisinierrebelle.com/v1/state'
-      ).then(response => response.json())
-    },
-    computed: {
-      items () {
-        return this.fetchedData != null ? this.fetchedData.data.recipes : []
-      }
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  data() {
+    return {
+      // items: [],
+      fetchedData: null
     }
-  }
+  },
+  // async fetch() {
+  //   this.fetchedData = await fetch(
+  //     'https://api.cuisinierrebelle.com/v1/state'
+  //   ).then(response => response.json())
+  // },
+  methods: {
+    ...mapActions(['getStoreData'])
+  },
+  created () {
+    this.getStoreData()
+  },
+  computed: {
+    ...mapGetters([
+      'recipes',
+    ]),
+    items () {
+      return this.recipes
+    }
+  },
+}
 </script>
 
 <style>
