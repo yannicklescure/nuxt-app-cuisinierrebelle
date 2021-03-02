@@ -92,7 +92,7 @@ export default {
   // https://pwa.nuxtjs.org/manifest
   pwa: {
     manifest: {
-      name: 'Yannick Lescure',
+      name: 'Cuisinier Rebelle',
       lang: 'fr',
       useWebmanifestExtension: false
     }
