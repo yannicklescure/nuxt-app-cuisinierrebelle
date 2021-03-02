@@ -32,9 +32,12 @@
     "sass-loader": "10",
     "vue-click-outside": "^1.1.0",
     "vue-facebook-login-component": "^4.0.0",
+    "vue-google-adsense": "^1.9.2",
     "vue-gtag": "^1.11.0",
     "vue-infinite-scroll": "^2.0.2",
     "vue-markdown-plus": "^2.0.17",
+    "vue-script2": "^2.1.0",
+    "vue-social-sharing": "^3.0.5",
     "vuejs-dialog": "^1.4.2"
   },
   "devDependencies": {

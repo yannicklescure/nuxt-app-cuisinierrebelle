@@ -1,21 +1,18 @@
 <template>
   <div class="card card-small border-0 mb-3" :key="componentKey">
     <div v-if="item" class="d-flex">
-      <div class="d-block" style="height: 64px;">
         <img
-          src="item.recipe.photo.preview.url"
-          secure="true" height="64px" width="64px" class="rounded" style="object-fit: cover;"
+          :src="item.recipe.photo.preview.url"
+          secure="true" height="96" width="96" class="rounded" style="object-fit: cover;"
         >
-      </div>
       <div class="ml-3 d-flex flex-column">
-        <router-link
+        <NuxtLink
           class="text-body stretched-link"
           :to="'/r/' + item.recipe.slug"
         >
         {{ item.recipe.title }}
-        </router-link>
-        <div class="card-text text-body font-weight-lighter" style="font-size: 90%">
-          {{ item.recipe.description }}
+        </NuxtLink>
+        <div class="card-text text-body font-weight-lighter" style="font-size: 90%" v-html="description">
         </div>
       </div>
     </div>
@@ -37,11 +34,22 @@ export default {
     forceRerender () {
       this.componentKey += 1;
     },
+    tuncateString (str, length) {
+      const arr = str.split('')
+      // console.log(arr)
+      while ((/\s/).test(arr[length]) == false) {
+        // console.log(arr[length])
+        length -= 1
+      }
+      if ((/\W/).test(arr[length-1])) length -= 1
+      return str.length <= length ? str : str.slice(0, length) + '&hellip;'
+    }
   },
   computed: {
-    ...mapGetters([
-      'recipes',
-    ]),
+    ...mapGetters({
+      recipes: 'recipes/listSorted',
+      isMobile: 'isMobile'
+    }),
     item () {
       const getRandomInt = (max) => {
         max = max > 0 ? max - 1 : 0
@@ -54,6 +62,9 @@ export default {
       // console.log(randomRecipe)
       return randomRecipe
     },
+    description () {
+      return this.tuncateString(this.item.recipe.description, this.isMobile ? 50 : 200)
+    }
   },
   beforeMount () {
     this.forceRerender()

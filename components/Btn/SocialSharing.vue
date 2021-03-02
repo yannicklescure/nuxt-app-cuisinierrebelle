@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-center">
+  <div class="d-flex justify-content-center mt-5">
     <ShareNetwork
       v-for="network in networks"
       :network="network.network"
@@ -10,36 +10,37 @@
       :quote="sharing.quote"
       :hashtags="sharing.hashtags"
       :twitterUser="sharing.twitterUser"
-      class="mouse-pointer btn m-2 text-white d-flex flex-column"
+      class="mouse-pointer text-decoration-none text-light mx-2"
     >
-      <div class="d-flex justify-content-center align-items-center rounded rounded-circle mb-2" :style="`width:64px;height:64px;backgroundColor: ${ network.color }`">
-        <font-awesome-layers class="fa-lg">
-          <font-awesome-icon :icon="network.icon" />
-        </font-awesome-layers>
+      <div
+        class="d-flex justify-content-center rounded align-items-center py-1 px-2"
+        :style="`backgroundColor: ${ network.color }`"
+      >
+        <font-awesome-icon :icon="network.icon" class="icon-24" />
+        <span class="ml-2">{{ network.name }}</span>
       </div>
-      <span class="text-body">{{ network.name }}</span>
     </ShareNetwork>
   </div>
 </template>
 
 <script>
-import { FontAwesomeLayers, FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
-import { faFacebookF, faTelegramPlane, faTwitter, faVk, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-library.add(faEnvelope, faFacebookF, faTelegramPlane, faTwitter, faVk, faWhatsapp)
+// import { FontAwesomeLayers, FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
+// import { faFacebookF, faTelegramPlane, faTwitter, faVk, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+// library.add(faEnvelope, faFacebookF, faTelegramPlane, faTwitter, faVk, faWhatsapp)
 
 export default {
-  name: 'SocialSharing',
+  name: 'BtnSocialSharing',
   props: ['item'],
-  components: {
-    FontAwesomeIcon,
-    FontAwesomeLayers,
-  },
+  // components: {
+  //   FontAwesomeIcon,
+  //   FontAwesomeLayers,
+  // },
   data () {
     return {
       sharing: {
-        url: `${ window.location.origin }/r/${ this.item.recipe.slug }`,
+        url: `${ process.env.baseUrl }/r/${ this.item.recipe.slug }`,
         title: '',
         description: '',
         // quote: 'The hot reload is so fast it\'s near instant. - Evan You',
@@ -47,7 +48,7 @@ export default {
         // twitterUser: ''
       },
       networks: [
-        { network: 'email', name: 'Email', icon: ['far', 'envelope'], color: '#333333' },
+        { network: 'email', name: 'Email', icon: ['fas', 'envelope'], color: '#333333' },
         { network: 'facebook', name: 'Facebook', icon: ['fab', 'facebook-f'], color: '#1877f2' },
         { network: 'telegram', name: 'Telegram', icon: ['fab', 'telegram-plane'], color: '#0088cc' },
         { network: 'twitter', name: 'Twitter', icon: ['fab', 'twitter'], color: '#1da1f2' },

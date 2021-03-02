@@ -8,9 +8,9 @@
     </div>
   </div>
   <div v-else>
-    <router-link to="/login" class="btn btn-sm btn-dark">
+    <NuxtLink to="/login" class="btn btn-sm btn-dark">
       {{ $t('follow.follow') }}
-    </router-link>
+    </NuxtLink>
   </div>
 </template>
 

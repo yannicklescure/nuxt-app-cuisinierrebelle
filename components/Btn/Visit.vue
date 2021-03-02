@@ -1,13 +1,13 @@
 <template>
-  <div :class="['text-body d-flex align-items-center justify-content-center', { 'flex-column': mobile }]">
-    <i :class="['material-icons btn-visit', mobile ? 'md-24' : 'md-18']">leaderboard</i>
-    <span :class="['text-muted font-weight-lighter small', { 'ml-1': !mobile }]">{{ views }}</span>
+  <div :class="['text-body d-flex align-items-center justify-content-center', { 'flex-column': isMobile }]">
+    <i :class="['material-icons btn-visit', isMobile ? 'md-24' : 'md-18']">leaderboard</i>
+    <span :class="['text-muted font-weight-lighter small', { 'ml-1': !isMobile }]">{{ views }}</span>
   </div>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
-import { isMobile } from 'mobile-device-detect'
+import { mapGetters } from 'vuex'
+// import { isMobile } from 'mobile-device-detect'
 
 export default {
   name: 'BtnVisit',
@@ -18,10 +18,10 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters(['isAuthenticated', 'user']),
-    mobile () {
-      return isMobile
-    },
+    ...mapGetters(['isAuthenticated', 'isMobile']),
+    // isMobile () {
+      // return isMobile
+    // },
     views () {
       const views = this.item.recipe.views
       if (views >= 1000000) return `${(views / 1000000).toFixed(1)}M`

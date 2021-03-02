@@ -14,19 +14,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { isMobile } from 'mobile-device-detect'
 
 export default {
   name: 'CommentLike',
   props: ['item', 'type'],
   computed: {
-    ...mapGetters([
-      'isAuthenticated',
-      'currentUser',
-    ]),
-    mobile () {
-      return isMobile
-    },
+    ...mapGetters({
+      isAuthenticated: 'isAuthenticated',
+      currentUser: 'users/current',
+      isMobile: 'isMobile',
+    }),
     isUserLiked () {
       if (this.isAuthenticated) {
         let like = []

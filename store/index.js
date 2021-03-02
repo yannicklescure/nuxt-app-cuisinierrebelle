@@ -397,7 +397,7 @@ export const getters = {
   timestamp () {
     return state.timestamp
   },
-  mobile () {
+  isMobile () {
     return isMobile
   },
   authorization (state, getters) {

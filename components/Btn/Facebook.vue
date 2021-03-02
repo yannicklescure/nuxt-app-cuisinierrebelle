@@ -4,7 +4,7 @@
       <div
         v-if="scope.logout && model.connected"
         @click="scope.logout"
-        :class="[mobile ? 'text-body my-2 text-decoration-none' : 'dropdown-item mouse-pointer']"
+        :class="[isMobile ? 'text-body my-2 text-decoration-none' : 'dropdown-item mouse-pointer']"
       >{{ $t('navbar.logout') }}</div>
     </div>
     <v-facebook-login
@@ -26,7 +26,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import VFacebookLogin from 'vue-facebook-login-component'
-import { isMobile } from 'mobile-device-detect'
 
 const capitalize = (s) => {
   if (typeof s !== 'string') return ''
@@ -49,10 +48,8 @@ export default {
   computed: {
     ...mapGetters([
       'isAuthenticated',
+      'isMobile',
     ]),
-    mobile () {
-      return isMobile
-    }
   },
   methods: {
     handleSdkInit({ FB, scope }) {

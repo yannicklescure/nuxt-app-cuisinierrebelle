@@ -5,7 +5,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-  recipes (state, payload) {
+  list (state, payload) {
     state.list = payload.data.recipes
   },
   delete: (state, payload) => {
@@ -34,10 +34,10 @@ export const mutations = {
 }
 
 export const actions = {
-  recipes: (context, payload) => {
+  list: (context, payload) => {
     return api.recipes(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("recipes", response.data)
+        if (response.status === 200) context.commit("recipes/list", response.data)
         return response
       })
       .catch(error => {
@@ -49,7 +49,7 @@ export const actions = {
     // console.log(context.state.data.user)
     return api.recipe(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("recipe", response)
+        if (response.status === 200) context.commit("recipes/recipe", response)
         return response
       })
       .catch(error => {

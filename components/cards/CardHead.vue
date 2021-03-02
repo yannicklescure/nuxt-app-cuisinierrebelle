@@ -8,13 +8,13 @@
         class="rounded-circle mr-2"
         style="object-fit: cover;"
       >
-      <router-link
+      <NuxtLink
         :to="'/u/' + item.user.slug"
         class="text-body d-flex align-items-center"
         style="font-size: 90%"
       >
         <div class="text-capitalize">{{ item.user.name }}</div>
-      </router-link>
+      </NuxtLink>
       <span v-if="item.user.checked" data-toggle="tooltip" data-placement="top" title="Verified" class="d-flex px-1">
         <i class="material-icons md-16">check_circle</i>
       </span>

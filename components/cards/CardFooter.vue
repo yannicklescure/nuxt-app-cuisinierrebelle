@@ -1,23 +1,23 @@
 <template>
   <div class="card-footer border-0 bg-white p-1">
-    <div v-if="mobile" class="d-flex justify-content-between align-items-center my-2">
-      <div :class="['d-flex justify-content-between', mobile ? 'align-items-start' : 'align-items-center ml-n2']">
-        <like :item="item" />
-        <comment :item="item" />
-        <share :item="item" />
+    <div v-if="isMobile" class="d-flex justify-content-between align-items-center my-2">
+      <div :class="['d-flex justify-content-between', isMobile ? 'align-items-start' : 'align-items-center ml-n2']">
+        <BtnLike :item="item" />
+        <BtnComment :item="item" />
+        <BtnShare :item="item" />
       </div>
-      <div :class="['d-flex', mobile ? 'align-items-start' : 'align-items-center']">
-        <visit :item="item" />
-        <bookmark :item="item" />
+      <div :class="['d-flex', isMobile ? 'align-items-start' : 'align-items-center']">
+        <BtnVisit :item="item" />
+        <BtnBookmark :item="item" />
       </div>
     </div>
     <div class="d-flex flex-column">
-      <router-link
+      <NuxtLink
         :to="'/r/' + item.recipe.slug"
         class="card-link text-body text-uppercase"
       >
         {{ item.recipe.title }}
-      </router-link>
+      </NuxtLink>
       <div
         class="card-text font-weight-lighter"
         style="font-size: 90%"
@@ -31,25 +31,25 @@
 <script>
 import { mapGetters } from 'vuex'
 
-const Bookmark = () => import('../buttons/Bookmark.vue')
-const Comment = () => import('../buttons/Comment.vue')
-const Like = () => import('../buttons/Like.vue')
-const Share = () => import('../buttons/Share.vue')
-const Visit = () => import('../buttons/Visit.vue')
+// const Bookmark = () => import('../buttons/Bookmark.vue')
+// const Comment = () => import('../buttons/Comment.vue')
+// const Like = () => import('../buttons/Like.vue')
+// const Share = () => import('../buttons/Share.vue')
+// const Visit = () => import('../buttons/Visit.vue')
 
 export default {
   name: 'CardFooter',
   props: ['item'],
-  components: {
-    Bookmark,
-    Comment,
-    Like,
-    Share,
-    Visit,
-  },
+  // components: {
+  //   Bookmark,
+  //   Comment,
+  //   Like,
+  //   Share,
+  //   Visit,
+  // },
   computed: {
     ...mapGetters([
-      'mobile',
+      'isMobile',
     ]),
   },
   // methods: {

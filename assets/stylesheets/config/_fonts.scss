@@ -10,8 +10,16 @@
 // @import "@fontsource/raleway/700";
 
 // Define fonts for body and headers
-$body-font: 'Roboto', sans-serif;
-$headers-font: 'Roboto', sans-serif;
+$body-font: 'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+$headers-font: $body-font;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

@@ -5,14 +5,14 @@
     :class="['d-print-none navbar fixed-top d-flex px-3 py-2 justify-content-between align-items-center bg-white mb-3']"
     >
     <div class="d-flex align-items-center">
-      <router-link
+      <NuxtLink
         to="/"
         class="navbar-brand d-flex align-items-center text-body"
         @click.native="scroll2Top"
       >
         <img :src="'https://media.cuisinierrebelle.com/brand-icon.jpg'" width="32" height="32" class="mr-1">
         <span>{{ $t('navbar.brand') }}</span>
-      </router-link>
+      </NuxtLink>
     </div>
     <div class="input-group d-flex w-25">
       <input
@@ -29,28 +29,28 @@
         v-if="isAuthenticated"
         class="d-flex align-items-center"
       >
-        <router-link to="/top100" class="nav-item mx-2 text-fire text-decoration-none">
+        <NuxtLink to="/top100" class="nav-item mx-2 text-fire text-decoration-none">
           <i class="material-icons md-18 d-flex">whatshot</i>
-        </router-link>
-        <router-link to="/bookmarks" class="nav-item mx-2 text-body text-decoration-none">
+        </NuxtLink>
+        <NuxtLink to="/bookmarks" class="nav-item mx-2 text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">bookmarks</i>
-        </router-link>
-        <router-link to="/notifications" class="nav-item mx-2 text-body text-decoration-none">
+        </NuxtLink>
+        <NuxtLink to="/notifications" class="nav-item mx-2 text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">notifications_none</i>
-        </router-link>
+        </NuxtLink>
         <div class="nav-item mx-2 dropdown">
           <div class="text-body mouse-pointer" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons md-18 d-flex">more_vert</i>
           </div>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="navbarDropdown">
             <div class="border-bottom pb-2 mb-2" v-if="currentUser.admin">
-              <router-link class="dropdown-item" :to="'/admin'">{{ $t('navbar.admin') }}</router-link>
+              <NuxtLink class="dropdown-item" :to="'/admin'">{{ $t('navbar.admin') }}</NuxtLink>
             </div>
-            <router-link class="dropdown-item" to="/r/new">{{ $t('navbar.new_recipe') }}</router-link>
-            <router-link class="dropdown-item" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</router-link>
-            <router-link class="dropdown-item" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</router-link>
-            <router-link class="dropdown-item" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</router-link>
-            <facebook-login v-if="facebookAuth" />
+            <NuxtLink class="dropdown-item" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
+            <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
+            <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
+            <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
+            <BtnFacebook v-if="facebookAuth" />
             <div
               v-else
               @click="logout"
@@ -63,14 +63,14 @@
         v-else
         class="d-flex align-items-center"
       >
-        <router-link
+        <NuxtLink
           to="/login"
           class="btn btn-sm text-body mx-2 text-decoration-none"
-        >{{ $t('navbar.login') }}</router-link>
-        <router-link
+        >{{ $t('navbar.login') }}</NuxtLink>
+        <NuxtLink
           to="/signup"
           class="btn btn-sm btn-dark mx-2"
-        >{{ $t('navbar.getStarted') }}</router-link>
+        >{{ $t('navbar.getStarted') }}</NuxtLink>
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { isMobile } from 'mobile-device-detect'
-const FacebookLogin = () => import('../components/buttons/Facebook.vue')
+// const FacebookLogin = () => import('../components/buttons/Facebook.vue')
 
 export default {
   name: 'NavbarLarge',
@@ -90,9 +90,9 @@ export default {
       searchQuery: '',
     }
   },
-  components: {
-    FacebookLogin,
-  },
+  // components: {
+  //   FacebookLogin,
+  // },
   created () {
     if (process.client) {
       window.addEventListener('scroll', this.handleScroll);
@@ -116,7 +116,7 @@ export default {
     isScrollTop () {
       return true
     },
-    mobile () {
+    isMobile () {
       return isMobile
     }
   },

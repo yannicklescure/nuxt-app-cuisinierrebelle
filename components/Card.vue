@@ -30,7 +30,6 @@ export default {
   methods: {
     matchInfoBox () {
       this.card.width = this.$refs.card.clientWidth
-      // this.card.height = parseInt(this.card.width / 1.618)
       this.card.height = parseInt(this.card.width * 2 / 3)
     }
   },

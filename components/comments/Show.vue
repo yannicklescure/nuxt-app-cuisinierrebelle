@@ -8,11 +8,11 @@
         height="24"
         class="rounded-circle"
       >
-      <router-link
+      <NuxtLink
         :to="`/u/${ item.user.slug }`"
         class="mx-2 text-capitalize text-body"
         style="font-size: 90%"
-      >{{ item.user.name }}</router-link>
+      >{{ item.user.name }}</NuxtLink>
       <small class="text-muted">{{ timeAgo(item.timestamp) }}</small>
     </div>
     <div v-if="edit">
@@ -76,7 +76,7 @@ export default {
       'currentUser',
       'navbarHeight',
     ]),
-    mobile () {
+    isMobile () {
       return isMobile
     },
   },

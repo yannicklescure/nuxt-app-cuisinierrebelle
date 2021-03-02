@@ -7,19 +7,19 @@
     >
     <div class="d-flex w-100 justify-content-between align-items-center">
       <div class="d-flex align-items-center">
-        <router-link
+        <NuxtLink
           to="/"
           class="navbar-brand d-flex align-items-center text-body"
           @click.native="scroll2Top"
         >
           <img :src="'https://media.cuisinierrebelle.com/brand-icon.jpg'" width="32" height="32" class="mr-1">
           <span>{{ $t('navbar.brand') }}</span>
-        </router-link>
+        </NuxtLink>
       </div>
       <div class="d-flex align-items-center">
-        <router-link to="/notifications" class="nav-item mx-2 text-body text-decoration-none">
+        <NuxtLink to="/notifications" class="nav-item mx-2 text-body text-decoration-none">
           <i class="material-icons md-24 d-flex">notifications_none</i>
-        </router-link>
+        </NuxtLink>
         <div v-on:click="collapseMenu">
           <i class="material-icons md-24 d-flex">menu</i>
         </div>
@@ -38,18 +38,18 @@
       </div>
       <div v-if="show" class="mt-2 d-flex flex-column w-100">
         <div v-if="isAuthenticated" class="d-flex flex-column">
-          <router-link v-on:click.native="collapse" to="/top100" class="text-fire my-2 text-decoration-none">Top 100</router-link>
-          <router-link v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/bookmarks">{{ $t('navbar.bookmarks') }}</router-link>
-          <router-link v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</router-link>
-          <router-link v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/r/new">{{ $t('navbar.new_recipe') }}</router-link>
-          <router-link v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</router-link>
-          <router-link v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</router-link>
-          <facebook-login v-if="facebookAuth" />
+          <NuxtLink v-on:click.native="collapse" to="/top100" class="text-fire my-2 text-decoration-none">Top 100</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/bookmarks">{{ $t('navbar.bookmarks') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
+          <BtnFacebook v-if="facebookAuth" />
           <div v-else @click="logout" class="text-body my-2 text-decoration-none">{{ $t('navbar.logout') }}</div>
         </div>
         <div v-else class="d-flex flex-column">
-          <router-link v-on:click.native="collapse" to="/login" class="text-body my-2 text-decoration-none">{{ $t('navbar.login') }}</router-link>
-          <router-link v-on:click.native="collapse" to="/signup" class="text-body my-2 text-decoration-none">{{ $t('navbar.getStarted') }}</router-link>
+          <NuxtLink v-on:click.native="collapse" to="/login" class="text-body my-2 text-decoration-none">{{ $t('navbar.login') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" to="/signup" class="text-body my-2 text-decoration-none">{{ $t('navbar.getStarted') }}</NuxtLink>
         </div>
       </div>
     </transition>
@@ -60,7 +60,7 @@
 import { mapGetters } from 'vuex'
 import { isMobile } from 'mobile-device-detect'
 import ClickOutside from 'vue-click-outside'
-const FacebookLogin = () => import('../components/buttons/Facebook.vue')
+// const FacebookLogin = () => import('../components/buttons/Facebook.vue')
 
 export default {
   name: 'NavbarSmall',
@@ -75,9 +75,9 @@ export default {
   directives: {
     ClickOutside
   },
-  components: {
-    FacebookLogin,
-  },
+  // components: {
+  //   FacebookLogin,
+  // },
   computed: {
     ...mapGetters([
       'authorization',
@@ -88,7 +88,7 @@ export default {
     isScrollTop () {
       return true
     },
-    mobile () {
+    isMobile () {
       return isMobile
     }
   },

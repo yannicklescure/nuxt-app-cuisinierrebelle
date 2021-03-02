@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="isAuthenticated" class="mt-2 d-flex align-items-center">
-      <comment-like :item="item" :type="type" />
+      <BtnCommentLike :item="item" :type="type" />
       <div
         v-if="item.user.id === currentUser.id"
         v-on:click="commentEdit"
@@ -59,7 +59,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-const CommentLike = () => import('../buttons/CommentLike.vue')
+// const CommentLike = () => import('../buttons/CommentLike.vue')
 
 export default {
   name: 'CommentButtons',
@@ -70,9 +70,9 @@ export default {
       // reply: false,
     }
   },
-  components: {
-    CommentLike,
-  },
+  // components: {
+  //   CommentLike,
+  // },
   computed: {
     ...mapGetters([
       'isAuthenticated',

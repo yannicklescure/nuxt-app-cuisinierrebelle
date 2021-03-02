@@ -25,7 +25,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/vuejs-dialog.client.js',
+    // '~/plugins/vuejs-dialog.client.js',
+    '~/plugins/vue-social-sharing.js',
+    '~/plugins/vue-google-adsense.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -37,7 +39,7 @@ export default {
     '@nuxtjs/pwa',
     ['@nuxtjs/fontawesome', {
         icons: {
-          brands: ['faTwitter', 'faInstagram', 'faYoutube'],
+          brands: ['faFacebookF', 'faTelegramPlane', 'faTwitter', 'faVk', 'faWhatsapp'],
           solid: ['faEnvelope'],
         }
       }
@@ -58,6 +60,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/toast',
     'nuxt-i18n',
+    'vue-social-sharing/nuxt',
   ],
 
   i18n: {
@@ -97,5 +100,9 @@ export default {
 
   googleAnalytics: {
     id: 'UA-155962082-1'
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
   }
 }

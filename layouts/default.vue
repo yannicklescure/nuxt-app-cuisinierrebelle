@@ -1,16 +1,24 @@
 <template>
-  <div ref="default">
-    <Navbar />
+  <div ref="default" v-if="show">
+    <NavbarMobile v-if="isMobile" />
+    <NavbarDesktop v-else />
     <Nuxt />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
+  data () {
+    return {
+      show: false,
+    }
+  },
   computed: {
     ...mapGetters([
       'navbarHeight',
+      'isMobile'
     ]),
   },
   watch: {
@@ -25,6 +33,7 @@ export default {
   },
   mounted () {
     // this.adjustDivTop()
+    this.show = true
   }
 }
 </script>

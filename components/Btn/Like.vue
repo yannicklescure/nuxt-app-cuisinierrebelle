@@ -1,13 +1,13 @@
 <template>
-  <div :class="['d-flex align-items-center text-danger', mobile ? 'mr-2' : 'ml-2']">
-    <div :class="['d-flex align-items-center justify-content-center', { 'flex-column': mobile }]">
+  <div :class="['d-flex align-items-center text-danger', isMobile ? 'mr-2' : 'ml-2']">
+    <div :class="['d-flex align-items-center justify-content-center', { 'flex-column': isMobile }]">
       <div v-if="isAuthenticated" class="mouse-pointer btn-like" @click="likeIt">
-        <i :class="['material-icons', liked ? 'text-danger' : 'text-body', mobile ? 'md-24' : 'md-18']">{{ like }}</i>
+        <i :class="['material-icons', liked ? 'text-danger' : 'text-body', isMobile ? 'md-24' : 'md-18']">{{ like }}</i>
       </div>
-      <router-link v-else to="/login" class="text-body btn-like">
-        <i :class="['material-icons', mobile ? 'md-24' : 'md-18']">favorite_border</i>
-      </router-link>
-      <span :class="['text-muted font-weight-lighter small', { 'ml-1': !mobile }]">{{ likes }}</span>
+      <NuxtLink v-else to="/login" class="text-body btn-like">
+        <i :class="['material-icons', isMobile ? 'md-24' : 'md-18']">favorite_border</i>
+      </NuxtLink>
+      <span :class="['text-muted font-weight-lighter small', { 'ml-1': !isMobile }]">{{ likes }}</span>
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
     ...mapGetters([
       'isAuthenticated',
       'currentUser',
-      'mobile',
+      'isMobile',
     ]),
     user () {
       return this.currentUser
