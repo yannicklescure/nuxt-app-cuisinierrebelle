@@ -20,10 +20,12 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/stylesheets/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/vuejs-dialog.client.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -31,6 +33,15 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/pwa',
+    ['@nuxtjs/fontawesome', {
+        icons: {
+          brands: ['faTwitter', 'faInstagram', 'faYoutube'],
+          solid: ['faEnvelope'],
+        }
+      }
+    ]
   ],
 
   publicRuntimeConfig: {
@@ -45,9 +56,46 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/toast',
+    'nuxt-i18n',
   ],
+
+  i18n: {
+    locales: [
+      { code: 'fr', iso: 'fr-FR', file: 'fr.js' },
+    ],
+    lazy: true,
+    langDir: 'locales/',
+    defaultLocale: 'fr'
+  },
+
+  toast: {
+    position: 'top-center',
+    register: [ // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      }
+    ]
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  // https://pwa.nuxtjs.org/manifest
+  pwa: {
+    manifest: {
+      name: 'Yannick Lescure',
+      lang: 'fr',
+      useWebmanifestExtension: false
+    }
+  },
+
+  googleAnalytics: {
+    id: 'UA-155962082-1'
   }
 }

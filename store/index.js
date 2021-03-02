@@ -123,7 +123,7 @@ export const actions = {
       })
   },
   SIGN_UP: (context, user) => {
-    console.log(context.state.data)
+    console.log(context.state)
     return api.signUp(context, user)
       .then(response => {
         console.log(response)
@@ -243,7 +243,7 @@ export const actions = {
       })
   },
   RESEND_CONFIRMATION_INSTRUCTIONS: (context, payload) => {
-    // console.log(context.state.data)
+    // console.log(context.state)
     return api.resendConfirmationInstructions(context, payload)
       .then(response => {
         // const token = response.headers.authorization.split('Bearer ')[1]
@@ -258,7 +258,7 @@ export const actions = {
       })
   },
   logIn: (context, user) => {
-    // console.log(context.state.data)
+    // console.log(context.state)
     return api.login(context, user)
       .then(response => {
         // const token = response.headers.authorization.split('Bearer ')[1]
@@ -273,8 +273,8 @@ export const actions = {
       })
   },
   logOut: (context, payload) => {
-    console.log(context.state.data)
-    return api.logout(context, context.state.data.user.auth)
+    console.log(context.state)
+    return api.logout(context, context.state.user.auth)
       .then(response => {
         console.log(response)
         if (response && response.status === 200) {
@@ -297,54 +297,54 @@ export const actions = {
     // refreshAccessToken
     // parseInt(new Date().getTime()/1000)
   },
-  navbarHeight: (context, navbarHeight) => {
-    context.commit("navbarHeight", navbarHeight)
-    // localStorage.setItem('cuisinier_rebelle', JSON.stringify(context.state.data))
+  navbarHeight: (context, payload) => {
+    context.commit("navbarHeight", payload)
+    // localStorage.setItem('cuisinier_rebelle', JSON.stringify(context.state))
   },
 }
 
 export const mutations = {
   follow: (state, payload) => {
     // console.log(payload)
-    state.data.user.following.count += 1
-    state.data.user.following.data.push(payload.data.user)
-    const user = state.data.users.filter(user => user.slug === payload.data.user.slug)[0]
-    const position = state.data.users.indexOf(user)
-    state.data.users[position].followers.count += 1
-    state.data.users[position].followers.data.push(payload.data.user)
+    state.user.following.count += 1
+    state.user.following.data.push(payload.data.user)
+    const user = state.users.filter(user => user.slug === payload.data.user.slug)[0]
+    const position = state.users.indexOf(user)
+    state.users[position].followers.count += 1
+    state.users[position].followers.data.push(payload.data.user)
   },
   unfollow: (state, payload) => {
     // console.log(payload)
-    state.data.user.following.count -= 1
-    let user = state.data.user.following.data.filter(user => user.slug === payload.user)[0]
-    let position = state.data.user.following.data.indexOf(user)
-    state.data.user.following.data.splice(position, 1)
-    user = state.data.users.filter(user => user.slug === payload.user)[0]
-    position = state.data.users.indexOf(user)
-    state.data.users[position].followers.count -= 1
-    state.data.users[position].followers.data.splice(position, 1)
+    state.user.following.count -= 1
+    let user = state.user.following.data.filter(user => user.slug === payload.user)[0]
+    let position = state.user.following.data.indexOf(user)
+    state.user.following.data.splice(position, 1)
+    user = state.users.filter(user => user.slug === payload.user)[0]
+    position = state.users.indexOf(user)
+    state.users[position].followers.count -= 1
+    state.users[position].followers.data.splice(position, 1)
   },
   like: (state, payload) => {
     // console.log(payload)
     // console.log(state)
-    state.data.user.likes.push(payload)
-    // console.log(`user's likes: ${ state.data.user.likes.length }`)
+    state.user.likes.push(payload)
+    // console.log(`user's likes: ${ state.user.likes.length }`)
 
-    const recipe = state.data.recipes.filter(recipe => recipe.recipe.id === payload.recipe_id)[0]
-    const position = state.data.recipes.indexOf(recipe)
-    state.data.recipes[position].recipe.likes += 1
+    const recipe = state.recipes.filter(recipe => recipe.recipe.id === payload.recipe_id)[0]
+    const position = state.recipes.indexOf(recipe)
+    state.recipes[position].recipe.likes += 1
   },
   unlike: (state, payload) => {
     // console.log(payload)
     // console.log(state)
-    const like = state.data.user.likes.filter(like => like.recipe_id === payload.recipe_id)[0]
-    let position = state.data.user.likes.indexOf(like)
-    state.data.user.likes.splice(position, 1)
-    // console.log(`user's likes: ${ state.data.user.likes.length }`)
+    const like = state.user.likes.filter(like => like.recipe_id === payload.recipe_id)[0]
+    let position = state.user.likes.indexOf(like)
+    state.user.likes.splice(position, 1)
+    // console.log(`user's likes: ${ state.user.likes.length }`)
 
-    const recipe = state.data.recipes.filter(recipe => recipe.recipe.id === payload.recipe_id)[0]
-    position = state.data.recipes.indexOf(recipe)
-    state.data.recipes[position].recipe.likes -= 1
+    const recipe = state.recipes.filter(recipe => recipe.recipe.id === payload.recipe_id)[0]
+    position = state.recipes.indexOf(recipe)
+    state.recipes[position].recipe.likes -= 1
   },
   setStoreData: (state, payload) => {
     // console.log(state)
@@ -359,19 +359,19 @@ export const mutations = {
     state.users.list = payload.data.users
   },
   logIn: (state, payload) => {
-    state.data.user = payload.data
-    state.data.authorization = {
+    state.user = payload.data
+    state.authorization = {
       authorizationToken: payload.headers['access-token'],
       refreshToken: payload.headers['refresh-token'],
       expireAt: payload.headers['expire-at']
     }
-    state.data.isAuthenticated = true
+    state.isAuthenticated = true
   },
   logOut: (state, payload) => {
     state = clearUserData(state)
   },
   isAuthenticated: (state, payload) => {
-    state.data.isAuthenticated = payload.data.isAuthenticated
+    state.isAuthenticated = payload.data.isAuthenticated
     if (payload.data.isAuthenticated) {
       // console.log('User is authenticated.')
     }
@@ -380,46 +380,46 @@ export const mutations = {
     }
   },
   refreshAccessToken: (state, payload) => {
-    state.data.authorization = {
+    state.authorization = {
       authorizationToken: payload.headers['access-token'],
       refreshToken: payload.headers['refresh-token'],
       expireAt: payload.headers['expire-at']
     }
-    state.data.isAuthenticated = true
+    state.isAuthenticated = true
   },
   navbarHeight: (state, payload) => {
-    state.data.render.navbarHeight = payload
+    state.render.navbarHeight = payload
     // context.commit("navbarHeight", navbarHeight)
   },
 }
 
 export const getters = {
   timestamp () {
-    return state.data.timestamp
+    return state.timestamp
   },
   mobile () {
     return isMobile
   },
   authorization (state, getters) {
     return {
-      authorizationToken: state.data.authorization.authorizationToken,
-      refreshToken: state.data.authorization.refreshToken,
-      expireAt: state.data.authorization.expireAt,
+      authorizationToken: state.authorization.authorizationToken,
+      refreshToken: state.authorization.refreshToken,
+      expireAt: state.authorization.expireAt,
     }
   },
   isAuthenticated (state, getters) {
-    return state.data.isAuthenticated
-    // console.log(state.data.user)
-    // return state.data.user.email != null
+    return state.isAuthenticated
+    // console.log(state.user)
+    // return state.user.email != null
   },
   facebookAuth (state, getters) {
-    // return state.data.isAuthenticated
-    // console.log(state.data.user)
-    return state.data.user.facebookAuth
+    // return state.isAuthenticated
+    // console.log(state.user)
+    return state.user.facebookAuth
   },
   navbarHeight (state) {
     // console.log(state)
-    return state.data.render.navbarHeight
+    return state.render.navbarHeight
   },
   countRecipeComments (state) {
     return item => {

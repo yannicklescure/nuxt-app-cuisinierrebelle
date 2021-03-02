@@ -18,11 +18,7 @@ export default {
       fetchedData: null
     }
   },
-  // async fetch() {
-  //   this.fetchedData = await fetch(
-  //     'https://api.cuisinierrebelle.com/v1/state'
-  //   ).then(response => response.json())
-  // },
+  // middleware: 'authenticated',
   methods: {
     ...mapActions(['getStoreData'])
   },

@@ -1,0 +1,33 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+body {
+  // min-height: calc(100vh - 104px);
+  min-height: 100vh;
+  font-weight: normal;
+}
+
+main, .cr-vh100 {
+  min-height: calc(100vh - 176px);
+  // min-height: calc(100vh - 104px);
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  body {
+    // margin: 0;
+    // min-height: calc(100vh - 58px);
+  }
+
+  main {
+    min-height: calc(100vh - 152px);
+    // min-height: calc(100vh - 58px);
+  }
+}

@@ -1,0 +1,43 @@
+.banner-height {
+  min-height: calc(100vh - 104px);
+}
+
+.banner-background {
+  background-size: cover;
+  background-position: 25% center;
+}
+
+.bg-banner {
+  // background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://source.unsplash.com/1600x900/?cooking,food');
+}
+
+.align-items {
+  margin-bottom: 3px;
+}
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .banner-height {
+    min-height: calc(100vh - 104px);
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .banner-height {
+    min-height: calc(100vh - 104px);
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .banner-height {
+    min-height: calc(100vh - 58px);
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}

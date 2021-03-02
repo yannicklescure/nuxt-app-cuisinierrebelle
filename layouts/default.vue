@@ -1,8 +1,33 @@
 <template>
-  <div>
+  <div ref="default">
+    <Navbar />
     <Nuxt />
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters([
+      'navbarHeight',
+    ]),
+  },
+  watch: {
+    'navbarHeight' () {
+      this.adjustDivTop()
+    }
+  },
+  methods: {
+    adjustDivTop () {
+      return this.$refs.default.style.paddingTop = `${ parseInt(this.navbarHeight) + 8 }px`
+    }
+  },
+  mounted () {
+    // this.adjustDivTop()
+  }
+}
+</script>
 
 <style>
 html {

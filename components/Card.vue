@@ -1,56 +1,58 @@
 <template>
   <div ref="card" class="card">
-    <div class="card-body">
-      <img :src="item.recipe.photo.card.url" :width="cardWidth" :height="cardHeight" alt="">
-    </div>
+    <card-head :item="item" />
+    <card-body :item="item" :card="card" />
+    <card-footer :item="item" />
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'Card',
-    props: ['item'],
-    data() {
-      return {
-        cardWidth: 0,
-        cardHeight: 0
+const CardBody = () => import('../components/cards/CardBody.vue')
+const CardHead = () => import('../components/cards/CardHead.vue')
+const CardFooter = () => import('../components/cards/CardFooter.vue')
+
+export default {
+  name: 'card',
+  props: ['item'],
+  data() {
+    return {
+      card: {
+        width: 0,
+        height: 0
       }
-    },
-    methods: {
-      matchInfoBox () {
-        this.cardWidth = this.$refs.card.clientWidth
-        this.cardHeight = parseInt(this.cardWidth / 1.618)
-      }
-    },
-    created() {
-      if (process.client) {
-        window.addEventListener("resize", this.matchInfoBox);
-      }
-    },
-    destroyed() {
-      if (process.client) {
-        window.removeEventListener("resize", this.matchInfoBox);
-      }
-    },
-    mounted() {
-      this.$nextTick(() => {
-        // The whole view is rendered, so I can safely access or query
-        // the DOM. ¯\_(ツ)_/¯
-        this.matchInfoBox()
-      })
     }
+  },
+  components: {
+    CardBody,
+    CardHead,
+    CardFooter,
+  },
+  methods: {
+    matchInfoBox () {
+      this.card.width = this.$refs.card.clientWidth
+      // this.card.height = parseInt(this.card.width / 1.618)
+      this.card.height = parseInt(this.card.width * 2 / 3)
+    }
+  },
+  created() {
+    if (process.client) {
+      window.addEventListener("resize", this.matchInfoBox);
+    }
+  },
+  destroyed() {
+    if (process.client) {
+      window.removeEventListener("resize", this.matchInfoBox);
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      // console.log('card ready')
+      this.matchInfoBox()
+      this.$emit('cardReady', this.item.recipe.id)
+    })
   }
+}
 </script>
 
-<style scoped>
-  img {
-    object-fit: cover;
-  }
-  .card {
-    min-height: 100%;
-  }
-
-  .card-body {
-    padding: 0;
-  }
+<style>
 </style>

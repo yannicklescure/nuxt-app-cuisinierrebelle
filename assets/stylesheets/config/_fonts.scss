@@ -1,0 +1,33 @@
+// Import Google fonts
+// @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
+
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/700.css";
+// @import "@fontsource/raleway/300";
+// @import "@fontsource/raleway/400";
+// @import "@fontsource/raleway/500";
+// @import "@fontsource/raleway/700";
+
+// Define fonts for body and headers
+$body-font: 'Roboto', sans-serif;
+$headers-font: 'Roboto', sans-serif;
+
+// To use a font file (.woff) uncomment following lines
+// @font-face {
+//   font-family: "Font Name";
+//   src: font-url('FontFile.eot');
+//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
+//        font-url('FontFile.woff') format('woff'),
+//        font-url('FontFile.ttf') format('truetype')
+// }
+// $my-font: "Font Name";
+
+// @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+// @import 'material-icons/iconfont/material-icons.css';
+
+.text-fire {
+  background: -webkit-linear-gradient(#ffed00, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

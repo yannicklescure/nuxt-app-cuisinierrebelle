@@ -1,0 +1,112 @@
+.navbar-cuisinierrebelle {
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  background: white;
+  min-height: 104px;
+
+  .navbar-collapse {
+    // flex-grow: 0;
+  }
+
+  .navbar-brand {
+    padding-bottom: 8px;
+
+    img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+  a.nav-link {
+    color: red;
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdown-item:focus, .dropdown-item:hover {
+    background-color: $gray-300 !important;
+    color: $gray-900;
+  }
+
+  .dropdown-item.active, .dropdown-item:active {
+    // background-color: $gray-600 !important;
+    color: $gray-600;
+  }
+}
+
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.admin {
+  .nav-item {
+    color: $text-muted;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  .nav-item:hover {
+    color: $text-body;
+  }
+
+  .nav-item.active {
+    color: $text-body;
+  }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .navbar-cuisinierrebelle {
+    min-height: 104px;
+
+    .navbar-brand img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .navbar-cuisinierrebelle {
+    min-height: 58px;
+
+    .navbar-brand img {
+      height: 28px;
+      width: 28px;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .navbar-cuisinierrebelle {
+    .navbar-brand img {
+      height: 28px;
+      width: 28px;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .navbar-cuisinierrebelle {
+    .navbar-brand img {
+      height: 28px;
+      width: 28px;
+    }
+  }
+}

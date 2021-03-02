@@ -1,35 +1,50 @@
 import * as api from '~/api'
 
 export const state = () => ({
+  list: []
 })
 
 export const mutations = {
-  recipeDelete: (state, payload) => {
-    const recipe = state.recipes.filter(item => item.recipe.id === parseInt(payload.data.recipe.id))[0]
-    const position = state.recipes.indexOf(recipe)
-    state.recipes.splice(position, 1)
+  recipes (state, payload) {
+    state.list = payload.data.recipes
   },
-  recipeEdit: (state, payload) => {
+  delete: (state, payload) => {
+    const recipe = state.list.filter(item => item.recipe.id === parseInt(payload.data.recipe.id))[0]
+    const position = state.list.indexOf(recipe)
+    state.list.splice(position, 1)
+  },
+  edit: (state, payload) => {
     // console.log(payload)
   },
-  recipeNew: (state, payload) => {
-    state.recipes.push(payload.data)
+  new: (state, payload) => {
+    state.list.push(payload.data)
   },
   recipe: (state, payload) => {
-    const recipe = state.recipes.filter(r => r.recipe.id === parseInt(payload.data.recipe.id))[0]
+    const recipe = state.list.filter(r => r.recipe.id === parseInt(payload.data.recipe.id))[0]
     if (recipe) {
-      const position = state.recipes.indexOf(recipe)
+      const position = state.list.indexOf(recipe)
       state.recipes[position] = payload.data
     }
   },
-  recipeLog: (state, payload) => {
-    const recipe = state.recipes.filter(r => r.recipe.id === payload.data.recipe.id)[0]
-    const position = state.recipes.indexOf(recipe)
+  log: (state, payload) => {
+    const recipe = state.list.filter(r => r.recipe.id === payload.data.recipe.id)[0]
+    const position = state.list.indexOf(recipe)
     state.recipes[position].recipe.views = payload.views
   },
 }
 
 export const actions = {
+  recipes: (context, payload) => {
+    return api.recipes(context, payload)
+      .then(response => {
+        if (response.status === 200) context.commit("recipes", response.data)
+        return response
+      })
+      .catch(error => {
+        // console.log(error)
+        return error
+      })
+  },
   recipe: (context, payload) => {
     // console.log(context.state.data.user)
     return api.recipe(context, payload)
@@ -42,12 +57,12 @@ export const actions = {
         return error
       })
   },
-  recipeDelete: (context, payload) => {
+  delete: (context, payload) => {
     // console.log(context.state.data.user)
     return api.recipeDelete(context, payload)
       .then(response => {
         console.log(response)
-        if (response.status === 200) context.commit("recipeDelete", response)
+        if (response.status === 200) context.commit("delete", response)
         return response
       })
       .catch(error => {
@@ -55,12 +70,12 @@ export const actions = {
         return error
       })
   },
-  recipeEdit: (context, payload) => {
+  edit: (context, payload) => {
     // console.log(context.state.data.user)
     return api.recipeEdit(context, payload)
       .then(response => {
         console.log(response)
-        if (response.status === 200) context.commit("recipeEdit", response)
+        if (response.status === 200) context.commit("edit", response)
         return response
       })
       .catch(error => {
@@ -68,11 +83,11 @@ export const actions = {
         return error
       })
   },
-  recipeNew: (context, payload) => {
+  new: (context, payload) => {
     // console.log(context.state.data.user)
     return api.recipeNew(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("recipeNew", response)
+        if (response.status === 200) context.commit("new", response)
         return response
       })
       .catch(error => {
@@ -80,11 +95,11 @@ export const actions = {
         return error
       })
   },
-  recipeLog: (context, payload) => {
+  log: (context, payload) => {
     console.log(context.state.data.user)
     return api.recipeLog(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("recipeLog", { data: payload, views: response.data.views })
+        if (response.status === 200) context.commit("log", { data: payload, views: response.data.views })
         return response
       })
       .catch(error => {
@@ -95,8 +110,12 @@ export const actions = {
 }
 
 export const getters = {
+  listSorted (state) {
+    // console.log(state)
+    return state.list.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
+  },
   recipe (state) {
-    return keyword => state.recipes.slice().filter( item => {
+    return keyword => state.list.slice().filter( item => {
       return item.recipe.slug === keyword
     })[0];
   },
