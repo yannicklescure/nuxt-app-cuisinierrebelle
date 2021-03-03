@@ -34,7 +34,6 @@
                 class="text-light small"
               >Unsplash</a>
               <a
-                @click="imageTrackDownload"
                 :href="image.link.download"
                 target="_blank"
                 class="ml-2 text-light text-decoration-none"
@@ -49,7 +48,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+// import { mapGetters } from 'vuex'
 // import { fetchBannerPicture } from '../api'
 // import Unsplash, { toJson } from 'unsplash-js';
 // const unsplash = new Unsplash({ accessKey: 'nHSH2XMCvdAgrKbLMHs1M1u7vWUW8vxEmyHvDsTOLTs' });
@@ -58,91 +58,21 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Banner',
   // props: ['displayCards'],
-  data () {
-    return {
-      loading: true,
-      // imageUrl: '',
-      // viewport: {
-      //   height: 0,
-      //   width: 0,
-      // },
-      // image: {
-      //   id: null,
-      //   url: null,
-      //   link: {
-      //     download: null,
-      //   },
-      //   user: {
-      //     name: null,
-      //     username: null
-      //   }
-      // },
-    }
-  },
-  methods: {
-    // async getBannerPicture () {
-    //   const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-    //   const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-    //   const viewport = {
-    //     height: vh,
-    //     width: vw,
-    //   }
-    //   const image = await getBannerPicture(viewport)
-    //   console.log(image)
-    //   this.$store
-    //     .dispatch('SET_BANNER_IMAGE', image)
-    // },
-
-    imageTrackDownload () {
-    //   console.log(`track download photo id ${this.image.id}`)
-    //   unsplash.photos.getPhoto(this.image.id)
-    //     .then(toJson)
-    //     .then(json => {
-    //       unsplash.photos.trackDownload(json);
-    //     })
-    //   // browser.downloads.download({
-    //   //   url : this.image.link.download,
-    //   //   filename : 'my-image-again.png',
-    //   //   conflictAction : 'uniquify'
-    //   // })
-    },
-    recipes () {
-      // this.$router.push({ name: 'Recipes' })
-      // if (this.displayCards) this.$emit('scrollToCards', true)
-      // else this.$emit('loadCards', true)
-    },
-    // scrollToCards () {
-    //   let element = document.querySelector('#recipes-cards')
-    //   console.log(element)
-    //   const scrollOptions = {
-    //     top: element.offsetTop - this.navbarHeight,
-    //     left: 0,
-    //     behavior: 'smooth'
-    //   };
-    //   window.scrollTo(scrollOptions);
-    // },
-
-    // setBannerImage () {
-    //   // this.$refs.banner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('${ this.image.url }')`
-    // }
-  //   loadImg () {
-  //     this.imageUrl = `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
-  //   },
-  //   setImage () {
-  //     let preloaderImg = new Image()
-  //     preloaderImg.src = this.imageUrl
-  //     preloaderImg.addEventListener('load', (event) => {
-  //       this.$refs.banner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('${ preloaderImg.src }')`
-  //       // this.$refs.banner.style.marginTop = this.navbarHeight + 'px'
-  //       preloaderImg = null
-  //     })
+  // data () {
+  //   return {
+  //     loading: true,
   //   }
+  // },
+  methods: {
+    ...mapActions({
+      getBannerImage: 'banner/getBannerImage'
+    }),
   },
   computed: {
-    ...mapGetters([
-      'navbarHeight',
-      'bannerImage',
-    ]),
+    ...mapGetters({
+      navbarHeight: 'navbarHeight',
+      bannerImage: 'banner/bannerImage',
+    }),
     imageUrl () {
       return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
@@ -157,6 +87,9 @@ export default {
         width: vw,
       }
     }
+  },
+  created () {
+    this.getBannerImage()
   },
   // created() {
   //   this.loadImg()

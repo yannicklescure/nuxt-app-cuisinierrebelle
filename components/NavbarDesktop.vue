@@ -134,7 +134,7 @@ export default {
         })
     },
     async scroll2Top () {
-      if (this.$route.name === 'Home') {
+      if (this.$route.path == '/') {
         const scroll = () => {
           const scrollOptions = {
             top: 0,
@@ -145,9 +145,9 @@ export default {
         }
         const refresh = () => {
           this.$store
-            .dispatch('RECIPES', {})
+            .dispatch('recipes/list', {})
             .then(response => {
-              this.loading = false
+              // this.loading = false
             })
         }
         if (window.scrollY > 0) await scroll()
@@ -160,7 +160,7 @@ export default {
               expireAt: this.authorization.expireAt
             })
         }
-        this.loading = true
+        // this.loading = true
       }
     },
     handleScroll (event) {

@@ -37,7 +37,7 @@ export const actions = {
   list: (context, payload) => {
     return api.recipes(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("recipes/list", response.data)
+        if (response.status === 200) context.commit("list", response.data)
         return response
       })
       .catch(error => {

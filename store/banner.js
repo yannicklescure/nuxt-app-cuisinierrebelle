@@ -24,7 +24,7 @@ export const mutations = {
   setBannerImage: (state, payload) => {
     // console.log(payload)
     // state.bannerImage = payload
-    state.banner.image = payload.data.bannerImage
+    state.image = payload.data.bannerImage
   },
 }
 
