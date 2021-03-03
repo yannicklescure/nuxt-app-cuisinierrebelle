@@ -20,8 +20,8 @@ export default {
   props: ['item', 'type'],
   computed: {
     ...mapGetters({
-      isAuthenticated: 'isAuthenticated',
-      currentUser: 'users/current',
+      isAuthenticated: 'users/authentication/isAuthenticated',
+      currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
     }),
     isUserLiked () {

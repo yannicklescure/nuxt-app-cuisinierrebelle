@@ -2,47 +2,7 @@ import * as api from '~/api'
 
 export const state = () => ({
   list: [],
-  user: {
-    authentication_token: null,
-    email: null,
-    facebookAuth: false,
-    followers: {
-      count: 0,
-      data: [],
-    },
-    following: {
-      count: 0,
-      data: [],
-    },
-    locale: 'fr',
-  }
 })
-
-const clearUserData = (state) => {
-  state.user = {
-    email: null,
-    authentication_token: null,
-    facebookAuth: false,
-    locale: 'fr',
-    bookmarks: [],
-    followers: {
-      count: 0,
-      data: [],
-    },
-    following: {
-      count: 0,
-      data: [],
-    }
-  }
-  state.authorization = {
-    authorizationToken: null,
-    refreshToken: null,
-    expireAt: null
-  }
-  state.isAuthenticated = false
-
-  return state
-}
 
 export const mutations = {
   list: (state, payload) => {
@@ -62,7 +22,7 @@ export const actions = {
     // console.log(context.state.data.user)
     return api.users(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("users/list", response.data)
+        if (response.status === 200) context.commit("list", response.data)
         return response
       })
       .catch(error => {
@@ -75,7 +35,7 @@ export const actions = {
     return api.userDelete(context, payload)
       .then(response => {
         console.log(response)
-        if (response.status === 204) context.commit("users/delete", payload)
+        if (response.status === 204) context.commit("delete", payload)
         return response
       })
   },
@@ -84,7 +44,7 @@ export const actions = {
     return api.userNotifications(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("users/notifications", response)
+        if (response.status === 200) context.commit("notifications", response)
         return response
       })
       .catch(error => {
@@ -95,9 +55,6 @@ export const actions = {
 }
 
 export const getters = {
-  current (state) {
-    return state.user
-  },
   recipes (state) {
     return keyword => state.recipes.filter( item => {
       return item.user.slug === keyword
@@ -111,5 +68,4 @@ export const getters = {
   },
 }
 
-export const plugins = [
-]
+export const plugins = []

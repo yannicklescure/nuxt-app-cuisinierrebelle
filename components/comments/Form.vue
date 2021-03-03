@@ -38,10 +38,9 @@ export default {
   //   Follow,
   // },
   computed: {
-    ...mapGetters([
-      'isAuthenticated',
-      'currentUser'
-    ]),
+    ...mapGetters({
+      currentUser: 'users/sessions/current',
+    }),
     isEdit () {
       return this.actionAttr === 'COMMENT_EDIT'
     },

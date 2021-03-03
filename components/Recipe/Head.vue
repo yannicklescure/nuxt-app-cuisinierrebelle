@@ -69,7 +69,7 @@ export default {
   // },
   computed: {
     ...mapGetters({
-      currentUser: 'users/current',
+      currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
     })
   },

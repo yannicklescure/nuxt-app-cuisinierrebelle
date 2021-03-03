@@ -18,7 +18,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isAuthenticated', 'isMobile']),
+    ...mapGetters(['isMobile']),
     // isMobile () {
       // return isMobile
     // },

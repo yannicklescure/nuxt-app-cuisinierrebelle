@@ -81,12 +81,12 @@ export default {
   //   FacebookLogin,
   // },
   computed: {
-    ...mapGetters([
-      'authorization',
-      'isAuthenticated',
-      'currentUser',
-      'facebookAuth',
-    ]),
+    ...mapGetters({
+      isAuthenticated: 'users/authentication/isAuthenticated',
+      authorization: 'users/sessions/authorization',
+      currentUser: 'users/sessions/current',
+      isMobile: 'isMobile',
+    }),
     isScrollTop () {
       return true
     },
@@ -190,7 +190,7 @@ export default {
         .then(dialog => {
           console.log('Clicked on proceed')
           console.log(dialog)
-          this.$store.dispatch('LOG_OUT', {})
+          this.$store.dispatch('users/sessions/logOut', {})
             .then(response => {
               console.log(response)
               if (response.status === 204 && this.$route.name != 'Home') this.$router.push({ name: 'Home' })

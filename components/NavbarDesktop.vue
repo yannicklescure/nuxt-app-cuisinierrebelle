@@ -102,13 +102,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'authorization',
-      'isAuthenticated',
-      'currentUser',
-      'facebookAuth',
-      'isMobile',
-    ]),
+    ...mapGetters({
+      isAuthenticated: 'users/authentication/isAuthenticated',
+      authorization: 'users/sessions/authorization',
+      currentUser: 'users/sessions/current',
+      isMobile: 'isMobile',
+    }),
     // user () {
     //   return this.currentUser
     // },
@@ -190,7 +189,7 @@ export default {
         .then(dialog => {
           console.log('Clicked on proceed')
           // DELETE FACEBOOK COOKIES c_user xs
-          this.$store.dispatch('LOG_OUT', {})
+          this.$store.dispatch('users/sessions/logOut', {})
             .then(response => {
               console.log(response)
               if (response.status === 200 && this.$route.name != 'Home') this.$router.push({ name: 'Home' })

@@ -40,10 +40,10 @@ export default {
     CommentForm,
   },
   computed: {
-    ...mapGetters([
-      'isAuthenticated',
-      'currentUser',
-    ]),
+    ...mapGetters({
+      isAuthenticated: 'users/authentication/isAuthenticated',
+      currentUser: 'users/sessions/current',
+    }),
   },
   methods: {
     commentNew (payload) {

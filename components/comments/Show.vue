@@ -72,8 +72,6 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'isAuthenticated',
-      'currentUser',
       'navbarHeight',
     ]),
     isMobile () {

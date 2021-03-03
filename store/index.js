@@ -4,12 +4,6 @@ import { isMobile } from 'mobile-device-detect'
 // export const strict = false
 
 export const state = () => ({
-  authorization: {
-    authorizationToken: null,
-    expireAt: null,
-    refreshToken: null,
-  },
-  isAuthenticated: false,
   lastUpdated: 0,
   render: {
     navbarHeight: 0,
@@ -92,18 +86,6 @@ export const actions = {
         console.log(`response.status ${response.status}`)
         console.log(response)
         if (response.status === 204) context.commit("unlike", payload)
-        return response
-      })
-      .catch(error => {
-        // console.log(error)
-        return error
-      })
-  },
-  isAuthenticated: (context, payload) => {
-    return api.isAuthenticated(payload)
-      .then(response => {
-        console.log(response)
-        context.commit("isAuthenticated", response)
         return response
       })
       .catch(error => {
@@ -257,46 +239,6 @@ export const actions = {
         return error
       })
   },
-  logIn: (context, user) => {
-    // console.log(context.state)
-    return api.login(context, user)
-      .then(response => {
-        // const token = response.headers.authorization.split('Bearer ')[1]
-        // console.log(token)
-        // console.log(jwt.decode(token))
-        if (response.status === 200) context.commit("logIn", response)
-        return response
-      })
-      .catch(error => {
-        // console.log(error)
-        return error
-      })
-  },
-  logOut: (context, payload) => {
-    console.log(context.state)
-    return api.logout(context, context.state.user.auth)
-      .then(response => {
-        console.log(response)
-        if (response && response.status === 200) {
-          context.commit("logOut", payload)
-          return response
-        }
-      })
-  },
-  refreshAccessToken: (context, payload) =>  {
-    return api.refreshAccessToken(context, payload)
-      .then(response => {
-        console.log(response.data.message)
-        context.commit("refreshAccessToken", response)
-        return response
-      })
-      .catch(error => {
-        // console.log(error)
-        return error
-      })
-    // refreshAccessToken
-    // parseInt(new Date().getTime()/1000)
-  },
   navbarHeight: (context, payload) => {
     context.commit("navbarHeight", payload)
     // localStorage.setItem('cuisinier_rebelle', JSON.stringify(context.state))
@@ -352,40 +294,11 @@ export const mutations = {
     //   // state[key] = payload.data[key]
     //   state[key] = value
     // }
-    state.isAuthenticated = payload.data.isAuthenticated
     state.lastUpdated = payload.data.lastUpdated
     state.recipes.list = payload.data.recipes
-    state.timestamp = payload.data.timestamp
     state.users.list = payload.data.users
-  },
-  logIn: (state, payload) => {
-    state.user = payload.data
-    state.authorization = {
-      authorizationToken: payload.headers['access-token'],
-      refreshToken: payload.headers['refresh-token'],
-      expireAt: payload.headers['expire-at']
-    }
-    state.isAuthenticated = true
-  },
-  logOut: (state, payload) => {
-    state = clearUserData(state)
-  },
-  isAuthenticated: (state, payload) => {
-    state.isAuthenticated = payload.data.isAuthenticated
-    if (payload.data.isAuthenticated) {
-      // console.log('User is authenticated.')
-    }
-    else {
-      state = clearUserData(state)
-    }
-  },
-  refreshAccessToken: (state, payload) => {
-    state.authorization = {
-      authorizationToken: payload.headers['access-token'],
-      refreshToken: payload.headers['refresh-token'],
-      expireAt: payload.headers['expire-at']
-    }
-    state.isAuthenticated = true
+    state.users.sessions.isAuthenticated = payload.data.isAuthenticated
+    state.timestamp = payload.data.timestamp
   },
   navbarHeight: (state, payload) => {
     state.render.navbarHeight = payload
@@ -399,23 +312,6 @@ export const getters = {
   },
   isMobile () {
     return isMobile
-  },
-  authorization (state, getters) {
-    return {
-      authorizationToken: state.authorization.authorizationToken,
-      refreshToken: state.authorization.refreshToken,
-      expireAt: state.authorization.expireAt,
-    }
-  },
-  isAuthenticated (state, getters) {
-    return state.isAuthenticated
-    // console.log(state.user)
-    // return state.user.email != null
-  },
-  facebookAuth (state, getters) {
-    // return state.isAuthenticated
-    // console.log(state.user)
-    return state.user.facebookAuth
   },
   navbarHeight (state) {
     // console.log(state)

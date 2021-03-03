@@ -13,9 +13,9 @@ export default {
   data () {
     return {}
   },
-  computed: {
-    // ...mapGetters(['isAuthenticated', 'user']),
-  },
+  // computed: {
+  //   // ...mapGetters(['isAuthenticated', 'user']),
+  // },
   methods: {
 
     googleAdsNoPrint () {

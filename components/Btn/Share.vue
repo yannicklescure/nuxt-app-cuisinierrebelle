@@ -24,10 +24,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'isAuthenticated',
-      'isMobile'
-    ]),
+    ...mapGetters(['isMobile']),
   },
   methods: {
     async shareItemMobile () {

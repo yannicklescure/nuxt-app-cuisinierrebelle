@@ -50,7 +50,7 @@ export default {
       recipe: 'recipes/recipe',
       navbarHeight: 'navbarHeight',
       isMobile: 'isMobile',
-      currentUser: 'users/current'
+      currentUser: 'users/sessions/current'
     }),
     item () {
       return this.recipe(this.slug)

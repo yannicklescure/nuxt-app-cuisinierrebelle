@@ -74,10 +74,10 @@ export default {
   //   CommentLike,
   // },
   computed: {
-    ...mapGetters([
-      'isAuthenticated',
-      'currentUser',
-    ]),
+    ...mapGetters({
+      isAuthenticated: 'users/authentication/isAuthenticated',
+      currentUser: 'users/sessions/current',
+    }),
   },
   methods: {
     login () {
