@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="image.url"
     class="mb-2 banner-background banner-height d-flex justify-content-center justify-content-md-center align-items-center flex-column"
     ref="banner"
     :style="`background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('${ imageUrl }')`"
@@ -73,11 +74,11 @@ export default {
       navbarHeight: 'navbarHeight',
       bannerImage: 'banner/bannerImage',
     }),
-    imageUrl () {
-      return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
-    },
     image () {
       return this.bannerImage
+    },
+    imageUrl () {
+      return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
     viewport () {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
