@@ -48,10 +48,12 @@ export const mutations = {
     // console.log(state)
     // console.log(payload)
     state.user = payload.data
-    state.authorization = {
-      authorizationToken: payload.headers['access-token'],
-      refreshToken: payload.headers['refresh-token'],
-      expireAt: payload.headers['expire-at']
+    if (payload.headers['access-token']) {
+      state.authorization = {
+        authorizationToken: payload.headers['access-token'],
+        refreshToken: payload.headers['refresh-token'],
+        expireAt: payload.headers['expire-at']
+      }
     }
   },
   refreshAccessToken: (state, payload) => {
@@ -64,6 +66,9 @@ export const mutations = {
 }
 
 export const actions = {
+  clearUserSession: (context, payload) => {
+    context.commit("logOut", payload)
+  },
   logIn: (context, payload) => {
     return api.login(context, payload)
       .then(response => {

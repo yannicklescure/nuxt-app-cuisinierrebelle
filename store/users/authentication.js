@@ -4,6 +4,12 @@ export const state = () => ({
   isAuthenticated: false,
 })
 
+export const mutations = {
+  isAuthenticated: (state, payload) => {
+    state.isAuthenticated = payload.data.isAuthenticated
+  },
+}
+
 export const actions = {
   isAuthenticated: (context, payload) => {
     return api.isAuthenticated(payload)
@@ -14,7 +20,7 @@ export const actions = {
           // console.log('User is authenticated.')
         }
         else {
-          context.dispatch('users/sessions/logOut', payload, { root: true })
+          context.dispatch('users/sessions/clearUserSession', payload, { root: true })
         }
         return response
       })
@@ -22,12 +28,6 @@ export const actions = {
         // console.log(error)
         return error
       })
-  },
-}
-
-export const mutations = {
-  isAuthenticated: (state, payload) => {
-    state.isAuthenticated = payload.data.isAuthenticated
   },
 }
 

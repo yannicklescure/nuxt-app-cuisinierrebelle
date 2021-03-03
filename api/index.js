@@ -1,38 +1,7 @@
 import axios from 'axios'
-// import Unsplash, { toJson } from 'unsplash-js';
-
-// const logRequests = !!process.env.DEBUG_API
-// // console.log(logRequests)
-
-// const api = (child, options) => {
-//   logRequests && console.log(`fetching ${child}...`)
-//   return axios.create({
-//     baseURL: child,
-//     timeout: 1000,
-//   });
-// }
-
-// const fetch = (URI, options) => {
-//   return Promise.resolve(api(URI, options))
-//     .then(response => response.get())
-//     .then(result => {
-//       return result;
-//     })
-//     .catch(ex => {
-//       console.log('parsing failed', ex);
-//     });
-// }
-
-// export const fetchItem = (URI, item) => {
-//   return fetch(URI)
-// }
-
-// const metaCsrf = document.querySelector("meta[name='csrf-token']")
-// const context.getters.csrfToken = metaCsrf.getAttribute('content')
 
 const apiUrl = 'https://api.cuisinierrebelle.com'
 const version = 'v1'
-// const domain = ''
 
 export const userNotifications = (context, payload) => {
   return axios({
@@ -50,10 +19,6 @@ export const userNotifications = (context, payload) => {
       notification: payload.notification,
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const notifications = (context, payload) => {
@@ -69,10 +34,6 @@ export const notifications = (context, payload) => {
       'Refresh-Token': context.state.data.authorization.refreshToken,
     },
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const commentLike = (context, payload) => {
@@ -91,10 +52,6 @@ export const commentLike = (context, payload) => {
       // comment_id: payload.comment_id,
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const commentUnlike = (context, payload) => {
@@ -113,10 +70,6 @@ export const commentUnlike = (context, payload) => {
       // comment_id: payload.comment_id,
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const commentDelete = (context, payload) => {
@@ -135,10 +88,6 @@ export const commentDelete = (context, payload) => {
       // comment_id: payload.comment_id,
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const replyLike = (context, payload) => {
@@ -160,10 +109,6 @@ export const replyLike = (context, payload) => {
       // content: payload.content,
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const replyUnlike = (context, payload) => {
@@ -185,10 +130,6 @@ export const replyUnlike = (context, payload) => {
       // content: payload.content,
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const replyEdit = (context, payload) => {
@@ -210,10 +151,6 @@ export const replyEdit = (context, payload) => {
       content: payload.content,
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const replyDelete = (context, payload) => {
@@ -232,10 +169,6 @@ export const replyDelete = (context, payload) => {
       // comment_id: payload.comment_id,
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const replyNew = (context, payload) => {
@@ -262,10 +195,6 @@ export const replyNew = (context, payload) => {
       // }
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const commentEdit = (context, payload) => {
@@ -291,10 +220,6 @@ export const commentEdit = (context, payload) => {
       // }
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const commentNew = (context, payload) => {
@@ -320,10 +245,6 @@ export const commentNew = (context, payload) => {
       // }
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const bookmark = (context, payload) => {
@@ -347,10 +268,6 @@ export const bookmark = (context, payload) => {
       }
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const unbookmark = (context, payload) => {
@@ -367,10 +284,6 @@ export const unbookmark = (context, payload) => {
     },
     data: {}
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const follow = (context, payload) => {
@@ -389,10 +302,6 @@ export const follow = (context, payload) => {
       user_slug: payload.user
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const unfollow = (context, payload) => {
@@ -411,10 +320,6 @@ export const unfollow = (context, payload) => {
       user_slug: payload.user
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const like = (context, payload) => {
@@ -438,10 +343,6 @@ export const like = (context, payload) => {
       }
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const unlike = (context, payload) => {
@@ -458,10 +359,6 @@ export const unlike = (context, payload) => {
     },
     data: {}
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const followers = (context, payload) => {
@@ -473,10 +370,6 @@ export const followers = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/users/${payload}/followers`,
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const recipe = (context, payload) => {
@@ -488,10 +381,6 @@ export const recipe = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/recipes/${payload}`,
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const users = (context, payload) => {
@@ -503,10 +392,6 @@ export const users = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/users`,
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const fetchBannerImage = (context, payload) => {
@@ -518,10 +403,6 @@ export const fetchBannerImage = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/unsplash_images`,
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const fetchPages = (context, payload) => {
@@ -533,10 +414,6 @@ export const fetchPages = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/pages`,
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const pageNew = (context, payload) => {
@@ -560,10 +437,6 @@ export const pageNew = (context, payload) => {
     },
     data: formData
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const pageEdit = (context, payload) => {
@@ -587,10 +460,6 @@ export const pageEdit = (context, payload) => {
     },
     data: formData
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const recipeDelete = (context, payload) => {
@@ -608,10 +477,6 @@ export const recipeDelete = (context, payload) => {
       'Content-Type': 'multipart/form-data',
     },
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const recipeEdit = (context, payload) => {
@@ -639,10 +504,6 @@ export const recipeEdit = (context, payload) => {
     },
     data: formData
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const recipeNew = (context, payload) => {
@@ -670,10 +531,6 @@ export const recipeNew = (context, payload) => {
     },
     data: formData
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const recipes = (context, payload) => {
@@ -685,10 +542,6 @@ export const recipes = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/recipes`,
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const recipeLog = (context, payload) => {
@@ -702,7 +555,7 @@ export const recipeLog = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/recipe_logs`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
+      //
       'Authorization': `Bearer ${ context.state.data.authorization.authorizationToken }`,
       'Refresh-Token': context.state.data.authorization.refreshToken,
       // 'X-User-Email': context.getters.currentUser ? context.getters.currentUser.email : null,
@@ -717,10 +570,6 @@ export const recipeLog = (context, payload) => {
       }
     }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const confirmRegistration = (context, payload) => {
@@ -729,20 +578,15 @@ export const confirmRegistration = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/users/confirmation`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
+      //
     },
     params: {
       confirmation_token: payload.token
     },
   })
-  .catch(error => {
-    console.log(error.response)
-  })
 }
 
 export const signUp = (context, payload) => {
-  // console.log(payload)
-  // console.log($('meta[name="csrf-token"]').attr('content'))
   return axios({
     validateStatus: status => {
       console.log(status)
@@ -751,19 +595,8 @@ export const signUp = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/users`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
-      // 'Accept-Encoding': 'gzip',
     },
     data: payload
-    // data: {
-    //   "user": {
-    //     "first_name": payload.firstName,
-    //     "last_name": payload.lastName,
-    //     "email": payload.email,
-    //     "password": payload.password,
-    //     "password_confirmation": payload.confirmation
-    //   }
-    // }
   })
   .catch(error => {
     console.log(error.toJSON());
@@ -780,9 +613,6 @@ export const facebookLogin = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/facebook`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
-      // 'Accept-Encoding': 'gzip',
-      // 'Authorization': `Bearer ${ context.state.data.authorization.authorizationToken }`,
       'Refresh-Token': context.state.data.authorization.refreshToken,
     },
     params: payload
@@ -794,8 +624,6 @@ export const facebookLogin = (context, payload) => {
 }
 
 export const passwordResetVerification = (context, payload) => {
-  // console.log(user)
-  // console.log($('meta[name="csrf-token"]').attr('content'))
   return axios({
     validateStatus: status => {
       console.log(status)
@@ -804,26 +632,12 @@ export const passwordResetVerification = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/users/password/reset_verification`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
-      // 'Accept-Encoding': 'gzip',
     },
     data: payload
-    // data: {
-    //   user: {
-    //     email: payload.email,
-    //     password: payload.password
-    //   }
-    // }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const passwordReset = (context, payload) => {
-  // console.log(user)
-  // console.log($('meta[name="csrf-token"]').attr('content'))
   return axios({
     validateStatus: status => {
       console.log(status)
@@ -832,21 +646,9 @@ export const passwordReset = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/users/password/reset`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
-      // 'Accept-Encoding': 'gzip',
     },
     data: payload
-    // data: {
-    //   user: {
-    //     email: payload.email,
-    //     password: payload.password
-    //   }
-    // }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const requestPasswordReset = (context, payload) => {
@@ -860,53 +662,26 @@ export const requestPasswordReset = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/users/password/request`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
-      // 'Accept-Encoding': 'gzip',
     },
     data: payload
-    // data: {
-    //   user: {
-    //     email: payload.email,
-    //     password: payload.password
-    //   }
-    // }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const resendConfirmationInstructions = (context, payload) => {
-  // console.log(payload)
-  // console.log($('meta[name="csrf-token"]').attr('content'))
   return axios({
     validateStatus: status => {
       console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/users/resend_confirmation_instructions`,
+    url: `${ apiUrl }/users/resend_confirmation_instructions`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
-      // 'Accept-Encoding': 'gzip',
     },
     data: payload
-    // data: {
-    //   user: {
-    //     email: payload.email,
-    //     password: payload.password
-    //   }
-    // }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const refreshAccessToken = (context, payload) => {
-  // console.log(payload)
   return axios({
     method: 'post',
     url: `${ apiUrl }/${ version }/users/tokens`,
@@ -914,18 +689,10 @@ export const refreshAccessToken = (context, payload) => {
       'Authorization': `Bearer ${ context.state.data.authorization.authorizationToken }`,
       'Refresh-Token': context.state.data.authorization.refreshToken
     },
-    // params: {
-    //   // query: 'isAuthenticated',
-    // }
-  })
-  .catch(error => {
-    console.log(error)
   })
 }
 
 export const login = (context, payload) => {
-  // console.log(user)
-  // console.log($('meta[name="csrf-token"]').attr('content'))
   return axios({
     validateStatus: status => {
       console.log(status)
@@ -934,21 +701,9 @@ export const login = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/users/sign_in`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
-      // 'Accept-Encoding': 'gzip',
     },
     data: payload
-    // data: {
-    //   user: {
-    //     email: payload.email,
-    //     password: payload.password
-    //   }
-    // }
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const logout = (context, payload) => {
@@ -956,20 +711,11 @@ export const logout = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/users/sign_out`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
-      // 'X-User-Email': context.getters.currentUser.email,
-      // 'X-User-Token': context.getters.currentUser.authentication_token
       'Authorization': `Bearer ${ context.state.data.authorization.authorizationToken }`,
       'Refresh-Token': context.state.data.authorization.refreshToken,
-      // 'Accept-Encoding': 'gzip',
     },
     data: {
-      // email: context.getters.currentUser.email,
-      // authentication_token: context.getters.currentUser.authentication_token
     }
-  })
-  .catch(error => {
-    console.log(error.response)
   })
 }
 
@@ -978,7 +724,6 @@ export const userDelete = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/users`,
     headers: {
-      'X-CSRF-Token': context.getters.csrfToken,
       'Authorization': `Bearer ${ context.state.data.authorization.authorizationToken }`,
       'Refresh-Token': context.state.data.authorization.refreshToken,
     },
@@ -986,24 +731,7 @@ export const userDelete = (context, payload) => {
       content: payload.content
     }
   })
-  .catch(error => {
-    console.log(error.response)
-  })
 }
-
-// const unsplash = new Unsplash({ accessKey: 'nHSH2XMCvdAgrKbLMHs1M1u7vWUW8vxEmyHvDsTOLTs' });
-
-// export const fetchBannerPicture = (query) => {
-//   return unsplash.photos.getRandomPhoto({
-//     query: query
-//   })
-//   .then(toJson)
-//   .catch(error => {
-//     console.log(error.response)
-//   })
-// }
-
-
 
 export const search = (payload) => {
   // console.log(`${ apiUrl }/${ version }/search`)
@@ -1014,9 +742,6 @@ export const search = (payload) => {
       query: payload.query
     },
   })
-  .catch(error => {
-    console.log(error.response)
-  })
 }
 
 export const fetchState = (payload) => {
@@ -1025,18 +750,11 @@ export const fetchState = (payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/state`,
     headers: {
-      // 'Accept-Encoding': 'gzip',
     },
-  })
-  .catch(error => {
-    console.log(error.response)
   })
 }
 
 export const isAuthenticated = (payload) => {
-  // console.log(payload)
-  // console.log(payload.authorizationToken)
-  // console.log(payload.refreshToken)
   return axios({
     method: 'get',
     url: `${ apiUrl }/${ version }/users/status`,
@@ -1044,11 +762,5 @@ export const isAuthenticated = (payload) => {
       'Authorization': `Bearer ${ payload.authorizationToken }`,
       'Refresh-Token': payload.refreshToken
     },
-    // params: {
-    //   query: 'isAuthenticated',
-    // }
-  })
-  .catch(error => {
-    console.log(error)
   })
 }
