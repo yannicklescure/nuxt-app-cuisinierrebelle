@@ -7885,11 +7885,6 @@ vue-client-only@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.0.0.tgz#ddad8d675ee02c761a14229f0e440e219de1da1c"
   integrity sha512-arhk1wtWAfLsJyxGMoEYhoBowM87/i6HLSG2LH/03Yog6i2d9JEN1peMP0Ceis+/n9DxdenGYZZTxbPPJyHciA==
 
-vue-facebook-login-component@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/vue-facebook-login-component/-/vue-facebook-login-component-4.0.0.tgz#444d65cfa2920ecd9b583db4e37a7b958349a2c1"
-  integrity sha512-GNPdBD9XZ0zcJcz4F+o8hdp2pz3IdKu3aOzvG0wld9KbLkYNQ2Z421z9G1hoa76RLcjZgejDq7bv5yws8yygSA==
-
 vue-functional-data-merge@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-3.1.0.tgz#08a7797583b7f35680587f8a1d51d729aa1dc657"

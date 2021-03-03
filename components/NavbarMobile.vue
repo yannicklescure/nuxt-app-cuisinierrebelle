@@ -44,8 +44,10 @@
           <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
           <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
           <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
-          <BtnFacebook v-if="facebookAuth" />
-          <div v-else @click="logout" class="text-body my-2 text-decoration-none">{{ $t('navbar.logout') }}</div>
+          <div
+            @click="logout"
+            class="text-body my-2 text-decoration-none"
+          >{{ $t('navbar.logout') }}</div>
         </div>
         <div v-else class="d-flex flex-column">
           <NuxtLink v-on:click.native="collapse" to="/login" class="text-body my-2 text-decoration-none">{{ $t('navbar.login') }}</NuxtLink>
