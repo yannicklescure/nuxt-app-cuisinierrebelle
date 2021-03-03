@@ -7,19 +7,21 @@
         :class="[isMobile ? 'text-body my-2 text-decoration-none' : 'dropdown-item mouse-pointer']"
       >{{ $t('navbar.logout') }}</div>
     </div>
-    <v-facebook-login
-      :class="[{'d-none': isAuthenticated}]"
-      app-id="570259036897585"
-      version="v9.0"
-      v-model="model"
-      @sdk-init="handleSdkInit"
-      @login="login"
-      @logout="logout"
-    >
-      <template v-slot:login>{{ $t('login.facebook.login') }}</template>
-      <template v-slot:logout>{{ $t('login.facebook.logout') }}</template>
-      <template v-slot:working>{{ $t('login.facebook.working') }}</template>
-    </v-facebook-login>
+    <client-only>
+      <v-facebook-login
+        :class="[{'d-none': isAuthenticated}]"
+        app-id="570259036897585"
+        version="v9.0"
+        v-model="model"
+        @sdk-init="handleSdkInit"
+        @login="login"
+        @logout="logout"
+      >
+        <template v-slot:login>{{ $t('login.facebook.login') }}</template>
+        <template v-slot:logout>{{ $t('login.facebook.logout') }}</template>
+        <template v-slot:working>{{ $t('login.facebook.working') }}</template>
+      </v-facebook-login>
+    </client-only>
   </div>
 </template>
 

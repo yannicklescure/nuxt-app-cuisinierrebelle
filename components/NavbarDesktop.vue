@@ -50,11 +50,7 @@
             <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
             <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
             <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
-            <div v-if="facebookAuth">
-              <client-only placeholder="loading...">
-                <BtnFacebook />
-              </client-only>
-            </div>
+            <BtnFacebook v-if="facebookAuth" />
             <div
               v-else
               @click="logout"
