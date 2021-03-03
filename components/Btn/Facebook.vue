@@ -43,7 +43,8 @@ export default {
     }
   }),
   components: {
-    VFacebookLogin,
+    // VFacebookLogin,
+    VFacebookLogin: () => process.client ? import('vue-facebook-login-component') : null,
   },
   computed: {
     ...mapGetters([
