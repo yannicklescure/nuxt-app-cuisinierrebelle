@@ -50,7 +50,11 @@
             <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
             <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
             <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
-            <BtnFacebook v-if="facebookAuth" />
+            <div v-if="facebookAuth">
+              <client-only placeholder="loading...">
+                <BtnFacebook />
+              </client-only>
+            </div>
             <div
               v-else
               @click="logout"
@@ -78,7 +82,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { isMobile } from 'mobile-device-detect'
+// import { isMobile } from 'mobile-device-detect'
 // const FacebookLogin = () => import('../components/buttons/Facebook.vue')
 
 export default {
@@ -109,6 +113,7 @@ export default {
       'isAuthenticated',
       'currentUser',
       'facebookAuth',
+      'isMobile',
     ]),
     // user () {
     //   return this.currentUser
@@ -116,9 +121,6 @@ export default {
     isScrollTop () {
       return true
     },
-    isMobile () {
-      return isMobile
-    }
   },
   methods: {
     validSearchQuery () {
