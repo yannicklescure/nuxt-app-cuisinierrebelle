@@ -5,14 +5,13 @@
     :class="['d-print-none navbar fixed-top d-flex px-3 py-2 justify-content-between align-items-center bg-white mb-3']"
     >
     <div class="d-flex align-items-center">
-      <NuxtLink
-        to="/"
-        class="navbar-brand d-flex align-items-center text-body"
-        @click.native="scroll2Top"
+      <div
+        class="navbar-brand d-flex align-items-center text-body mouse-pointer"
+        @click="scroll2Top"
       >
         <img :src="'https://media.cuisinierrebelle.com/brand-icon.jpg'" width="32" height="32" class="mr-1">
         <span>{{ $t('navbar.brand') }}</span>
-      </NuxtLink>
+      </div>
     </div>
     <div class="input-group d-flex w-25">
       <input
@@ -154,6 +153,9 @@ export default {
             })
         }
         // this.loading = true
+      }
+      else {
+        this.$router.push({ path: '/' })
       }
     },
     handleScroll (event) {
