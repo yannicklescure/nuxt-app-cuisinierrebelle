@@ -11,7 +11,9 @@ const oldStore = [
   'cr_sk_20210216',
   'cr_sk_20210217'
 ]
+
 let oldStoreFlag = false
+
 oldStore.forEach(store => {
   if (localStorage.getItem(store) != null) {
     localStorage.removeItem(store)
@@ -36,8 +38,8 @@ else Cookie.set(cookieName, encryptionToken, { secure: true, expires: 180 });
 
 export default ({ store }) => {
   new VuexPersistence({
-    /* your options */
-    reducer: (state) => ({data: state.data}),
+    key: storageKey,
+    // storage: window.localStorage,
     storage: {
       getItem: () => {
         // Get the store from local storage.
@@ -67,5 +69,6 @@ export default ({ store }) => {
       },
       removeItem: () => window.localStorage.removeItem(storageKey),
     }
+    // reducer: (state) => ({global: state.global})
   }).plugin(store);
 }
