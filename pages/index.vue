@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner />
+    <Banner v-if="isAuthenticated == false" />
     <div class="container">
       <div class="row">
         <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
@@ -31,6 +31,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      isAuthenticated: 'users/authentication/isAuthenticated',
       items: 'recipes/listSorted',
     }),
   },

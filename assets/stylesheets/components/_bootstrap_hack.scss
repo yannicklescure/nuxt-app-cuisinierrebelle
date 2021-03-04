@@ -17,12 +17,20 @@ textarea:focus, input:focus, .uneditable-input:focus,
 //   border-radius: .25rem !important;
 // }
 
+.nav-item {
+  padding: 6px 12px;
+}
+
 .mouse-pointer {
   cursor: pointer
 }
 
 p {
   // margin: 0;
+}
+
+.dropdown-toggle::after {
+  display: none;
 }
 
 .dropdown-item.active,

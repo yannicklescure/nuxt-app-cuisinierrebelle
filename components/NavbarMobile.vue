@@ -148,7 +148,7 @@ export default {
         await refresh()
         if (this.isAuthenticated) {
           this.$store
-            .dispatch('REFRESH_ACCESS_TOKEN', {
+            .dispatch('users/sessions/refreshAccessToken', {
               authorizationToken: this.authorization.authorizationToken,
               refreshToken: this.authorization.refreshToken,
               expireAt: this.authorization.expireAt
@@ -193,7 +193,7 @@ export default {
           this.$store.dispatch('users/sessions/logOut', {})
             .then(response => {
               console.log(response)
-              if (response.status === 204 && this.$route.name != 'Home') this.$router.push({ name: 'Home' })
+              if (response.status === 204 && this.$route.name != 'Home') this.$router.push({ path: '/' })
             })
         })
         .catch(() => {

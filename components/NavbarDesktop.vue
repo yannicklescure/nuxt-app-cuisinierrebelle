@@ -29,33 +29,31 @@
         v-if="isAuthenticated"
         class="d-flex align-items-center"
       >
-        <NuxtLink to="/top100" class="nav-item mx-2 text-fire text-decoration-none">
+        <NuxtLink to="/top100" class="nav-item text-fire text-decoration-none">
           <i class="material-icons md-18 d-flex">whatshot</i>
         </NuxtLink>
-        <NuxtLink to="/bookmarks" class="nav-item mx-2 text-body text-decoration-none">
+        <NuxtLink to="/bookmarks" class="nav-item text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">bookmarks</i>
         </NuxtLink>
-        <NuxtLink to="/notifications" class="nav-item mx-2 text-body text-decoration-none">
+        <NuxtLink to="/notifications" class="nav-item text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">notifications_none</i>
         </NuxtLink>
-        <div class="nav-item mx-2 dropdown">
-          <div class="text-body mouse-pointer" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <b-dropdown variant="link" toggle-class="text-decoration-none text-body" no-caret>
+          <template #button-content>
             <i class="material-icons md-18 d-flex">more_vert</i>
+          </template>
+          <div class="border-bottom pb-2 mb-2" v-if="currentUser.admin">
+            <NuxtLink class="dropdown-item" :to="'/admin'">{{ $t('navbar.admin') }}</NuxtLink>
           </div>
-          <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="navbarDropdown">
-            <div class="border-bottom pb-2 mb-2" v-if="currentUser.admin">
-              <NuxtLink class="dropdown-item" :to="'/admin'">{{ $t('navbar.admin') }}</NuxtLink>
-            </div>
-            <NuxtLink class="dropdown-item" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
-            <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
-            <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
-            <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
-            <div
-              @click="logout"
-              class="dropdown-item mouse-pointer"
-            >{{ $t('navbar.logout') }}</div>
-          </div>
-        </div>
+          <NuxtLink class="dropdown-item" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
+          <div
+            @click="logout"
+            class="dropdown-item mouse-pointer"
+          >{{ $t('navbar.logout') }}</div>
+        </b-dropdown>
       </div>
       <div
         v-else
@@ -63,7 +61,7 @@
       >
         <NuxtLink
           to="/login"
-          class="btn btn-sm text-body mx-2 text-decoration-none"
+          class="btn btn-sm text-body text-decoration-none mx-2"
         >{{ $t('navbar.login') }}</NuxtLink>
         <NuxtLink
           to="/signup"
@@ -149,7 +147,7 @@ export default {
         await refresh()
         if (this.isAuthenticated) {
           this.$store
-            .dispatch('REFRESH_ACCESS_TOKEN', {
+            .dispatch('users/sessions/refreshAccessToken', {
               authorizationToken: this.authorization.authorizationToken,
               refreshToken: this.authorization.refreshToken,
               expireAt: this.authorization.expireAt
@@ -191,12 +189,12 @@ export default {
           // DELETE FACEBOOK COOKIES c_user xs
           this.$store.dispatch('users/sessions/logOut', {})
             .then(response => {
-              console.log(response)
-              if (response.status === 200 && this.$route.name != 'Home') this.$router.push({ name: 'Home' })
+              // console.log(response)
+              if (response.status === 200 && this.$route.name != 'Home') this.$router.push({ path: '/' })
             })
         })
         .catch(() => {
-          console.log('Clicked on cancel')
+          // console.log('Clicked on cancel')
         });
     },
     forceRerender () {

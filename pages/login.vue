@@ -36,8 +36,8 @@
               @click.stop.prevent="resendConfirmationInstructions"
               class="btn btn-link"
             >{{ $t('login.password.request.resendConfirmationInstructions') }}</button>
-            <router-link to="/users/password/new">{{ $t('login.forgetPassword') }}</router-link>
-            <router-link to="/signup">{{ $t('login.signup') }}</router-link>
+            <NuxtLink to="/users/password/new">{{ $t('login.forgetPassword') }}</NuxtLink>
+            <NuxtLink to="/signup">{{ $t('login.signup') }}</NuxtLink>
             <p></p>
           </div>
         </div>
@@ -135,13 +135,9 @@ export default {
       if (this.errors.length > 0) {
         this.error = true
         console.log(this.errors)
-        this.$toast.open({
-            message: this.errors[0],
-            type: 'error', // success, info, warning, error, default
-            // all of other options may go here
-            position: 'bottom', // top, bottom, top-right, bottom-right,top-left, bottom-left
-            duration: 3000, // Visibility duration in milliseconds
-            dismissible: true,
+        this.$toast.error(this.errors[0], {
+          position: 'bottom-center',
+          duration: 3000,
         })
       }
       else {
@@ -156,13 +152,9 @@ export default {
             console.log(result)
             if (result.status === 200) {
               console.log(capitalize(result.data.first_name))
-              this.$toast.open({
-                message: this.$t('login.resendConfirmationInstructions', { email: result.data.email }),
-                type: 'success', // success, info, warning, error, default
-                // all of other options may go here
-                position: 'bottom', // top, bottom, top-right, bottom-right,top-left, bottom-left
-                duration: 3000, // Visibility duration in milliseconds
-                dismissible: true,
+              this.$toast.success(this.$t('login.resendConfirmationInstructions', { email: result.data.email }), {
+                position: 'bottom-center',
+                duration: 3000,
               })
               this.email = null
               this.password = null
@@ -176,13 +168,9 @@ export default {
             if (this.errors.length > 0) {
               this.error = true
               console.log(this.errors)
-              this.$toast.open({
-                  message: this.errors[0],
-                  type: 'error', // success, info, warning, error, default
-                  // all of other options may go here
-                  position: 'bottom', // top, bottom, top-right, bottom-right,top-left, bottom-left
-                  duration: 3000, // Visibility duration in milliseconds
-                  dismissible: true,
+              this.$toast.error(this.errors[0], {
+                position: 'bottom-center',
+                duration: 3000,
               })
             }
           })
@@ -205,17 +193,13 @@ export default {
             if (response.status === 200) {
               const firstName = capitalize(response.data.first_name)
               console.log(firstName)
-              this.$toast.open({
-                message: this.$t('login.welcome', { firstName: firstName }),
-                type: 'success', // success, info, warning, error, default
-                // all of other options may go here
-                position: 'bottom', // top, bottom, top-right, bottom-right,top-left, bottom-left
-                duration: 3000, // Visibility duration in milliseconds
-                dismissible: true,
+              this.$toast.success(this.$t('login.welcome', { firstName: firstName }), {
+                position: 'bottom-center',
+                duration: 3000,
               })
               this.email = null
               this.password = null
-              this.$router.push({ name: 'Home' })
+              this.$router.push({ path: '/' })
             }
             else {
               this.errors.push(response.data.error)
@@ -225,27 +209,19 @@ export default {
             if (this.errors.length > 0) {
               this.error = true
               console.log(this.errors)
-              this.$toast.open({
-                  message: this.errors[0],
-                  type: 'error', // success, info, warning, error, default
-                  // all of other options may go here
-                  position: 'bottom', // top, bottom, top-right, bottom-right,top-left, bottom-left
-                  duration: 3000, // Visibility duration in milliseconds
-                  dismissible: true,
+              this.$toast.error(this.errors[0], {
+                position: 'bottom-center',
+                duration: 3000,
               })
             }
           })
       }
       else {
         console.log(this.errors)
-        this.$toast.open({
-            message: this.errors[0],
-            type: 'error', // success, info, warning, error, default
-            // all of other options may go here
-            // position: 'bottom-right', // top, bottom, top-right, bottom-right,top-left, bottom-left
-            // duration: 3000, // Visibility duration in milliseconds
-            // dismissible: true,
-        });
+        this.$toast.error(this.errors[0], {
+          position: 'bottom-center',
+          duration: 3000,
+        })
       }
     },
   },

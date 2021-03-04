@@ -75,7 +75,7 @@ export const actions = {
         console.log(response)
         if (response.status === 200) {
           context.commit("logIn", response)
-          context.dispatch("users/authentication/isAuthenticated", context.state.authorization, { root: true })
+          context.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: true } }, { root: true })
         }
         return response
       })
@@ -90,6 +90,7 @@ export const actions = {
         console.log(response)
         if (response && response.status === 200) {
           context.commit("logOut", payload)
+          context.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: false } }, { root: true })
           return response
         }
       })
@@ -101,7 +102,7 @@ export const actions = {
   refreshAccessToken: (context, payload) =>  {
     return api.refreshAccessToken(context, payload)
       .then(response => {
-        console.log(response.data.message)
+        // console.log(response.data.message)
         context.commit("refreshAccessToken", response)
         return response
       })
