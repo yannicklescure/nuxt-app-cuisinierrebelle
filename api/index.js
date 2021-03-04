@@ -593,15 +593,11 @@ export const signUp = (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/users`,
+    url: `${ apiUrl }/api/v1/users`,
     headers: {
     },
     data: payload
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const facebookLogin = (context, payload) => {
@@ -617,10 +613,6 @@ export const facebookLogin = (context, payload) => {
     },
     params: payload
   })
-  .catch(error => {
-    console.log(error.toJSON());
-    return error
-  });
 }
 
 export const passwordResetVerification = (context, payload) => {

@@ -1,8 +1,10 @@
 <template>
   <div ref="default" id="default">
-    <NavbarMobile v-if="isMobile" />
-    <NavbarDesktop v-else />
-    <Nuxt v-if="show"/>
+    <div v-if="show">
+      <NavbarMobile v-if="isMobile" />
+      <NavbarDesktop v-else />
+      <Nuxt />
+    </div>
   </div>
 </template>
 
@@ -28,8 +30,7 @@ export default {
   },
   methods: {
     adjustDivTop () {
-      this.$refs.default.style.paddingTop = `${ parseInt(this.navbarHeight) + 8 }px`
-      console.log(this.$refs.default.style)
+      this.$refs.default.style.paddingTop = `${ parseInt(this.navbarHeight) }px`
     }
   },
   mounted () {

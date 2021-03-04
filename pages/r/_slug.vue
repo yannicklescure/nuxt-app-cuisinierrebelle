@@ -16,14 +16,14 @@
 
     <LazyOtherRecipes />
 
-<!--     <div
+    <div
       id="comments"
       ref="comments"
     >
       <LazyComments
         :item="item"
       />
-    </div> -->
+    </div>
   </div>
 </template>
 

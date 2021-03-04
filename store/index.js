@@ -104,126 +104,77 @@ export const actions = {
         return error
       })
   },
-  SIGN_UP: (context, user) => {
-    console.log(context.state)
-    return api.signUp(context, user)
-      .then(response => {
-        console.log(response)
-        // const token = response.headers.authorization.split('Bearer ')[1]
-        // console.log(token)
-        // console.log(jwt.decode(token))
-        // if (response.status === 200) context.commit("SIGN_UP", response)
-        return response
-      })
-      .catch(error => {
-        // console.log(error)
-        return error
-      })
-  },
-  FACEBOOK_logIn: (context, payload) => {
-    const loginUser = payload => {
-      console.log(payload)
-      // LOGIN USER
-      return api.login(context, payload)
-        .then(response => {
-          if (response.status === 200) context.commit("logIn", response)
-          return response
-        })
-        .catch(error => {
-          // console.log(error)
-          return error
-        })
-    }
+  // FACEBOOK_logIn: (context, payload) => {
+  //   const loginUser = payload => {
+  //     console.log(payload)
+  //     // LOGIN USER
+  //     return api.login(context, payload)
+  //       .then(response => {
+  //         if (response.status === 200) context.commit("logIn", response)
+  //         return response
+  //       })
+  //       .catch(error => {
+  //         // console.log(error)
+  //         return error
+  //       })
+  //   }
 
-    return api.facebookLogin(context, payload)
-      .then(response => {
-        console.log(response)
-        if (response.data.isUser) {
-          console.log(response)
-          const payload = {
-            authResponse: response.data.authResponse,
-            user: {
-              email: response.data.user.email,
-              password: null
-            }
-          }
-          console.log(payload)
-          return loginUser(payload)
-        }
-        else {
-          // CREATE USER
-          // response.data.isFacebookUser = true
-          // response.data.authResponse = response.data.authResponse
-          // response.data.user.password = { accessToken: response.data.authResponse.accessToken }
-          // console.log(response.data.user)
-          const payload = {
-            authResponse: response.data.authResponse,
-            user: {
-              first_name: response.data.user.firstName,
-              last_name: response.data.user.lastName,
-              email: response.data.user.email,
-              // password: response.data.user.password,
-              // confirmation: response.data.user.confirmation,
-            }
-          }
-          console.log(payload)
-          return api.signUp(context, payload)
-            .then(response => {
-              console.log(response)
-              const payload = {
-                authResponse: response.data.authResponse,
-                user: {
-                  email: response.data.user.email,
-                  password: null
-                }
-              }
-              return loginUser(payload)
-            })
-            .catch(error => {
-              // console.log(error)
-              return error
-            })
-        }
-        // return response
-      })
-      .catch(error => {
-        // console.log(error)
-        return error
-      })
-  },
-  PASSWORD_RESET: (context, payload) => {
-    return api.passwordReset(context, payload)
-      .then(response => {
-        // if (response.status === 200) context.commit("logIn", response)
-        return response
-      })
-      .catch(error => {
-        // console.log(error)
-        return error
-      })
-  },
-  PASSWORD_RESET_VERIFICATION: (context, payload) => {
-    return api.passwordResetVerification(context, payload)
-      .then(response => {
-        // if (response.status === 200) context.commit("logIn", response)
-        return response
-      })
-      .catch(error => {
-        // console.log(error)
-        return error
-      })
-  },
-  REQUEST_PASSWORD_RESET: (context, payload) => {
-    return api.requestPasswordReset(context, payload)
-      .then(response => {
-        // if (response.status === 200) context.commit("logIn", response)
-        return response
-      })
-      .catch(error => {
-        // console.log(error)
-        return error
-      })
-  },
+  //   return api.facebookLogin(context, payload)
+  //     .then(response => {
+  //       console.log(response)
+  //       if (response.data.isUser) {
+  //         console.log(response)
+  //         const payload = {
+  //           authResponse: response.data.authResponse,
+  //           user: {
+  //             email: response.data.user.email,
+  //             password: null
+  //           }
+  //         }
+  //         console.log(payload)
+  //         return loginUser(payload)
+  //       }
+  //       else {
+  //         // CREATE USER
+  //         // response.data.isFacebookUser = true
+  //         // response.data.authResponse = response.data.authResponse
+  //         // response.data.user.password = { accessToken: response.data.authResponse.accessToken }
+  //         // console.log(response.data.user)
+  //         const payload = {
+  //           authResponse: response.data.authResponse,
+  //           user: {
+  //             first_name: response.data.user.firstName,
+  //             last_name: response.data.user.lastName,
+  //             email: response.data.user.email,
+  //             // password: response.data.user.password,
+  //             // confirmation: response.data.user.confirmation,
+  //           }
+  //         }
+  //         console.log(payload)
+  //         return api.signUp(context, payload)
+  //           .then(response => {
+  //             console.log(response)
+  //             const payload = {
+  //               authResponse: response.data.authResponse,
+  //               user: {
+  //                 email: response.data.user.email,
+  //                 password: null
+  //               }
+  //             }
+  //             return loginUser(payload)
+  //           })
+  //           .catch(error => {
+  //             // console.log(error)
+  //             return error
+  //           })
+  //       }
+  //       // return response
+  //     })
+  //     .catch(error => {
+  //       // console.log(error)
+  //       return error
+  //     })
+  // },
   RESEND_CONFIRMATION_INSTRUCTIONS: (context, payload) => {
     // console.log(context.state)
     return api.resendConfirmationInstructions(context, payload)
@@ -317,14 +268,14 @@ export const getters = {
     // console.log(state)
     return state.render.navbarHeight
   },
-  countRecipeComments (state) {
-    return item => {
-      const counts = item.comments.map(comment => comment.replies.length)
-      let sum = counts.length
-      counts.map(res => sum += res)
-      return sum
-    }
-  },
+  // countRecipeComments (state) {
+  //   return item => {
+  //     const counts = item.comments.map(comment => comment.replies.length)
+  //     let sum = counts.length
+  //     counts.map(res => sum += res)
+  //     return sum
+  //   }
+  // },
   top100 (state) {
     return state.recipes.slice().sort((a, b) => (a.recipe.views > b.recipe.views) ? 1 : -1).reverse().slice(0, 100)
   },

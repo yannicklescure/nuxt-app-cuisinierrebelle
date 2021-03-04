@@ -1,12 +1,12 @@
 <template>
   <div class="d-print-none mt-5" :key="componentKey">
-    <div class="h4 mb-3">{{ $tc('recipe.comments.counts', countRecipeComments(item)) }}</div>
-    <comment-form
+    <div class="h4 mb-3">{{ $tc('recipe.comments.counts', commentsCount) }}</div>
+    <CommentsForm
       :item="item"
       v-on:commentNew="commentNew"
     />
     <div v-for="comment, i in comments" class="d-flex flex-column">
-      <comment
+      <CommentsShow
         :item="comment"
         :type="'comment'"
         :lastCommentId="lastCommentId"
@@ -29,7 +29,7 @@
         <div v-show="show[i]">
           <div v-for="reply, j in comment.replies" class="d-flex align-items-start">
             <span class="material-icons md-18 mt-3">subdirectory_arrow_right</span>
-            <comment
+            <CommentsShow
               :item="reply"
               :type="'reply'"
               :key="'c' + i + 'r' + j"
@@ -48,8 +48,8 @@
 import { mapGetters } from 'vuex'
 // import CommentForm from './New.vue'
 // import Comment from './Show.vue'
-const CommentForm = () => import('./New.vue')
-const Comment = () => import('./Show.vue')
+// const CommentForm = () => import('./New.vue')
+// const Comment = () => import('./Show.vue')
 
 export default {
   name: 'Comments',
@@ -59,19 +59,25 @@ export default {
       show: [],
     }
   },
-  components: {
-    CommentForm,
-    Comment,
-  },
+  // components: {
+  //   CommentForm,
+  //   Comment,
+  // },
   props: ['item'],
   computed: {
     ...mapGetters([
-      'countRecipeComments',
-      'recipe',
+      // 'commentsCount',
+      // 'recipe',
     ]),
+    commentsCount () {
+      const counts = this.item.comments.map(comment => comment.replies.length)
+      let sum = counts.length
+      counts.map(res => sum += res)
+      return sum
+    },
     comments () {
       // return this.recipe(this.$route.params.id).comments.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
-      return this.item.comments.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
+      return this.item.comments.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
     },
     lastCommentId () {
       return this.comments[this.comments.length-1].id
