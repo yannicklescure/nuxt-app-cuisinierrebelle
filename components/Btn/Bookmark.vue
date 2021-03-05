@@ -47,13 +47,13 @@ export default {
         console.log('bookmark')
         this.bookmarks += 1
         this.$store
-          .dispatch('BOOKMARK', { user_id: this.currentUser.id, recipe_id: this.item.recipe.id, created_at: new Date().getTime() })
+          .dispatch('recipes/bookmark', { user_id: this.currentUser.id, recipe_id: this.item.recipe.id, created_at: new Date().getTime() })
           .then(() => this.$emit('bookmarked', true))
       }
       else {
         console.log('unbookmark')
         this.bookmarks -= 1
-        this.$store.dispatch('UNBOOKMARK', { user_id: this.currentUser.id, recipe_id: this.item.recipe.id })
+        this.$store.dispatch('recipes/unbookmark', { user_id: this.currentUser.id, recipe_id: this.item.recipe.id })
       }
     },
   },

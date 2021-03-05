@@ -23,6 +23,66 @@ export const state = () => ({
 })
 
 export const mutations = {
+  bookmark: (state, payload) => {
+    // console.log(payload)
+    // console.log(state)
+    state.user.bookmarks.push(payload)
+    // console.log(`bookmarks: ${ state.user.bookmarks.length }`)
+
+    // const position = state.recipes.findIndex(recipe => recipe.recipe.id === payload.recipe_id)
+    // state.recipes[position].recipe.bookmarks += 1
+  },
+  unbookmark: (state, payload) => {
+    // console.log(payload)
+    // console.log(state)
+    const position = state.user.bookmarks.findIndex(bookmark => bookmark.recipe_id === payload.recipe_id)
+    state.user.bookmarks.splice(position, 1)
+    // console.log(`bookmarks: ${ state.user.bookmarks.length }`)
+
+    // const  position = state.recipes.findIndex(recipe => recipe.recipe.id === payload.recipe_id)
+    // state.recipes[position].recipe.bookmarks -= 1
+  },
+  follow: (state, payload) => {
+    // console.log(payload)
+    state.user.following.count += 1
+    state.user.following.data.push(payload.data.user)
+    const user = state.users.filter(user => user.slug === payload.data.user.slug)[0]
+    const position = state.users.indexOf(user)
+    state.users[position].followers.count += 1
+    state.users[position].followers.data.push(payload.data.user)
+  },
+  unfollow: (state, payload) => {
+    // console.log(payload)
+    state.user.following.count -= 1
+    let user = state.user.following.data.filter(user => user.slug === payload.user)[0]
+    let position = state.user.following.data.indexOf(user)
+    state.user.following.data.splice(position, 1)
+    user = state.users.filter(user => user.slug === payload.user)[0]
+    position = state.users.indexOf(user)
+    state.users[position].followers.count -= 1
+    state.users[position].followers.data.splice(position, 1)
+  },
+  like: (state, payload) => {
+    // console.log(payload)
+    // console.log(state)
+    state.user.likes.push(payload)
+    // console.log(`user's likes: ${ state.user.likes.length }`)
+
+    // const recipe = state.recipes.filter(recipe => recipe.recipe.id === payload.recipe_id)[0]
+    // const position = state.recipes.indexOf(recipe)
+    // state.recipes[position].recipe.likes += 1
+  },
+  unlike: (state, payload) => {
+    // console.log(payload)
+    // console.log(state)
+    const position = state.user.likes.findIndex(like => like.recipe_id === payload.recipe_id)
+    state.user.likes.splice(position, 1)
+    // console.log(`user's likes: ${ state.user.likes.length }`)
+
+    // const recipe = state.recipes.filter(recipe => recipe.recipe.id === payload.recipe_id)[0]
+    // position = state.recipes.indexOf(recipe)
+    // state.recipes[position].recipe.likes -= 1
+  },
   logOut: (state, payload) => {
     state.authorization = {
       authorizationToken: null,
@@ -66,6 +126,47 @@ export const mutations = {
 }
 
 export const actions = {
+  followers: (context, payload) => {
+    // console.log(payload)
+    return api.followers(context, payload)
+      .then(response => {
+        console.log(`response.status ${response.status}`)
+        // if (response.status === 200) context.commit("followers", payload)
+        return response
+      })
+      .catch(error => {
+        // console.log(error)
+        return error
+      })
+  },
+  follow: (context, payload) => {
+    // console.log(payload)
+    return api.follow(context, payload)
+      .then(response => {
+        console.log(`response.status ${response.status}`)
+        console.log(response)
+        if (response.status === 200) context.commit("follow", response)
+        return response
+      })
+      .catch(error => {
+        // console.log(error)
+        return error
+      })
+  },
+  unfollow: (context, payload) => {
+    // console.log(payload)
+    return api.unfollow(context, payload)
+      .then(response => {
+        console.log(`response.status ${response.status}`)
+        console.log(response)
+        if (response.status === 200) context.commit("unfollow", payload)
+        return response
+      })
+      .catch(error => {
+        // console.log(error)
+        return error
+      })
+  },
   clearUserSession: (context, payload) => {
     context.commit("logOut", payload)
   },
@@ -114,6 +215,12 @@ export const actions = {
 }
 
 export const getters = {
+  bookmarks (state) {
+    return state.user.authentication_token ? state.user.bookmarks
+      .slice()
+      .sort((a, b) => (new Date(a.created_at).getTime() > new Date(b.created_at).getTime()) ? 1 : -1).reverse()
+      .map(bookmark => state.recipes.filter(item => item.recipe.id === bookmark.recipe_id)[0]) : []
+  },
   current (state) {
     return state.user
   },

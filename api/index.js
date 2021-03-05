@@ -12,8 +12,8 @@ export const userNotifications = (context, payload) => {
     method: 'patch',
     url: `${ apiUrl }/${ version }/${ version }/notification/${payload.id}`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       notification: payload.notification,
@@ -30,8 +30,8 @@ export const notifications = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/${ version }/notifications`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
   })
 }
@@ -45,8 +45,8 @@ export const commentLike = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/likes`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       // comment_id: payload.comment_id,
@@ -63,8 +63,8 @@ export const commentUnlike = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/likes/0`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       // comment_id: payload.comment_id,
@@ -81,8 +81,8 @@ export const commentDelete = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       // comment_id: payload.comment_id,
@@ -99,8 +99,8 @@ export const replyLike = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies/${ payload.reply_id }/likes`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       // recipe_id: payload.recipe_id,
@@ -120,8 +120,8 @@ export const replyUnlike = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies/${ payload.reply_id }/likes/0`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       // recipe_id: payload.recipe_id,
@@ -141,8 +141,8 @@ export const replyEdit = (context, payload) => {
     method: 'patch',
     url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies/${ payload.id }`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       recipe_id: payload.recipe_id,
@@ -162,8 +162,8 @@ export const replyDelete = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies/${ payload.id }`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       // comment_id: payload.comment_id,
@@ -180,8 +180,8 @@ export const replyNew = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       recipe_id: payload.recipe_id,
@@ -206,8 +206,8 @@ export const commentEdit = (context, payload) => {
     method: 'patch',
     url: `${ apiUrl }/${ version }/comments/${ payload.id }`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       recipe_id: payload.recipe_id,
@@ -231,8 +231,8 @@ export const commentNew = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/comments`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       recipe_id: payload.recipe_id,
@@ -256,8 +256,8 @@ export const bookmark = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/bookmarks`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       recipe_id: payload.recipe_id,
@@ -279,8 +279,8 @@ export const unbookmark = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/bookmarks/${payload.recipe_id}`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {}
   })
@@ -295,8 +295,8 @@ export const follow = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/users/${ payload.user }/follow`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     params: {
       user_slug: payload.user
@@ -313,8 +313,8 @@ export const unfollow = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/users/${ payload.user }/unfollow`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     params: {
       user_slug: payload.user
@@ -331,8 +331,8 @@ export const like = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/likes`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       recipe_id: payload.recipe_id,
@@ -346,6 +346,7 @@ export const like = (context, payload) => {
 }
 
 export const unlike = (context, payload) => {
+  console.log(context)
   return axios({
     validateStatus: status => {
       // console.log(status)
@@ -354,8 +355,8 @@ export const unlike = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/likes/${payload.recipe_id}`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {}
   })
@@ -431,8 +432,8 @@ export const pageNew = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/pages/`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
       'Content-Type': 'multipart/form-data',
     },
     data: formData
@@ -454,8 +455,8 @@ export const pageEdit = (context, payload) => {
     method: 'patch',
     url: `${ apiUrl }/${ version }/pages/${ payload.id }`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
       'Content-Type': 'multipart/form-data',
     },
     data: formData
@@ -472,8 +473,8 @@ export const recipeDelete = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/recipes/${ payload.id }`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
       'Content-Type': 'multipart/form-data',
     },
   })
@@ -498,8 +499,8 @@ export const recipeEdit = (context, payload) => {
     method: 'patch',
     url: `${ apiUrl }/${ version }/recipes/${ payload.id }`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
       'Content-Type': 'multipart/form-data',
     },
     data: formData
@@ -525,8 +526,8 @@ export const recipeNew = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/${ version }/recipes`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
       'Content-Type': 'multipart/form-data',
     },
     data: formData
@@ -556,8 +557,8 @@ export const recipeLog = (context, payload) => {
     url: `${ apiUrl }/${ version }/recipe_logs`,
     headers: {
       //
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
       // 'X-User-Email': context.getters.currentUser ? context.getters.currentUser.email : null,
       // 'X-User-Token': context.getters.currentUser ? context.getters.currentUser.authentication_token : null
     },
@@ -609,7 +610,7 @@ export const facebookLogin = (context, payload) => {
     method: 'get',
     url: `${ apiUrl }/${ version }/facebook`,
     headers: {
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     params: payload
   })
@@ -678,8 +679,8 @@ export const refreshAccessToken = (context, payload) => {
     method: 'post',
     url: `${ apiUrl }/users/tokens`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken
     },
   })
 }
@@ -703,8 +704,8 @@ export const logout = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/users/sign_out`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
     }
@@ -716,8 +717,8 @@ export const userDelete = (context, payload) => {
     method: 'delete',
     url: `${ apiUrl }/${ version }/users`,
     headers: {
-      'Authorization': `Bearer ${ context.state.authorization.authorizationToken }`,
-      'Refresh-Token': context.state.authorization.refreshToken,
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
     data: {
       content: payload.content

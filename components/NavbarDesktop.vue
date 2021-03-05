@@ -192,7 +192,7 @@ export default {
           this.$store.dispatch('users/sessions/logOut', {})
             .then(response => {
               // console.log(response)
-              if (response.status === 200 && this.$route.name != 'Home') this.$router.push({ path: '/' })
+              if (response.status === 200 && this.$route.path != '/') this.$router.push({ path: '/' })
             })
         })
         .catch(() => {
