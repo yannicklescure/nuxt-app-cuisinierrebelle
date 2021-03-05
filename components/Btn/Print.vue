@@ -1,5 +1,5 @@
 <template>
-  <div id="print" @click="print" class="mouse-pointer ml-2 text-decoration-none text-body">
+  <div id="print" @click="print" class="mouse-pointer ml-3 text-decoration-none text-body">
     <i class="material-icons md-18 d-flex btn-print">print</i>
   </div>
 </template>

@@ -1,36 +1,36 @@
 <template>
   <div ref="card" class="card">
-    <card-head :item="item" />
-    <card-body :item="item" :card="card" />
-    <card-footer :item="item" />
+    <CardsHead :item="item" />
+    <CardsBody :item="item" :card="dimension" />
+    <CardsFooter :item="item" />
   </div>
 </template>
 
 <script>
-const CardBody = () => import('../components/cards/CardBody.vue')
-const CardHead = () => import('../components/cards/CardHead.vue')
-const CardFooter = () => import('../components/cards/CardFooter.vue')
+// const CardBody = () => import('../components/cards/CardBody.vue')
+// const CardHead = () => import('../components/cards/CardHead.vue')
+// const CardFooter = () => import('../components/cards/CardFooter.vue')
 
 export default {
   name: 'card',
   props: ['item'],
   data() {
     return {
-      card: {
+      dimension: {
         width: 0,
         height: 0
       }
     }
   },
-  components: {
-    CardBody,
-    CardHead,
-    CardFooter,
-  },
+  // components: {
+  //   CardBody,
+  //   CardHead,
+  //   CardFooter,
+  // },
   methods: {
     matchInfoBox () {
-      this.card.width = this.$refs.card.clientWidth
-      this.card.height = parseInt(this.card.width * 2 / 3)
+      this.dimension.width = this.$refs.card.clientWidth
+      this.dimension.height = parseInt(this.dimension.width * 2 / 3)
     }
   },
   created() {

@@ -36,14 +36,12 @@ export default {
     return {
       componentKey: 0,
       loadComments: false,
+      item: undefined,
     }
   },
   async asyncData({ params }) {
     const slug = params.slug
     return { slug }
-  },
-  methods: {
-    ...mapActions(['getStoreData'])
   },
   computed: {
     ...mapGetters({
@@ -52,8 +50,11 @@ export default {
       isMobile: 'isMobile',
       currentUser: 'users/sessions/current'
     }),
-    item () {
-      return this.recipe(this.slug)
+  },
+  methods: {
+    ...mapActions(['getStoreData']),
+    setItem () {
+      this.item = this.recipe(this.slug)
     },
   },
   metaInfo () {
@@ -81,7 +82,8 @@ export default {
       }
     }
   },
-  created () {
+  async created () {
+    await this.setItem()
     if (this.item == undefined) {
       // console.log(this.item)
       this.getStoreData()

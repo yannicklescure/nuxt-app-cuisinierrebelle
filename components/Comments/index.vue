@@ -1,7 +1,7 @@
 <template>
-  <div class="d-print-none mt-5" :key="componentKey">
+  <div class="d-print-none mt-5">
     <div class="h4 mb-3">{{ $tc('recipe.comments.counts', commentsCount) }}</div>
-    <CommentsForm
+    <CommentsNew
       :item="item"
       v-on:commentNew="commentNew"
     />
@@ -16,7 +16,7 @@
         v-on:lastCommentMounted="lastCommentMounted"
       />
       <div
-        v-if="comment.replies.length"
+        v-if="comment.replies.length > 0"
         v-on:click="showReplies(i)"
         class="d-flex mouse-pointer"
         style="font-size: 90%"
@@ -69,18 +69,17 @@ export default {
       // 'commentsCount',
       // 'recipe',
     ]),
+    comments () {
+      return this.item.comments.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
+    },
     commentsCount () {
-      const counts = this.item.comments.map(comment => comment.replies.length)
+      const counts = this.comments.map(comment => comment.replies.length)
       let sum = counts.length
       counts.map(res => sum += res)
       return sum
     },
-    comments () {
-      // return this.recipe(this.$route.params.id).comments.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
-      return this.item.comments.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
-    },
     lastCommentId () {
-      return this.comments[this.comments.length-1].id
+      return this.commentsCount > 0 ? this.comments[this.comments.length-1].id : 0
     },
   },
   methods: {

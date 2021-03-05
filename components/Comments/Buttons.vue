@@ -3,7 +3,7 @@
     <div v-if="isAuthenticated" class="mt-2 d-flex align-items-center">
       <BtnCommentLike :item="item" :type="type" />
       <div
-        v-if="item.user.id === currentUser.id"
+        v-if="item.user.id == currentUser.id"
         v-on:click="commentEdit"
         class="d-flex text-muted mx-2 mouse-pointer"
         data-toggle="tooltip"
@@ -13,7 +13,7 @@
         <span class="material-icons md-16">edit</span>
       </div>
       <div
-        v-if="item.user.id === currentUser.id"
+        v-if="item.user.id == currentUser.id"
         v-on:click="isComment2Destroy"
         class="d-flex text-muted mx-2 mouse-pointer"
         data-toggle="tooltip"
@@ -64,12 +64,12 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'CommentButtons',
   props: ['item', 'type'],
-  data () {
-    return {
-      // edit: false,
-      // reply: false,
-    }
-  },
+  // data () {
+  //   return {
+  //     // edit: false,
+  //     // reply: false,
+  //   }
+  // },
   // components: {
   //   CommentLike,
   // },
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     login () {
-      this.$router.push({ name: 'Login' })
+      this.$router.push({ path: '/login' })
     },
     commentEdit () {
       this.$emit('commentEdit', true)
@@ -120,18 +120,16 @@ export default {
         });
     },
     commentDestroy () {
-      let actionAttr = ''
       let payload = {}
-      if (this.type === 'comment') {
+      if (this.type == 'comment') {
         // console.log(`delete comment ${ this.item.id }`)
         payload = {
           comment_id: this.item.id,
           recipe_id: this.item.recipe.id,
           type: this.type,
         }
-        actionAttr = 'COMMENT_DELETE'
       }
-      if (this.type === 'reply') {
+      if (this.type == 'reply') {
         // console.log(`delete comment ${ this.item.id }`)
         payload = {
           comment_id: this.item.commentId,
@@ -139,13 +137,12 @@ export default {
           id: this.item.id,
           type: this.type,
         }
-        actionAttr = 'REPLY_DELETE'
       }
       this.$store
-        .dispatch(actionAttr, payload)
+        .dispatch(`recipes/${ this.type }Delete`, payload)
         .then( response => {
           console.log(response)
-          if (response.status === 204) {
+          if (response.status == 204) {
             this.$emit('commentDestroyed', payload)
           }
         })

@@ -1,14 +1,13 @@
 <template>
   <div class="d-flex align-items-center text-muted mx-2 mouse-pointer">
-    <span v-if="isUserLiked" @click="unlike" :class="['material-icons md-16 text-primary']">thumb_up</span>
     <span
-      v-else @click="like"
-      :class="['material-icons md-16']"
+      @click="likeIt"
+      :class="['material-icons md-16', { 'text-primary': liked }]"
       data-toggle="tooltip"
       data-placement="bottom"
       :title="$t('comments.like')"
     >thumb_up</span>
-    <span v-if="item.likes > 0" :class="['font-weight-lighter small ml-1']">{{ item.likes }}</span>
+    <span v-if="likes > 0" :class="['font-weight-lighter small ml-1']">{{ likes }}</span>
   </div>
 </template>
 
@@ -18,65 +17,47 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'CommentLike',
   props: ['item', 'type'],
+  data () {
+    return {
+      liked: false,
+      likes: this.item.likes
+    }
+  },
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
       currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
     }),
-    isUserLiked () {
-      if (this.isAuthenticated) {
-        let like = []
-        if (this.type === 'comment') like = this.currentUser.commentLikes.filter(r => r === this.item.id)
-        if (this.type === 'reply') like = this.currentUser.replyLikes.filter(r => r === this.item.id)
-        return like.length > 0
-      }
-      else return false
-    },
   },
   methods: {
-    like () {
-      if (this.type === 'comment') {
-        const payload = {
-          comment_id: this.item.id,
-          recipe_id: this.item.recipe.id
-        }
-        console.log(payload)
-        this.$store
-          .dispatch('COMMENT_LIKE', payload)
+    isUserLiked () {
+      if (this.isAuthenticated) {
+        console.log(this.currentUser[`${ this.type }Likes`].findIndex(item => item == this.item.id))
+        this.liked = this.currentUser[`${ this.type }Likes`].findIndex(item => item == this.item.id) > -1
       }
-      if (this.type === 'reply') {
-        const payload = {
-          reply_id: this.item.id,
-          comment_id: this.item.commentId,
-          recipe_id: this.item.recipeId
-        }
-        console.log(payload)
-        this.$store
-          .dispatch('REPLY_LIKE', payload)
-      }
+      else this.liked = false
     },
-    unlike () {
-      if (this.type === 'comment') {
-        const payload = {
-          comment_id: this.item.id,
-          recipe_id: this.item.recipe.id
-        }
-        console.log(payload)
-        this.$store
-          .dispatch('COMMENT_UNLIKE', payload)
+    likeIt () {
+      const payload = {}
+      if (this.type == 'comment') {
+        payload.comment_id = this.item.id,
+        payload.recipe_id = this.item.recipe.id
       }
-      if (this.type === 'reply') {
-        const payload = {
-          reply_id: this.item.id,
-          comment_id: this.item.commentId,
-          recipe_id: this.item.recipeId
-        }
-        console.log(payload)
-        this.$store
-          .dispatch('REPLY_UNLIKE', payload)
+      if (this.type == 'reply') {
+        payload.reply_id = this.item.id,
+        payload.comment_id = this.item.commentId,
+        payload.recipe_id = this.item.recipeId
       }
+      console.log(payload)
+      this.liked = !this.liked
+      if (this.liked) this.likes += 1
+      else this.likes -= 1
+      this.$store.dispatch(`recipes/${ this.type }${ this.liked ? 'Like' : 'Unlike' }`, payload)
     },
   },
+  mounted () {
+    this.isUserLiked()
+  }
 }
 </script>

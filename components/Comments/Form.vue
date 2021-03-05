@@ -42,13 +42,13 @@ export default {
       currentUser: 'users/sessions/current',
     }),
     isEdit () {
-      return this.actionAttr === 'COMMENT_EDIT'
+      return this.actionAttr === 'commentEdit'
     },
     isReply () {
-      return this.actionAttr === 'REPLY_NEW'
+      return this.actionAttr === 'replyNew'
     },
     isComment () {
-      return this.actionAttr === 'COMMENT_NEW'
+      return this.actionAttr === 'commentNew'
     },
   },
   methods: {
@@ -62,16 +62,16 @@ export default {
         content: this.content,
       }
 
-      if (this.actionAttr === 'COMMENT_EDIT') {
+      if (this.actionAttr === 'commentEdit') {
         payload.id = this.item.id
       }
 
-      if (this.actionAttr === 'REPLY_EDIT') {
+      if (this.actionAttr === 'replyEdit') {
         payload.id = this.item.id
         payload.comment_id = this.item.commentId
       }
 
-      if (this.actionAttr === 'REPLY_NEW') {
+      if (this.actionAttr === 'replyNew') {
         payload.comment_id = this.item.commentId ? this.item.commentId : this.item.id
       }
 
@@ -79,17 +79,17 @@ export default {
       console.log(payload)
 
       this.$store
-        .dispatch(this.actionAttr, payload)
+        .dispatch(`recipes/${ this.actionAttr }`, payload)
         .then( response => {
           console.log(response)
           if (response.status === 200) {
-            if (this.actionAttr === 'REPLY_NEW') {
+            if (this.actionAttr === 'replyNew') {
               this.$emit('commentReplyNew', response)
             }
-            if ((/.+_EDIT/).test(this.actionAttr)) {
+            if ((/.+Edit/).test(this.actionAttr)) {
               this.$emit('commentEditResponse', response)
             }
-            if (this.actionAttr === 'COMMENT_NEW') {
+            if (this.actionAttr === 'commentNew') {
               this.$emit('commentNew', response)
               this.content = null
               this.disabled = true

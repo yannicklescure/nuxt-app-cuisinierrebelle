@@ -2,12 +2,12 @@
   <div class="card-footer border-0 bg-white p-1">
     <div v-if="isMobile" class="d-flex justify-content-between align-items-center my-2">
       <div :class="['d-flex justify-content-between', isMobile ? 'align-items-start' : 'align-items-center ml-n2']">
-        <BtnLike :item="item" />
+        <BtnVisit :item="item" />
         <BtnComment :item="item" />
         <BtnShare :item="item" />
       </div>
       <div :class="['d-flex', isMobile ? 'align-items-start' : 'align-items-center']">
-        <BtnVisit :item="item" />
+        <BtnLike :item="item" />
         <BtnBookmark :item="item" />
       </div>
     </div>

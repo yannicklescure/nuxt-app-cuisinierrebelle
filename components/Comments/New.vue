@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-if="isAuthenticated">
-      <comment-form
+      <CommentsForm
         :item="item"
-        :actionAttr="'COMMENT_NEW'"
+        :actionAttr="'commentNew'"
         :text="null"
         v-on:commentNew="commentNew"
       />
@@ -25,7 +25,7 @@
 <script>
 import { mapGetters } from 'vuex'
 // import CommentForm from './Form.vue'
-const CommentForm = () => import('./Form.vue')
+// const CommentForm = () => import('./Form.vue')
 
 export default {
   name: 'CommentNew',
@@ -36,9 +36,9 @@ export default {
       content: null,
     }
   },
-  components: {
-    CommentForm,
-  },
+  // components: {
+  //   CommentForm,
+  // },
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
@@ -49,29 +49,8 @@ export default {
     commentNew (payload) {
       this.$emit('commentNew', payload)
     },
-    comment () {
-      console.log('comment')
-      const payload = {
-        recipe_id: this.item.recipe.id,
-        user_id: this.currentUser.id,
-        content: this.content,
-      }
-      this.$store
-        .dispatch('COMMENT', payload)
-        .then( response => {
-          console.log(response)
-          if (response.status === 200) {
-            this.content = null
-            this.disabled = true
-          }
-        })
-    },
-    allowPost () {
-      if (this.content) this.disabled = false
-      else this.disabled = true
-    },
     login () {
-      this.$router.push({ name: 'Login' })
+      this.$router.push({ path: '/login' })
     },
   },
 }

@@ -1,20 +1,18 @@
 <template>
-  <div class="card card-small border-0 mb-3" :key="componentKey">
-    <div v-if="item" class="d-flex">
-        <img
-          :src="item.recipe.photo.preview.url"
-          secure="true" height="96" width="96" class="rounded" style="object-fit: cover;"
-        >
-      <div class="ml-3 d-flex flex-column">
-        <NuxtLink
-          class="text-body stretched-link"
-          :to="'/r/' + item.recipe.slug"
-        >
-        {{ item.recipe.title }}
-        </NuxtLink>
+  <div class="card card-small border p-2 mb-3" :key="componentKey">
+    <NuxtLink
+      class="text-body stretched-link"
+      :to="'/r/' + item.recipe.slug"
+    >{{ item.recipe.title }}</NuxtLink>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="mr-3 d-flex flex-column">
         <div class="card-text text-body font-weight-lighter" style="font-size: 90%" v-html="description">
         </div>
       </div>
+      <img
+        :src="item.recipe.photo.preview.url"
+        secure="true" height="64" width="64" class="rounded" style="object-fit: cover;"
+      >
     </div>
   </div>
 </template>
@@ -63,7 +61,7 @@ export default {
       return randomRecipe
     },
     description () {
-      return this.tuncateString(this.item.recipe.description, this.isMobile ? 50 : 200)
+      return this.tuncateString(this.item.recipe.description, this.isMobile ? 100 : 200)
     }
   },
   beforeMount () {

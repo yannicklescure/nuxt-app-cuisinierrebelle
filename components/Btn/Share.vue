@@ -1,7 +1,7 @@
 <template>
   <div :ref="`share${item.recipe.id}`">
     <div v-if="isMobile" @click="shareItemMobile" class="d-flex">
-      <span :class="['material-icons btn-share', isMobile ? 'md-24' : 'md-18']">share</span>
+      <span :class="['material-icons btn-share', isMobile ? 'md-32' : 'md-18']">share</span>
     </div>
   </div>
 </template>

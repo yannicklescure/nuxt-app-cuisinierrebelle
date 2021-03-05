@@ -25,22 +25,22 @@
     </div>
     <div v-if="isMobile" class="d-flex order-0 align-items-center justify-content-between my-3 mb-md-0 d-print-none">
       <div class="d-flex order-0 align-items-start">
-        <BtnLike :item="item" />
+        <BtnVisit :item="item" />
         <BtnComment :item="item" />
         <BtnShare :item="item" />
       </div>
       <div class="d-flex order-1 align-items-end">
-        <BtnVisit :item="item" class="ml-2" />
+        <BtnLike :item="item" />
         <BtnBookmark :item="item" />
       </div>
     </div>
     <div v-else class="d-flex order-0 justify-content-between d-print-none">
       <div class="d-flex align-items-center justify-content-end order-1 w-100">
         <div class="d-flex order-1 align-items-center">
+          <BtnVisit :item="item" />
           <BtnPrint :item="item" />
           <BtnLike :item="item" />
           <BtnBookmark :item="item" />
-          <BtnVisit :item="item" class="ml-2" />
         </div>
       </div>
     </div>

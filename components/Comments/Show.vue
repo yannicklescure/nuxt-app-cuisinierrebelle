@@ -16,7 +16,7 @@
       <small class="text-muted">{{ timeAgo(item.timestamp) }}</small>
     </div>
     <div v-if="edit">
-      <comment-form
+      <CommentsForm
         :item="item"
         :actionAttr="editActionAttr()"
         :text="item.content"
@@ -27,16 +27,16 @@
     <div v-else class="mt-2 bg-light rounded p-3">
       <vue-markdown-plus :source="item.content" class="text-break" />
     </div>
-    <comment-buttons
+    <CommentsButtons
       :item="item"
       :type="type"
       v-on:commentEdit="commentEdit"
       v-on:commentReply="commentReply"
     />
     <div v-if="reply">
-      <comment-form
+      <CommentsForm
         :item="item"
-        :actionAttr="'REPLY_NEW'"
+        :actionAttr="'replyNew'"
         :text="null"
         v-on:commentReplyNew="commentReplyNew"
         v-on:commentDrop="commentDrop"
@@ -48,11 +48,11 @@
 <script>
 import VueMarkdownPlus from 'vue-markdown-plus'
 import { mapGetters } from 'vuex'
-import { isMobile } from 'mobile-device-detect'
+// import { isMobile } from 'mobile-device-detect'
 // import CommentForm from './Form.vue'
 // import CommentLike from '../buttons/CommentLike.vue'
-const CommentButtons = () => import('./Buttons.vue')
-const CommentForm = () => import('./Form.vue')
+// const CommentButtons = () => import('./Buttons.vue')
+// const CommentForm = () => import('./Form.vue')
 // const CommentLike = () => import('../buttons/CommentLike.vue')
 
 export default {
@@ -65,15 +65,16 @@ export default {
     }
   },
   components: {
-    CommentButtons,
-    CommentForm,
+    // CommentButtons,
+    // CommentForm,
     // CommentLike,
     VueMarkdownPlus,
   },
   computed: {
-    ...mapGetters([
-      'navbarHeight',
-    ]),
+    ...mapGetters({
+      navbarHeight: 'navbarHeight',
+      isMobile: 'isMobile',
+    }),
     isMobile () {
       return isMobile
     },
@@ -87,8 +88,8 @@ export default {
       this.reply = value
     },
     editActionAttr () {
-      if (this.item.commentId) return 'REPLY_EDIT'
-      else return 'COMMENT_EDIT'
+      if (this.item.commentId) return 'replyEdit'
+      else return 'commentEdit'
     },
     commentDrop () {
       this.edit = false

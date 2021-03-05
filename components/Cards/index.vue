@@ -14,7 +14,7 @@
 </template>
 
 <script>
-const Card = () => import('../components/Card.vue')
+// const Card = () => import('../components/Card.vue')
 
 export default {
   name: 'Cards',
@@ -24,9 +24,9 @@ export default {
       // message: 'false',
     }
   },
-  components: {
-    Card,
-  },
+  // components: {
+  //   Card,
+  // },
   methods: {
     cardsReady (value) {
       if (value === this.items[this.items.length-1].recipe.id) {

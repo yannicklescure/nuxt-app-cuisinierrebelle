@@ -23,6 +23,21 @@ export const state = () => ({
 })
 
 export const mutations = {
+  replyLike: (state, payload) => {
+    state.user.replyLikes.push(payload.reply_id)
+  },
+  replyUnlike: (state, payload) => {
+    const position = state.user.replyLikes.findIndex(item => item === payload.reply_id)
+    state.user.replyLikes.splice(position, 1)
+  },
+  commentLike: (state, payload) => {
+    state.user.commentLikes.push(payload.comment_id)
+  },
+  commentUnlike: (state, payload) => {
+    const el = state.user.commentLikes.findIndex(r => r === payload.comment_id)
+    const position = state.user.commentLikes.indexOf(el)
+    state.user.commentLikes.splice(position, 1)
+  },
   bookmark: (state, payload) => {
     // console.log(payload)
     // console.log(state)
