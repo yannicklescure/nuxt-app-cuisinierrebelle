@@ -12,7 +12,7 @@ export const mutations = {
 
 export const actions = {
   isAuthenticated: (context, payload) => {
-    return api.isAuthenticated(payload)
+    return api.isAuthenticated(context, payload)
       .then(response => {
         console.log(response)
         context.commit("isAuthenticated", response)
@@ -20,7 +20,7 @@ export const actions = {
           // console.log('User is authenticated.')
         }
         else {
-          context.dispatch('users/sessions/clearUserSession', payload, { root: true })
+          context.commit('users/sessions/logOut', payload, { root: true })
         }
         return response
       })

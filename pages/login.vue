@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ paddingTop: navbarHeight + 'px' }" class="container d-flex cr-vh100">
+  <div class="container d-flex cr-vh100">
     <div class="d-flex flex-grow-1 justify-content-center align-items-center">
       <div class="d-flex flex-column align-items-center w-md-50">
         <!-- <div class="my-3"> -->
@@ -70,6 +70,11 @@ export default {
   // components: {
     // FacebookLogin,
   // },
+  created (store) {
+    if (this.$store.state.users.authentication.isAuthenticated) {
+      this.$router.push({ path: '/' })
+    }
+  },
   computed: {
     ...mapGetters([
       'navbarHeight',
@@ -147,7 +152,7 @@ export default {
             // password: this.password
           }
         }
-        this.$store.dispatch('RESEND_CONFIRMATION_INSTRUCTIONS', payload)
+        this.$store.dispatch('resendConfirmationInstructions', payload)
           .then(result => {
             console.log(result)
             if (result.status === 200) {
@@ -158,7 +163,7 @@ export default {
               })
               this.email = null
               this.password = null
-              this.$router.push({ name: 'Home' })
+              this.$router.push({ path: '/' })
             }
             else {
               this.errors.push(result.data.error)

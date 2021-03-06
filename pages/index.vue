@@ -26,29 +26,14 @@ export default {
   methods: {
     ...mapActions(['getStoreData'])
   },
-  created () {
-    this.getStoreData()
-  },
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
       items: 'recipes/listSorted',
     }),
   },
+  created () {
+    if (this.items.length == 0) this.getStoreData()
+  },
 }
 </script>
-
-<style>
-/*.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}*/
-
-.col-12, .col-md-4, .col-lg-3 {
-  padding: 8px 16px;
-}
-
-</style>

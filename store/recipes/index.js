@@ -5,6 +5,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setStoreData: (state, payload) => {
+    state.list = payload.data.recipes
+  },
   replyLike: (state, payload) => {
     const recipe = state.list.findIndex(item => item.recipe.id === payload.recipe_id)
     const comment = state.list[recipe].comments.findIndex(item => item.id === payload.comment_id)
