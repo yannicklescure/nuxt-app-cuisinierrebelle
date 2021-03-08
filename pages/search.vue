@@ -25,7 +25,7 @@ export default {
   //     // busy: false,
   //   }
   // },
-  middleware: 'authenticated',
+  // middleware: 'authenticated',
   methods: {
     ...mapActions(['getStoreData']),
   },
