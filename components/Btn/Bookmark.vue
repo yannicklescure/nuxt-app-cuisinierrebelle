@@ -7,7 +7,7 @@
       <NuxtLink v-else to="/login" class="text-body btn-bookmark">
         <i :class="['material-icons', isMobile ? 'md-32' : 'md-18']">bookmark_border</i>
       </NuxtLink>
-      <span :class="['text-muted font-weight-lighter small', { 'ml-1': !isMobile }]">{{ bookmarks }}</span>
+      <span v-if="false" :class="['text-muted font-weight-lighter small', { 'ml-1': !isMobile }]">{{ bookmarks }}</span>
     </div>
   </div>
 </template>

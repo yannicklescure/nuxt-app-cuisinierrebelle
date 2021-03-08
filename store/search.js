@@ -6,18 +6,18 @@ export const state = () => ({
 })
 
 export const mutations = {
-  search: (state, payload) => {
-    state.search.recipes = payload.data.recipes
+  recipes: (state, payload) => {
+    state.recipes = payload.data.recipes
   },
 }
 
 export const actions = {
-  search: (context, payload) => {
+  query: (context, payload) => {
     // console.log(payload)
     return api.search(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("search", response)
+        if (response.status === 200) context.commit("recipes", response)
         return response
       })
       .catch(error => {
@@ -28,8 +28,8 @@ export const actions = {
 }
 
 export const getters = {
-  search (state) {
-    return state.search
+  result (state) {
+    return state.recipes
   },
 }
 

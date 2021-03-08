@@ -232,7 +232,7 @@ export default async (context, locale) => {
       }
     },
     search: {
-      noResult: `Désolé, nous n'avons trouvé aucun résultat correspondant à <em>"{query}"</em>. Veuillez essayer de nouveau avec un autre mot-clé.`
+      noResult: `Désolé, nous n'avons trouvé aucun résultat correspondant à <em>"{query}"</em>. Merci d'essayer de nouveau avec un autre mot-clé.`
     },
     follow: {
       followers: '0 Abonnés | 1 Abonné | {count} Abonnés',

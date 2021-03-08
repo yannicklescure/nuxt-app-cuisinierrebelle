@@ -28,7 +28,7 @@ export const notifications = (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'get',
-    url: `${ apiUrl }/${ version }/${ version }/notifications`,
+    url: `${ apiUrl }/${ version }/notifications`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,

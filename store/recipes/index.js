@@ -385,16 +385,16 @@ export const actions = {
 }
 
 export const getters = {
-  listSorted (state) {
+  listSorted (state, getters, rootState, rootGetters) {
     // console.log(state)
     return state.list.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
   },
-  recipe (state) {
+  recipe (state, getters, rootState, rootGetters) {
     return keyword => state.list.slice().filter( item => {
       return item.recipe.slug == keyword
     })[0];
   },
-  top100 (state) {
+  top100 (state, getters, rootState, rootGetters) {
     return state.list.slice().sort((a, b) => (a.recipe.views > b.recipe.views) ? 1 : -1).reverse().slice(0, 100)
   },
 }

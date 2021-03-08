@@ -17,7 +17,7 @@
         </NuxtLink>
       </div>
       <div class="d-flex align-items-center">
-        <NuxtLink to="/notifications" class="nav-item mx-2 text-body text-decoration-none">
+        <NuxtLink to="/notifications" @click="getNotifications" class="nav-item mx-2 text-body text-decoration-none">
           <i class="material-icons md-24 d-flex">notifications_none</i>
         </NuxtLink>
         <div v-on:click="collapseMenu">
@@ -59,8 +59,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { isMobile } from 'mobile-device-detect'
+import { mapGetters, mapActions } from 'vuex'
 import ClickOutside from 'vue-click-outside'
 // const FacebookLogin = () => import('../components/buttons/Facebook.vue')
 
@@ -90,11 +89,15 @@ export default {
     isScrollTop () {
       return true
     },
-    isMobile () {
-      return isMobile
-    }
   },
   methods: {
+    ...mapActions({
+      notifications: 'notifications/list',
+      refreshAccessToken: 'users/sessions/refreshAccessToken',
+    }),
+    getNotifications () {
+      this.notifications()
+    },
     inputMode () {
       // this.$refs.searchInput.inputMode = 'search'
       // this.$refs.searchInput.inputMode = 'none'
@@ -108,7 +111,7 @@ export default {
     },
     validSearchQuery () {
       console.log(this.searchQuery)
-      this.$store.dispatch('SEARCH', { query: this.searchQuery })
+      this.$store.dispatch('search', { query: this.searchQuery })
         .then(response => {
           console.log(response)
           if (response.status === 200) {
@@ -147,12 +150,13 @@ export default {
         if (window.scrollY > 0) await scroll()
         await refresh()
         if (this.isAuthenticated) {
-          this.$store
-            .dispatch('users/sessions/refreshAccessToken', {
-              authorizationToken: this.authorization.authorizationToken,
-              refreshToken: this.authorization.refreshToken,
-              expireAt: this.authorization.expireAt
-            })
+          this.refreshAccessToken()
+          // this.$store
+          //   .dispatch('users/sessions/refreshAccessToken', {
+          //     authorizationToken: this.authorization.authorizationToken,
+          //     refreshToken: this.authorization.refreshToken,
+          //     expireAt: this.authorization.expireAt
+          //   })
         }
         // this.loading = true
       }
@@ -196,7 +200,7 @@ export default {
           this.$store.dispatch('users/sessions/logOut', {})
             .then(response => {
               console.log(response)
-              if (response.status === 204 && this.$route.name != 'Home') this.$router.push({ path: '/' })
+              if (response.status === 200 && this.$route.path != '/') this.$router.push({ path: '/' })
             })
         })
         .catch(() => {

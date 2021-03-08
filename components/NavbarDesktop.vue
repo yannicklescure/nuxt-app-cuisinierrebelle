@@ -31,11 +31,11 @@
         <NuxtLink to="/top100" class="nav-item text-fire text-decoration-none">
           <i class="material-icons md-18 d-flex">whatshot</i>
         </NuxtLink>
-        <NuxtLink to="/bookmarks" class="nav-item text-body text-decoration-none">
-          <i class="material-icons md-18 d-flex">bookmarks</i>
+        <NuxtLink v-if="bookmarks.length > 0" to="/bookmarks" class="nav-item text-body text-decoration-none">
+          <i class="material-icons md-18 d-flex">{{ icons.bookmarks }}</i>
         </NuxtLink>
-        <NuxtLink to="/notifications" class="nav-item text-body text-decoration-none">
-          <i class="material-icons md-18 d-flex">notifications_none</i>
+        <NuxtLink v-if="notifications.length > 0" to="/notifications" @click.native="getNotifications" class="nav-item text-body text-decoration-none">
+          <i class="material-icons md-18 d-flex">{{ icons.notifications }}</i>
         </NuxtLink>
         <b-dropdown variant="link" toggle-class="text-decoration-none text-body" no-caret>
           <template #button-content>
@@ -72,9 +72,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-// import { isMobile } from 'mobile-device-detect'
-// const FacebookLogin = () => import('../components/buttons/Facebook.vue')
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'NavbarLarge',
@@ -83,11 +81,12 @@ export default {
       componentKey: 0,
       loading: false,
       searchQuery: '',
+      icons: {
+        bookmarks: 'bookmark',
+        notifications: 'notifications_none'
+      }
     }
   },
-  // components: {
-  //   FacebookLogin,
-  // },
   created () {
     if (process.client) {
       window.addEventListener('scroll', this.handleScroll);
@@ -100,10 +99,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isAuthenticated: 'users/authentication/isAuthenticated',
       authorization: 'users/sessions/authorization',
+      bookmarks: 'users/sessions/bookmarks',
       currentUser: 'users/sessions/current',
+      isAuthenticated: 'users/authentication/isAuthenticated',
       isMobile: 'isMobile',
+      notifications: 'notifications/listSorted',
     }),
     // user () {
     //   return this.currentUser
@@ -112,15 +113,34 @@ export default {
       return true
     },
   },
+  watch: {
+    notifications (oldValue, newValue) {
+      if (oldValue.length != newValue.length) {
+        // console.log(oldValue)
+        // console.log(newValue)
+        this.icons.notifications = 'notifications'
+      }
+    },
+  },
   methods: {
+    ...mapActions({
+      fetchNotifications: 'notifications/list',
+      fetchRecipes: 'recipes/list',
+      refreshAccessToken: 'users/sessions/refreshAccessToken',
+    }),
+    getNotifications () {
+      console.log('getNotifications')
+      this.icons.notifications = 'notifications_none'
+      this.fetchNotifications()
+    },
     validSearchQuery () {
       // this.$refs.searchInput.value = ''
       console.log(this.searchQuery)
-      this.$store.dispatch('SEARCH', { query: this.searchQuery })
+      this.$store.dispatch('search/query', { query: this.searchQuery })
         .then(response => {
           console.log(response)
           if (response.status === 200) {
-            this.$router.push({ name: 'Search', query: { r: this.searchQuery } })
+            this.$router.push({ path: '/search', query: { r: this.searchQuery } })
             this.searchQuery = ''
           }
         })
@@ -135,22 +155,11 @@ export default {
           };
           window.scrollTo(scrollOptions)
         }
-        const refresh = () => {
-          this.$store
-            .dispatch('recipes/list', {})
-            .then(response => {
-              // this.loading = false
-            })
-        }
         if (window.scrollY > 0) await scroll()
-        await refresh()
+        await this.fetchRecipes()
         if (this.isAuthenticated) {
-          this.$store
-            .dispatch('users/sessions/refreshAccessToken', {
-              authorizationToken: this.authorization.authorizationToken,
-              refreshToken: this.authorization.refreshToken,
-              expireAt: this.authorization.expireAt
-            })
+          this.fetchNotifications()
+          this.refreshAccessToken()
         }
         // this.loading = true
       }
@@ -199,15 +208,9 @@ export default {
           // console.log('Clicked on cancel')
         });
     },
-    forceRerender () {
-      this.componentKey += 1;
-    },
     navbarHeight () {
       this.$store.dispatch('navbarHeight', parseInt(this.$refs.navbar.offsetHeight))
     },
-  },
-  beforeMount () {
-    this.forceRerender()
   },
   mounted () {
     this.navbarHeight()

@@ -5,20 +5,24 @@ export const state = () => ({
 })
 
 export const mutations = {
+  logOut: (state, payload) => {
+    state.list = []
+  },
   notifications: (state, payload) => {
-    for (const [key, value] of Object.entries(payload.data)) {
-      state.data.notifications[key] = payload.data[key]
-    }
+    state.list = payload.data
+    // for (const [key, value] of Object.entries(payload.data)) {
+    //   state.list[key] = value
+    // }
   },
 }
 
 export const actions = {
-  notifications: (context, payload) => {
+  list: (context, payload) => {
     // console.log(payload)
     return api.notifications(context, payload)
       .then(response => {
-        console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("notifications", response)
+        console.log(response)
+        if (response.status === 200) context.commit("notifications", response.data)
         return response
       })
       .catch(error => {
@@ -29,8 +33,8 @@ export const actions = {
 }
 
 export const getters = {
-  notifications (state) {
-    return state.list
+  listSorted (state, getters, rootState, rootGetters) {
+    return state.list.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse().slice(0, 100)
   },
 }
 

@@ -24,7 +24,10 @@ export default {
   },
   // middleware: 'authenticated',
   methods: {
-    ...mapActions(['getStoreData'])
+    ...mapActions({
+      getStoreData: 'getStoreData',
+      fetchItems: 'notifications/list'
+    }),
   },
   computed: {
     ...mapGetters({
@@ -32,8 +35,9 @@ export default {
       items: 'recipes/listSorted',
     }),
   },
-  created () {
-    if (this.items.length == 0) this.getStoreData()
+  async created () {
+    if (this.items.length == 0) await this.getStoreData()
+    if (this.isAuthenticated) this.fetchItems()
   },
 }
 </script>

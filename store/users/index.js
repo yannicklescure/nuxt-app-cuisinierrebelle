@@ -10,5 +10,14 @@ export const mutations = {
   },
 }
 export const actions = {}
-export const getters = {}
+export const getters = {
+  user (state, getters, rootState, rootGetters) {
+    return keyword => state.list.slice().filter( item => {
+      return item.slug == keyword
+    })[0];
+  },
+  users (state, getters, rootState, rootGetters) {
+    return state.list
+  }
+}
 export const plugins = []

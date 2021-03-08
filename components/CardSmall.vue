@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-small border p-2 mb-3" :key="componentKey">
+  <div class="card card-small border-0 bg-light p-2 mb-3" :key="componentKey">
     <NuxtLink
       class="text-body stretched-link"
       :to="'/r/' + item.recipe.slug"

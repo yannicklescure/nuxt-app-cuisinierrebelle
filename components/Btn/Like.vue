@@ -7,7 +7,7 @@
       <NuxtLink v-else to="/login" class="text-body btn-like">
         <i :class="['material-icons', isMobile ? 'md-32' : 'md-18']">favorite_border</i>
       </NuxtLink>
-      <span :class="['text-muted font-weight-lighter small', { 'ml-1': !isMobile }]">{{ likes }}</span>
+      <span v-if="false" :class="['text-muted font-weight-lighter small', { 'ml-1': !isMobile }]">{{ likes }}</span>
     </div>
   </div>
 </template>

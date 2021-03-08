@@ -1,7 +1,7 @@
 <template>
-  <div class="card-footer border-0 bg-white p-1">
-    <div v-if="isMobile" class="d-flex justify-content-between align-items-center my-2">
-      <div :class="['d-flex justify-content-between', isMobile ? 'align-items-start' : 'align-items-center ml-n2']">
+  <div :class="['card-footer border-0 bg-white p-0']">
+    <div class="d-flex justify-content-between align-items-start my-2">
+      <div :class="['d-flex justify-content-between', isMobile ? 'align-items-start' : 'align-items-center']">
         <BtnVisit :item="item" />
         <BtnComment :item="item" />
         <BtnShare :item="item" />
@@ -11,7 +11,7 @@
         <BtnBookmark :item="item" />
       </div>
     </div>
-    <div class="d-flex flex-column">
+    <div :class="['d-flex flex-column', isMobile ? 'p-0' : 'p-0']">
       <NuxtLink
         :to="'/r/' + item.recipe.slug"
         class="card-link text-body text-uppercase"

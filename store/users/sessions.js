@@ -206,6 +206,7 @@ export const actions = {
         console.log(response)
         if (response && response.status === 200) {
           context.commit("logOut", payload)
+          context.commit("notifications/logOut", null, { root: true })
           context.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: false } }, { root: true })
           return response
         }
@@ -230,23 +231,24 @@ export const actions = {
 }
 
 export const getters = {
-  bookmarks (state) {
-    return state.user.authentication_token ? state.user.bookmarks
+  bookmarks (state, getters, rootState, rootGetters) {
+    // console.log(rootGetters)
+    return state.user.bookmarks
       .slice()
       .sort((a, b) => (new Date(a.created_at).getTime() > new Date(b.created_at).getTime()) ? 1 : -1).reverse()
-      .map(bookmark => state.recipes.filter(item => item.recipe.id === bookmark.recipe_id)[0]) : []
+      .map(bookmark => rootGetters['recipes/listSorted'].filter(item => item.recipe.id === bookmark.recipe_id)[0])
   },
-  current (state) {
+  current (state, getters, rootState, rootGetters) {
     return state.user
   },
-  authorization (state) {
+  authorization (state, getters, rootState, rootGetters) {
     return {
       authorizationToken: state.authorization.authorizationToken,
       refreshToken: state.authorization.refreshToken,
       expireAt: state.authorization.expireAt,
     }
   },
-  facebookAuth (state) {
+  facebookAuth (state, getters, rootState, rootGetters) {
     return state.user.facebookAuth
   },
 }
