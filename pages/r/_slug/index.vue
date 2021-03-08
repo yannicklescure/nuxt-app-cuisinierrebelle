@@ -45,10 +45,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      recipe: 'recipes/recipe',
-      navbarHeight: 'navbarHeight',
+      currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
-      currentUser: 'users/sessions/current'
+      recipe: 'recipes/recipe',
     }),
   },
   methods: {
@@ -86,7 +85,8 @@ export default {
     await this.setItem()
     if (this.item == undefined) {
       // console.log(this.item)
-      this.getStoreData()
+      await this.getStoreData()
+      this.setItem()
     }
   },
   mounted () {

@@ -37,17 +37,17 @@
         <NuxtLink v-if="notifications.length > 0" to="/notifications" @click.native="getNotifications" class="nav-item text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">{{ icons.notifications }}</i>
         </NuxtLink>
-        <b-dropdown variant="link" toggle-class="text-decoration-none text-body" no-caret>
+        <b-dropdown variant="link" ref="dropdown" toggle-class="text-decoration-none text-body" no-caret>
           <template #button-content>
             <i class="material-icons md-18 d-flex">more_vert</i>
           </template>
           <div class="border-bottom pb-2 mb-2" v-if="currentUser.admin">
-            <NuxtLink class="dropdown-item" :to="'/admin'">{{ $t('navbar.admin') }}</NuxtLink>
+            <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="'/admin'">{{ $t('navbar.admin') }}</NuxtLink>
           </div>
-          <NuxtLink class="dropdown-item" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
-          <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
-          <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
-          <NuxtLink class="dropdown-item" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="dropdownClick" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="getUsers" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
           <div
             @click="logout"
             class="dropdown-item mouse-pointer"
@@ -128,6 +128,18 @@ export default {
       fetchRecipes: 'recipes/list',
       refreshAccessToken: 'users/sessions/refreshAccessToken',
     }),
+    dropdownClick () {
+      console.log('click')
+      this.$refs.dropdown.hide(true)
+    },
+    getUsers () {
+      this.$refs.dropdown.hide(true)
+      this.$store
+        .dispatch('users/getUsers', {})
+        .then(response => {
+          console.log(response)
+        })
+    },
     getNotifications () {
       console.log('getNotifications')
       this.icons.notifications = 'notifications_none'

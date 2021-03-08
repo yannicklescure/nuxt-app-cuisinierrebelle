@@ -85,17 +85,19 @@ export const mutations = {
   },
   edit: (state, payload) => {
     // console.log(payload)
+    const position = state.list.findIndex(item => item.recipe.id == parseInt(payload.data.recipe.id))
+    state.list[position] = payload.data
   },
   new: (state, payload) => {
     state.list.push(payload.data)
   },
   recipe: (state, payload) => {
     const position = state.list.findIndex(item => item.recipe.id == parseInt(payload.data.recipe.id))
-    state.recipes[position] = payload.data
+    state.list[position] = payload.data
   },
   log: (state, payload) => {
     const position = state.list.findIndex(item => item.recipe.id == payload.data.recipe.id)
-    state.recipes[position].recipe.views = payload.views
+    state.list[position].recipe.views = payload.views
   },
 }
 
@@ -392,7 +394,12 @@ export const getters = {
   recipe (state, getters, rootState, rootGetters) {
     return keyword => state.list.slice().filter( item => {
       return item.recipe.slug == keyword
-    })[0];
+    })[0]
+  },
+  user (state, getters, rootState, rootGetters) {
+    return keyword => state.list.slice().filter( item => {
+      return item.user.slug == keyword
+    }).sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
   },
   top100 (state, getters, rootState, rootGetters) {
     return state.list.slice().sort((a, b) => (a.recipe.views > b.recipe.views) ? 1 : -1).reverse().slice(0, 100)

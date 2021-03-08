@@ -39,12 +39,12 @@ export default {
     follow () {
       console.log('follow')
       this.$store
-        .dispatch('FOLLOW', { user: this.item.slug })
+        .dispatch('users/sessions/follow', { user: this.item.slug })
     },
     unfollow () {
       console.log('unfollow')
       this.$store
-        .dispatch('UNFOLLOW', { user: this.item.slug })
+        .dispatch('users/sessions/unfollow', { user: this.item.slug })
     },
   }
 }

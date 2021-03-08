@@ -2,7 +2,7 @@
   <div class="container p-3"  id="user-banner">
     <div v-if="user" class="d-flex justify-content-between p-2 p-md-3 bg-light rounded">
       <div class="mx-md-2 d-flex justify-content-start align-items-center">
-        <img src="user.image.preview.url" :alt="user.name" class="rounded" width="64" height="64" style="object-fit: cover;">
+        <img :src="user.image.preview.url" :alt="user.name" class="rounded" width="64" height="64" style="object-fit: cover;">
         <div class="ml-3 d-flex flex-column">
           <div class="d-flex align-items-center">
             <NuxtLink :to="'/u/' + user.slug" class="text-capitalize text-body">{{ user.name }}</NuxtLink>
@@ -11,8 +11,12 @@
             </span>
           </div>
           <div>
-            <NuxtLink :to="'/u/' + user.slug + '/followers'" class="d-flex align-items-center text-decoration-none text-muted">
-              <small>{{ $tc('userBanner.followers', followers) }}</small>
+            <NuxtLink
+              :to="'/u/' + user.slug + '/followers'"
+              @click.native="getUsers"
+              class="d-flex align-items-center text-decoration-none text-muted"
+            >
+              <small>{{ $tc('userBanner.followers', countFollowers) }}</small>
             </NuxtLink>
           </div>
         </div>
@@ -38,27 +42,30 @@ import { mapGetters } from 'vuex'
 // const Follow = () => import('../components/buttons/Follow.vue')
 
 export default {
-  name: 'UserBanner',
-  // props: ['user'],
-  data () {
-    return {}
-  },
+  name: 'UsersBanner',
+  props: ['user'],
+  // data () {
+  //   return {}
+  // },
   // components: {
   //   Follow,
   // },
   computed: {
-    ...mapGetters([
-      'usersFilter',
-      'currentUser'
-    ]),
-    user () {
-      return this.usersFilter(this.$route.params.id)
-    },
-    followers () {
+    ...mapGetters({
+      currentUser: 'users/sessions/current',
+    }),
+    countFollowers () {
       return this.user.followers.count
     }
   },
   methods: {
+    getUsers () {
+      this.$store
+        .dispatch('users/getUsers', {})
+        .then(response => {
+          console.log(response)
+        })
+    },
     userSettings () {
       this.$router.push({ name: 'UserSettings' })
     }
