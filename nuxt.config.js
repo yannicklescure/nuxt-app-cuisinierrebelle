@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxt-app-cuisinierrebelle',
+    title: 'Cuisinier Rebelle',
     htmlAttrs: {
       lang: 'fr'
     },
@@ -104,6 +104,6 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL
+    baseUrl: process.env.BASE_URL || 'https://www.cuisinierrebelle.com'
   }
 }
