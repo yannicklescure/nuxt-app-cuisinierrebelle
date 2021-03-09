@@ -58,7 +58,6 @@ export default {
     }),
     async setItem () {
       // this.item = this.recipe(this.slug)
-      this.fetchRecipe(this.slug)
       this.item = this.recipe(this.slug)
     },
   },
@@ -86,7 +85,10 @@ export default {
     }
   },
   async created () {
-    if (this.items.length == 0) await this.getStoreData()
+    if (this.items.length == 0) await this.fetchRecipe(this.slug)
+    this.getStoreData()
+  },
+  beforeMount () {
     this.setItem()
   },
   mounted () {
