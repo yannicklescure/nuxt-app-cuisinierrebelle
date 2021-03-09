@@ -40,6 +40,7 @@ export default {
     }
   },
   async asyncData({ params }) {
+    console.log(params.slug)
     const slug = params.slug
     return { slug }
   },
@@ -87,14 +88,14 @@ export default {
       ]
     }
   },
-  async created () {
+  created () {
+    console.log(this)
+  },
+  async beforeMount () {
     await this.fetchRecipe(this.slug)
     this.getStoreData()
   },
-  // beforeMount () {
-  //   this.setItem()
-  // },
-  mounted () {
+  async mounted () {
     this.$nextTick(() => {
       this.loadComments = true
     })
