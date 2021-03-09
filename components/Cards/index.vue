@@ -19,11 +19,11 @@
 export default {
   name: 'Cards',
   props: ['items'],
-  data () {
-    return {
-      // message: 'false',
-    }
-  },
+  // data () {
+  //   return {
+  //     // message: 'false',
+  //   }
+  // },
   // components: {
   //   Card,
   // },
@@ -34,10 +34,10 @@ export default {
       }
     },
   },
-  mounted () {
-    this.$nextTick(() => {
-      // setTimeout(() => {}, 1000)
-    })
-  }
+  // mounted () {
+  //   this.$nextTick(() => {
+  //     // setTimeout(() => {}, 1000)
+  //   })
+  // }
 }
 </script>

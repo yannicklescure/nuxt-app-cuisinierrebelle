@@ -23,18 +23,13 @@ export default {
     const slug = params.slug
     return { slug }
   },
-  // data () {
-  //   return {
-  //     // componentKey: 0,
-  //     // data: [],
-  //     // busy: false,
-  //   }
-  // },
-  methods: {
-    ...mapActions(['getStoreData']),
-    setItem () {
-      this.items = this.recipes(this.slug)
-    },
+  data () {
+    return {
+      // componentKey: 0,
+      // data: [],
+      // busy: false,
+      items: undefined
+    }
   },
   computed: {
     ...mapGetters({
@@ -47,13 +42,22 @@ export default {
       return this.usersFilter(this.slug)
     },
   },
+  methods: {
+    ...mapActions({
+      getStoreData: 'getStoreData',
+      // fetchItems: 'notifications/list'
+    }),
+    setItem () {
+      this.items = this.recipes(this.slug)
+    },
+  },
   async created () {
-    await this.setItem()
-    if (this.item == undefined) {
+    // await this.setItem()
+    // if (this.items == undefined) {
       // console.log(this.item)
       await this.getStoreData()
       this.setItem()
-    }
+    // }
   },
 }
 </script>

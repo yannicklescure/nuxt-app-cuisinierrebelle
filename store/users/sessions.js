@@ -138,9 +138,26 @@ export const mutations = {
       expireAt: payload.headers['expire-at']
     }
   },
+  notifications: (state, payload) => {
+    // console.log(payload.data.notification)
+    state.user.notification = payload.data.notification
+  },
 }
 
 export const actions = {
+  delete: (context, payload) => {
+    console.log(context.state.data)
+    return api.userDelete(context, payload)
+      .then(response => {
+        console.log(response)
+        // if (response.status === 204 || response.status === 200) context.commit("logOut", {})
+        return response
+      })
+      .catch(error => {
+        // console.log(error)
+        return error
+      })
+  },
   followers: (context, payload) => {
     // console.log(payload)
     return api.followers(context, payload)
@@ -206,7 +223,7 @@ export const actions = {
         console.log(response)
         if (response && response.status === 200) {
           context.commit("logOut", payload)
-          context.commit("notifications/logOut", null, { root: true })
+          context.commit("notification/logOut", null, { root: true })
           context.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: false } }, { root: true })
           return response
         }
@@ -221,6 +238,19 @@ export const actions = {
       .then(response => {
         // console.log(response.data.message)
         context.commit("refreshAccessToken", response)
+        return response
+      })
+      .catch(error => {
+        // console.log(error)
+        return error
+      })
+  },
+  notifications: (context, payload) => {
+    // console.log(payload)
+    return api.userNotifications(context, payload)
+      .then(response => {
+        console.log(`response.status ${response.status}`)
+        if (response.status === 200) context.commit("notifications", response)
         return response
       })
       .catch(error => {

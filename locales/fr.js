@@ -272,6 +272,13 @@ export default async (context, locale) => {
       email: 'Vérification de votre adresse courriel',
       submit: 'Supprimer mon compte',
       success: 'Votre compte a été supprimé.',
+      text1: 'Désolé de vous voir partir!',
+      text2: 'Si vous rencontrez un problème sur Cuisinier Rebelle, pensez à ',
+      text3: 'nous contacter',
+      text4: ' à ce sujet avant de supprimer votre compte.',
+      text5: 'La suppression de votre compte supprimera le contenu des publications et des commentaires que vous avez faits sur Cuisinier Rebelle.',
+      form: 'POURQUOI SUPPRIMEZ-VOUS CE COMPTE? (OPTIONNEL)',
+      checkbox: 'Je comprends que supprimer mon compte est irréversible.',
     }
   })
 }

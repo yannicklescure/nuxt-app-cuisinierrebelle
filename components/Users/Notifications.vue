@@ -24,9 +24,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'currentUser',
-    ]),
+    ...mapGetters({
+      currentUser: 'users/sessions/current',
+    }),
     checked () {
       return this.currentUser.notification
     }
@@ -39,7 +39,7 @@ export default {
       }
       console.log(payload)
       this.$store
-        .dispatch('USER_NOTIFICATIONS', payload)
+        .dispatch('users/sessions/notifications', payload)
     }
   },
   mounted () {

@@ -67,7 +67,7 @@ export default {
         })
     },
     userSettings () {
-      this.$router.push({ name: 'UserSettings' })
+      this.$router.push({ path: `/u/${ this.currentUser.slug }/settings` })
     }
   },
 }
