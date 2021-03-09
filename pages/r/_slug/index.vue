@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       componentKey: 0,
-      loadComments: false,
+      // loadComments: false,
       // item: undefined,
     }
   },
@@ -88,17 +88,17 @@ export default {
       ]
     }
   },
-  created () {
-    console.log(this)
-  },
+  // created () {
+  //   console.log(this)
+  // },
   async beforeMount () {
     await this.fetchRecipe(this.slug)
-    this.getStoreData()
+    if (this.items.length == 0) this.getStoreData()
   },
-  async mounted () {
-    this.$nextTick(() => {
-      this.loadComments = true
-    })
-  },
+  // async mounted () {
+  //   this.$nextTick(() => {
+  //     this.loadComments = true
+  //   })
+  // },
 }
 </script>
