@@ -28,7 +28,7 @@ export default {
       // componentKey: 0,
       // data: [],
       // busy: false,
-      items: undefined
+      // items: undefined
     }
   },
   computed: {
@@ -41,22 +41,25 @@ export default {
     user () {
       return this.usersFilter(this.slug)
     },
+    items () {
+      return this.recipes(this.slug)
+    }
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
       // fetchItems: 'notifications/list'
     }),
-    setItem () {
-      this.items = this.recipes(this.slug)
-    },
+    // setItem () {
+    //   this.items = this.recipes(this.slug)
+    // },
   },
   async created () {
     // await this.setItem()
     // if (this.items == undefined) {
       // console.log(this.item)
       await this.getStoreData()
-      this.setItem()
+      // this.setItem()
     // }
   },
 }
