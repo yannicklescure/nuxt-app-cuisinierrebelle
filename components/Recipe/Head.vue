@@ -23,7 +23,7 @@
     <div v-if="isMobile == false && (item.user.id === currentUser.id)" class="d-print-none">
       <NuxtLink :to="`/r/${item.recipe.slug}/edit`" class="text-body text-capitalize text-decoration-none" >{{ $t('recipe.edit') }}</NuxtLink>
     </div>
-    <div v-if="isMobile" class="d-flex order-0 align-items-center justify-content-between my-3 mb-md-0 d-print-none">
+    <div v-if="isMobile" class="d-flex order-0 align-items-start justify-content-between my-3 mb-md-0 d-print-none">
       <div class="d-flex order-0 align-items-start">
         <BtnVisit :item="item" />
         <BtnComment :item="item" />
