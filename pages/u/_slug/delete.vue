@@ -20,11 +20,11 @@
         <label for="inputEmail">{{ $t('userDelete.email') }}</label>
         <input v-on:input="checkForm" v-model="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
       </div>
-      <div class="form-group mb-3">
-        <input v-on:change="checkForm" type="checkbox" id="checkbox" v-model="checked">
-        <label for="checkbox">{{ $t('userDelete.checkbox') }}</label>
+      <div class="form-check mb-5">
+        <input v-on:change="checkForm" class="form-check-input" type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox" class="form-check-label">{{ $t('userDelete.checkbox') }}</label>
       </div>
-      <div class="form-group mb-3">
+      <div class="form-group mb-3 d-flex justify-content-center justify-content-md-start">
         <button v-on:click.stop.prevent="deleteAccount" type="submit" class="btn btn-dark" :disabled="disabled">{{ $t('userDelete.submit') }}</button>
       </div>
     </form>

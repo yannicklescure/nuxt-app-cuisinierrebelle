@@ -1,9 +1,13 @@
 <template>
   <div ref="default" id="default">
-    <div v-if="show">
+    <div
+      v-if="show"
+      class="d-flex flex-column justify-content-between"
+    >
       <NavbarMobile v-if="isMobile" />
       <NavbarDesktop v-else />
       <Nuxt />
+      <LazyFooter />
     </div>
   </div>
 </template>

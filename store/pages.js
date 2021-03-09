@@ -4,38 +4,27 @@ export const state = () => ({
   list: [],
 })
 
-export const getters = {
-  page (state) {
-    return keyword => state.list.filter( item => {
-      return item.slug === keyword
-    })[0];
-  },
-  pages (state) {
-    return state.pages.sort((a, b) => (a.title > b.title) ? 1 : -1)
-  },
-}
-
 export const mutations = {
   setPages: (state, payload) => {
-    state.pages = payload.data.pages
+    state.list = payload.data.pages
   },
   pageNew: (state, payload) => {
-    state.pages.push(payload.data)
+    state.list.push(payload.data)
   },
   pageEdit: (state, payload) => {
-    const page = state.pages.filter(r => r.id === payload.data.id)[0]
+    const page = state.list.filter(r => r.id === payload.data.id)[0]
     // console.log(page)
     if (page) {
-      const position = state.pages.indexOf(page)
+      const position = state.list.indexOf(page)
       // console.log(position)
-      state.pages[position] = payload.data
+      state.list[position] = payload.data
     }
   },
 }
 
 export const actions = {
-  async getPages(context, payload) {
-    return await api.fetchPages(context, payload)
+  fetch(context, payload) {
+    return api.fetchPages(context, payload)
       .then(response => {
         context.commit("setPages", response.data)
       })
@@ -44,7 +33,7 @@ export const actions = {
         return error
       })
   },
-  pageNew: (context, payload) => {
+  new: (context, payload) => {
     // console.log(context.state.data.user)
     return api.pageNew(context, payload)
       .then(response => {
@@ -58,7 +47,7 @@ export const actions = {
         return error
       })
   },
-  pageEdit: (context, payload) => {
+  edit: (context, payload) => {
     // console.log(context.state.data.user)
     return api.pageEdit(context, payload)
       .then(response => {
@@ -71,5 +60,16 @@ export const actions = {
         // console.log(error)
         return error
       })
+  },
+}
+
+export const getters = {
+  filter (state) {
+    return keyword => state.list.slice().filter( item => {
+      return item.slug === keyword
+    })[0];
+  },
+  all (state) {
+    return state.list.slice().sort((a, b) => (a.title > b.title) ? 1 : -1)
   },
 }

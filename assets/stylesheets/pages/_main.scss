@@ -31,3 +31,11 @@ main, .cr-vh100 {
     // min-height: calc(100vh - 58px);
   }
 }
+
+#default {
+  height: 100vh !important;
+}
+
+#default > div {
+  min-height: 100%;
+}

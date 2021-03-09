@@ -223,7 +223,7 @@ export const actions = {
         console.log(response)
         if (response && response.status === 200) {
           context.commit("logOut", payload)
-          context.commit("notification/logOut", null, { root: true })
+          context.commit("notifications/logOut", null, { root: true })
           context.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: false } }, { root: true })
           return response
         }

@@ -28,7 +28,8 @@ export default {
     // '~/plugins/vue-social-sharing.js',
     '~/plugins/vuejs-dialog.client',
     '~/plugins/vue-google-adsense',
-    { src: '~/plugins/vuex-persist', ssr: false }
+    { src: '~/plugins/vuex-persist', ssr: false },
+    { src: '~/plugins/vuex-cache.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
