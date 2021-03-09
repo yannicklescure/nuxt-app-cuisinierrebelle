@@ -65,8 +65,8 @@ export default {
       // isMobile: 'isMobile',
     }),
   },
-  created () {
-    this.fetchItems()
+  async created () {
+    if (this.pages.length == 0) await this.fetchItems()
   }
 }
 </script>
