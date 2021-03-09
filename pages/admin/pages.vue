@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Pages',
@@ -54,6 +54,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      fetchItems: 'pages/fetch'
+    }),
   },
   computed: {
     ...mapGetters({
@@ -62,5 +65,8 @@ export default {
       // isMobile: 'isMobile',
     }),
   },
+  created () {
+    this.fetchItems()
+  }
 }
 </script>
