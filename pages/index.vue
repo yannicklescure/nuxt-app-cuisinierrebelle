@@ -3,7 +3,7 @@
     <Banner v-if="isAuthenticated == false" />
     <div class="container">
       <div class="row">
-        <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
+        <div v-for="item in items.slice(0, 24)" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
           <Card :item="item" />
         </div>
       </div>
