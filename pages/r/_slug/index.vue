@@ -52,7 +52,7 @@ export default {
       items: 'recipes/listSorted',
     }),
     item () {
-      return this.recipe(this.slug)
+      return this.recipe(this.$route.params.slug)
     }
   },
   methods: {
@@ -88,11 +88,12 @@ export default {
       ]
     }
   },
-  // created () {
-  //   console.log(this)
-  // },
+  async created () {
+    // console.log(this.slug)
+    console.log(this.$route.params.slug)
+    await this.fetchRecipe(this.$route.params.slug)
+  },
   async beforeMount () {
-    await this.fetchRecipe(this.slug)
     if (this.items.length == 0) this.getStoreData()
   },
   // async mounted () {
