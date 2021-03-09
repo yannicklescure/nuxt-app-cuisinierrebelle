@@ -80,20 +80,21 @@ export const mutations = {
     state.list = payload.data.recipes
   },
   delete: (state, payload) => {
-    const position = state.list.findIndex(item => item.recipe.id == parseInt(payload.data.recipe.id))
+    const position = state.list.findIndex(item => item.recipe.id == payload.data.recipe.id)
     state.list.splice(position, 1)
   },
   edit: (state, payload) => {
     // console.log(payload)
-    const position = state.list.findIndex(item => item.recipe.id == parseInt(payload.data.recipe.id))
+    const position = state.list.findIndex(item => item.recipe.id == payload.data.recipe.id)
     state.list[position] = payload.data
   },
   new: (state, payload) => {
     state.list.push(payload.data)
   },
   recipe: (state, payload) => {
-    const position = state.list.findIndex(item => item.recipe.id == parseInt(payload.data.recipe.id))
-    state.list[position] = payload.data
+    const position = state.list.findIndex(item => item.recipe.id == payload.data.recipe.id)
+    if (position > -1) state.list[position] = payload.data
+    else state.list.push(payload.data)
   },
   log: (state, payload) => {
     const position = state.list.findIndex(item => item.recipe.id == payload.data.recipe.id)
@@ -326,7 +327,7 @@ export const actions = {
     // console.log(context.state.data.user)
     return api.recipe(context, payload)
       .then(response => {
-        if (response.status == 200) context.commit("recipes/recipe", response)
+        if (response.status == 200) context.commit("recipe", response)
         return response
       })
       .catch(error => {

@@ -54,8 +54,11 @@ export default {
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
+      fetchRecipe: 'recipes/recipe',
     }),
-    setItem () {
+    async setItem () {
+      // this.item = this.recipe(this.slug)
+      this.fetchRecipe(this.slug)
       this.item = this.recipe(this.slug)
     },
   },
@@ -83,8 +86,7 @@ export default {
     }
   },
   async created () {
-    // if (this.items.length == 0) await this.getStoreData()
-    await this.getStoreData()
+    if (this.items.length == 0) await this.getStoreData()
     this.setItem()
   },
   mounted () {
