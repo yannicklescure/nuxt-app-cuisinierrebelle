@@ -48,10 +48,13 @@ export default {
       currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
       recipe: 'recipes/recipe',
+      items: 'recipes/listSorted',
     }),
   },
   methods: {
-    ...mapActions(['getStoreData']),
+    ...mapActions({
+      getStoreData: 'getStoreData',
+    }),
     setItem () {
       this.item = this.recipe(this.slug)
     },
@@ -82,12 +85,8 @@ export default {
     }
   },
   async created () {
-    await this.setItem()
-    if (this.item == undefined) {
-      // console.log(this.item)
-      await this.getStoreData()
-      this.setItem()
-    }
+    if (this.items.length == 0) await this.getStoreData()
+    this.setItem()
   },
   mounted () {
     this.$nextTick(() => {
