@@ -39,11 +39,11 @@ export default {
       // item: undefined,
     }
   },
-  async asyncData({ params }) {
-    console.log(params.slug)
-    const slug = params.slug
-    return { slug }
-  },
+  // async asyncData({ params }) {
+  //   console.log(params.slug)
+  //   const slug = params.slug
+  //   return { slug }
+  // },
   computed: {
     ...mapGetters({
       currentUser: 'users/sessions/current',

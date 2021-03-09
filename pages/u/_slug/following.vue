@@ -22,10 +22,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'UserFollowers',
   middleware: 'authenticated',
-  async asyncData({ params }) {
-    const slug = params.slug
-    return { slug }
-  },
+  // async asyncData({ params }) {
+  //   const slug = params.slug
+  //   return { slug }
+  // },
   data () {
     return {
       componentKey: 0,
@@ -38,7 +38,7 @@ export default {
       usersFilter: 'users/filter',
     }),
     user () {
-      return this.usersFilter(this.slug)
+      return this.usersFilter(this.$route.params.slug)
     },
     items () {
       return this.user.following.data.slice(0, 100)

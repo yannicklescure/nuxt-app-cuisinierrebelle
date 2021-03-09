@@ -78,10 +78,10 @@ export default {
       errors: [],
     }
   },
-  async asyncData({ params }) {
-    const slug = params.slug
-    return { slug }
-  },
+  // async asyncData({ params }) {
+  //   const slug = params.slug
+  //   return { slug }
+  // },
   computed: {
     ...mapGetters({
       currentUser: 'users/sessions/current',
@@ -89,7 +89,7 @@ export default {
       recipe: 'recipes/recipe',
     }),
     item () {
-      return this.recipe(this.slug)
+      return this.recipe(this.$route.params.slug)
     }
   },
   // watch: {
@@ -184,7 +184,7 @@ export default {
             console.log(response)
             if (response.status === 200) {
               this.$router.push({
-                path: `/r/${ this.slug }`,
+                path: `/r/${ this.$route.params.slug }`,
                 params: {
                   id: response.data.recipe.slug
                 }

@@ -19,10 +19,10 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'User',
   // middleware: 'authenticated',
-  async asyncData({ params }) {
-    const slug = params.slug
-    return { slug }
-  },
+  // async asyncData({ params }) {
+  //   const slug = params.slug
+  //   return { slug }
+  // },
   data () {
     return {
       // componentKey: 0,
@@ -39,10 +39,10 @@ export default {
       usersFilter: 'users/filter',
     }),
     user () {
-      return this.usersFilter(this.slug)
+      return this.usersFilter(this.$route.params.slug)
     },
     items () {
-      return this.recipes(this.slug)
+      return this.recipes(this.$route.params.slug)
     }
   },
   methods: {
@@ -51,7 +51,7 @@ export default {
       // fetchItems: 'notifications/list'
     }),
     // setItem () {
-    //   this.items = this.recipes(this.slug)
+    //   this.items = this.recipes(this.$route.params.slug)
     // },
   },
   async created () {
