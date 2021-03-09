@@ -36,7 +36,7 @@ export default {
     return {
       componentKey: 0,
       loadComments: false,
-      item: undefined,
+      // item: undefined,
     }
   },
   async asyncData({ params }) {
@@ -50,16 +50,19 @@ export default {
       recipe: 'recipes/recipe',
       items: 'recipes/listSorted',
     }),
+    item () {
+      return this.recipe(this.slug)
+    }
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
       fetchRecipe: 'recipes/recipe',
     }),
-    async setItem () {
+    // async setItem () {
       // this.item = this.recipe(this.slug)
-      this.item = this.recipe(this.slug)
-    },
+      // this.item = this.recipe(this.slug)
+    // },
   },
   metaInfo () {
     console.log(this.item)
@@ -85,12 +88,12 @@ export default {
     }
   },
   async created () {
-    if (this.items.length == 0) await this.fetchRecipe(this.slug)
+    await this.fetchRecipe(this.slug)
     this.getStoreData()
   },
-  beforeMount () {
-    this.setItem()
-  },
+  // beforeMount () {
+  //   this.setItem()
+  // },
   mounted () {
     this.$nextTick(() => {
       this.loadComments = true
