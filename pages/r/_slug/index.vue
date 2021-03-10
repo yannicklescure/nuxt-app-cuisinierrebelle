@@ -65,26 +65,82 @@ export default {
       // this.item = this.recipe(this.slug)
     // },
   },
-  metaInfo () {
-    console.log(this.item)
+  // metaInfo () {
+  //   console.log(this.item)
+  //   return {
+  //     title: this.item.recipe.title,
+  //     meta: [
+  //       { vmid: 'description', name: 'description', content: this.item.recipe.description },
+  //       { vmid: 'fb:app_id', property: 'fb:app_id', content: '570259036897585' },
+  //       { vmid: 'og:site_name', property: 'og:site_name', content: 'Cuisinier Rebelle' },
+  //       { vmid: 'og:title', property: 'og:title', content: `${ this.item.recipe.title } | Cuisinier Rebelle` },
+  //       { vmid: 'og:description', property: 'og:description', content: this.item.recipe.description },
+  //       { vmid: 'og:locale', property: 'og:locale', content: 'fr_FR' },
+  //       { vmid: 'og:type', property: 'og:type', content: 'website' },
+  //       { vmid: 'og:url', property: 'og:url', content: `https://www.cuisinierrebelle.com/r/${ this.$route.params.slug }` },
+  //       { vmid: 'og:image', property: 'og:image', content: this.item.recipe.photo.openGraph.url },
+  //       { vmid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+  //       { vmid: 'twitter:site', name: 'twitter:site', content: '@cuisinierrebelle' },
+  //       { vmid: 'twitter:creator', name: 'twitter:creator', content: '@cuisinierrebelle' },
+  //       { vmid: 'twitter:title', name: 'twitter:title', content: `${ this.item.recipe.title } | Cuisinier Rebelle` },
+  //       { vmid: 'twitter:description', name: 'twitter:description', content: this.item.recipe.description },
+  //       { vmid: 'twitter:image', name: 'twitter:image', content: this.item.recipe.photo.openGraph.url },
+  //     ]
+  //   }
+  // },
+  head() {
     return {
-      title: this.item.recipe.title,
       meta: [
-        { vmid: 'description', name: 'description', content: this.item.recipe.description },
-        { vmid: 'fb:app_id', property: 'fb:app_id', content: '570259036897585' },
-        { vmid: 'og:site_name', property: 'og:site_name', content: 'Cuisinier Rebelle' },
-        { vmid: 'og:title', property: 'og:title', content: `${ this.item.recipe.title } | Cuisinier Rebelle` },
-        { vmid: 'og:description', property: 'og:description', content: this.item.recipe.description },
-        { vmid: 'og:locale', property: 'og:locale', content: 'fr_FR' },
-        { vmid: 'og:type', property: 'og:type', content: 'website' },
-        { vmid: 'og:url', property: 'og:url', content: `https://www.cuisinierrebelle.com/r/${ this.$route.params.slug }` },
-        { vmid: 'og:image', property: 'og:image', content: this.item.recipe.photo.openGraph.url },
-        { vmid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-        { vmid: 'twitter:site', name: 'twitter:site', content: '@cuisinierrebelle' },
-        { vmid: 'twitter:creator', name: 'twitter:creator', content: '@cuisinierrebelle' },
-        { vmid: 'twitter:title', name: 'twitter:title', content: `${ this.item.recipe.title } | Cuisinier Rebelle` },
-        { vmid: 'twitter:description', name: 'twitter:description', content: this.item.recipe.description },
-        { vmid: 'twitter:image', name: 'twitter:image', content: this.item.recipe.photo.openGraph.url },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.item.recipe.title
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.item.recipe.description
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.item.recipe.photo.openGraph.url
+        },
+        {
+          hid: 'twitter:image:alt',
+          name: 'twitter:image:alt',
+          content: this.item.recipe.title
+        },
+        {
+          hid: 'fb:app_id',
+          property: 'fb:app_id',
+          content: '570259036897585'
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.item.recipe.title
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.item.recipe.description
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.item.recipe.photo.openGraph.url
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: this.item.recipe.photo.openGraph.url
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: this.item.recipe.title
+        }
       ]
     }
   },

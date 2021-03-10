@@ -3,18 +3,114 @@ export default {
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
+  // head: {
+  //   title: 'Cuisinier Rebelle',
+  //   htmlAttrs: {
+  //     lang: 'fr'
+  //   },
+  //   meta: [
+  //     { charset: 'utf-8' },
+  //     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+  //     { hid: 'description', name: 'description', content: '' }
+  //   ],
+  //   link: [
+  //     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+  //   ]
+  // },
   head: {
-    title: 'Cuisinier Rebelle',
-    htmlAttrs: {
-      lang: 'fr'
-    },
+    title: 'Cuisinier Rebelle, Recettes Sociales',
+    titleTemplate: 'Cuisinier Rebelle | %s',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Partagez vos recettes dès maintenant en toute simplicité'
+      },
+
+      // Twitter
+      // Test on: https://cards-dev.twitter.com/validator
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      { hid: 'twitter:site', name: 'twitter:site', content: '@yannicklescure' },
+      {
+        hid: 'twitter:url',
+        name: 'twitter:url',
+        content: 'https://cuisinierrebelle.com'
+      },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content: 'Cuisinier Rebelle, Recettes Sociales'
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content:
+          'Partagez vos recettes dès maintenant en toute simplicité'
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: 'https://media.cuisinierrebelle.com/images/cr_icon_1200x1200.jpg'
+      },
+
+      // Open Graph
+      // Test on: https://developers.facebook.com/tools/debug/
+      {
+        hid: 'fb:app_id',
+        property: 'fb:app_id',
+        content: '570259036897585'
+      },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'Cuisinier Rebelle' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://cuisinierrebelle.com'
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'Cuisinier Rebelle, Recettes Sociales'
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content:
+          'Partagez vos recettes dès maintenant en toute simplicité'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://media.cuisinierrebelle.com/images/cr_icon_1200x1200.jpg'
+      },
+      {
+        hid: 'og:image:secure_url',
+        property: 'og:image:secure_url',
+        content: 'https://media.cuisinierrebelle.com/images/cr_icon_1200x1200.jpg'
+      },
+      {
+        hid: 'og:image:alt',
+        property: 'og:image:alt',
+        content: 'Cuisinier Rebelle'
+      }
     ],
+    // canonical
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        hid: 'canonical',
+        rel: 'canonical',
+        href: `https://cuisinierrebelle.com`
+      }
     ]
   },
 
@@ -55,7 +151,7 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  // Modules - https://nuxtjs.org/docs/2.x/directory-structure/modules
+  // Modules - https://cuisinierrebelle.com/docs/2.x/directory-structure/modules
   modules: [
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/bootstrap
