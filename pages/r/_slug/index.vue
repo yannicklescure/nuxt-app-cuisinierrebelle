@@ -2,7 +2,6 @@
   <div v-if="item" class="container py-3 mb-5 recipe" :key="componentKey">
     <RecipeHead :item="item" />
     <RecipeBody :item="item" />
-    <adsbygoogle ad-slot="4726766855" />
 <!--
     <div class="my-3 d-print-none">
       <InArticleAdsense
@@ -14,6 +13,8 @@
     <LazyYoutube :item="item" />
 
     <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
+
+    <adsbygoogle ad-slot="4726766855" />
 
     <LazyOtherRecipes />
 
