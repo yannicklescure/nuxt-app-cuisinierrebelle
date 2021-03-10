@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="show">
     <UsersBanner :user="user" />
     <div class="container">
       <div class="row">
@@ -23,63 +23,66 @@ export default {
   //   const slug = params.slug
   //   return { slug }
   // },
-  // data () {
-  //   return {
-  //     // componentKey: 0,
-  //     // data: [],
-  //     // busy: false,
-  //     // items: undefined
-  //   }
-  // },
-  head() {
+  data () {
     return {
-      meta: [
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: this.user.name
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: 'Partagez vos recettes dès maintenant en toute simplicité'
-        },
-        {
-          hid: 'twitter:image',
-          name: 'twitter:image',
-          content: this.user.image.preview.url
-        },
-        {
-          hid: 'twitter:image:alt',
-          name: 'twitter:image:alt',
-          content: this.user.name
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.user.name
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: 'Partagez vos recettes dès maintenant en toute simplicité'
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: this.user.image.preview.url
-        },
-        {
-          hid: 'og:image:secure_url',
-          property: 'og:image:secure_url',
-          content: this.user.image.preview.url
-        },
-        {
-          hid: 'og:image:alt',
-          property: 'og:image:alt',
-          content: this.user.name
-        }
-      ]
+      show: false,
+      // componentKey: 0,
+      // data: [],
+      // busy: false,
+      // items: undefined
+    }
+  },
+  head() {
+    if (this.user) {
+      return {
+        meta: [
+          {
+            hid: 'twitter:title',
+            name: 'twitter:title',
+            content: this.user.name
+          },
+          {
+            hid: 'twitter:description',
+            name: 'twitter:description',
+            content: 'Partagez vos recettes dès maintenant en toute simplicité'
+          },
+          {
+            hid: 'twitter:image',
+            name: 'twitter:image',
+            content: this.user.image.openGraph.url
+          },
+          {
+            hid: 'twitter:image:alt',
+            name: 'twitter:image:alt',
+            content: this.user.name
+          },
+          {
+            hid: 'og:title',
+            property: 'og:title',
+            content: this.user.name
+          },
+          {
+            hid: 'og:description',
+            property: 'og:description',
+            content: 'Partagez vos recettes dès maintenant en toute simplicité'
+          },
+          {
+            hid: 'og:image',
+            property: 'og:image',
+            content: this.user.image.openGraph.url
+          },
+          {
+            hid: 'og:image:secure_url',
+            property: 'og:image:secure_url',
+            content: this.user.image.openGraph.url
+          },
+          {
+            hid: 'og:image:alt',
+            property: 'og:image:alt',
+            content: this.user.name
+          }
+        ]
+      }
     }
   },
   computed: {
@@ -87,10 +90,10 @@ export default {
       currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
       recipes: 'recipes/user',
-      usersFilter: 'users/filter',
+      users: 'users/filter',
     }),
     user () {
-      return this.usersFilter(this.$route.params.slug)
+      return this.users(this.$route.params.slug)
     },
     items () {
       return this.recipes(this.$route.params.slug)
@@ -99,6 +102,7 @@ export default {
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
+      getUsers: 'users/getUsers',
       // fetchItems: 'notifications/list'
     }),
     // setItem () {
@@ -110,8 +114,12 @@ export default {
     // if (this.items == undefined) {
       // console.log(this.item)
       await this.getStoreData()
+      await this.getUsers()
       // this.setItem()
     // }
   },
+  mounted () {
+    this.show = true
+  }
 }
 </script>

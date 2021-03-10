@@ -1,6 +1,6 @@
 <template>
   <div v-if="item" class="container py-3 mb-5 recipe" :key="componentKey">
-    <LazyRecipeHead :item="item" />
+    <RecipeHead :item="item" />
     <RecipeBody :item="item" />
 
     <div class="my-3 d-print-none">

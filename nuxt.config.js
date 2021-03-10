@@ -2,6 +2,11 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  router: {
+    base: '/',
+    routeNameSplitter: '/',
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   // head: {
   //   title: 'Cuisinier Rebelle',
@@ -19,7 +24,7 @@ export default {
   // },
   head: {
     title: 'Cuisinier Rebelle, Recettes Sociales',
-    titleTemplate: 'Cuisinier Rebelle | %s',
+    titleTemplate: '%s',
     meta: [
       { charset: 'utf-8' },
       {
