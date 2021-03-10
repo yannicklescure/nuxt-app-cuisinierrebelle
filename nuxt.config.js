@@ -34,8 +34,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content:
-          'Partagez vos recettes dès maintenant en toute simplicité'
+        content: 'Partagez vos recettes dès maintenant en toute simplicité'
       },
 
       // Twitter
@@ -59,8 +58,7 @@ export default {
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content:
-          'Partagez vos recettes dès maintenant en toute simplicité'
+        content: 'Partagez vos recettes dès maintenant en toute simplicité'
       },
       {
         hid: 'twitter:image',
@@ -90,8 +88,7 @@ export default {
       {
         hid: 'og:description',
         property: 'og:description',
-        content:
-          'Partagez vos recettes dès maintenant en toute simplicité'
+        content: 'Partagez vos recettes dès maintenant en toute simplicité'
       },
       {
         hid: 'og:image',
@@ -235,8 +232,14 @@ export default {
 
   // https://pwa.nuxtjs.org/manifest
   pwa: {
+    meta: {
+      name: 'Cuisinier Rebelle',
+      description: 'Partagez vos recettes dès maintenant en toute simplicité',
+      lang: 'fr',
+    },
     manifest: {
       name: 'Cuisinier Rebelle',
+      short_name: 'CR',
       lang: 'fr',
       useWebmanifestExtension: false
     }
