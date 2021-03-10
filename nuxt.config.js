@@ -128,7 +128,7 @@ export default {
   plugins: [
     // '~/plugins/vue-social-sharing.js',
     '~/plugins/vuejs-dialog.client',
-    '~/plugins/vue-google-adsense',
+    // '~/plugins/vue-google-adsense',
     { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vuex-cache.js', ssr: false },
   ],
@@ -164,7 +164,13 @@ export default {
     '@nuxtjs/toast',
     'nuxt-i18n',
     'vue-social-sharing/nuxt',
+    '@nuxtjs/google-adsense',
   ],
+
+  'google-adsense': {
+    id: 'ca-pub-9223566768445571',
+    analyticsUacct: 'UA-155962082-1',
+  },
 
   i18n: {
     locales: [

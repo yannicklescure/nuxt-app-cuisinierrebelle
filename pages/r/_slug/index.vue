@@ -2,13 +2,14 @@
   <div v-if="item" class="container py-3 mb-5 recipe" :key="componentKey">
     <RecipeHead :item="item" />
     <RecipeBody :item="item" />
-
+    <adsbygoogle ad-slot="4726766855" />
+<!--
     <div class="my-3 d-print-none">
       <InArticleAdsense
         data-ad-client="ca-pub-9223566768445571"
-        data-ad-slot="4726766855">
-      </InArticleAdsense>
-    </div>
+        data-ad-slot="4726766855"
+      />
+    </div> -->
 
     <LazyYoutube :item="item" />
 
