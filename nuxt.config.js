@@ -165,9 +165,16 @@ export default {
     'nuxt-i18n',
     'vue-social-sharing/nuxt',
     '@nuxtjs/google-adsense',
+    'nuxt-vuex-router-sync',
+    "@nuxtjs/robots",
     // If you use other modules, always declare the sitemap module at end of array
     '@nuxtjs/sitemap'
   ],
+
+  robots: {
+    UserAgent: "*",
+    Disallow: "/"
+  },
 
   sitemap: {
     hostname: 'https://cuisinierrebelle.com',
