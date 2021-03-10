@@ -1,6 +1,6 @@
 <template>
   <div v-if="show">
-    <UsersBanner :user="user" />
+    <UsersBanner v-if="user" :user="user" />
     <div class="container">
       <div class="row">
         <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
@@ -87,34 +87,36 @@ export default {
   },
   computed: {
     ...mapGetters({
-      currentUser: 'users/sessions/current',
-      isMobile: 'isMobile',
-      recipes: 'recipes/user',
-      users: 'users/filter',
+      // currentUser: 'users/sessions/current',
+      // isMobile: 'isMobile',
+      recipes: 'recipes/list',
+      userRecipes: 'recipes/user',
+      usersFilter: 'users/filter',
+      users: 'users/list',
     }),
     user () {
-      return this.users(this.$route.params.slug)
+      return this.usersFilter(this.$route.params.slug)
     },
     items () {
-      return this.recipes(this.$route.params.slug)
+      return this.userRecipes(this.$route.params.slug)
     }
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      getUsers: 'users/getUsers',
+      getUser: 'users/getUser',
       // fetchItems: 'notifications/list'
     }),
     // setItem () {
     //   this.items = this.recipes(this.$route.params.slug)
     // },
   },
-  async created () {
+  created () {
     // await this.setItem()
     // if (this.items == undefined) {
       // console.log(this.item)
-      await this.getStoreData()
-      await this.getUsers()
+      this.getUser(this.$route.params.slug)
+      if (this.recipes.length == 0) this.getStoreData()
       // this.setItem()
     // }
   },

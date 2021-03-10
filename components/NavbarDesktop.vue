@@ -134,11 +134,11 @@ export default {
     },
     getUsers () {
       this.$refs.dropdown.hide(true)
-      this.$store
-        .dispatch('users/getUsers', {})
-        .then(response => {
-          console.log(response)
-        })
+      // this.$store
+      //   .dispatch('users/getUsers', {})
+      //   .then(response => {
+      //     console.log(response)
+      //   })
     },
     getNotifications () {
       console.log('getNotifications')

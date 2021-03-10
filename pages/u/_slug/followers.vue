@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'UserFollowers',
@@ -33,6 +33,13 @@ export default {
       show: false,
     }
   },
+  methods: {
+    ...mapActions({
+      getStoreData: 'getStoreData',
+      getUser: 'users/getUser',
+      // fetchItems: 'notifications/list'
+    }),
+  },
   computed: {
     ...mapGetters({
       usersFilter: 'users/filter',
@@ -43,6 +50,9 @@ export default {
     items () {
       return this.user.followers.data.slice(0, 100)
     }
+  },
+  created () {
+    this.getUser(this.$route.params.slug)
   },
   mounted () {
     this.show = true

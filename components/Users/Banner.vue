@@ -60,11 +60,11 @@ export default {
   },
   methods: {
     getUsers () {
-      this.$store
-        .dispatch('users/getUsers', {})
-        .then(response => {
-          console.log(response)
-        })
+      // this.$store
+      //   .dispatch('users/getUsers', {})
+      //   .then(response => {
+      //     console.log(response)
+      //   })
     },
     userSettings () {
       this.$router.push({ path: `/u/${ this.currentUser.slug }/settings` })

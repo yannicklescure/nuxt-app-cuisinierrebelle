@@ -7,22 +7,47 @@ export const state = () => ({
 export const mutations = {
   setStoreData: (state, payload) => {
     console.log(payload)
-    state.list = payload.data.users
+    payload.data.users.forEach(user => {
+      const position = state.list.findIndex(item => item.id == user.id)
+      if (position == -1) state.list.push(user)
+      else state.list[position] = user
+    })
+    // state.list = payload.data.users
   },
+  user: (state, payload) => {
+    console.log(payload)
+    // payload.data.users.forEach(user => {
+      const position = state.list.findIndex(item => item.id == payload.data.id)
+      if (position == -1) state.list.push(payload.data)
+      else state.list[position] = payload.data
+    // })
+  }
 }
 export const actions = {
+  getUser: (context, payload) => {
+    // console.log(context.state.data.user)
+    return api.user(context, payload)
+      .then(response => {
+        if (response.status === 200) context.commit("user", response.data)
+        return response
+      })
+      .catch(error => {
+        // console.log(error)
+        return error
+      })
+  },
   getUsers: (context, payload) => {
-      // console.log(context.state.data.user)
-      return api.users(context, payload)
-        .then(response => {
-          if (response.status === 200) context.commit("setStoreData", response.data)
-          return response
-        })
-        .catch(error => {
-          // console.log(error)
-          return error
-        })
-    },
+    // console.log(context.state.data.user)
+    return api.users(context, payload)
+      .then(response => {
+        if (response.status === 200) context.commit("setStoreData", response.data)
+        return response
+      })
+      .catch(error => {
+        // console.log(error)
+        return error
+      })
+  },
 }
 
 export const getters = {
@@ -31,8 +56,8 @@ export const getters = {
       return item.slug == keyword
     })[0]
   },
-  users (state, getters, rootState, rootGetters) {
+  list (state, getters, rootState, rootGetters) {
     return state.list
-  }
+  },
 }
 export const plugins = []
