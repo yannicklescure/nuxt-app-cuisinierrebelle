@@ -14,7 +14,9 @@
 
     <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-    <adsbygoogle ad-slot="4726766855" />
+    <div class="mt-5">
+      <adsbygoogle ad-slot="4726766855" />
+    </div>
 
     <LazyOtherRecipes />
 
