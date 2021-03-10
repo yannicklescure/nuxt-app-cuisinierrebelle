@@ -165,7 +165,27 @@ export default {
     'nuxt-i18n',
     'vue-social-sharing/nuxt',
     '@nuxtjs/google-adsense',
+    // If you use other modules, always declare the sitemap module at end of array
+    '@nuxtjs/sitemap'
   ],
+
+  sitemap: {
+    hostname: 'https://cuisinierrebelle.com',
+    gzip: true,
+    exclude: [
+      '/admin/**'
+    ],
+    // routes: [
+    //   '/page/1',
+    //   '/page/2',
+    //   {
+    //     url: '/page/3',
+    //     changefreq: 'daily',
+    //     priority: 1,
+    //     lastmod: '2017-06-30T13:30:00.000Z'
+    //   }
+    // ]
+  },
 
   'google-adsense': {
     id: 'ca-pub-9223566768445571',
