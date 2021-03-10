@@ -3,12 +3,12 @@
     <LazyRecipeHead :item="item" />
     <RecipeBody :item="item" />
 
-<!--     <div class="my-3 d-print-none">
+    <div class="my-3 d-print-none">
       <InArticleAdsense
         data-ad-client="ca-pub-9223566768445571"
         data-ad-slot="4726766855">
       </InArticleAdsense>
-    </div> -->
+    </div>
 
     <LazyYoutube :item="item" />
 
