@@ -3,8 +3,8 @@ export default {
   target: 'static',
 
   router: {
-    base: '/',
-    routeNameSplitter: '/',
+    // base: '/',
+    // routeNameSplitter: '/',
     trailingSlash: false
   },
 
