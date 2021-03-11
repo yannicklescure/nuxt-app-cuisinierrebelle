@@ -34,7 +34,7 @@
         <NuxtLink v-if="bookmarks.length > 0" to="/bookmarks/" class="nav-item text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">{{ icons.bookmarks }}</i>
         </NuxtLink>
-        <NuxtLink v-if="notifications.length > 0" to="/notifications/" @click.native="getNotifications" class="nav-item text-body text-decoration-none">
+        <NuxtLink v-if="notifications.length > 0" to="/notifications" @click.native="getNotifications" class="nav-item text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">{{ icons.notifications }}</i>
         </NuxtLink>
         <b-dropdown variant="link" ref="dropdown" toggle-class="text-decoration-none text-body" no-caret>

@@ -17,7 +17,7 @@
         </NuxtLink>
       </div>
       <div class="d-flex align-items-center">
-        <NuxtLink to="/notifications/" @click="getNotifications" class="nav-item mx-2 text-body text-decoration-none">
+        <NuxtLink to="/notifications" @click="getNotifications" class="nav-item mx-2 text-body text-decoration-none">
           <i class="material-icons md-24 d-flex">notifications_none</i>
         </NuxtLink>
         <div v-on:click="collapseMenu">
