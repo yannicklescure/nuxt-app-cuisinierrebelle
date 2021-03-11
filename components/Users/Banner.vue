@@ -7,7 +7,7 @@
           <div class="d-flex align-items-center">
             <NuxtLink :to="`/u/${ user.slug }`" class="text-capitalize text-body">{{ user.name }}</NuxtLink>
             <span v-if="user.checked" data-toggle="tooltip" data-placement="top" title="Verified" class="d-flex px-1">
-              <i class="material-icons md-16">check_circle</i>
+              <i class="material-icons md-16">verified_user</i>
             </span>
           </div>
           <div>

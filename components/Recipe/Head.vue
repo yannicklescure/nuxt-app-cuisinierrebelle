@@ -3,17 +3,16 @@
     <div id="recipe-user" :class="[{'mb-0': isMobile}, 'd-print-none d-flex align-items-center order-0']">
       <div class="d-flex flex-grow-1 m-0 align-items-center">
         <div class="d-flex flex-grow-1 flex-grow-md-0 justify-content-between justify-md-content-start align-items-center">
-          <img :src="item.user.image.thumb.url" width="24px" height="24px" class="rounded-circle mr-2" style="object-fit: cover;">
           <div class="d-flex order-0 justify-content-between justify-content-md-start flex-grow-1 align-items-center" data-user="1">
             <div class="mr-md-2 d-flex align-items-center">
               <NuxtLink
                 :to="`/u/${ item.user.slug }`"
                 class="text-body text-capitalize"
                 style="font-size: 90%"
-              >{{ item.user.name }}</NuxtLink>
-              <span v-if="item.user.checked" data-toggle="tooltip" data-placement="top" title="Verified" class="d-flex ml-1">
+              ><img :src="item.user.image.thumb.url" width="24px" height="24px" class="rounded-circle mr-2" style="object-fit: cover;">{{ item.user.name }}</NuxtLink>
+              <!-- <span v-if="item.user.checked" data-toggle="tooltip" data-placement="top" title="Verified" class="d-flex ml-1">
                 <i class="material-icons md-16">check_circle</i>
-              </span>
+              </span> -->
             </div>
             <div class="d-none mr-3 btn btn-dark btn-sm py-0">Follow</div>
           </div>

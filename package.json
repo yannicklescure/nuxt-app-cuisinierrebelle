@@ -32,7 +32,6 @@
     "mobile-device-detect": "^0.4.3",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.20.4",
-    "nuxt-material-design-icons": "^1.0.4",
     "nuxt-vuex-router-sync": "^0.0.3",
     "nuxt-webfontloader": "^1.1.0",
     "sass": "^1.32.8",
