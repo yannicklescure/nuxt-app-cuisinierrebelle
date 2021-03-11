@@ -44,7 +44,7 @@
           <div class="border-bottom pb-2 mb-2" v-if="currentUser.admin">
             <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="'/admin'">{{ $t('navbar.admin') }}</NuxtLink>
           </div>
-          <NuxtLink class="dropdown-item" @click.native="dropdownClick" to="/r/new/">{{ $t('navbar.new_recipe') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="dropdownClick" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
           <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="`/u/${ currentUser.slug }`">{{ $t('navbar.recipes') }}</NuxtLink>
           <NuxtLink class="dropdown-item" @click.native="getUsers" :to="`/u/${ currentUser.slug }/following`">{{ $t('navbar.following') }}</NuxtLink>
           <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="`/u/${ currentUser.slug }/settings`">{{ $t('navbar.settings') }}</NuxtLink>

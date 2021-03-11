@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="h1 text-capitalize">admin</div>
-    <NuxtLink to="/admin/pages/">Gestion des pages</NuxtLink>
+    <NuxtLink to="/admin/pages">Gestion des pages</NuxtLink>
   </div>
 </template>
 <script>

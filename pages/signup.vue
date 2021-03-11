@@ -39,7 +39,7 @@
           </div>
         </form>
         <div class="d-flex justify-content-center my-3">
-          <NuxtLink to="/login/">{{ $t('signUp.login') }}</NuxtLink>
+          <NuxtLink to="/login">{{ $t('signUp.login') }}</NuxtLink>
         </div>
       </div>
       </div>

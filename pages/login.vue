@@ -36,8 +36,8 @@
               @click.stop.prevent="resendConfirmationInstructions"
               class="btn btn-link"
             >{{ $t('login.password.request.resendConfirmationInstructions') }}</button>
-            <NuxtLink to="/users/password/new/">{{ $t('login.forgetPassword') }}</NuxtLink>
-            <NuxtLink to="/signup/">{{ $t('login.signup') }}</NuxtLink>
+            <NuxtLink to="/users/password/new">{{ $t('login.forgetPassword') }}</NuxtLink>
+            <NuxtLink to="/signup">{{ $t('login.signup') }}</NuxtLink>
             <p></p>
           </div>
         </div>
