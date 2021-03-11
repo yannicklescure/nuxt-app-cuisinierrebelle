@@ -35,6 +35,7 @@ export default {
   methods: {
     adjustDivTop () {
       this.$refs.default.style.paddingTop = `${ parseInt(this.navbarHeight) }px`
+      this.$refs.default.style.minHeight = `100vh`
     }
   },
   mounted () {

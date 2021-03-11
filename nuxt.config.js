@@ -5,7 +5,7 @@ export default {
   router: {
     // base: '/',
     // routeNameSplitter: '/',
-    // trailingSlash: false
+    trailingSlash: false
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
