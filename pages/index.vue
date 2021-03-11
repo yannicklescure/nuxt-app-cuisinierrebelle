@@ -39,7 +39,7 @@ export default {
     }
   },
   async created () {
-    if (this.items.length == 0) await this.getStoreData()
+    if (this.items.length == 0) this.getStoreData()
     if (this.isAuthenticated) this.fetchItems()
   },
 }
