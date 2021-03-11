@@ -28,10 +28,10 @@
         v-if="isAuthenticated"
         class="d-flex align-items-center"
       >
-        <NuxtLink to="/top100/" class="nav-item text-fire text-decoration-none">
+        <NuxtLink to="/top100" class="nav-item text-fire text-decoration-none">
           <i class="material-icons md-18 d-flex">whatshot</i>
         </NuxtLink>
-        <NuxtLink v-if="bookmarks.length > 0" to="/bookmarks/" class="nav-item text-body text-decoration-none">
+        <NuxtLink v-if="bookmarks.length > 0" to="/bookmarks" class="nav-item text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">{{ icons.bookmarks }}</i>
         </NuxtLink>
         <NuxtLink v-if="notifications.length > 0" to="/notifications" @click.native="getNotifications" class="nav-item text-body text-decoration-none">

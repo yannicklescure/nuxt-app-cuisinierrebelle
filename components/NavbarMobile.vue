@@ -38,7 +38,7 @@
       </div>
       <div v-if="show" class="mt-2 d-flex flex-column w-100">
         <div v-if="isAuthenticated" class="d-flex flex-column">
-          <NuxtLink v-on:click.native="collapse" to="/top100/" class="text-fire my-2 text-decoration-none">Top 100</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" to="/top100" class="text-fire my-2 text-decoration-none">Top 100</NuxtLink>
           <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/bookmarks">{{ $t('navbar.bookmarks') }}</NuxtLink>
           <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="`/u/${ currentUser.slug }`">{{ $t('navbar.recipes') }}</NuxtLink>
           <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
