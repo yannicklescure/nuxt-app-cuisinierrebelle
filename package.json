@@ -9,7 +9,6 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@fontsource/roboto": "^4.2.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
@@ -35,6 +34,7 @@
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.20.4",
     "nuxt-vuex-router-sync": "^0.0.3",
+    "nuxt-webfontloader": "^1.1.0",
     "sass": "^1.32.8",
     "sass-loader": "10",
     "uuid": "^8.3.2",

@@ -165,11 +165,18 @@ export default {
     'nuxt-i18n',
     'vue-social-sharing/nuxt',
     '@nuxtjs/google-adsense',
+    'nuxt-webfontloader',
     'nuxt-vuex-router-sync',
     "@nuxtjs/robots",
     // If you use other modules, always declare the sitemap module at end of array
     '@nuxtjs/sitemap'
   ],
+
+  webfontloader: {
+    google: {
+      families: ['Roboto:300,400,700&display=swap']
+    }
+  },
 
   robots: {
     UserAgent: "*",
