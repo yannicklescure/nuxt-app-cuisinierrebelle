@@ -6,7 +6,7 @@
     <div v-if="show" class="container py-2">
       <div v-for="item, i in items" class="d-flex flex-column">
         <div class="d-flex align-items-start rounded bg-light my-2 p-2">
-          <NuxtLink :to="`/u/${ item.user.slug }/`">
+          <NuxtLink :to="`/u/${ item.user.slug }`">
             <img
               :src="item.user.image.thumb.url"
               class="rounded-circle"
@@ -19,17 +19,17 @@
             <div class="d-flex align-items-center" style="font-size: 90%;">
               <NuxtLink
                 v-if="item.type === 'recipe'"
-                :to="`${ item.slug }/`"
+                :to="`${ item.slug }`"
                 class="text-body"
               >{{ $t('notifications.like.recipe', { user: item.user.name }) }}</NuxtLink>
               <NuxtLink
                 v-if="item.type === 'comment'"
-                :to="`${ item.slug }/`"
+                :to="`${ item.slug }`"
                 class="text-body"
               >{{ $t('notifications.like.comment', { user: item.user.name }) }}</NuxtLink>
               <NuxtLink
                 v-if="item.type === 'reply'"
-                :to="`${ item.slug }/`"
+                :to="`${ item.slug }`"
                 class="text-body"
               >{{ $t('notifications.like.reply', { user: item.user.name }) }}</NuxtLink>
             </div>

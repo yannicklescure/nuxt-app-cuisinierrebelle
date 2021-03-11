@@ -441,7 +441,7 @@ export const pageNew = (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/pages/`,
+    url: `${ apiUrl }/${ version }/pages`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,

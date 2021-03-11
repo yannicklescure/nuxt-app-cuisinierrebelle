@@ -9,7 +9,7 @@
         style="object-fit: cover;"
       >
       <NuxtLink
-        :to="`/u/${ item.user.slug }/`"
+        :to="`/u/${ item.user.slug }`"
         class="text-body d-flex align-items-center"
         style="font-size: 90%"
       >

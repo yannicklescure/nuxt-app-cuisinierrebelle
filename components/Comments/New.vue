@@ -50,7 +50,7 @@ export default {
       this.$emit('commentNew', payload)
     },
     login () {
-      this.$router.push({ path: '/login/' })
+      this.$router.push({ path: '/login' })
     },
   },
 }

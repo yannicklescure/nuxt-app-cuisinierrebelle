@@ -184,7 +184,7 @@ export default {
             console.log(response)
             if (response.status === 200) {
               this.$router.push({
-                path: `/r/${ this.$route.params.slug }/`,
+                path: `/r/${ this.$route.params.slug }`,
                 params: {
                   slug: response.data.recipe.slug
                 }

@@ -130,7 +130,7 @@ export default {
             console.log(response)
             if (response.status === 200) {
               this.$router.push({
-                path: `/p/${ this.item.slug }/`,
+                path: `/p/${ this.item.slug }`,
                 // params: {
                 //   id: response.data.slug
                 // }

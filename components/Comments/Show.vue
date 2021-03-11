@@ -9,7 +9,7 @@
         class="rounded-circle"
       >
       <NuxtLink
-        :to="`/u/${ item.user.slug }/`"
+        :to="`/u/${ item.user.slug }`"
         class="mx-2 text-capitalize text-body"
         style="font-size: 90%"
       >{{ item.user.name }}</NuxtLink>

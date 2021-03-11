@@ -5,7 +5,7 @@
   >
     <div v-if="item">
       <div v-if="!isMobile && currentUser.admin" class="d-flex justify-content-center align-items-center my-3">
-        <NuxtLink :to="`/p/${ $route.params.slug }/edit/`" class="text-body text-capitalize text-decoration-none" >{{ $t('pages.edit') }}</NuxtLink>
+        <NuxtLink :to="`/p/${ $route.params.slug }/edit`" class="text-body text-capitalize text-decoration-none" >{{ $t('pages.edit') }}</NuxtLink>
       </div>
       <div>
         <vue-markdown-plus :source="item.content" />

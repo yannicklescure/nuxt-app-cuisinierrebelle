@@ -7,7 +7,7 @@
           <div class="d-flex order-0 justify-content-between justify-content-md-start flex-grow-1 align-items-center" data-user="1">
             <div class="mr-md-2 d-flex align-items-center">
               <NuxtLink
-                :to="`/u/${ item.user.slug }/`"
+                :to="`/u/${ item.user.slug }`"
                 class="text-body text-capitalize"
                 style="font-size: 90%"
               >{{ item.user.name }}</NuxtLink>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div v-if="isMobile == false && (item.user.id === currentUser.id)" class="d-print-none">
-      <NuxtLink :to="`/r/${item.recipe.slug}/edit/`" class="text-body text-capitalize text-decoration-none" >{{ $t('recipe.edit') }}</NuxtLink>
+      <NuxtLink :to="`/r/${item.recipe.slug}/edit`" class="text-body text-capitalize text-decoration-none" >{{ $t('recipe.edit') }}</NuxtLink>
     </div>
     <div v-if="isMobile" class="d-flex order-0 align-items-start justify-content-between my-3 mb-md-0 d-print-none">
       <div class="d-flex order-0 align-items-start">
