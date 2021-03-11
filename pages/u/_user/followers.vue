@@ -45,14 +45,14 @@ export default {
       usersFilter: 'users/filter',
     }),
     user () {
-      return this.usersFilter(this.$route.params.slug)
+      return this.usersFilter(this.$route.params.user)
     },
     items () {
-      return this.user.following.data.slice(0, 100)
+      return this.user.followers.data.slice(0, 100)
     }
   },
   created () {
-    this.getUser(this.$route.params.slug)
+    this.getUser(this.$route.params.user)
   },
   mounted () {
     this.show = true

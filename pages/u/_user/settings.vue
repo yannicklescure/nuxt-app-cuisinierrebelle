@@ -8,7 +8,7 @@
     <div class="mb-3">
       <UsersNotifications />
     </div>
-    <NuxtLink :to="`/u/${currentUser.slug}/delete`">{{ $t('userSettings.deleteAccount') }}</NuxtLink>
+    <NuxtLink :to="`/u/${ currentUser.slug }/delete`">{{ $t('userSettings.deleteAccount') }}</NuxtLink>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
     }),
   },
   beforeMount () {
-    if (this.$route.params.slug === this.currentUser.slug) this.show = true
+    if (this.$route.params.user === this.currentUser.slug) this.show = true
     else {
       console.log('ALERT')
       this.$router.push({

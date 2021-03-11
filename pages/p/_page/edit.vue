@@ -58,7 +58,7 @@ export default {
       // isMobile: 'isMobile',
     }),
     item () {
-      return this.page(this.$route.params.slug)
+      return this.page(this.$route.params.page)
     }
   },
   methods: {
