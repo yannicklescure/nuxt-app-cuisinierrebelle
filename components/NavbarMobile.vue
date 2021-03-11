@@ -50,8 +50,8 @@
           >{{ $t('navbar.logout') }}</div>
         </div>
         <div v-else class="d-flex flex-column">
-          <NuxtLink v-on:click.native="collapse" to="/login/" class="text-body my-2 text-decoration-none">{{ $t('navbar.login') }}</NuxtLink>
-          <NuxtLink v-on:click.native="collapse" to="/signup/" class="text-body my-2 text-decoration-none">{{ $t('navbar.getStarted') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" to="/login" class="text-body my-2 text-decoration-none">{{ $t('navbar.login') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" to="/signup" class="text-body my-2 text-decoration-none">{{ $t('navbar.getStarted') }}</NuxtLink>
         </div>
       </div>
     </transition>

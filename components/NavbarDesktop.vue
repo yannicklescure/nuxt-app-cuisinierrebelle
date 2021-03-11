@@ -59,11 +59,11 @@
         class="d-flex align-items-center"
       >
         <NuxtLink
-          to="/login/"
+          to="/login"
           class="btn btn-sm text-body text-decoration-none mx-2"
         >{{ $t('navbar.login') }}</NuxtLink>
         <NuxtLink
-          to="/signup/"
+          to="/signup"
           class="btn btn-sm btn-dark mx-2"
         >{{ $t('navbar.getStarted') }}</NuxtLink>
       </div>
