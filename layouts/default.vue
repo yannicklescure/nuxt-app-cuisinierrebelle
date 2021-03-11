@@ -1,5 +1,5 @@
 <template>
-  <div ref="default" id="default">
+  <div ref="defaultLayout" id="default-layout">
     <div
       v-if="show"
       class="d-flex flex-column justify-content-between"
@@ -34,8 +34,8 @@ export default {
   },
   methods: {
     adjustDivTop () {
-      this.$refs.default.style.paddingTop = `${ parseInt(this.navbarHeight) }px`
-      this.$refs.default.style.minHeight = `100vh`
+      this.$refs.defaultLayout.style.paddingTop = `${ parseInt(this.navbarHeight) }px`
+      // this.$refs.default.style.minHeight = `100vh`
     }
   },
   mounted () {
