@@ -89,7 +89,7 @@ export default {
       recipe: 'recipes/recipe',
     }),
     item () {
-      return this.recipe(this.$route.params.recipe)
+      return this.recipe(this.$route.params.slug)
     }
   },
   // watch: {
@@ -184,7 +184,7 @@ export default {
             console.log(response)
             if (response.status === 200) {
               this.$router.push({
-                path: `/r/${ this.$route.params.recipe }`,
+                path: `/r/${ this.$route.params.slug }`,
                 params: {
                   id: response.data.recipe.slug
                 }

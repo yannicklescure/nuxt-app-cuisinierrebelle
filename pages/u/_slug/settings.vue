@@ -41,7 +41,7 @@ export default {
     }),
   },
   beforeMount () {
-    if (this.$route.params.user === this.currentUser.slug) this.show = true
+    if (this.$route.params.slug === this.currentUser.slug) this.show = true
     else {
       console.log('ALERT')
       this.$router.push({
