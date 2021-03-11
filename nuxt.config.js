@@ -6,6 +6,7 @@ export default {
     // base: '/',
     // routeNameSplitter: '/',
     // trailingSlash: false
+    middleware: 'trailingSlashRedirect',
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
