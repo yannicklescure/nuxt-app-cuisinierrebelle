@@ -5,7 +5,7 @@
       <p v-if="firstName" class="form-text text-body text-wrap">{{ $t('login.password.reset.text0', { firstName: firstName }) }}</p>
       <div v-else>
         <p class="form-text text-body text-wrap">{{ $t('login.password.reset.text1') }}</p>
-        <NuxtLink to="/users/password/new">{{ $t('login.forgetPassword') }}</NuxtLink>
+        <NuxtLink to="/users/password/new/">{{ $t('login.forgetPassword') }}</NuxtLink>
       </div>
       <div v-if="firstName" class="d-flex flex-column align-items-center w-md-50">
         <form>
@@ -32,7 +32,7 @@
           </div>
         </form>
         <div class="my-3 d-flex flex-column justify-content-center align-items-center">
-          <NuxtLink to="/login">{{ $t('login.submit') }}</NuxtLink>
+          <NuxtLink to="/login/">{{ $t('login.submit') }}</NuxtLink>
           <p></p>
         </div>
       </div>

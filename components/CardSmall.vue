@@ -2,7 +2,7 @@
   <div class="card card-small border-0 bg-light p-2 mb-3" :key="componentKey">
     <NuxtLink
       class="text-body stretched-link"
-      :to="'/r/' + item.recipe.slug"
+      :to="`/r/${ item.recipe.slug }/`"
     >{{ item.recipe.title }}</NuxtLink>
     <div class="d-flex justify-content-between align-items-center">
       <div class="mr-3 d-flex flex-column">

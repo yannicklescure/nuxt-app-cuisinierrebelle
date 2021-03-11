@@ -33,7 +33,7 @@
         <tr v-if="page.locale === locale">
           <th scope="row" class="text-uppercase">{{ page.locale }}</th>
           <td>
-            <NuxtLink :to="'/p/' + page.slug">{{ page.title }}</NuxtLink>
+            <NuxtLink :to="`/p/${ page.slug }/`">{{ page.title }}</NuxtLink>
           </td>
         </tr>
       </tbody>

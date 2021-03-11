@@ -13,8 +13,7 @@
           </div>
         </form>
         <div class="my-3 d-flex flex-column justify-content-center align-items-center">
-          <NuxtLink to="/login">{{ $t('login.submit') }}</NuxtLink>
-          <p></p>
+          <NuxtLink to="/login/">{{ $t('login.submit') }}</NuxtLink>
         </div>
       </div>
       </div>

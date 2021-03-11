@@ -17,7 +17,7 @@
         </NuxtLink>
       </div>
       <div class="d-flex align-items-center">
-        <NuxtLink to="/notifications" @click="getNotifications" class="nav-item mx-2 text-body text-decoration-none">
+        <NuxtLink to="/notifications/" @click="getNotifications" class="nav-item mx-2 text-body text-decoration-none">
           <i class="material-icons md-24 d-flex">notifications_none</i>
         </NuxtLink>
         <div v-on:click="collapseMenu">
@@ -38,20 +38,20 @@
       </div>
       <div v-if="show" class="mt-2 d-flex flex-column w-100">
         <div v-if="isAuthenticated" class="d-flex flex-column">
-          <NuxtLink v-on:click.native="collapse" to="/top100" class="text-fire my-2 text-decoration-none">Top 100</NuxtLink>
-          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/bookmarks">{{ $t('navbar.bookmarks') }}</NuxtLink>
-          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" to="/top100/" class="text-fire my-2 text-decoration-none">Top 100</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/bookmarks/">{{ $t('navbar.bookmarks') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="`/u/${ currentUser.slug }/`">{{ $t('navbar.recipes') }}</NuxtLink>
           <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
-          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
-          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="`/u/${ currentUser.slug }/following/`">{{ $t('navbar.following') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" class="text-body my-2 text-decoration-none" :to="`/u/${ currentUser.slug }/settings/`">{{ $t('navbar.settings') }}</NuxtLink>
           <div
             @click="logout"
             class="text-body my-2 text-decoration-none"
           >{{ $t('navbar.logout') }}</div>
         </div>
         <div v-else class="d-flex flex-column">
-          <NuxtLink v-on:click.native="collapse" to="/login" class="text-body my-2 text-decoration-none">{{ $t('navbar.login') }}</NuxtLink>
-          <NuxtLink v-on:click.native="collapse" to="/signup" class="text-body my-2 text-decoration-none">{{ $t('navbar.getStarted') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" to="/login/" class="text-body my-2 text-decoration-none">{{ $t('navbar.login') }}</NuxtLink>
+          <NuxtLink v-on:click.native="collapse" to="/signup/" class="text-body my-2 text-decoration-none">{{ $t('navbar.getStarted') }}</NuxtLink>
         </div>
       </div>
     </transition>

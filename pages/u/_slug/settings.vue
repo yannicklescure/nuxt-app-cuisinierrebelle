@@ -8,7 +8,7 @@
     <div class="mb-3">
       <UsersNotifications />
     </div>
-    <NuxtLink :to="`/u/${ currentUser.slug }/delete`">{{ $t('userSettings.deleteAccount') }}</NuxtLink>
+    <NuxtLink :to="`/u/${ currentUser.slug }/delete/`">{{ $t('userSettings.deleteAccount') }}</NuxtLink>
   </div>
 </template>
 

@@ -6,6 +6,7 @@ export default {
     // base: '/',
     // routeNameSplitter: '/',
     // trailingSlash: false
+    trailingSlash: true,
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -176,6 +177,7 @@ export default {
 
   sitemap: {
     hostname: 'https://cuisinierrebelle.com',
+    trailingSlash: true,
     gzip: true,
     exclude: [
       '/admin/**'

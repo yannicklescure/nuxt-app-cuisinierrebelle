@@ -34,7 +34,7 @@ export default {
               position: 'bottom-center',
               duration: 3000,
             })
-            this.$router.push({ path: '/login' })
+            this.$router.push({ path: '/login/' })
           }
           else {
             this.$toast.error(response.error, {
@@ -54,7 +54,7 @@ export default {
   created () {
     if (this.$route.query.confirmation_token) this.confirmRegistration()
     else {
-      this.$router.push({ path: '/login' })
+      this.$router.push({ path: '/login/' })
     }
   },
   // mounted () {

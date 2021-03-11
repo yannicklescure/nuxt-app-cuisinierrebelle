@@ -8,7 +8,7 @@
     </div>
   </div>
   <div v-else>
-    <NuxtLink to="/login" class="btn btn-sm btn-dark">
+    <NuxtLink to="/login/" class="btn btn-sm btn-dark">
       {{ $t('follow.follow') }}
     </NuxtLink>
   </div>

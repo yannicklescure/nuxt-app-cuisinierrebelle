@@ -13,7 +13,7 @@
     </div>
     <div :class="['d-flex flex-column', isMobile ? 'p-0' : 'p-0']">
       <NuxtLink
-        :to="'/r/' + item.recipe.slug"
+        :to="`/r/${ item.recipe.slug }/`"
         class="card-link text-body text-uppercase"
       >
         {{ item.recipe.title }}

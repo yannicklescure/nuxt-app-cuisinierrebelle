@@ -46,11 +46,11 @@ export default {
       console.log(shareData)
     },
   },
-  beforeMount () {
-    // this.recipeLog()
-  },
-  updated () {
-    // this.recipeLog()
-  }
+  // beforeMount () {
+  //   // this.recipeLog()
+  // },
+  // updated () {
+  //   // this.recipeLog()
+  // }
 }
 </script>

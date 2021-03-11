@@ -5,14 +5,14 @@
         <img :src="user.image.preview.url" :alt="user.name" class="rounded" width="64" height="64" style="object-fit: cover;">
         <div class="ml-3 d-flex flex-column">
           <div class="d-flex align-items-center">
-            <NuxtLink :to="'/u/' + user.slug" class="text-capitalize text-body">{{ user.name }}</NuxtLink>
+            <NuxtLink :to="`/u/${ user.slug }/`" class="text-capitalize text-body">{{ user.name }}</NuxtLink>
             <span v-if="user.checked" data-toggle="tooltip" data-placement="top" title="Verified" class="d-flex px-1">
               <i class="material-icons md-16">check_circle</i>
             </span>
           </div>
           <div>
             <NuxtLink
-              :to="'/u/' + user.slug + '/followers'"
+              :to="'/u/' + user.slug + '/followers/'"
               @click.native="getUsers"
               class="d-flex align-items-center text-decoration-none text-muted"
             >
@@ -67,7 +67,7 @@ export default {
       //   })
     },
     userSettings () {
-      this.$router.push({ path: `/u/${ this.currentUser.slug }/settings` })
+      this.$router.push({ path: `/u/${ this.currentUser.slug }/settings/` })
     }
   },
 }

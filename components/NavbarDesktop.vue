@@ -28,13 +28,13 @@
         v-if="isAuthenticated"
         class="d-flex align-items-center"
       >
-        <NuxtLink to="/top100" class="nav-item text-fire text-decoration-none">
+        <NuxtLink to="/top100/" class="nav-item text-fire text-decoration-none">
           <i class="material-icons md-18 d-flex">whatshot</i>
         </NuxtLink>
-        <NuxtLink v-if="bookmarks.length > 0" to="/bookmarks" class="nav-item text-body text-decoration-none">
+        <NuxtLink v-if="bookmarks.length > 0" to="/bookmarks/" class="nav-item text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">{{ icons.bookmarks }}</i>
         </NuxtLink>
-        <NuxtLink v-if="notifications.length > 0" to="/notifications" @click.native="getNotifications" class="nav-item text-body text-decoration-none">
+        <NuxtLink v-if="notifications.length > 0" to="/notifications/" @click.native="getNotifications" class="nav-item text-body text-decoration-none">
           <i class="material-icons md-18 d-flex">{{ icons.notifications }}</i>
         </NuxtLink>
         <b-dropdown variant="link" ref="dropdown" toggle-class="text-decoration-none text-body" no-caret>
@@ -42,12 +42,12 @@
             <i class="material-icons md-18 d-flex">more_vert</i>
           </template>
           <div class="border-bottom pb-2 mb-2" v-if="currentUser.admin">
-            <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="'/admin'">{{ $t('navbar.admin') }}</NuxtLink>
+            <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="'/admin/'">{{ $t('navbar.admin') }}</NuxtLink>
           </div>
-          <NuxtLink class="dropdown-item" @click.native="dropdownClick" to="/r/new">{{ $t('navbar.new_recipe') }}</NuxtLink>
-          <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="'/u/' + currentUser.slug">{{ $t('navbar.recipes') }}</NuxtLink>
-          <NuxtLink class="dropdown-item" @click.native="getUsers" :to="'/u/' + currentUser.slug + '/following'">{{ $t('navbar.following') }}</NuxtLink>
-          <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="'/u/' + currentUser.slug + '/settings'">{{ $t('navbar.settings') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="dropdownClick" to="/r/new/">{{ $t('navbar.new_recipe') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="`/u/${ currentUser.slug }/`">{{ $t('navbar.recipes') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="getUsers" :to="`/u/${ currentUser.slug }/following/`">{{ $t('navbar.following') }}</NuxtLink>
+          <NuxtLink class="dropdown-item" @click.native="dropdownClick" :to="`/u/${ currentUser.slug }/settings/`">{{ $t('navbar.settings') }}</NuxtLink>
           <div
             @click="logout"
             class="dropdown-item mouse-pointer"
@@ -59,11 +59,11 @@
         class="d-flex align-items-center"
       >
         <NuxtLink
-          to="/login"
+          to="/login/"
           class="btn btn-sm text-body text-decoration-none mx-2"
         >{{ $t('navbar.login') }}</NuxtLink>
         <NuxtLink
-          to="/signup"
+          to="/signup/"
           class="btn btn-sm btn-dark mx-2"
         >{{ $t('navbar.getStarted') }}</NuxtLink>
       </div>
