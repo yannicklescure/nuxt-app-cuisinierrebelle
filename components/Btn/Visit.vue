@@ -1,6 +1,6 @@
 <template>
   <div :class="['text-body d-flex align-items-center justify-content-center', { 'flex-column': isMobile }]">
-    <i :class="['material-icons btn-visit', isMobile ? 'md-32' : 'md-18']">leaderboard</i>
+    <i :class="['material-icons', isMobile ? 'md-32' : 'md-18']">person_pin</i>
     <span :class="['text-muted font-weight-lighter small', { 'ml-1': !isMobile }]">{{ views }}</span>
   </div>
 </template>

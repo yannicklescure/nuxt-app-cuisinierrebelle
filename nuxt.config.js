@@ -162,18 +162,18 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   // Modules - https://cuisinierrebelle.com/docs/2.x/directory-structure/modules
+  // If you use other modules, always declare the sitemap module at end of array
   modules: [
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
-    '@nuxtjs/toast',
+    'nuxt-vuex-router-sync',
     'nuxt-i18n',
+    'bootstrap-vue/nuxt',
+    'nuxt-webfontloader',
+    'nuxt-material-design-icons',
+    '@nuxtjs/toast',
     'vue-social-sharing/nuxt',
     '@nuxtjs/google-adsense',
-    'nuxt-webfontloader',
-    'nuxt-vuex-router-sync',
     "@nuxtjs/robots",
-    // If you use other modules, always declare the sitemap module at end of array
     '@nuxtjs/sitemap'
   ],
 
