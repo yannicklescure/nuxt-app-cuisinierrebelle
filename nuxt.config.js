@@ -178,7 +178,7 @@ export default {
 
   sitemap: {
     hostname: 'https://cuisinierrebelle.com',
-    trailingSlash: true,
+    trailingSlash: false,
     gzip: true,
     exclude: [
       '/admin/**'
