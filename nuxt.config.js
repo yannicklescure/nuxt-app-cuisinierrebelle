@@ -5,7 +5,7 @@ export default {
   router: {
     // base: '/',
     // routeNameSplitter: '/',
-    middleware: 'trailingSlashRedirect',
+    // middleware: 'trailingSlashRedirect',
     // trailingSlash: true,
     trailingSlash: false
   },
