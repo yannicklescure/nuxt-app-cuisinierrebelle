@@ -46,11 +46,11 @@ export default {
       return this.page(this.$route.params.slug)
     }
   },
-  watch: {
-    async '$route' () {
-      console.log(this.$route.params.slug)
-    }
-  },
+  // watch: {
+  //   async '$route' () {
+  //     console.log(this.$route.params.slug)
+  //   }
+  // },
   created () {
     this.fetchItems()
   }

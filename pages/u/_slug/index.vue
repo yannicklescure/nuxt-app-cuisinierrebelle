@@ -115,8 +115,8 @@ export default {
     // await this.setItem()
     // if (this.items == undefined) {
       // console.log(this.item)
-      this.getUser(this.$route.params.slug)
       if (this.recipes.length == 0) this.getStoreData()
+      this.getUser(this.$route.params.slug)
       // this.setItem()
     // }
   },

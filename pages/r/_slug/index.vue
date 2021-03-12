@@ -24,7 +24,7 @@
       id="comments"
       ref="comments"
     >
-      <LazyComments
+      <Comments
         :item="item"
       />
     </div>
@@ -124,11 +124,11 @@ export default {
       this.dimension.height = parseInt(this.dimension.width * 2 / 3)
     }
   },
-  async created () {
+  created () {
     // console.log(this.slug)
     console.log(this.$route.params.slug)
-    await this.fetchRecipe(this.$route.params.slug)
     if (this.items.length == 0) this.getStoreData()
+    this.fetchRecipe(this.$route.params.slug)
     if (process.client) {
       window.addEventListener("resize", this.matchInfoBox);
     }
