@@ -4,7 +4,7 @@
       <div v-if="isAuthenticated" class="mouse-pointer btn-bookmark" @click="bookmarkIt">
         <i :class="['material-icons text-body', isMobile ? 'md-32' : 'md-18']">{{ bookmark }}</i>
       </div>
-      <NuxtLink v-else to="/login/" class="text-body btn-bookmark">
+      <NuxtLink v-else to="/login" class="text-body btn-bookmark">
         <i :class="['material-icons', isMobile ? 'md-32' : 'md-18']">bookmark_border</i>
       </NuxtLink>
       <span v-if="false" :class="['text-muted font-weight-lighter small', { 'ml-1': !isMobile }]">{{ bookmarks }}</span>

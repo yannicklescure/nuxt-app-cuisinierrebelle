@@ -2,7 +2,9 @@
 @import "config/index";
 
 // External libraries
-@import "bootstrap/scss/bootstrap";
+// @import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';
 
 // @import "bootstrap/scss/functions.scss";
 // @import "bootstrap/scss/variables.scss";
