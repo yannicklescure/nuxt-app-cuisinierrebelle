@@ -1,8 +1,8 @@
 <template>
   <div ref="card" class="card">
-    <CardsHead :item="item" />
-    <CardsBody :item="item" :card="dimension" />
-    <CardsFooter :item="item" />
+    <CardHead :item="item" />
+    <CardBody :item="item" :card="dimension" />
+    <CardFooter :item="item" />
   </div>
 </template>
 

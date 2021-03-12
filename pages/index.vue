@@ -1,13 +1,7 @@
 <template>
   <div>
     <Banner v-if="isAuthenticated == false" />
-    <div class="container">
-      <div class="row">
-        <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
-          <LazyCard :item="item" />
-        </div>
-      </div>
-    </div>
+    <LazyCards />
   </div>
 </template>
 
@@ -16,31 +10,31 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Home',
-  data() {
-    return {
-      // items: [],
-      fetchedData: null
-    }
-  },
+  // data() {
+  //   return {
+  //     // items: [],
+  //     // fetchedData: null
+  //   }
+  // },
   // middleware: 'authenticated',
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      fetchItems: 'notifications/list'
+      fetchNotifications: 'notificagetStoreDatations/list'
     }),
   },
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
-      getItems: 'recipes/listSorted',
+      // getItems: 'recipes/listSorted',
     }),
-    items () {
-      return this.isAuthenticated ? this.getItems : this.getItems.slice(0, 24)
-    }
+    // items () {
+    //   return this.isAuthenticated ? this.getItems : this.getItems.slice(0, 24)
+    // }
   },
   async created () {
-    if (this.items.length == 0) this.getStoreData()
-    if (this.isAuthenticated) this.fetchItems()
+    // if (this.items.length == 0) this.getStoreData()
+    if (this.isAuthenticated) this.fetchNotifications()
   },
 }
 </script>
