@@ -37,10 +37,11 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      if (this.isAuthenticated) this.show = true
-      else setTimeout(() => {
-        this.show = true
-      }, 1000)
+      this.show = true
+      // if (this.isAuthenticated) this.show = true
+      // else setTimeout(() => {
+      //   this.show = true
+      // }, 1000)
     })
   }
 }
