@@ -65,18 +65,24 @@ export default {
   // },
   props: ['item'],
   computed: {
-    ...mapGetters([
+    ...mapGetters({
       // 'commentsCount',
-      // 'recipe',
-    ]),
+      recipeComments: 'recipes/comments',
+    }),
     comments () {
-      return this.item.comments.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
+      return this.recipeComments(this.$route.params.slug)
     },
+    // comments () {
+    //   return this.item.comments.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
+    // },
     commentsCount () {
-      const counts = this.comments.map(comment => comment.replies.length)
-      let sum = counts.length
-      counts.map(res => sum += res)
-      return sum
+      if (this.comments) {
+        const counts = this.comments.map(comment => comment.replies.length)
+        let sum = counts.length
+        counts.map(res => sum += res)
+        return sum
+      }
+      else return 0
     },
     lastCommentId () {
       return this.commentsCount > 0 ? this.comments[this.comments.length-1].id : 0

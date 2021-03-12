@@ -388,6 +388,11 @@ export const actions = {
 }
 
 export const getters = {
+  comments (state, getters, rootState, rootGetters) {
+    return keyword => state.list.slice().filter( item => {
+      return item.recipe.slug == keyword
+    })[0].comments
+  },
   listSorted (state, getters, rootState, rootGetters) {
     // console.log(state)
     return state.list.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
