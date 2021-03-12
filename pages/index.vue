@@ -1,7 +1,7 @@
 <template>
   <div>
     <Banner v-if="isAuthenticated == false" />
-    <LazyCards />
+    <LazyCards v-if="show" />
   </div>
 </template>
 
@@ -10,12 +10,11 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Home',
-  // data() {
-  //   return {
-  //     // items: [],
-  //     // fetchedData: null
-  //   }
-  // },
+  data() {
+    return {
+      show: false,
+    }
+  },
   // middleware: 'authenticated',
   methods: {
     ...mapActions({
@@ -36,5 +35,11 @@ export default {
     // if (this.items.length == 0) this.getStoreData()
     if (this.isAuthenticated) this.fetchNotifications()
   },
+  mounted () {
+    if (this.isAuthenticated) this.show = true
+    else setTimeout(() => {
+      this.show = true
+    }, 1000)
+  }
 }
 </script>

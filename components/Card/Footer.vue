@@ -1,16 +1,6 @@
 <template>
   <div :class="['card-footer border-0 bg-white p-0']">
-    <div class="d-flex justify-content-between align-items-start my-2">
-      <div :class="['d-flex justify-content-between', isMobile ? 'align-items-start' : 'align-items-center']">
-        <BtnVisit :item="item" />
-        <BtnComment :item="item" />
-        <BtnShare :item="item" />
-      </div>
-      <div :class="['d-flex', isMobile ? 'align-items-start' : 'align-items-center']">
-        <BtnLike :item="item" />
-        <BtnBookmark :item="item" />
-      </div>
-    </div>
+    <LazyCardCta :item="item" />
     <div :class="['d-flex flex-column', isMobile ? 'p-0' : 'p-0']">
       <NuxtLink
         :to="`/r/${ item.recipe.slug }`"
