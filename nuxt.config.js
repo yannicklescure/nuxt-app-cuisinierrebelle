@@ -250,7 +250,7 @@ export default {
       plugins: {
         // Disable a plugin by passing false as value
         'postcss-url': false,
-        // 'postcss-nested': {},
+        'postcss-nested': {},
         'postcss-responsive-type': {},
         'postcss-hexrgba': {}
       },
