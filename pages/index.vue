@@ -20,7 +20,7 @@ export default {
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      fetchNotifications: 'notificagetStoreDatations/list'
+      fetchNotifications: 'notifications/list'
     }),
   },
   computed: {

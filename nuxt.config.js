@@ -131,9 +131,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '~/plugins/vue-social-sharing.js',
     '~/plugins/vuejs-dialog.client',
-    // '~/plugins/vue-google-adsense',
     { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vuex-cache.js', ssr: false },
   ],

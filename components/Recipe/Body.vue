@@ -7,10 +7,15 @@
         <div v-if="item.recipe.subtitle" class="h2 text-secondary">{{ item.recipe.subtitle }}</div>
       </div>
     </div>
-    <div
+    <img
+      ref="lazyImage"
       class="recipe-image my-3 d-print-none"
-      :style="{ backgroundImage: 'url(' + item.recipe.photo.full.url + ')' }"
-    ></div>
+      :data-src="item.recipe.photo.full.url"
+      :width="dimension.width"
+      :height="dimension.height"
+      :style="`object-fit: cover;`"
+      :alt="item.recipe.slug"
+    >
     <vue-markdown-plus :source="item.recipe.direction" />
   </div>
 </template>
@@ -21,7 +26,7 @@ import VueMarkdownPlus from 'vue-markdown-plus'
 
 export default {
   name: 'RecipeBody',
-  props: ['item'],
+  props: ['item', 'dimension'],
   components: {
     VueMarkdownPlus,
   },
@@ -31,5 +36,10 @@ export default {
       isMobile: 'isMobile',
     }),
   },
+  mounted () {
+    this.$nextTick(() => {
+      this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
+    })
+  }
 }
 </script>

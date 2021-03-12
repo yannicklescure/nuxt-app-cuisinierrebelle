@@ -4730,6 +4730,11 @@ launch-editor@^2.2.1:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
 
+lazysizes@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-5.3.0.tgz#e31b40bc2500b45483251681c898bbb3ded744ac"
+  integrity sha512-h5i4WPc2FdeTOUHBcU7eyNnOULPCC90wVho+SQTZRh9Q8lev6P0yFwKq8rvfMdBvsKsCyDQBdqoBng9FYbcR/g==
+
 linkify-it@^3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-3.0.2.tgz#f55eeb8bc1d3ae754049e124ab3bb56d97797fb8"

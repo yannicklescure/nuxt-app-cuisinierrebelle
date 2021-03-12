@@ -1,7 +1,7 @@
 <template>
   <div ref="card" class="card">
     <CardHead :item="item" />
-    <CardBody :item="item" :card="dimension" />
+    <CardBody :item="item" :dimension="dimension" />
     <CardFooter :item="item" />
   </div>
 </template>
