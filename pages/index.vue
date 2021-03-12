@@ -36,10 +36,12 @@ export default {
     if (this.isAuthenticated) this.fetchNotifications()
   },
   mounted () {
-    if (this.isAuthenticated) this.show = true
-    else setTimeout(() => {
-      this.show = true
-    }, 1000)
+    this.$nextTick(() => {
+      if (this.isAuthenticated) this.show = true
+      else setTimeout(() => {
+        this.show = true
+      }, 1000)
+    })
   }
 }
 </script>
