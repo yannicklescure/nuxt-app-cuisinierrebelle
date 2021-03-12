@@ -230,7 +230,7 @@ export default {
   },
 
   toast: {
-    position: 'top-center',
+    position: 'bottom-center',
     // register: [ // Register custom toasts
     //   {
     //     name: 'my-error',
@@ -248,12 +248,13 @@ export default {
       // https://github.com/terser/terser#compress-options
       terserOptions: {
         parse: {
-         // Let terser parse ecma 8 code but always output
-         // ES5 compliant code for older browsers
-          ecma: 8
+        // Let terser parse ecma 8 code but always output
+        // ES5 compliant code for older browsers
+          // ecma: 8
         },
         compress: {
-          ecma: 5,
+          // ecma: 5,
+          ecma: 8,
           warnings: false,
           comparisons: false,
           drop_console: true
@@ -262,11 +263,11 @@ export default {
           safari10: true
         },
         output: {
-          ecma: 5,
-          comments: false,
+          // ecma: 5,
+          // comments: false,
           ascii_only: true
         }
-        },
+      },
     },
   },
 
