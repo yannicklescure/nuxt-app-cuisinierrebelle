@@ -1,32 +1,20 @@
 <template>
   <div ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
-    <RecipeHead :item="item" />
-    <RecipeBody :item="item" :dimension="dimension" />
-<!--
-    <div class="my-3 d-print-none">
-      <InArticleAdsense
-        data-ad-client="ca-pub-9223566768445571"
-        data-ad-slot="4726766855"
-      />
-    </div> -->
+    <div v-if="item">
+      <RecipeHead :item="item" />
+      <RecipeBody :item="item" :dimension="dimension" />
 
-    <LazyYoutube :item="item" />
+      <LazyYoutube :item="item" />
 
-    <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
+      <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-    <div class="mt-5">
-      <adsbygoogle ad-slot="4726766855" />
-    </div>
+      <div class="mt-5">
+        <adsbygoogle ad-slot="4726766855" />
+      </div>
 
-    <LazyOtherRecipes />
+      <LazyOtherRecipes />
 
-    <div
-      id="comments"
-      ref="comments"
-    >
-      <Comments
-        :item="item"
-      />
+      <Comments :item="item" />
     </div>
   </div>
 </template>

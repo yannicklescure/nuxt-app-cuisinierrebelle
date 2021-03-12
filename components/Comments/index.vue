@@ -1,5 +1,5 @@
 <template>
-  <div class="d-print-none mt-5">
+  <div ref="comments" id="comments" class="d-print-none mt-5">
     <div class="h4 mb-3">{{ $tc('recipe.comments.counts', commentsCount) }}</div>
     <CommentsNew
       :item="item"
