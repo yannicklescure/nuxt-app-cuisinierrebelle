@@ -1,3 +1,7 @@
+import PurgecssPlugin from 'purgecss-webpack-plugin'
+import glob from 'glob-all'
+import path from 'path'
+
 export default {
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -245,23 +249,39 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    postcss: {
-      // Add plugin names as key and arguments as value
-      // Install them before as dependencies with npm or yarn
-      plugins: {
-        // Disable a plugin by passing false as value
-        'postcss-url': false,
-        'postcss-nested': {},
-        'postcss-responsive-type': {},
-        'postcss-hexrgba': {}
-      },
-      preset: {
-        // Change the postcss-preset-env settings
-        autoprefixer: {
-          grid: true
-        }
+    extractCSS: true,
+    extend(config, { isDev, isClient }) {
+      if (!isDev && isClient) {
+        config.plugins.push(
+          new PurgecssPlugin({
+            paths: glob.sync([
+              path.join(__dirname, './assets/**/*.scss'),
+              path.join(__dirname, './pages/**/*.vue'),
+              path.join(__dirname, './layouts/**/*.vue'),
+              path.join(__dirname, './components/**/*.vue')
+            ]),
+            whitelist: ['html', 'body']
+          })
+        )
       }
     },
+    // postcss: {
+    //   // Add plugin names as key and arguments as value
+    //   // Install them before as dependencies with npm or yarn
+    //   plugins: {
+    //     // Disable a plugin by passing false as value
+    //     'postcss-url': false,
+    //     'postcss-nested': {},
+    //     'postcss-responsive-type': {},
+    //     'postcss-hexrgba': {}
+    //   },
+    //   preset: {
+    //     // Change the postcss-preset-env settings
+    //     autoprefixer: {
+    //       grid: true
+    //     }
+    //   }
+    // },
     terser: {
       // https://github.com/terser/terser#compress-options
       terserOptions: {
