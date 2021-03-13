@@ -1,12 +1,12 @@
 <template>
   <div ref="comments" id="comments" class="d-print-none mt-5">
     <div class="h4 mb-3">{{ $tc('recipe.comments.counts', count) }}</div>
-    <CommentsNew
+    <CommentNew
       :item="item"
       v-on:commentNew="commentNew"
     />
     <div v-for="comment, i in comments" class="d-flex flex-column">
-      <CommentsShow
+      <Comment
         :item="comment"
         :type="'comment'"
         :lastCommentId="lastCommentId"
@@ -21,19 +21,18 @@
         class="d-flex mouse-pointer"
         style="font-size: 90%"
       >
-        <span v-if="show[i]" class="material-icons md-18">arrow_drop_up</span>
-        <span v-if="!show[i]" class="material-icons md-18">arrow_drop_down</span>
+        <span class="material-icons md-18">{{ show[i] ? 'arrow_drop_down' : 'arrow_drop_up' }}</span>
         {{ $tc('recipe.comments.viewReplies', comment.replies.length) }}
       </div>
       <transition name="fade">
         <div v-show="show[i]">
           <div v-for="reply, j in comment.replies" class="d-flex align-items-start">
-            <span class="material-icons md-18 mt-3">subdirectory_arrow_right</span>
-            <CommentsShow
+            <!-- <span class="material-icons md-18 mt-3">subdirectory_arrow_right</span> -->
+            <Comment
               :item="reply"
               :type="'reply'"
               :key="'c' + i + 'r' + j"
-              class="pl-3 flex-grow-1"
+              class="border-left pl-3 flex-grow-1"
               v-on:commentDestroyed="commentDestroyed"
               v-on:commentReplyNew="commentReplyNew"
             />
@@ -95,7 +94,7 @@ export default {
     commentNew (payload) {
       console.log(payload)
       // this.item.comments.push(payload.data)
-      this.componentKey += 1
+      // this.componentKey += 1
     },
     commentReplyNew (payload) {
       console.log(this.item)
@@ -103,12 +102,12 @@ export default {
       // const comment = this.item.comments.filter(c => c.id === payload.data.id)[0]
       // const position = this.item.comments.indexOf(comment)
       // this.item.comments[position] = payload.data
-      this.componentKey += 1
+      // this.componentKey += 1
     },
     commentDestroyed (payload) {
       console.log(this.item)
       console.log(payload)
-      this.componentKey += 1
+      // this.componentKey += 1
 
       // if (payload.type === 'comment') {
       //   console.log(`destroy comment ${ payload.comment_id }`)
@@ -138,7 +137,8 @@ export default {
     },
     initShow () {
       // this.show = Array(this.item.comments.length).fill(false)
-      this.show = [...new Array(this.item.comments.length)].map(() => false)
+      this.show = [...new Array(this.item.comments.length)].map(() => true)
+      // this.show = [...new Array(this.item.comments.length)].map(() => false)
     }
   },
   mounted () {

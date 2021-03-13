@@ -1,5 +1,5 @@
 <template>
-  <div :id="type + item.id" :ref="type + item.id" class="mt-3 mb-2">
+  <div :id="type + item.id" :ref="type + item.id" :class="['pt-3 pb-2', { 'ml-2': type == 'reply' }]">
     <div class="d-flex align-items-center">
       <img
         :src="item.user.image.thumb.url"
@@ -16,7 +16,7 @@
       <small class="text-muted">{{ timeAgo(item.timestamp) }}</small>
     </div>
     <div v-if="edit">
-      <CommentsForm
+      <CommentForm
         :item="item"
         :actionAttr="editActionAttr()"
         :text="item.content"
@@ -24,17 +24,17 @@
         v-on:commentDrop="commentDrop"
       />
     </div>
-    <div v-else class="mt-2 bg-light rounded p-3">
+    <div v-else class="pt-2">
       <vue-markdown-plus :source="item.content" class="text-break" />
     </div>
-    <CommentsButtons
+    <CommentButtons
       :item="item"
       :type="type"
       v-on:commentEdit="commentEdit"
       v-on:commentReply="commentReply"
     />
     <div v-if="reply">
-      <CommentsForm
+      <CommentForm
         :item="item"
         :actionAttr="'replyNew'"
         :text="null"

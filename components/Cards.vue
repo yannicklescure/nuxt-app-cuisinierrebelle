@@ -34,7 +34,7 @@ export default {
       getItems: 'recipes/listSorted',
     }),
     items () {
-      return this.isAuthenticated ? this.getItems : this.getItems.slice(0, 24)
+      return this.isAuthenticated ? this.getItems : this.getItems.slice(0, 100)
     }
   },
   async created () {

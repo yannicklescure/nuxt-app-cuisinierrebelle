@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="isAuthenticated">
-      <CommentsForm
+      <CommentForm
         :item="item"
         :actionAttr="'commentNew'"
         :text="null"

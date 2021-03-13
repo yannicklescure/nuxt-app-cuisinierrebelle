@@ -202,7 +202,7 @@ export default async (context, locale) => {
       comments: {
         counts: '0 Commentaires | 1 Commentaire | {count} Commentaires',
         addPublicComment: 'Ajouter un commentaire public...',
-        viewReplies: 'Voir 0 réponses | Voir la réponse | Voir les {count} réponses',
+        viewReplies: '0 réponses | 1 réponse | {count} réponses',
       },
       delete: {
         submit: 'Supprimer',
