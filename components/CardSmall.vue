@@ -10,7 +10,8 @@
         </div>
       </div>
       <img
-        :src="item.recipe.photo.preview.url"
+        ref="lazyImage"
+        :data-src="item.recipe.photo.preview.url"
         secure="true" height="64" width="64" class="rounded" style="object-fit: cover;"
       >
     </div>
@@ -64,8 +65,13 @@ export default {
       return this.tuncateString(this.item.recipe.description, this.isMobile ? 100 : 200)
     }
   },
-  beforeMount () {
-    this.forceRerender()
+  created () {
+    // this.forceRerender()
   },
+  mounted () {
+    this.$nextTick(() => {
+      this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
+    })
+  }
 }
 </script>

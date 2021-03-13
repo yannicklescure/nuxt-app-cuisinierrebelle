@@ -2,6 +2,7 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  resourceHints: true,
 
   router: {
     // base: '/',

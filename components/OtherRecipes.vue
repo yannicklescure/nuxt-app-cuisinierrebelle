@@ -6,12 +6,8 @@
 </template>
 
 <script>
-// const CardSmall = () => import('../components/CardSmall.vue')
 
 export default {
   name: 'OtherRecipes',
-  // components: {
-  //   CardSmall
-  // }
 }
 </script>
