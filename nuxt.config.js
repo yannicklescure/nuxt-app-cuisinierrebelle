@@ -119,7 +119,7 @@ export default {
       },
       {
         rel: "preconnect",
-        href: "https://api.cuisinierrebelle.com/",
+        href: "https://api.cuisinierrebelle.com",
         crossorigin: true
       }
     ]
