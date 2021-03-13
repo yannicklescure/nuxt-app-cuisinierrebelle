@@ -32,10 +32,10 @@ main, .cr-vh100 {
   }
 }
 
-#default-layout {
-  height: 100vh !important;
+#default {
+  min-height: 100vh !important;
 }
 
-#default-layout > div {
-  min-height: 100%;
+#default > div {
+  min-height: calc(100vh - 58px);;
 }
