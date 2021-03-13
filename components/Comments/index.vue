@@ -1,6 +1,6 @@
 <template>
   <div ref="comments" id="comments" class="d-print-none mt-5">
-    <div class="h4 mb-3">{{ $tc('recipe.comments.counts', commentsCount) }}</div>
+    <div class="h4 mb-3">{{ $tc('recipe.comments.counts', count) }}</div>
     <CommentsNew
       :item="item"
       v-on:commentNew="commentNew"
@@ -63,19 +63,19 @@ export default {
   //   CommentForm,
   //   Comment,
   // },
-  props: ['item'],
+  // props: ['item'],
   computed: {
     ...mapGetters({
-      // 'commentsCount',
-      recipeComments: 'recipes/comments',
+      // 'count',
+      recipe: 'recipes/recipe',
     }),
-    comments () {
-      return this.recipeComments(this.$route.params.slug)
+    item () {
+      return this.recipe(this.$route.params.slug)
     },
-    // comments () {
-    //   return this.item.comments.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
-    // },
-    commentsCount () {
+    comments () {
+      return this.item.comments.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
+    },
+    count () {
       if (this.comments) {
         const counts = this.comments.map(comment => comment.replies.length)
         let sum = counts.length
@@ -85,7 +85,7 @@ export default {
       else return 0
     },
     lastCommentId () {
-      return this.commentsCount > 0 ? this.comments[this.comments.length-1].id : 0
+      return this.count > 0 ? this.comments[this.comments.length-1].id : 0
     },
   },
   methods: {

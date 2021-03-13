@@ -110,11 +110,11 @@ export default {
         // reply id : this.item.id
         // reply content : this.item.content
         // reply comment : this.item.commentId
-        const reply = payload.data.replies.filter(r => r.id === this.item.id)[0]
-        this.item.content = reply.content
+        // const reply = payload.data.replies.filter(r => r.id === this.item.id)[0]
+        // this.item.content = reply.content
       }
       else {
-        this.item.content = payload.data.content
+        // this.item.content = payload.data.content
       }
     },
     timeAgo (time) {

@@ -388,11 +388,6 @@ export const actions = {
 }
 
 export const getters = {
-  comments (state, getters, rootState, rootGetters) {
-    return keyword => state.list.slice().filter( item => {
-      return item.recipe.slug == keyword
-    })[0].comments
-  },
   listSorted (state, getters, rootState, rootGetters) {
     // console.log(state)
     return state.list.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
@@ -409,7 +404,7 @@ export const getters = {
   user (state, getters, rootState, rootGetters) {
     return keyword => state.list.slice().filter( item => {
       return item.user.slug == keyword
-    }).sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
+    }).slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
   },
   top100 (state, getters, rootState, rootGetters) {
     return state.list.slice().sort((a, b) => (a.recipe.views > b.recipe.views) ? 1 : -1).reverse().slice(0, 100)
