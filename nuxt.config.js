@@ -7,8 +7,14 @@ export default {
     // base: '/',
     // routeNameSplitter: '/',
     // middleware: 'trailingSlashRedirect',
-    // trailingSlash: true,
-    trailingSlash: false
+    trailingSlash: false,
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'custom',
+        path: '*',
+        component: resolve(__dirname, 'pages/404.vue')
+      })
+    }
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
