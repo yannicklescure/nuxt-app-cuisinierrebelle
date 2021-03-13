@@ -4,9 +4,6 @@
       <NuxtLink :to="`/u/${ item.slug }`" class="text-capitalize text-body d-flex align-items-center">
         <img :src="item.image.thumb.url" :alt="item.name" class="mr-2 rounded-circle" width="32" height="32" style="object-fit: cover;">
         {{ item.name }}
-        <span v-if="item.checked" data-toggle="tooltip" data-placement="top" title="Verified" class="d-flex px-1">
-          <i class="material-icons md-16">check_circle</i>
-        </span>
       </NuxtLink>
     </td>
     <td>
