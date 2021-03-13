@@ -164,6 +164,7 @@ export default {
   // If you use other modules, always declare the sitemap module at end of array
   modules: [
     '@nuxtjs/axios',
+    'nuxt-brotli',
     'nuxt-vuex-router-sync',
     'nuxt-i18n',
     'bootstrap-vue/nuxt',
