@@ -49,7 +49,7 @@ export default {
       return this.bannerImage
     },
     imageUrl () {
-      return `${ this.bannerImage.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
+      return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
   },
   created () {
