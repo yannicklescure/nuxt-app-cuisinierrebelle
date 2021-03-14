@@ -726,7 +726,8 @@ export const logout = (context, payload) => {
 export const userDelete = (context, payload) => {
   return axios({
     method: 'delete',
-    url: `${ apiUrl }/api/${ version }/users`,
+    // url: `${ apiUrl }/api/${ version }/users`,
+    url: `${ apiUrl }/users/delete`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
