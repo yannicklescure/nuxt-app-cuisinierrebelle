@@ -8,13 +8,11 @@
 
       <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-      <div class="mt-5">
-        <adsbygoogle ad-slot="4726766855" />
-      </div>
+      <LazyRecipeAds />
 
       <LazyOtherRecipes />
 
-      <Comments :item="item" />
+      <LazyComments :item="item" />
     </div>
   </div>
 </template>

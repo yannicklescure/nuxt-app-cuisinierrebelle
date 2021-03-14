@@ -10,7 +10,7 @@
         :item="comment"
         :type="'comment'"
         :lastCommentId="lastCommentId"
-        :key="'c' + i"
+        :key="'c' + i + componentKey"
         v-on:commentDestroyed="commentDestroyed"
         v-on:commentReplyNew="commentReplyNew"
         v-on:lastCommentMounted="lastCommentMounted"
@@ -31,7 +31,7 @@
             <Comment
               :item="reply"
               :type="'reply'"
-              :key="'c' + i + 'r' + j"
+              :key="'c' + i + 'r' + j + componentKey"
               class="border-left pl-3 flex-grow-1"
               v-on:commentDestroyed="commentDestroyed"
               v-on:commentReplyNew="commentReplyNew"
@@ -54,26 +54,30 @@ export default {
   name: 'Comments',
   data () {
     return {
+      // forceRecomputeCounter: 0,
       componentKey: 0,
       show: [],
+      comments: [],
     }
   },
   // components: {
   //   CommentForm,
   //   Comment,
   // },
-  // props: ['item'],
+  props: ['item'],
   computed: {
     ...mapGetters({
       // 'count',
       recipe: 'recipes/recipe',
+      getComments: 'recipes/comments',
     }),
-    item () {
-      return this.recipe(this.$route.params.slug)
-    },
-    comments () {
-      return this.item.comments.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
-    },
+    // item () {
+    //   return this.recipe(this.$route.params.slug)
+    // },
+    // comments () {
+    //   this.forceRecomputeCounter
+    //   return this.item.comments
+    // },
     count () {
       if (this.comments) {
         const counts = this.comments.map(comment => comment.replies.length)
@@ -88,26 +92,38 @@ export default {
     },
   },
   methods: {
+    loadComments () {
+      console.log(this.$route.params.slug)
+      console.log(this.getComments(this.$route.params.slug))
+      this.componentKey += 1
+      this.comments = this.getComments(this.$route.params.slug)
+    },
     lastCommentMounted (value) {
       this.$emit('lastCommentMounted', value)
     },
     commentNew (payload) {
       console.log(payload)
+      // this.forceRecomputeCounter++
+      this.loadComments()
       // this.item.comments.push(payload.data)
-      // this.componentKey += 1
+      this.componentKey += 1
     },
     commentReplyNew (payload) {
       console.log(this.item)
       console.log(payload)
+      // this.forceRecomputeCounter++
+      this.loadComments()
       // const comment = this.item.comments.filter(c => c.id === payload.data.id)[0]
       // const position = this.item.comments.indexOf(comment)
       // this.item.comments[position] = payload.data
-      // this.componentKey += 1
+      this.componentKey += 1
     },
     commentDestroyed (payload) {
       console.log(this.item)
       console.log(payload)
-      // this.componentKey += 1
+      // this.forceRecomputeCounter++
+      this.loadComments()
+      this.componentKey += 1
 
       // if (payload.type === 'comment') {
       //   console.log(`destroy comment ${ payload.comment_id }`)
@@ -141,7 +157,8 @@ export default {
       // this.show = [...new Array(this.item.comments.length)].map(() => false)
     }
   },
-  mounted () {
+  async mounted () {
+    await this.loadComments()
     this.$nextTick(() => {
       this.initShow()
       this.$emit('commentsReady', true)
