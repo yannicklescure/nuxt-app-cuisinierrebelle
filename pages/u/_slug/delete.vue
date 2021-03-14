@@ -69,7 +69,7 @@ export default {
       }
     },
     logout () {
-      this.$store.dispatch('logOut', {})
+      this.$store.dispatch('users/sessions/logOut', {})
         .then(response => {
           console.log(response)
           if (response.status === 204 && this.$route.path != '/') this.$router.push({ path: '/' })
