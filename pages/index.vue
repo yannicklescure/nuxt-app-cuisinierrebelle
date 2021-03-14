@@ -32,6 +32,7 @@ export default {
     // }
   },
   async created () {
+    this.getStoreData()
     // if (this.items.length == 0) this.getStoreData()
     if (this.isAuthenticated) this.fetchNotifications()
   },
