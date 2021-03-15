@@ -32,20 +32,20 @@ export default {
       // items: undefined
     }
   },
-  async asyncData(context) {
-    // await context.store.dispatch('users/getUser', context.params.slug)
-    const userData = await context.$axios({
-      validateStatus: status => {
-        // console.log(status)
-        return status < 500; // Resolve only if the status code is less than 500
-      },
-      method: 'get',
-      url: `https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`,
-    })
-    console.log(userData)
-    const user = userData.data.data
-    return { user }
-  },
+  // async asyncData(context) {
+  //   // await context.store.dispatch('users/getUser', context.params.slug)
+  //   const userData = await context.$axios({
+  //     validateStatus: status => {
+  //       // console.log(status)
+  //       return status < 500; // Resolve only if the status code is less than 500
+  //     },
+  //     method: 'get',
+  //     url: `https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`,
+  //   })
+  //   console.log(userData)
+  //   const user = userData.data.data
+  //   return { user }
+  // },
   async fetch () {
     if (this.recipes.length == 0) this.getStoreData()
     await this.getUser(this.$route.params.slug)
@@ -112,9 +112,9 @@ export default {
       usersFilter: 'users/filter',
       users: 'users/list',
     }),
-    // user () {
-    //   return this.usersFilter(this.$route.params.slug)
-    // },
+    user () {
+      return this.usersFilter(this.$route.params.slug)
+    },
     items () {
       return this.userRecipes(this.$route.params.slug)
     }

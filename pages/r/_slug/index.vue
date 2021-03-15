@@ -31,21 +31,21 @@ export default {
       }
     }
   },
-  async asyncData(context) {
-    console.log(context)
-    await context.store.dispatch('recipes/recipe', context.params.slug)
-    const recipeData = await context.$axios({
-      validateStatus: status => {
-        // console.log(status)
-        return status < 500; // Resolve only if the status code is less than 500
-      },
-      method: 'get',
-      url: `https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`,
-    })
-    console.log(recipeData)
-    const item = recipeData.data
-    return { item }
-  },
+  // async asyncData(context) {
+  //   console.log(context)
+  //   await context.store.dispatch('recipes/recipe', context.params.slug)
+  //   const recipeData = await context.$axios({
+  //     validateStatus: status => {
+  //       // console.log(status)
+  //       return status < 500; // Resolve only if the status code is less than 500
+  //     },
+  //     method: 'get',
+  //     url: `https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`,
+  //   })
+  //   console.log(recipeData)
+  //   const item = recipeData.data
+  //   return { item }
+  // },
   async fetch () {
     console.log(this.$route.params.slug)
     if (this.items.length < 2) this.getStoreData()
@@ -116,9 +116,9 @@ export default {
       recipe: 'recipes/recipe',
       items: 'recipes/listSorted',
     }),
-    // item () {
-    //   return this.recipe(this.$route.params.slug)
-    // }
+    item () {
+      return this.recipe(this.$route.params.slug)
+    }
   },
   methods: {
     ...mapActions({
