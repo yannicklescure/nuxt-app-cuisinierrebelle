@@ -31,99 +31,91 @@ export default {
       }
     }
   },
-  // async asyncData(context) {
-  //   console.log(context)
-  //   await context.store.dispatch('recipes/recipe', context.params.slug)
-  //   const recipeData = await context.$axios({
-  //     validateStatus: status => {
-  //       // console.log(status)
-  //       return status < 500; // Resolve only if the status code is less than 500
-  //     },
-  //     method: 'get',
-  //     url: `https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`,
-  //   })
-  //   console.log(recipeData)
-  //   const item = recipeData.data
-  //   return { item }
-  // },
+  async asyncData(context) {
+    console.log(context)
+    // await context.store.dispatch('recipes/recipe', context.params.slug)
+    const recipeData = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`)
+    console.log(recipeData)
+    const item = recipeData
+    return { item }
+  },
   async fetch () {
+    this.$store.commit("recipes/recipe", { data: this.item })
     console.log(this.$route.params.slug)
     if (this.items.length < 2) this.getStoreData()
-    await this.fetchRecipe(this.$route.params.slug)
+    // await this.fetchRecipe(this.$route.params.slug)
   },
   head() {
-    if (this.item) {
-      return {
-        meta: [
-          {
-            hid: 'twitter:title',
-            name: 'twitter:title',
-            content: this.item.recipe.title
-          },
-          {
-            hid: 'twitter:description',
-            name: 'twitter:description',
-            content: this.item.recipe.description
-          },
-          {
-            hid: 'twitter:image',
-            name: 'twitter:image',
-            content: this.item.recipe.photo.openGraph.url
-          },
-          {
-            hid: 'twitter:image:alt',
-            name: 'twitter:image:alt',
-            content: this.item.recipe.title
-          },
-          {
-            hid: 'fb:app_id',
-            property: 'fb:app_id',
-            content: '570259036897585'
-          },
-          {
-            hid: 'og:title',
-            property: 'og:title',
-            content: this.item.recipe.title
-          },
-          {
-            hid: 'og:description',
-            property: 'og:description',
-            content: this.item.recipe.description
-          },
-          {
-            hid: 'og:image',
-            property: 'og:image',
-            content: this.item.recipe.photo.openGraph.url
-          },
-          {
-            hid: 'og:image:secure_url',
-            property: 'og:image:secure_url',
-            content: this.item.recipe.photo.openGraph.url
-          },
-          {
-            hid: 'og:image:alt',
-            property: 'og:image:alt',
-            content: this.item.recipe.title
-          }
-        ]
-      }
+    return {
+      meta: [
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.item.recipe.title
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.item.recipe.description
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.item.recipe.photo.openGraph.url
+        },
+        {
+          hid: 'twitter:image:alt',
+          name: 'twitter:image:alt',
+          content: this.item.recipe.title
+        },
+        {
+          hid: 'fb:app_id',
+          property: 'fb:app_id',
+          content: '570259036897585'
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.item.recipe.title
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.item.recipe.description
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.item.recipe.photo.openGraph.url
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: this.item.recipe.photo.openGraph.url
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: this.item.recipe.title
+        }
+      ]
     }
   },
   computed: {
     ...mapGetters({
       currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
-      recipe: 'recipes/recipe',
+      // recipe: 'recipes/recipe',
       items: 'recipes/listSorted',
     }),
-    item () {
-      return this.recipe(this.$route.params.slug)
-    }
+    // item () {
+    //   return this.recipe(this.$route.params.slug)
+    // }
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      fetchRecipe: 'recipes/recipe',
+      // fetchRecipe: 'recipes/recipe',
     }),
     matchInfoBox () {
       this.dimension.width = this.$refs.recipe.clientWidth

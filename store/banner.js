@@ -24,6 +24,11 @@ export const mutations = {
   setBannerImage: (state, payload) => {
     // console.log(payload)
     // state.bannerImage = payload
+    state.image = payload
+  },
+  set: (state, payload) => {
+    // console.log(payload)
+    // state.bannerImage = payload
     state.image = payload.data.bannerImage
   },
 }
@@ -32,7 +37,7 @@ export const actions = {
   getBannerImage: (context, payload) => {
     return api.fetchBannerImage(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("setBannerImage", response.data)
+        if (response.status === 200) context.commit("set", response.data)
         return response
       })
       .catch(error => {

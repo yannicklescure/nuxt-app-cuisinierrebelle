@@ -43,6 +43,7 @@ export default {
     // }
   },
   async fetch () {
+    this.$store.commit("banner/setBannerImage", this.bannerImage)
     await this.getStoreData()
     if (this.isAuthenticated) this.fetchNotifications()
   },

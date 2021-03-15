@@ -65,13 +65,11 @@ export default {
       return this.tuncateString(this.item.recipe.description, this.isMobile ? 100 : 200)
     }
   },
-  created () {
-    // this.forceRerender()
-  },
   mounted () {
-    this.$nextTick(() => {
-      this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
-    })
+    this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
+    // this.$nextTick(() => {
+      // this.forceRerender()
+    // })
   }
 }
 </script>
