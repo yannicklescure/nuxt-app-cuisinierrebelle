@@ -19,7 +19,7 @@ export default {
   asyncData(context) {
     console.log(context)
     context.store.dispatch('getStoreData')
-    // context.store.dispatch('banner/getBannerImage')
+    context.store.dispatch('banner/getBannerImage')
   },
   methods: {
     ...mapActions({

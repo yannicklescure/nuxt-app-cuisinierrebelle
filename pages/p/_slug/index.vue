@@ -31,12 +31,12 @@ export default {
   components: {
     VueMarkdownPlus,
   },
-  async asyncData(context) {
-    await context.store.dispatch('pages/fetch', context.params.slug)
-  },
-  // async fetch () {
-    // await this.fetchItems()
+  // async asyncData(context) {
+  //   await context.store.dispatch('pages/fetch', context.params.slug)
   // },
+  async fetch () {
+    await this.fetchItems()
+  },
   methods: {
     ...mapActions({
       fetchItems: 'pages/fetch'
