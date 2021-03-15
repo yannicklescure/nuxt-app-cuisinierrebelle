@@ -34,7 +34,7 @@ export default {
         width: 0,
         height: 0
       },
-      item: undefined
+      item: false
     }
   },
   // async asyncData(context) {
@@ -46,6 +46,7 @@ export default {
   async fetch () {
     console.log(this.$route.params.slug)
     this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
+    console.log(this.item)
     this.$store.commit("recipes/recipe", { data: this.item })
     // await this.fetchRecipe(this.$route.params.slug)
   },
