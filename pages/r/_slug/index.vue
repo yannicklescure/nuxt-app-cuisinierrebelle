@@ -30,28 +30,28 @@ export default {
       }
     }
   },
-  async asyncData(context) {
-    console.log(context)
-    // await context.store.dispatch('recipes/recipe', context.params.slug)
-    const item = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`)
-    return { item }
-  },
+  // async asyncData(context) {
+  //   console.log(context)
+  //   // await context.store.dispatch('recipes/recipe', context.params.slug)
+  //   const item = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`)
+  //   return { item }
+  // },
   async fetch () {
-    this.$store.commit("recipes/recipe", { data: this.item })
+    // this.$store.commit("recipes/recipe", { data: this.item })
     console.log(this.$route.params.slug)
     if (this.items.length < 2) this.getStoreData()
-    // await this.fetchRecipe(this.$route.params.slug)
+    await this.fetchRecipe(this.$route.params.slug)
   },
   computed: {
     ...mapGetters({
       currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
-      // recipe: 'recipes/recipe',
+      recipe: 'recipes/recipe',
       items: 'recipes/listSorted',
     }),
-    // item () {
-    //   return this.recipe(this.$route.params.slug)
-    // }
+    item () {
+      return this.recipe(this.$route.params.slug)
+    }
   },
   methods: {
     ...mapActions({
