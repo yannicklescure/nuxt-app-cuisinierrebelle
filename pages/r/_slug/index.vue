@@ -1,7 +1,11 @@
 <template>
   <div ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
     <div v-if="item">
-      <SocialHead :item="item" />
+      <SocialHead
+        :title="item.recipe.title"
+        :description="item.recipe.description"
+        :image="item.recipe.photo.openGraph.url"
+      />
       <RecipeHead :item="item" />
       <RecipeBody :item="item" :dimension="dimension" />
 
