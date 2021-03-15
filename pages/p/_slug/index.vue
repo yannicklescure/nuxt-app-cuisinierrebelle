@@ -31,6 +31,12 @@ export default {
   components: {
     VueMarkdownPlus,
   },
+  async asyncData(context) {
+    await context.store.dispatch('pages/fetch', context.params.slug)
+  },
+  // async fetch () {
+    // await this.fetchItems()
+  // },
   methods: {
     ...mapActions({
       fetchItems: 'pages/fetch'
@@ -46,13 +52,5 @@ export default {
       return this.page(this.$route.params.slug)
     }
   },
-  // watch: {
-  //   async '$route' () {
-  //     console.log(this.$route.params.slug)
-  //   }
-  // },
-  created () {
-    this.fetchItems()
-  }
 }
 </script>

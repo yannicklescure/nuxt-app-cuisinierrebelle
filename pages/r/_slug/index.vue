@@ -31,6 +31,15 @@ export default {
       }
     }
   },
+  async asyncData(context) {
+    console.log(context)
+    await context.store.dispatch('recipes/recipe', context.params.slug)
+  },
+  async fetch () {
+    console.log(this.$route.params.slug)
+    if (this.items.length == 0) this.getStoreData()
+    // await this.fetchRecipe(this.$route.params.slug)
+  },
   head() {
     if (this.item) {
       return {
@@ -111,10 +120,6 @@ export default {
     }
   },
   created () {
-    // console.log(this.slug)
-    console.log(this.$route.params.slug)
-    if (this.items.length == 0) this.getStoreData()
-    this.fetchRecipe(this.$route.params.slug)
     if (process.client) {
       window.addEventListener("resize", this.matchInfoBox);
     }

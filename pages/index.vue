@@ -16,6 +16,13 @@ export default {
     }
   },
   // middleware: 'authenticated',
+  async asyncData(context) {
+    console.log(context)
+    await context.store.dispatch('getStoreData')
+  },
+  // async fetch () {
+    // await this.getStoreData()
+  // },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
@@ -32,7 +39,6 @@ export default {
     // }
   },
   async created () {
-    this.getStoreData()
     // if (this.items.length == 0) this.getStoreData()
     if (this.isAuthenticated) this.fetchNotifications()
   },

@@ -64,7 +64,7 @@
         >{{ $t('navbar.login') }}</NuxtLink>
         <NuxtLink
           to="/signup"
-          class="btn btn-sm btn-dark mx-2"
+          class="btn btn-sm btn-info mx-2"
         >{{ $t('navbar.getStarted') }}</NuxtLink>
       </div>
     </div>

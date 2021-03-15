@@ -34,8 +34,8 @@ export default {
       items: 'recipes/top100',
     }),
   },
-  created () {
-    if (this.items.length == 0) this.getStoreData()
+  async fetch () {
+    if (this.items.length == 0) await this.getStoreData()
   },
 }
 </script>

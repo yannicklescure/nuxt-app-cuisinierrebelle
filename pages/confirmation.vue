@@ -5,7 +5,7 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 const capitalize = (s) => {
   if (typeof s !== 'string') return ''
@@ -22,11 +22,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      registrationConfirmation: 'registrationConfirmation',
+    }),
     // getNavbarHeight () {
     //   return this.$store.getters.navbarHeight
     // },
     confirmRegistration () {
-      this.$store.dispatch('registrationConfirmation', { token: this.$route.query.confirmation_token })
+      this.registrationConfirmation({ token: this.$route.query.confirmation_token })
         .then(response => {
           console.log(response)
           if (response.status && response.status === 200) {
@@ -51,7 +54,7 @@ export default {
   //     'navbarHeight',
   //   ]),
   // },
-  created () {
+  beforeMount () {
     if (this.$route.query.confirmation_token) this.confirmRegistration()
     else {
       this.$router.push({ path: '/login' })

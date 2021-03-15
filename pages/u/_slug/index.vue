@@ -111,14 +111,12 @@ export default {
     //   this.items = this.recipes(this.$route.params.slug)
     // },
   },
-  created () {
-    // await this.setItem()
-    // if (this.items == undefined) {
-      // console.log(this.item)
-      if (this.recipes.length == 0) this.getStoreData()
-      this.getUser(this.$route.params.slug)
-      // this.setItem()
-    // }
+  async asyncData(context) {
+    await context.store.dispatch('users/getUser', context.params.slug)
+  },
+  async fetch () {
+    if (this.recipes.length == 0) this.getStoreData()
+    // await this.getUser(this.$route.params.slug)
   },
   mounted () {
     this.show = true

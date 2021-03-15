@@ -27,6 +27,9 @@ export default {
   //     loading: true,
   //   }
   // },
+  async fetch () {
+    await this.getBannerImage()
+  },
   methods: {
     ...mapActions({
       getBannerImage: 'banner/getBannerImage'
@@ -51,9 +54,6 @@ export default {
     imageUrl () {
       return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
-  },
-  created () {
-    this.getBannerImage()
   },
   // created() {
   //   this.loadImg()
