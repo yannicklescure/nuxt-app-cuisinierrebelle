@@ -27,7 +27,7 @@ export const mutations = {
 export const actions = {
   getUser: (context, payload) => {
     // console.log(context.state.data.user)
-    api.user(context, payload)
+    return api.user(context, payload)
       .then(response => {
         context.commit("user", response.data)
       })
@@ -37,7 +37,7 @@ export const actions = {
   },
   getUsers: (context, payload) => {
     // console.log(context.state.data.user)
-    api.users(context, payload)
+    return api.users(context, payload)
       .then(response => {
         context.commit("setStoreData", response.data)
       })

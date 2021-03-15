@@ -24,7 +24,7 @@ export const mutations = {
 
 export const actions = {
   fetch(context, payload) {
-    api.fetchPages(context, payload)
+    return api.fetchPages(context, payload)
       .then(response => {
         context.commit("setPages", response.data)
       })
@@ -34,7 +34,7 @@ export const actions = {
   },
   new: (context, payload) => {
     // console.log(context.state.data.user)
-    api.pageNew(context, payload)
+    return api.pageNew(context, payload)
       .then(response => {
         if (response.status === 200) {
           context.commit("pageNew", response)
@@ -47,7 +47,7 @@ export const actions = {
   },
   edit: (context, payload) => {
     // console.log(context.state.data.user)
-    api.pageEdit(context, payload)
+    return api.pageEdit(context, payload)
       .then(response => {
         if (response.status === 200) {
           context.commit("pageEdit", response)
