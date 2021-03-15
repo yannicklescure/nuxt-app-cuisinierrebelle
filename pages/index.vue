@@ -16,7 +16,7 @@ export default {
     }
   },
   async asyncData(context) {
-    await context.store.dispatch('getStoreData')
+    // await context.store.dispatch('getStoreData')
     const bannerData = await context.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
     const bannerImage = bannerData.data.bannerImage
     return { bannerImage }
@@ -29,7 +29,7 @@ export default {
   // },
   methods: {
     ...mapActions({
-      // getStoreData: 'getStoreData',
+      getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
     }),
   },
@@ -43,7 +43,7 @@ export default {
     // }
   },
   async fetch () {
-    // await this.getStoreData()
+    await this.getStoreData()
     if (this.isAuthenticated) this.fetchNotifications()
   },
   mounted () {
