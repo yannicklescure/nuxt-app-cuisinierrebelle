@@ -21,15 +21,15 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Banner',
-  // props: ['bannerImage'],
+  props: ['bannerImage'],
   // data () {
   //   return {
   //     loading: true,
   //   }
   // },
-  async fetch () {
-    await this.getBannerImage()
-  },
+  // async fetch () {
+  //   await this.getBannerImage()
+  // },
   methods: {
     ...mapActions({
       getBannerImage: 'banner/getBannerImage'
@@ -38,7 +38,7 @@ export default {
   computed: {
     ...mapGetters({
       navbarHeight: 'navbarHeight',
-      bannerImage: 'banner/bannerImage',
+      // bannerImage: 'banner/bannerImage',
     }),
     viewport () {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
