@@ -29,7 +29,7 @@ export default {
       // componentKey: 0,
       // data: [],
       // busy: false,
-      // items: undefined
+      user: undefined
     }
   },
   // async asyncData(context) {
@@ -47,8 +47,15 @@ export default {
   //   return { user }
   // },
   async fetch () {
+    console.log(this.$route.params.slug)
+    const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
+    this.user = userData.data
+
+    this.$store.commit("users/user", { data: this.user })
+  },
+  created () {
     if (this.recipes.length == 0) this.getStoreData()
-    await this.getUser(this.$route.params.slug)
+    // await this.getUser(this.$route.params.slug)
   },
   head() {
     if (this.user) {
@@ -109,12 +116,12 @@ export default {
       // isMobile: 'isMobile',
       recipes: 'recipes/list',
       userRecipes: 'recipes/user',
-      usersFilter: 'users/filter',
+      // usersFilter: 'users/filter',
       users: 'users/list',
     }),
-    user () {
-      return this.usersFilter(this.$route.params.slug)
-    },
+    // user () {
+    //   return this.usersFilter(this.$route.params.slug)
+    // },
     items () {
       return this.userRecipes(this.$route.params.slug)
     }

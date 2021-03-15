@@ -40,9 +40,9 @@ export default {
   //   return { item }
   // },
   async fetch () {
+    console.log(this.$route.params.slug)
     this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
     this.$store.commit("recipes/recipe", { data: this.item })
-    console.log(this.$route.params.slug)
     // await this.fetchRecipe(this.$route.params.slug)
   },
   computed: {
