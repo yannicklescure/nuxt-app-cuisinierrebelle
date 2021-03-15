@@ -21,8 +21,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
 }

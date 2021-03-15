@@ -35,8 +35,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   registrationConfirmation: (context, payload) => {
@@ -46,8 +45,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   resendConfirmationInstructions: (context, payload) => {
@@ -56,8 +54,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   navbarHeight: (context, payload) => {

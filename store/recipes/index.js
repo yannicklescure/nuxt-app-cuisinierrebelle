@@ -117,8 +117,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   replyUnlike: (context, payload) => {
@@ -133,8 +132,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   replyEdit: (context, payload) => {
@@ -146,8 +144,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   replyDelete: (context, payload) => {
@@ -159,8 +156,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   replyNew: (context, payload) => {
@@ -172,8 +168,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   commentLike: (context, payload) => {
@@ -188,8 +183,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   commentUnlike: (context, payload) => {
@@ -204,8 +198,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   commentEdit: (context, payload) => {
@@ -217,8 +210,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   commentNew: (context, payload) => {
@@ -230,8 +222,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   commentDelete: (context, payload) => {
@@ -243,8 +234,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   bookmark: (context, payload) => {
@@ -260,8 +250,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   unbookmark: (context, payload) => {
@@ -276,8 +265,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   like: (context, payload) => {
@@ -293,8 +281,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   unlike: (context, payload) => {
@@ -310,8 +297,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   list: (context, payload) => {
@@ -321,8 +307,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   recipe: (context, payload) => {
@@ -333,8 +318,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   delete: (context, payload) => {
@@ -346,8 +330,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   edit: (context, payload) => {
@@ -359,8 +342,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   new: (context, payload) => {
@@ -371,8 +353,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   log: (context, payload) => {
@@ -383,8 +364,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
 }

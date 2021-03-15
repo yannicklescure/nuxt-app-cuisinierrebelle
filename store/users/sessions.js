@@ -154,8 +154,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   followers: (context, payload) => {
@@ -167,8 +166,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   follow: (context, payload) => {
@@ -181,8 +179,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   unfollow: (context, payload) => {
@@ -195,8 +192,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   clearUserSession: (context, payload) => {
@@ -214,7 +210,6 @@ export const actions = {
       })
       .catch(error => {
         console.log(error)
-        return error
       })
   },
   logOut: (context, payload) => {
@@ -229,8 +224,7 @@ export const actions = {
         }
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   refreshAccessToken: (context, payload) =>  {
@@ -241,8 +235,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
   notifications: (context, payload) => {
@@ -254,8 +247,7 @@ export const actions = {
         return response
       })
       .catch(error => {
-        // console.log(error)
-        return error
+        console.log(error)
       })
   },
 }
