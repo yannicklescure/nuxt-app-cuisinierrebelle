@@ -56,7 +56,7 @@ export default {
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      // fetchRecipe: 'recipes/recipe',
+      fetchRecipe: 'recipes/recipe',
     }),
     matchInfoBox () {
       this.dimension.width = this.$refs.recipe.clientWidth
