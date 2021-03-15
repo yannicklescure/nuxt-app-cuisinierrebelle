@@ -19,7 +19,7 @@ export const mutations = {
 export const actions = {
   list: (context, payload) => {
     // console.log(payload)
-    return api.notifications(context, payload)
+    api.notifications(context, payload)
       .then(response => {
         console.log(response)
         if (response.status === 200) context.commit("notifications", response.data)

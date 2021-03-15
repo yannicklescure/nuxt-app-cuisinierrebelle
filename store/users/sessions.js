@@ -147,7 +147,7 @@ export const mutations = {
 export const actions = {
   delete: (context, payload) => {
     console.log(context.state.data)
-    return api.userDelete(context, payload)
+    api.userDelete(context, payload)
       .then(response => {
         console.log(response)
         // if (response.status === 204 || response.status === 200) context.commit("logOut", {})
@@ -159,7 +159,7 @@ export const actions = {
   },
   followers: (context, payload) => {
     // console.log(payload)
-    return api.followers(context, payload)
+    api.followers(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         // if (response.status === 200) context.commit("followers", payload)
@@ -171,7 +171,7 @@ export const actions = {
   },
   follow: (context, payload) => {
     // console.log(payload)
-    return api.follow(context, payload)
+    api.follow(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
@@ -184,7 +184,7 @@ export const actions = {
   },
   unfollow: (context, payload) => {
     // console.log(payload)
-    return api.unfollow(context, payload)
+    api.unfollow(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
@@ -199,7 +199,7 @@ export const actions = {
     context.commit("logOut", payload)
   },
   logIn: (context, payload) => {
-    return api.login(context, payload)
+    api.login(context, payload)
       .then(response => {
         console.log(response)
         if (response.status === 200) {
@@ -213,7 +213,7 @@ export const actions = {
       })
   },
   logOut: (context, payload) => {
-    return api.logout(context, payload)
+    api.logout(context, payload)
       .then(response => {
         console.log(response)
         if (response && response.status === 200) {
@@ -228,7 +228,7 @@ export const actions = {
       })
   },
   refreshAccessToken: (context, payload) =>  {
-    return api.refreshAccessToken(context, payload)
+    api.refreshAccessToken(context, payload)
       .then(response => {
         // console.log(response.data.message)
         context.commit("refreshAccessToken", response)
@@ -240,7 +240,7 @@ export const actions = {
   },
   notifications: (context, payload) => {
     // console.log(payload)
-    return api.userNotifications(context, payload)
+    api.userNotifications(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) context.commit("notifications", response)

@@ -15,9 +15,10 @@ export const mutations = {
     // state.list = payload.data.users
   },
   user: (state, payload) => {
-    console.log(payload)
+    // console.log(payload)
     // payload.data.users.forEach(user => {
       const position = state.list.findIndex(item => item.id == payload.data.id)
+      console.log(position)
       if (position == -1) state.list.push(payload.data)
       else state.list[position] = payload.data
     // })
@@ -26,10 +27,9 @@ export const mutations = {
 export const actions = {
   getUser: (context, payload) => {
     // console.log(context.state.data.user)
-    return api.user(context, payload)
+    api.user(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("user", response.data)
-        return response
+        context.commit("user", response.data)
       })
       .catch(error => {
         console.log(error)
@@ -37,10 +37,9 @@ export const actions = {
   },
   getUsers: (context, payload) => {
     // console.log(context.state.data.user)
-    return api.users(context, payload)
+    api.users(context, payload)
       .then(response => {
-        if (response.status === 200) context.commit("setStoreData", response.data)
-        return response
+        context.commit("setStoreData", response.data)
       })
       .catch(error => {
         console.log(error)

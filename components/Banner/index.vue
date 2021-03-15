@@ -27,9 +27,9 @@ export default {
   //     loading: true,
   //   }
   // },
-  // async fetch () {
-    // await this.getBannerImage()
-  // },
+  async fetch () {
+    await this.getBannerImage()
+  },
   methods: {
     ...mapActions({
       getBannerImage: 'banner/getBannerImage'

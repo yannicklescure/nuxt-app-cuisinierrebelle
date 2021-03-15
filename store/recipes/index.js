@@ -107,7 +107,7 @@ export const mutations = {
 export const actions = {
   replyLike: (context, payload) => {
     // console.log(payload)
-    return api.replyLike(context, payload)
+    api.replyLike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) {
@@ -122,7 +122,7 @@ export const actions = {
   },
   replyUnlike: (context, payload) => {
     // console.log(payload)
-    return api.replyUnlike(context, payload)
+    api.replyUnlike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 204) {
@@ -137,7 +137,7 @@ export const actions = {
   },
   replyEdit: (context, payload) => {
     // console.log(payload)
-    return api.replyEdit(context, payload)
+    api.replyEdit(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) context.commit("replyEdit", response)
@@ -149,7 +149,7 @@ export const actions = {
   },
   replyDelete: (context, payload) => {
     // console.log(payload)
-    return api.replyDelete(context, payload)
+    api.replyDelete(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 204) context.commit("replyDelete", payload)
@@ -161,7 +161,7 @@ export const actions = {
   },
   replyNew: (context, payload) => {
     // console.log(payload)
-    return api.replyNew(context, payload)
+    api.replyNew(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) context.commit("replyNew", response)
@@ -173,7 +173,7 @@ export const actions = {
   },
   commentLike: (context, payload) => {
     // console.log(payload)
-    return api.commentLike(context, payload)
+    api.commentLike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) {
@@ -188,7 +188,7 @@ export const actions = {
   },
   commentUnlike: (context, payload) => {
     // console.log(payload)
-    return api.commentUnlike(context, payload)
+    api.commentUnlike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 204) {
@@ -203,7 +203,7 @@ export const actions = {
   },
   commentEdit: (context, payload) => {
     // console.log(payload)
-    return api.commentEdit(context, payload)
+    api.commentEdit(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) context.commit("commentEdit", response)
@@ -215,7 +215,7 @@ export const actions = {
   },
   commentNew: (context, payload) => {
     // console.log(payload)
-    return api.commentNew(context, payload)
+    api.commentNew(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) context.commit("commentNew", response)
@@ -227,7 +227,7 @@ export const actions = {
   },
   commentDelete: (context, payload) => {
     // console.log(payload)
-    return api.commentDelete(context, payload)
+    api.commentDelete(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 204) context.commit("commentDelete", payload)
@@ -239,7 +239,7 @@ export const actions = {
   },
   bookmark: (context, payload) => {
     // console.log(payload)
-    return api.bookmark(context, payload)
+    api.bookmark(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) {
@@ -255,7 +255,7 @@ export const actions = {
   },
   unbookmark: (context, payload) => {
     // console.log(payload)
-        return api.unbookmark(context, payload)
+        api.unbookmark(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 204) {
@@ -270,7 +270,7 @@ export const actions = {
   },
   like: (context, payload) => {
     // console.log(payload)
-    return api.like(context, payload)
+    api.like(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
@@ -286,7 +286,7 @@ export const actions = {
   },
   unlike: (context, payload) => {
     console.log(payload)
-    return api.unlike(context, payload)
+    api.unlike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
@@ -301,7 +301,7 @@ export const actions = {
       })
   },
   list: (context, payload) => {
-    return api.recipes(context, payload)
+    api.recipes(context, payload)
       .then(response => {
         if (response.status == 200) context.commit("list", response.data)
         return response
@@ -312,7 +312,7 @@ export const actions = {
   },
   recipe: (context, payload) => {
     // console.log(context.state.data.user)
-    return api.recipe(context, payload)
+    api.recipe(context, payload)
       .then(response => {
         if (response.status == 200) context.commit("recipe", response)
         return response
@@ -323,7 +323,7 @@ export const actions = {
   },
   delete: (context, payload) => {
     // console.log(context.state.data.user)
-    return api.recipeDelete(context, payload)
+    api.recipeDelete(context, payload)
       .then(response => {
         console.log(response)
         if (response.status == 200) context.commit("delete", response)
@@ -335,7 +335,7 @@ export const actions = {
   },
   edit: (context, payload) => {
     // console.log(context.state.data.user)
-    return api.recipeEdit(context, payload)
+    api.recipeEdit(context, payload)
       .then(response => {
         console.log(response)
         if (response.status == 200) context.commit("edit", response)
@@ -347,7 +347,7 @@ export const actions = {
   },
   new: (context, payload) => {
     // console.log(context.state.data.user)
-    return api.recipeNew(context, payload)
+    api.recipeNew(context, payload)
       .then(response => {
         if (response.status == 200) context.commit("new", response)
         return response
@@ -358,7 +358,7 @@ export const actions = {
   },
   log: (context, payload) => {
     console.log(context.state.data.user)
-    return api.recipeLog(context, payload)
+    api.recipeLog(context, payload)
       .then(response => {
         if (response.status == 200) context.commit("log", { data: payload, views: response.data.views })
         return response

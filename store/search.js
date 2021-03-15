@@ -14,7 +14,7 @@ export const mutations = {
 export const actions = {
   query: (context, payload) => {
     // console.log(payload)
-    return api.search(context, payload)
+    api.search(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) context.commit("recipes", response)

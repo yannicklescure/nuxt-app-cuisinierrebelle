@@ -33,15 +33,23 @@ export default {
   },
   async asyncData(context) {
     console.log(context)
-    const recipe = await context.store.dispatch('recipes/recipe', context.params.slug)
-    console.log(recipe.data)
-    const item = recipe.data
+    await context.store.dispatch('recipes/recipe', context.params.slug)
+    const recipeData = await context.$axios({
+      validateStatus: status => {
+        // console.log(status)
+        return status < 500; // Resolve only if the status code is less than 500
+      },
+      method: 'get',
+      url: `https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`,
+    })
+    console.log(recipeData)
+    const item = recipeData.data
     return { item }
   },
   async fetch () {
     console.log(this.$route.params.slug)
     if (this.items.length < 2) this.getStoreData()
-    // await this.fetchRecipe(this.$route.params.slug)
+    await this.fetchRecipe(this.$route.params.slug)
   },
   head() {
     if (this.item) {

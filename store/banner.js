@@ -30,7 +30,7 @@ export const mutations = {
 
 export const actions = {
   getBannerImage: (context, payload) => {
-    return api.fetchBannerImage(context, payload)
+    api.fetchBannerImage(context, payload)
       .then(response => {
         if (response.status === 200) context.commit("setBannerImage", response.data)
         return response

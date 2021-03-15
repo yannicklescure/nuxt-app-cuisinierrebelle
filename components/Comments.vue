@@ -57,27 +57,27 @@ export default {
       // forceRecomputeCounter: 0,
       componentKey: 0,
       show: [],
-      comments: [],
+      // comments: [],
     }
   },
   // components: {
   //   CommentForm,
   //   Comment,
   // },
-  props: ['item'],
+  // props: ['item'],
   computed: {
     ...mapGetters({
       // 'count',
       recipe: 'recipes/recipe',
       getComments: 'recipes/comments',
     }),
-    // item () {
-    //   return this.recipe(this.$route.params.slug)
-    // },
-    // comments () {
-    //   this.forceRecomputeCounter
-    //   return this.item.comments
-    // },
+    item () {
+      return this.recipe(this.$route.params.slug)
+    },
+    comments () {
+      // this.forceRecomputeCounter
+      return this.getComments(this.$route.params.slug)
+    },
     count () {
       if (this.comments) {
         const counts = this.comments.map(comment => comment.replies.length)
@@ -158,7 +158,7 @@ export default {
     }
   },
   async mounted () {
-    await this.loadComments()
+    // await this.loadComments()
     this.$nextTick(() => {
       this.initShow()
       this.$emit('commentsReady', true)
