@@ -8,11 +8,11 @@
 
       <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-      <LazyRecipeAds />
+<!--       <LazyRecipeAds />
 
       <LazyOtherRecipes />
 
-      <LazyComments :item="item" />
+      <LazyComments :item="item" /> -->
     </div>
   </div>
 </template>
