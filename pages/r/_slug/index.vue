@@ -1,18 +1,20 @@
 <template>
   <div ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
-    <SocialHead :item="item" />
-    <RecipeHead :item="item" />
-    <RecipeBody :item="item" :dimension="dimension" />
+    <div v-if="item">
+      <SocialHead :item="item" />
+      <RecipeHead :item="item" />
+      <RecipeBody :item="item" :dimension="dimension" />
 
-    <LazyYoutube :item="item" />
+      <LazyYoutube :item="item" />
 
-    <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
+      <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-    <LazyRecipeAds />
+      <LazyRecipeAds />
 
-    <LazyOtherRecipes />
+      <LazyOtherRecipes />
 
-    <LazyComments :item="item" />
+      <LazyComments :item="item" />
+    </div>
   </div>
 </template>
 
@@ -27,7 +29,8 @@ export default {
       dimension: {
         width: 0,
         height: 0
-      }
+      },
+      // item: {}
     }
   },
   // async asyncData(context) {
