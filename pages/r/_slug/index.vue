@@ -30,7 +30,6 @@ export default {
         width: 0,
         height: 0
       },
-      // item: {}
     }
   },
   // async asyncData(context) {
@@ -42,8 +41,8 @@ export default {
   async fetch () {
     // this.$store.commit("recipes/recipe", { data: this.item })
     console.log(this.$route.params.slug)
-    if (this.items.length < 2) this.getStoreData()
     await this.fetchRecipe(this.$route.params.slug)
+    if (this.items.length < 2) this.getStoreData()
   },
   computed: {
     ...mapGetters({
