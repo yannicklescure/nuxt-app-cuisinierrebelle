@@ -13,7 +13,7 @@
 
       <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-      <LazyRecipeAds />
+      <!-- <LazyRecipeAds /> -->
 
       <LazyOtherRecipes />
 
