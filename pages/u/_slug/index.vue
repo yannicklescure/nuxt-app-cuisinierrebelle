@@ -32,6 +32,16 @@ export default {
       // items: undefined
     }
   },
+  async asyncData(context) {
+    const item = await context.store.dispatch('users/getUser', context.params.slug)
+    console.log(item)
+    const user = item.data.data
+    return { user }
+  },
+  async fetch () {
+    if (this.recipes.length == 0) this.getStoreData()
+    // await this.getUser(this.$route.params.slug)
+  },
   head() {
     if (this.user) {
       return {
@@ -94,9 +104,9 @@ export default {
       usersFilter: 'users/filter',
       users: 'users/list',
     }),
-    user () {
-      return this.usersFilter(this.$route.params.slug)
-    },
+    // user () {
+    //   return this.usersFilter(this.$route.params.slug)
+    // },
     items () {
       return this.userRecipes(this.$route.params.slug)
     }
@@ -110,13 +120,6 @@ export default {
     // setItem () {
     //   this.items = this.recipes(this.$route.params.slug)
     // },
-  },
-  async asyncData(context) {
-    await context.store.dispatch('users/getUser', context.params.slug)
-  },
-  async fetch () {
-    if (this.recipes.length == 0) this.getStoreData()
-    // await this.getUser(this.$route.params.slug)
   },
   mounted () {
     this.show = true

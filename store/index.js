@@ -25,13 +25,14 @@ export const mutations = {
 export const actions = {
   async getStoreData (context, payload) {
     // console.log('get store data')
-    await api.getStoreData(context, payload)
+    return await api.getStoreData(context, payload)
       .then(response => {
         // console.log(response)
         context.commit("setStoreData", response.data)
         context.commit('recipes/setStoreData', response.data, { root: true })
         context.commit('users/setStoreData', response.data, { root: true })
         context.dispatch('users/authentication/isAuthenticated', null, { root: true })
+        return response
       })
       .catch(error => {
         // console.log(error)

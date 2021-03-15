@@ -18,7 +18,12 @@ export default {
   // middleware: 'authenticated',
   async asyncData(context) {
     console.log(context)
-    await context.store.dispatch('getStoreData')
+    const storeData = await context.store.dispatch('getStoreData')
+    console.log(storeData)
+    const banner = await context.store.dispatch('banner/getBannerImage')
+    console.log(banner)
+    // const bannerImage = banner.data.bannerImage
+    // return { bannerImage }
   },
   // async fetch () {
     // await this.getStoreData()

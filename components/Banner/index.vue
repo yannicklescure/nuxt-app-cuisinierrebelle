@@ -21,15 +21,15 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Banner',
-  // props: ['displayCards'],
+  // props: ['bannerImage'],
   // data () {
   //   return {
   //     loading: true,
   //   }
   // },
-  async fetch () {
-    await this.getBannerImage()
-  },
+  // async fetch () {
+    // await this.getBannerImage()
+  // },
   methods: {
     ...mapActions({
       getBannerImage: 'banner/getBannerImage'

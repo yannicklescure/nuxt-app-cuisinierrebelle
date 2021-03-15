@@ -33,6 +33,7 @@ export const actions = {
     return api.fetchBannerImage(context, payload)
       .then(response => {
         if (response.status === 200) context.commit("setBannerImage", response.data)
+        return response.data
       })
       .catch(error => {
         // console.log(error)

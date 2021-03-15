@@ -33,11 +33,14 @@ export default {
   },
   async asyncData(context) {
     console.log(context)
-    await context.store.dispatch('recipes/recipe', context.params.slug)
+    const recipe = await context.store.dispatch('recipes/recipe', context.params.slug)
+    console.log(recipe.data)
+    const item = recipe.data
+    return { item }
   },
   async fetch () {
     console.log(this.$route.params.slug)
-    if (this.items.length == 0) this.getStoreData()
+    if (this.items.length < 2) this.getStoreData()
     // await this.fetchRecipe(this.$route.params.slug)
   },
   head() {
@@ -105,9 +108,9 @@ export default {
       recipe: 'recipes/recipe',
       items: 'recipes/listSorted',
     }),
-    item () {
-      return this.recipe(this.$route.params.slug)
-    }
+    // item () {
+    //   return this.recipe(this.$route.params.slug)
+    // }
   },
   methods: {
     ...mapActions({
