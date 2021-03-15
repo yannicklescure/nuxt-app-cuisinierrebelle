@@ -22,7 +22,7 @@ export default {
     console.log(storeData)
     const banner = await context.store.dispatch('banner/getBannerImage')
     console.log(banner)
-    // const bannerImage = banner.data.bannerImage
+    // const bannerImage = banner.data.data.bannerImage
     // return { bannerImage }
   },
   // async fetch () {
