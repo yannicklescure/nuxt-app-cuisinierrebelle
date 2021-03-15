@@ -30,7 +30,7 @@ export default {
   // },
   methods: {
     ...mapActions({
-      getStoreData: 'getStoreData',
+      // getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
     }),
   },
@@ -43,7 +43,7 @@ export default {
     //   return this.isAuthenticated ? this.getItems : this.getItems.slice(0, 24)
     // }
   },
-  async created () {
+  created () {
     // if (this.items.length == 0) this.getStoreData()
     if (this.isAuthenticated) this.fetchNotifications()
   },

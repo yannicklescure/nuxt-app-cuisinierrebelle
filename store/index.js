@@ -23,9 +23,9 @@ export const mutations = {
 }
 
 export const actions = {
-  async getStoreData (context, payload) {
+  getStoreData (context, payload) {
     // console.log('get store data')
-    return await api.getStoreData(context, payload)
+    return api.getStoreData(context, payload)
       .then(response => {
         // console.log(response)
         context.commit("setStoreData", response.data)
