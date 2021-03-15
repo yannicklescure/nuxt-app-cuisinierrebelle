@@ -16,14 +16,14 @@ export default {
     }
   },
   // middleware: 'authenticated',
-  asyncData(context) {
-    console.log(context)
-    context.store.dispatch('getStoreData')
-    context.store.dispatch('banner/getBannerImage')
-  },
+  // asyncData(context) {
+  //   console.log(context)
+  //   context.store.dispatch('getStoreData')
+  //   context.store.dispatch('banner/getBannerImage')
+  // },
   methods: {
     ...mapActions({
-      // getStoreData: 'getStoreData',
+      getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
     }),
   },
@@ -36,7 +36,8 @@ export default {
     //   return this.isAuthenticated ? this.getItems : this.getItems.slice(0, 24)
     // }
   },
-  fetch () {
+  async fetch () {
+    await this.getStoreData()
     if (this.isAuthenticated) this.fetchNotifications()
   },
   mounted () {
