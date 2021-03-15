@@ -8,11 +8,11 @@
 
       <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-<!--       <LazyRecipeAds />
+      <LazyRecipeAds />
 
       <LazyOtherRecipes />
 
-      <LazyComments :item="item" /> -->
+      <LazyComments :item="item" />
     </div>
   </div>
 </template>
@@ -34,9 +34,7 @@ export default {
   async asyncData(context) {
     console.log(context)
     // await context.store.dispatch('recipes/recipe', context.params.slug)
-    const recipeData = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`)
-    console.log(recipeData)
-    const item = recipeData
+    const item = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`)
     return { item }
   },
   async fetch () {
@@ -46,59 +44,61 @@ export default {
     // await this.fetchRecipe(this.$route.params.slug)
   },
   head() {
-    return {
-      meta: [
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: this.item.recipe.title
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: this.item.recipe.description
-        },
-        {
-          hid: 'twitter:image',
-          name: 'twitter:image',
-          content: this.item.recipe.photo.openGraph.url
-        },
-        {
-          hid: 'twitter:image:alt',
-          name: 'twitter:image:alt',
-          content: this.item.recipe.title
-        },
-        {
-          hid: 'fb:app_id',
-          property: 'fb:app_id',
-          content: '570259036897585'
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.item.recipe.title
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: this.item.recipe.description
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: this.item.recipe.photo.openGraph.url
-        },
-        {
-          hid: 'og:image:secure_url',
-          property: 'og:image:secure_url',
-          content: this.item.recipe.photo.openGraph.url
-        },
-        {
-          hid: 'og:image:alt',
-          property: 'og:image:alt',
-          content: this.item.recipe.title
-        }
-      ]
+    if (this.item) {
+      return {
+        meta: [
+          {
+            hid: 'twitter:title',
+            name: 'twitter:title',
+            content: this.item.recipe.title
+          },
+          {
+            hid: 'twitter:description',
+            name: 'twitter:description',
+            content: this.item.recipe.description
+          },
+          {
+            hid: 'twitter:image',
+            name: 'twitter:image',
+            content: this.item.recipe.photo.openGraph.url
+          },
+          {
+            hid: 'twitter:image:alt',
+            name: 'twitter:image:alt',
+            content: this.item.recipe.title
+          },
+          {
+            hid: 'fb:app_id',
+            property: 'fb:app_id',
+            content: '570259036897585'
+          },
+          {
+            hid: 'og:title',
+            property: 'og:title',
+            content: this.item.recipe.title
+          },
+          {
+            hid: 'og:description',
+            property: 'og:description',
+            content: this.item.recipe.description
+          },
+          {
+            hid: 'og:image',
+            property: 'og:image',
+            content: this.item.recipe.photo.openGraph.url
+          },
+          {
+            hid: 'og:image:secure_url',
+            property: 'og:image:secure_url',
+            content: this.item.recipe.photo.openGraph.url
+          },
+          {
+            hid: 'og:image:alt',
+            property: 'og:image:alt',
+            content: this.item.recipe.title
+          }
+        ]
+      }
     }
   },
   computed: {
