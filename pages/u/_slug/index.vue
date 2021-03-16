@@ -1,6 +1,6 @@
 <template>
   <div v-if="show">
-    <div v-if="theUser">{{ theUser.name }}</div>
+    <div v-if="user">{{ user.name }}</div>
     <SocialHead
       v-if="user"
       :title="user.name"
@@ -43,8 +43,8 @@ export default {
     // await context.store.dispatch('users/getUser', context.params.slug)
     const userData = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`)
     console.log(userData)
-    const theUser = userData.data
-    return { theUser }
+    const user = userData.data
+    return { user }
   },
   // async fetch () {
   //   console.log(this.$route.params.slug)
@@ -66,9 +66,9 @@ export default {
       usersFilter: 'users/filter',
       users: 'users/list',
     }),
-    user () {
-      return this.usersFilter(this.$route.params.slug)
-    },
+    // user () {
+    //   return this.usersFilter(this.$route.params.slug)
+    // },
     items () {
       return this.userRecipes(this.$route.params.slug)
     }
