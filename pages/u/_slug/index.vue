@@ -1,8 +1,6 @@
 <template>
   <div v-if="show">
-    <div v-if="theUser">
-      {{ theUser.name }}
-    </div>
+    <div v-if="theUser">{{ theUser.name }}</div>
     <SocialHead
       v-if="user"
       :title="user.name"
@@ -43,16 +41,9 @@ export default {
   },
   async asyncData(context) {
     // await context.store.dispatch('users/getUser', context.params.slug)
-    const userData = await context.$axios({
-      validateStatus: status => {
-        // console.log(status)
-        return status < 500; // Resolve only if the status code is less than 500
-      },
-      method: 'get',
-      url: `https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`,
-    })
+    const userData = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`)
     console.log(userData)
-    const theUser = userData.data.data
+    const theUser = userData.data
     return { theUser }
   },
   // async fetch () {
@@ -63,8 +54,8 @@ export default {
   //   this.$store.commit("users/user", { data: this.user })
   // },
   async created () {
-    if (this.recipes.length == 0) this.getStoreData()
     await this.getUser(this.$route.params.slug)
+    if (this.recipes.length == 0) this.getStoreData()
   },
   computed: {
     ...mapGetters({

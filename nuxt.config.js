@@ -271,7 +271,7 @@ export default {
       // https://github.com/terser/terser#compress-options
       terserOptions: {
         compress: {
-          // drop_console: true
+          drop_console: true
         },
       },
     },
