@@ -34,19 +34,19 @@ export default {
         width: 0,
         height: 0
       },
-      item: false
+      item: undefined
     }
   },
-  // async asyncData(context) {
-  //   console.log(context)
-  //   // await context.store.dispatch('recipes/recipe', context.params.slug)
-  //   const item = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`)
-  //   return { item }
-  // },
+  async asyncData(context) {
+    console.log(context)
+    // await context.store.dispatch('recipes/recipe', context.params.slug)
+    const item = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`)
+    return { item }
+  },
   async fetch () {
     console.log(this.$route.params.slug)
-    this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
-    console.log(this.item)
+    // this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
+    // console.log(this.item)
     this.$store.commit("recipes/recipe", { data: this.item })
     // await this.fetchRecipe(this.$route.params.slug)
   },
@@ -83,6 +83,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.item)
     this.$nextTick(() => {
       this.matchInfoBox()
     })
