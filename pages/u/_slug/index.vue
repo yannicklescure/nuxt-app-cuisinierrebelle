@@ -1,6 +1,5 @@
 <template>
   <div v-if="show">
-    <div v-if="theUser">{{ theUser.name }}</div>
     <SocialHead
       v-if="user"
       :title="user.name"
@@ -46,13 +45,13 @@ export default {
   //   const theUser = userData.data
   //   return { theUser }
   // },
-  async fetch () {
-    console.log(this.$route.params.slug)
-    const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
-    this.theUser = userData.data
+  // async fetch () {
+  //   console.log(this.$route.params.slug)
+  //   const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
+  //   this.theUser = userData.data
 
-    // this.$store.commit("users/user", { data: this.user })
-  },
+  //   // this.$store.commit("users/user", { data: this.user })
+  // },
   async created () {
     await this.getUser(this.$route.params.slug)
     if (this.recipes.length == 0) this.getStoreData()
