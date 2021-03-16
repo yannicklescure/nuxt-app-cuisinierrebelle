@@ -34,13 +34,13 @@ export default {
         width: 0,
         height: 0
       },
-      item: undefined
+      // item: undefined
     }
   },
-  async asyncData(context) {
-    console.log(context)
+  async asyncData({ $axios, params }) {
+    // console.log(context)
     // await context.store.dispatch('recipes/recipe', context.params.slug)
-    const item = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ context.params.slug }`)
+    const item = await $axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ params.slug }`)
     return { item }
   },
   async fetch () {
