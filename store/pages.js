@@ -23,10 +23,11 @@ export const mutations = {
 }
 
 export const actions = {
-  fetch(context, payload) {
+  fetch: (context, payload) => {
     return api.fetchPages(context, payload)
       .then(response => {
         context.commit("setPages", response.data)
+        return response
       })
       .catch(error => {
         console.log(error)

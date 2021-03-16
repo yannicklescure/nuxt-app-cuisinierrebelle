@@ -58,7 +58,7 @@ export default {
   computed: {
     ...mapGetters({
       navbarHeight: 'navbarHeight',
-      storeImage: 'banner/bannerImage',
+      storeImage: 'banner/image',
     }),
     viewport () {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)

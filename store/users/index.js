@@ -25,21 +25,23 @@ export const mutations = {
   }
 }
 export const actions = {
-  getUser: async (context, payload) => {
+  getUser: (context, payload) => {
     // console.log(context.state.data.user)
-    return await api.user(context, payload)
+    return api.user(context, payload)
       .then(response => {
         context.commit("user", response.data)
+        return response
       })
       .catch(error => {
         console.log(error)
       })
   },
-  getUsers: async (context, payload) => {
+  getUsers: (context, payload) => {
     // console.log(context.state.data.user)
-    return await api.users(context, payload)
+    return api.users(context, payload)
       .then(response => {
         context.commit("setStoreData", response.data)
+        return response
       })
       .catch(error => {
         console.log(error)
