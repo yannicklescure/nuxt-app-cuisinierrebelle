@@ -124,11 +124,6 @@ export default {
         rel: 'canonical',
         href: `https://www.cuisinierrebelle.com`
       },
-      {
-        rel: "preconnect",
-        href: "https://api.cuisinierrebelle.com",
-        crossorigin: true
-      }
     ]
   },
 

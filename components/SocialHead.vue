@@ -20,6 +20,7 @@ export default {
   },
   head() {
     return {
+      title: `Cuisinier Rebelle | ${ this.title }`,
       meta: [
         {
           hid: 'twitter:title',
