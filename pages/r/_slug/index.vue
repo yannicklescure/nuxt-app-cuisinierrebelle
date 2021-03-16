@@ -34,7 +34,7 @@ export default {
         width: 0,
         height: 0
       },
-      // item: undefined
+      item: undefined
     }
   },
   // async asyncData({ $axios, params }) {
@@ -43,13 +43,13 @@ export default {
   //   const item = await $axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ params.slug }`)
   //   return { item }
   // },
-  // async fetch () {
-  //   console.log(this.$route.params.slug)
-  //   // this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
-  //   // console.log(this.item)
-  //   this.$store.commit("recipes/recipe", { data: this.item })
-  //   // await this.fetchRecipe(this.$route.params.slug)
-  // },
+  async fetch () {
+    console.log(this.$route.params.slug)
+    this.item = await fetch(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`).then((res) => res.json())
+    console.log(this.item)
+    this.$store.commit("recipes/recipe", { data: this.item })
+    // await this.fetchRecipe(this.$route.params.slug)
+  },
   computed: {
     ...mapGetters({
       currentUser: 'users/sessions/current',
@@ -57,14 +57,14 @@ export default {
       recipe: 'recipes/recipe',
       items: 'recipes/listSorted',
     }),
-    item () {
-      return this.recipe(this.$route.params.slug)
-    }
+    // item () {
+    //   return this.recipe(this.$route.params.slug)
+    // }
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      fetchRecipe: 'recipes/recipe',
+      // fetchRecipe: 'recipes/recipe',
     }),
     matchInfoBox () {
       this.dimension.width = this.$refs.recipe.clientWidth
@@ -72,7 +72,7 @@ export default {
     }
   },
   async created () {
-    await this.fetchRecipe(this.$route.params.slug)
+    // await this.fetchRecipe(this.$route.params.slug)
     if (this.items.length < 2) this.getStoreData()
     if (process.client) {
       window.addEventListener("resize", this.matchInfoBox);
@@ -84,7 +84,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.item)
     this.$nextTick(() => {
       this.matchInfoBox()
     })
