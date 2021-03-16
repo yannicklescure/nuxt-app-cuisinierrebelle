@@ -23,15 +23,17 @@ export const mutations = {
   set: (state, payload) => {
     // console.log(payload)
     // state.bannerImage = payload
-    state.image = payload.data.bannerImage
+    state.image = payload.bannerImage
   },
 }
 
 export const actions = {
-  getBannerImage: (context, payload) => {
-    return api.fetchBannerImage(context, payload)
+  async getBannerImage() {
+    console.log(this)
+    return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
       .then(response => {
-        if (response.status === 200) context.commit("set", response.data)
+        console.log(response)
+        this.commit('banner/set', response.data)
         return response
       })
       .catch(({ response: error }) => {

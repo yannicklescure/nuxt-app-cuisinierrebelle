@@ -134,6 +134,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/axios.js',
     '~/plugins/vuejs-dialog.client',
     { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vuex-cache.js', ssr: false },
@@ -164,6 +165,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   // Modules - https://www.cuisinierrebelle.com/docs/2.x/directory-structure/modules
   // If you use other modules, always declare the sitemap module at end of array
+
   modules: [
     '@nuxtjs/axios',
     'nuxt-brotli',
@@ -266,7 +268,7 @@ export default {
       // https://github.com/terser/terser#compress-options
       terserOptions: {
         compress: {
-          // drop_console: true
+          drop_console: true
         },
       },
     },
