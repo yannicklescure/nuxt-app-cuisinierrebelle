@@ -3,8 +3,8 @@ import axios from 'axios'
 const apiUrl = 'https://api.cuisinierrebelle.com'
 const version = 'v1'
 
-export const userNotifications = (context, payload) => {
-  return axios({
+export const userNotifications = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -21,8 +21,8 @@ export const userNotifications = (context, payload) => {
   })
 }
 
-export const notifications = (context, payload) => {
-  return axios({
+export const notifications = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -36,8 +36,8 @@ export const notifications = (context, payload) => {
   })
 }
 
-export const commentLike = (context, payload) => {
-  return axios({
+export const commentLike = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -54,8 +54,8 @@ export const commentLike = (context, payload) => {
   })
 }
 
-export const commentUnlike = (context, payload) => {
-  return axios({
+export const commentUnlike = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -72,8 +72,8 @@ export const commentUnlike = (context, payload) => {
   })
 }
 
-export const commentDelete = (context, payload) => {
-  return axios({
+export const commentDelete = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -90,8 +90,8 @@ export const commentDelete = (context, payload) => {
   })
 }
 
-export const replyLike = (context, payload) => {
-  return axios({
+export const replyLike = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -111,8 +111,8 @@ export const replyLike = (context, payload) => {
   })
 }
 
-export const replyUnlike = (context, payload) => {
-  return axios({
+export const replyUnlike = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -132,8 +132,8 @@ export const replyUnlike = (context, payload) => {
   })
 }
 
-export const replyEdit = (context, payload) => {
-  return axios({
+export const replyEdit = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -153,8 +153,8 @@ export const replyEdit = (context, payload) => {
   })
 }
 
-export const replyDelete = (context, payload) => {
-  return axios({
+export const replyDelete = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -171,8 +171,8 @@ export const replyDelete = (context, payload) => {
   })
 }
 
-export const replyNew = (context, payload) => {
-  return axios({
+export const replyNew = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -197,8 +197,8 @@ export const replyNew = (context, payload) => {
   })
 }
 
-export const commentEdit = (context, payload) => {
-  return axios({
+export const commentEdit = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -222,8 +222,8 @@ export const commentEdit = (context, payload) => {
   })
 }
 
-export const commentNew = (context, payload) => {
-  return axios({
+export const commentNew = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -247,8 +247,8 @@ export const commentNew = (context, payload) => {
   })
 }
 
-export const bookmark = (context, payload) => {
-  return axios({
+export const bookmark = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -270,8 +270,8 @@ export const bookmark = (context, payload) => {
   })
 }
 
-export const unbookmark = (context, payload) => {
-  return axios({
+export const unbookmark = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -286,8 +286,8 @@ export const unbookmark = (context, payload) => {
   })
 }
 
-export const follow = (context, payload) => {
-  return axios({
+export const follow = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -304,8 +304,8 @@ export const follow = (context, payload) => {
   })
 }
 
-export const unfollow = (context, payload) => {
-  return axios({
+export const unfollow = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -322,8 +322,8 @@ export const unfollow = (context, payload) => {
   })
 }
 
-export const like = (context, payload) => {
-  return axios({
+export const like = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -345,9 +345,9 @@ export const like = (context, payload) => {
   })
 }
 
-export const unlike = (context, payload) => {
+export const unlike = async (context, payload) => {
   console.log(context)
-  return axios({
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -362,8 +362,8 @@ export const unlike = (context, payload) => {
   })
 }
 
-export const followers = (context, payload) => {
-  return axios({
+export const followers = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -373,8 +373,8 @@ export const followers = (context, payload) => {
   })
 }
 
-export const recipe = (context, payload) => {
-  return axios({
+export const recipe = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -384,8 +384,8 @@ export const recipe = (context, payload) => {
   })
 }
 
-export const user = (context, payload) => {
-  return axios({
+export const user = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -395,8 +395,8 @@ export const user = (context, payload) => {
   })
 }
 
-export const users = (context, payload) => {
-  return axios({
+export const users = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -406,8 +406,8 @@ export const users = (context, payload) => {
   })
 }
 
-export const fetchBannerImage = (context, payload) => {
-  return axios({
+export const fetchBannerImage = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -417,8 +417,8 @@ export const fetchBannerImage = (context, payload) => {
   })
 }
 
-export const fetchPages = (context, payload) => {
-  return axios({
+export const fetchPages = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -428,14 +428,14 @@ export const fetchPages = (context, payload) => {
   })
 }
 
-export const pageNew = (context, payload) => {
+export const pageNew = async (context, payload) => {
   // console.log(payload)
   const FormData = require('form-data');
   const formData = new FormData();
   formData.append('title', payload.title);
   formData.append('content', payload.content);
   formData.append('locale', payload.locale);
-  return axios({
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -451,14 +451,14 @@ export const pageNew = (context, payload) => {
   })
 }
 
-export const pageEdit = (context, payload) => {
+export const pageEdit = async (context, payload) => {
   // console.log(payload)
   const FormData = require('form-data');
   const formData = new FormData();
   formData.append('title', payload.title);
   formData.append('content', payload.content);
   formData.append('locale', payload.locale);
-  return axios({
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -474,9 +474,9 @@ export const pageEdit = (context, payload) => {
   })
 }
 
-export const recipeDelete = (context, payload) => {
+export const recipeDelete = async (context, payload) => {
   // console.log(payload)
-  return axios({
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -491,7 +491,7 @@ export const recipeDelete = (context, payload) => {
   })
 }
 
-export const recipeEdit = (context, payload) => {
+export const recipeEdit = async (context, payload) => {
   // console.log(payload)
   const FormData = require('form-data');
   const formData = new FormData();
@@ -502,7 +502,7 @@ export const recipeEdit = (context, payload) => {
   formData.append('description', payload.description);
   formData.append('photo', payload.photo);
   formData.append('tag_list', payload.tagList);
-  return axios({
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -518,7 +518,7 @@ export const recipeEdit = (context, payload) => {
   })
 }
 
-export const recipeNew = (context, payload) => {
+export const recipeNew = async (context, payload) => {
   // console.log(payload)
   const FormData = require('form-data');
   const formData = new FormData();
@@ -529,7 +529,7 @@ export const recipeNew = (context, payload) => {
   formData.append('description', payload.description);
   formData.append('photo', payload.photo);
   formData.append('tag_list', payload.tagList);
-  return axios({
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -545,8 +545,8 @@ export const recipeNew = (context, payload) => {
   })
 }
 
-export const recipes = (context, payload) => {
-  return axios({
+export const recipes = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -556,10 +556,10 @@ export const recipes = (context, payload) => {
   })
 }
 
-export const recipeLog = (context, payload) => {
+export const recipeLog = async (context, payload) => {
   // console.log(context)
   // console.log($('meta[name="csrf-token"]').attr('content'))
-  return axios({
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -584,9 +584,9 @@ export const recipeLog = (context, payload) => {
   })
 }
 
-export const confirmRegistration = (context, payload) => {
+export const confirmRegistration = async (context, payload) => {
   // console.log(`${ apiUrl }/${ version }/search`)
-  return axios({
+  return await axios({
     method: 'get',
     url: `${ apiUrl }/${ version }/users/confirmation`,
     headers: {
@@ -598,8 +598,8 @@ export const confirmRegistration = (context, payload) => {
   })
 }
 
-export const signUp = (context, payload) => {
-  return axios({
+export const signUp = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -612,8 +612,8 @@ export const signUp = (context, payload) => {
   })
 }
 
-export const facebookLogin = (context, payload) => {
-  return axios({
+export const facebookLogin = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -627,8 +627,8 @@ export const facebookLogin = (context, payload) => {
   })
 }
 
-export const passwordResetVerification = (context, payload) => {
-  return axios({
+export const passwordResetVerification = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -641,8 +641,8 @@ export const passwordResetVerification = (context, payload) => {
   })
 }
 
-export const passwordReset = (context, payload) => {
-  return axios({
+export const passwordReset = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -655,10 +655,10 @@ export const passwordReset = (context, payload) => {
   })
 }
 
-export const requestPasswordReset = (context, payload) => {
+export const requestPasswordReset = async (context, payload) => {
   // console.log(user)
   // console.log($('meta[name="csrf-token"]').attr('content'))
-  return axios({
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -671,8 +671,8 @@ export const requestPasswordReset = (context, payload) => {
   })
 }
 
-export const resendConfirmationInstructions = (context, payload) => {
-  return axios({
+export const resendConfirmationInstructions = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -685,8 +685,8 @@ export const resendConfirmationInstructions = (context, payload) => {
   })
 }
 
-export const refreshAccessToken = (context, payload) => {
-  return axios({
+export const refreshAccessToken = async (context, payload) => {
+  return await axios({
     method: 'post',
     url: `${ apiUrl }/users/tokens`,
     headers: {
@@ -696,8 +696,8 @@ export const refreshAccessToken = (context, payload) => {
   })
 }
 
-export const login = (context, payload) => {
-  return axios({
+export const login = async (context, payload) => {
+  return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
@@ -710,8 +710,8 @@ export const login = (context, payload) => {
   })
 }
 
-export const logout = (context, payload) => {
-  return axios({
+export const logout = async (context, payload) => {
+  return await axios({
     method: 'delete',
     url: `${ apiUrl }/users/sign_out`,
     headers: {
@@ -723,8 +723,8 @@ export const logout = (context, payload) => {
   })
 }
 
-export const userDelete = (context, payload) => {
-  return axios({
+export const userDelete = async (context, payload) => {
+  return await axios({
     method: 'delete',
     // url: `${ apiUrl }/api/${ version }/users`,
     url: `${ apiUrl }/users/delete`,
@@ -738,9 +738,9 @@ export const userDelete = (context, payload) => {
   })
 }
 
-export const search = (context, payload) => {
+export const search = async (context, payload) => {
   // console.log(`${ apiUrl }/${ version }/search`)
-  return axios({
+  return await axios({
     method: 'get',
     url: `${ apiUrl }/${ version }/search`,
     params: {
@@ -749,9 +749,9 @@ export const search = (context, payload) => {
   })
 }
 
-export const getStoreData = (context, payload) => {
+export const getStoreData = async (context, payload) => {
   // console.log(`${ apiUrl }/${ version }/state`)
-  return axios({
+  return await axios({
     method: 'get',
     url: `${ apiUrl }/${ version }/state`,
     headers: {
@@ -761,8 +761,8 @@ export const getStoreData = (context, payload) => {
   })
 }
 
-export const isAuthenticated = (context, payload) => {
-  return axios({
+export const isAuthenticated = async (context, payload) => {
+  return await axios({
     method: 'get',
     url: `${ apiUrl }/${ version }/users/status`,
     headers: {
