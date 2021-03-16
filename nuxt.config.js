@@ -59,7 +59,7 @@ export default {
       {
         hid: 'twitter:url',
         name: 'twitter:url',
-        content: 'https://cuisinierrebelle.com'
+        content: 'https://www.cuisinierrebelle.com'
       },
       {
         hid: 'twitter:title',
@@ -89,7 +89,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://cuisinierrebelle.com'
+        content: 'https://www.cuisinierrebelle.com'
       },
       {
         hid: 'og:title',
@@ -122,7 +122,7 @@ export default {
       {
         hid: 'canonical',
         rel: 'canonical',
-        href: `https://cuisinierrebelle.com`
+        href: `https://www.cuisinierrebelle.com`
       },
       {
         rel: "preconnect",
@@ -167,7 +167,7 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  // Modules - https://cuisinierrebelle.com/docs/2.x/directory-structure/modules
+  // Modules - https://www.cuisinierrebelle.com/docs/2.x/directory-structure/modules
   // If you use other modules, always declare the sitemap module at end of array
   modules: [
     '@nuxtjs/axios',
@@ -204,7 +204,7 @@ export default {
   },
 
   sitemap: {
-    hostname: 'https://cuisinierrebelle.com',
+    hostname: 'https://www.cuisinierrebelle.com',
     trailingSlash: false,
     gzip: true,
     exclude: [
@@ -297,6 +297,6 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'https://cuisinierrebelle.com'
+    baseUrl: process.env.BASE_URL || 'https://www.cuisinierrebelle.com'
   }
 }
