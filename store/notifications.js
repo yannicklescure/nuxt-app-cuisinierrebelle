@@ -25,7 +25,7 @@ export const actions = {
         if (response.status === 200) context.commit("notifications", response.data)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },

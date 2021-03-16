@@ -20,7 +20,7 @@ export const actions = {
         if (response.status === 200) context.commit("recipes", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },

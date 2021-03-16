@@ -116,7 +116,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -131,7 +131,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -143,7 +143,7 @@ export const actions = {
         if (response.status === 200) context.commit("replyEdit", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -155,7 +155,7 @@ export const actions = {
         if (response.status === 204) context.commit("replyDelete", payload)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -167,7 +167,7 @@ export const actions = {
         if (response.status === 200) context.commit("replyNew", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -182,7 +182,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -197,7 +197,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -209,7 +209,7 @@ export const actions = {
         if (response.status === 200) context.commit("commentEdit", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -221,7 +221,7 @@ export const actions = {
         if (response.status === 200) context.commit("commentNew", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -233,7 +233,7 @@ export const actions = {
         if (response.status === 204) context.commit("commentDelete", payload)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -249,7 +249,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -264,7 +264,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -280,7 +280,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -296,7 +296,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -306,7 +306,7 @@ export const actions = {
         if (response.status == 200) context.commit("list", response.data)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -317,7 +317,7 @@ export const actions = {
         if (response.status == 200) context.commit("recipe", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -329,7 +329,7 @@ export const actions = {
         if (response.status == 200) context.commit("delete", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -341,7 +341,7 @@ export const actions = {
         if (response.status == 200) context.commit("edit", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -352,7 +352,7 @@ export const actions = {
         if (response.status == 200) context.commit("new", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -363,7 +363,7 @@ export const actions = {
         if (response.status == 200) context.commit("log", { data: payload, views: response.data.views })
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },

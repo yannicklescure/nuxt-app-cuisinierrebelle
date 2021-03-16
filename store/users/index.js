@@ -32,7 +32,7 @@ export const actions = {
         context.commit("user", response.data)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -43,7 +43,7 @@ export const actions = {
         context.commit("setStoreData", response.data)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },

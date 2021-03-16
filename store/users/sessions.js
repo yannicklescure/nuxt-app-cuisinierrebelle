@@ -153,7 +153,7 @@ export const actions = {
         // if (response.status === 204 || response.status === 200) context.commit("logOut", {})
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -165,7 +165,7 @@ export const actions = {
         // if (response.status === 200) context.commit("followers", payload)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -178,7 +178,7 @@ export const actions = {
         if (response.status === 200) context.commit("follow", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -191,7 +191,7 @@ export const actions = {
         if (response.status === 200) context.commit("unfollow", payload)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -208,7 +208,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -223,7 +223,7 @@ export const actions = {
           return response
         }
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -234,7 +234,7 @@ export const actions = {
         context.commit("refreshAccessToken", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -246,7 +246,7 @@ export const actions = {
         if (response.status === 200) context.commit("notifications", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },

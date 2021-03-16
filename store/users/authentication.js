@@ -24,7 +24,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -34,7 +34,7 @@ export const actions = {
         // if (response.status === 200) context.commit("logIn", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -44,7 +44,7 @@ export const actions = {
         // if (response.status === 200) context.commit("logIn", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -54,7 +54,7 @@ export const actions = {
         // if (response.status === 200) context.commit("logIn", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -69,7 +69,7 @@ export const actions = {
         // if (response.status === 200) context.commit("SIGN_UP", response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },

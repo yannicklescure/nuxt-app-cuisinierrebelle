@@ -29,7 +29,7 @@ export const actions = {
         context.commit("setPages", response.data)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -42,7 +42,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -55,7 +55,7 @@ export const actions = {
         }
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },

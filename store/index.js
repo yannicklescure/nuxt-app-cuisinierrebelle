@@ -34,7 +34,7 @@ export const actions = {
         context.dispatch('users/authentication/isAuthenticated', null, { root: true })
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -44,7 +44,7 @@ export const actions = {
         console.log(response)
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
@@ -53,7 +53,7 @@ export const actions = {
       .then(response => {
         return response
       })
-      .catch(error => {
+      .catch(({ response: error }) => {
         console.log(error)
       })
   },
