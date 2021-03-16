@@ -34,7 +34,7 @@ export default {
   // async asyncData(context) {
   //   await context.store.dispatch('pages/fetch', context.params.slug)
   // },
-  async fetch () {
+  async created () {
     await this.fetchItems()
   },
   methods: {

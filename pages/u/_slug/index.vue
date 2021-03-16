@@ -1,5 +1,14 @@
 <template>
   <div v-if="show">
+    <div v-if="theUser">
+      {{ theUser.name }}
+    </div>
+    <SocialHead
+      v-if="user"
+      :title="user.name"
+      :description="'Partagez vos recettes dès maintenant en toute simplicité'"
+      :image="user.image.openGraph.url"
+    />
     <UsersBanner v-if="user" :user="user" />
     <div class="container">
       <div class="row">
@@ -29,86 +38,33 @@ export default {
       // componentKey: 0,
       // data: [],
       // busy: false,
-      user: undefined
+      // user: undefined
     }
   },
-  // async asyncData(context) {
-  //   // await context.store.dispatch('users/getUser', context.params.slug)
-  //   const userData = await context.$axios({
-  //     validateStatus: status => {
-  //       // console.log(status)
-  //       return status < 500; // Resolve only if the status code is less than 500
-  //     },
-  //     method: 'get',
-  //     url: `https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`,
-  //   })
-  //   console.log(userData)
-  //   const user = userData.data.data
-  //   return { user }
-  // },
-  async fetch () {
-    console.log(this.$route.params.slug)
-    const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
-    this.user = userData.data
+  async asyncData(context) {
+    // await context.store.dispatch('users/getUser', context.params.slug)
+    const userData = await context.$axios({
+      validateStatus: status => {
+        // console.log(status)
+        return status < 500; // Resolve only if the status code is less than 500
+      },
+      method: 'get',
+      url: `https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`,
+    })
+    console.log(userData)
+    const theUser = userData.data.data
+    return { theUser }
+  },
+  // async fetch () {
+  //   console.log(this.$route.params.slug)
+  //   const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
+  //   this.user = userData.data
 
-    this.$store.commit("users/user", { data: this.user })
-  },
-  created () {
+  //   this.$store.commit("users/user", { data: this.user })
+  // },
+  async created () {
     if (this.recipes.length == 0) this.getStoreData()
-    // await this.getUser(this.$route.params.slug)
-  },
-  head() {
-    if (this.user) {
-      return {
-        meta: [
-          {
-            hid: 'twitter:title',
-            name: 'twitter:title',
-            content: this.user.name
-          },
-          {
-            hid: 'twitter:description',
-            name: 'twitter:description',
-            content: 'Partagez vos recettes dès maintenant en toute simplicité'
-          },
-          {
-            hid: 'twitter:image',
-            name: 'twitter:image',
-            content: this.user.image.openGraph.url
-          },
-          {
-            hid: 'twitter:image:alt',
-            name: 'twitter:image:alt',
-            content: this.user.name
-          },
-          {
-            hid: 'og:title',
-            property: 'og:title',
-            content: this.user.name
-          },
-          {
-            hid: 'og:description',
-            property: 'og:description',
-            content: 'Partagez vos recettes dès maintenant en toute simplicité'
-          },
-          {
-            hid: 'og:image',
-            property: 'og:image',
-            content: this.user.image.openGraph.url
-          },
-          {
-            hid: 'og:image:secure_url',
-            property: 'og:image:secure_url',
-            content: this.user.image.openGraph.url
-          },
-          {
-            hid: 'og:image:alt',
-            property: 'og:image:alt',
-            content: this.user.name
-          }
-        ]
-      }
-    }
+    await this.getUser(this.$route.params.slug)
   },
   computed: {
     ...mapGetters({
@@ -116,12 +72,12 @@ export default {
       // isMobile: 'isMobile',
       recipes: 'recipes/list',
       userRecipes: 'recipes/user',
-      // usersFilter: 'users/filter',
+      usersFilter: 'users/filter',
       users: 'users/list',
     }),
-    // user () {
-    //   return this.usersFilter(this.$route.params.slug)
-    // },
+    user () {
+      return this.usersFilter(this.$route.params.slug)
+    },
     items () {
       return this.userRecipes(this.$route.params.slug)
     }
