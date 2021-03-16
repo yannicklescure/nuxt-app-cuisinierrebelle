@@ -1,6 +1,6 @@
 <template>
   <div v-if="show">
-    <span>{{ theUser.name }}</span>
+    <!-- <span>{{ theUser.name }}</span> -->
     <SocialHead
       v-if="user"
       :title="user.name"
@@ -42,23 +42,24 @@ export default {
     }
   },
   // async asyncData(context) {
-  //   // await context.store.dispatch('users/getUser', context.params.slug)
   //   const userData = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`)
   //   console.log(userData)
   //   const theUser = userData.data
   //   return { theUser }
   // },
   async fetch () {
-    console.log(this.$route.params.slug)
-    const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
-    this.theUser = userData.data
+    // await this.$store.dispatch('users/getUser', this.$route.params.slug)
+    await this.getUser(this.$route.params.slug)
+    if (this.recipes.length == 0) await this.getStoreData()
+    // console.log(this.$route.params.slug)
+    // const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
+    // this.theUser = userData.data
 
     // this.$store.commit("users/user", { data: this.user })
   },
-  async created () {
-    await this.getUser(this.$route.params.slug)
-    if (this.recipes.length == 0) this.getStoreData()
-  },
+  // async created () {
+    // await this.getUser(this.$route.params.slug)
+  // },
   computed: {
     ...mapGetters({
       // currentUser: 'users/sessions/current',
