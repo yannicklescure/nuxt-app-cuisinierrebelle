@@ -37,7 +37,7 @@ export default {
         width: 0,
         height: 0
       },
-      item: undefined,
+      // item: undefined,
     }
   },
   // async asyncData({ $axios, params }) {
@@ -48,27 +48,27 @@ export default {
   // },
   async fetch () {
     console.log(this.$route.params.slug)
-    this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
-    console.log(this.item)
-    this.$store.commit("recipes/recipe", { data: this.item })
-    // await this.fetchRecipe(this.$route.params.slug)
+    // this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
+    // console.log(this.item)
+    // this.$store.commit("recipes/recipe", { data: this.item })
+    await this.fetchRecipe(this.$route.params.slug)
   },
   computed: {
     ...mapGetters({
       // currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
-      // recipe: 'recipes/recipe',
+      recipe: 'recipes/recipe',
       // items: 'recipes/listSorted',
     }),
-    // item () {
-    //   return this.recipe(this.$route.params.slug)
-    // }
+    item () {
+      return this.recipe(this.$route.params.slug)
+    }
   },
   methods: {
-    // ...mapActions({
+    ...mapActions({
       // getStoreData: 'getStoreData',
-      // fetchRecipe: 'recipes/recipe',
-    // }),
+      fetchRecipe: 'recipes/recipe',
+    }),
     matchInfoBox () {
       this.dimension.width = this.$refs.recipe.clientWidth
       this.dimension.height = parseInt(this.dimension.width * 2 / 3)

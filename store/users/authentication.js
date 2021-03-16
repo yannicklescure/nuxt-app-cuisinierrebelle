@@ -11,8 +11,8 @@ export const mutations = {
 }
 
 export const actions = {
-  isAuthenticated: (context, payload) => {
-    return api.isAuthenticated(context, payload)
+  isAuthenticated: async (context, payload) => {
+    return await api.isAuthenticated(context, payload)
       .then(response => {
         console.log(response)
         context.commit("isAuthenticated", response)
@@ -28,8 +28,8 @@ export const actions = {
         console.log(error)
       })
   },
-  requestPasswordReset: (context, payload) => {
-    return api.requestPasswordReset(context, payload)
+  requestPasswordReset: async (context, payload) => {
+    return await api.requestPasswordReset(context, payload)
       .then(response => {
         // if (response.status === 200) context.commit("logIn", response)
         return response
@@ -38,8 +38,8 @@ export const actions = {
         console.log(error)
       })
   },
-  passwordReset: (context, payload) => {
-    return api.passwordReset(context, payload)
+  passwordReset: async (context, payload) => {
+    return await api.passwordReset(context, payload)
       .then(response => {
         // if (response.status === 200) context.commit("logIn", response)
         return response
@@ -48,8 +48,8 @@ export const actions = {
         console.log(error)
       })
   },
-  passwordResetVerification: (context, payload) => {
-    return api.passwordResetVerification(context, payload)
+  passwordResetVerification: async (context, payload) => {
+    return await api.passwordResetVerification(context, payload)
       .then(response => {
         // if (response.status === 200) context.commit("logIn", response)
         return response
@@ -58,9 +58,9 @@ export const actions = {
         console.log(error)
       })
   },
-  signUp: (context, payload) => {
+  signUp: async (context, payload) => {
     console.log(context.state)
-    return api.signUp(context, payload)
+    return await api.signUp(context, payload)
       .then(response => {
         console.log(response)
         // const token = response.headers.authorization.split('Bearer ')[1]

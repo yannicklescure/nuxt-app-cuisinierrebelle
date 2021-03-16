@@ -145,9 +145,9 @@ export const mutations = {
 }
 
 export const actions = {
-  delete: (context, payload) => {
+  delete: async (context, payload) => {
     console.log(context.state.data)
-    return api.userDelete(context, payload)
+    return await api.userDelete(context, payload)
       .then(response => {
         console.log(response)
         // if (response.status === 204 || response.status === 200) context.commit("logOut", {})
@@ -157,9 +157,9 @@ export const actions = {
         console.log(error)
       })
   },
-  followers: (context, payload) => {
+  followers: async (context, payload) => {
     // console.log(payload)
-    return api.followers(context, payload)
+    return await api.followers(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         // if (response.status === 200) context.commit("followers", payload)
@@ -169,9 +169,9 @@ export const actions = {
         console.log(error)
       })
   },
-  follow: (context, payload) => {
+  follow: async (context, payload) => {
     // console.log(payload)
-    return api.follow(context, payload)
+    return await api.follow(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
@@ -182,9 +182,9 @@ export const actions = {
         console.log(error)
       })
   },
-  unfollow: (context, payload) => {
+  unfollow: async (context, payload) => {
     // console.log(payload)
-    return api.unfollow(context, payload)
+    return await api.unfollow(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
@@ -195,11 +195,11 @@ export const actions = {
         console.log(error)
       })
   },
-  clearUserSession: (context, payload) => {
+  clearUserSession: async (context, payload) => {
     context.commit("logOut", payload)
   },
-  logIn: (context, payload) => {
-    return api.login(context, payload)
+  logIn: async (context, payload) => {
+    return await api.login(context, payload)
       .then(response => {
         console.log(response)
         if (response.status === 200) {
@@ -212,8 +212,8 @@ export const actions = {
         console.log(error)
       })
   },
-  logOut: (context, payload) => {
-    return api.logout(context, payload)
+  logOut: async (context, payload) => {
+    return await api.logout(context, payload)
       .then(response => {
         console.log(response)
         if (response && response.status === 200) {
@@ -227,8 +227,8 @@ export const actions = {
         console.log(error)
       })
   },
-  refreshAccessToken: (context, payload) =>  {
-    return api.refreshAccessToken(context, payload)
+  refreshAccessToken: async (context, payload) =>  {
+    return await api.refreshAccessToken(context, payload)
       .then(response => {
         // console.log(response.data.message)
         context.commit("refreshAccessToken", response)
@@ -238,9 +238,9 @@ export const actions = {
         console.log(error)
       })
   },
-  notifications: (context, payload) => {
+  notifications: async (context, payload) => {
     // console.log(payload)
-    return api.userNotifications(context, payload)
+    return await api.userNotifications(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
         if (response.status === 200) context.commit("notifications", response)
