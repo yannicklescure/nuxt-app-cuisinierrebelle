@@ -23,7 +23,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async getStoreData (context, payload) {
+  getStoreData: async (context, payload) => {
     // console.log('get store data')
     return await api.getStoreData(context, payload)
       .then(response => {
@@ -38,8 +38,8 @@ export const actions = {
         console.log(error)
       })
   },
-  registrationConfirmation: (context, payload) => {
-    return api.confirmRegistration(context, payload)
+  registrationConfirmation: async (context, payload) => {
+    return await api.confirmRegistration(context, payload)
       .then(response => {
         console.log(response)
         return response
@@ -48,8 +48,8 @@ export const actions = {
         console.log(error)
       })
   },
-  resendConfirmationInstructions: (context, payload) => {
-    return api.resendConfirmationInstructions(context, payload)
+  resendConfirmationInstructions: async (context, payload) => {
+    return await api.resendConfirmationInstructions(context, payload)
       .then(response => {
         return response
       })

@@ -14,12 +14,6 @@ export const state = () => ({
   },
 })
 
-export const getters = {
-  bannerImage (state) {
-    return state.image
-  },
-}
-
 export const mutations = {
   setBannerImage: (state, payload) => {
     // console.log(payload)
@@ -34,8 +28,8 @@ export const mutations = {
 }
 
 export const actions = {
-  getBannerImage: (context, payload) => {
-    return api.fetchBannerImage(context, payload)
+  getBannerImage: async (context, payload) => {
+    return await api.fetchBannerImage(context, payload)
       .then(response => {
         if (response.status === 200) context.commit("set", response.data)
         return response
@@ -43,5 +37,11 @@ export const actions = {
       .catch(error => {
         console.log(error)
       })
+  },
+}
+
+export const getters = {
+  bannerImage (state) {
+    return state.image
   },
 }
