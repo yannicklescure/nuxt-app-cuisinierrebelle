@@ -5,13 +5,13 @@ export const state = () => ({
 })
 
 export const mutations = {
-  isAuthenticated: (state, payload) => {
+  isAuthenticated (state, payload) {
     state.isAuthenticated = payload.data.isAuthenticated
   },
 }
 
 export const actions = {
-  isAuthenticated: (context, payload) => {
+  isAuthenticated (context, payload) {
     return api.isAuthenticated(context, payload)
       .then(response => {
         console.log(response)
@@ -28,7 +28,7 @@ export const actions = {
         console.log(error)
       })
   },
-  requestPasswordReset: (context, payload) => {
+  requestPasswordReset (context, payload) {
     return api.requestPasswordReset(context, payload)
       .then(response => {
         // if (response.status === 200) context.commit("logIn", response)
@@ -38,7 +38,7 @@ export const actions = {
         console.log(error)
       })
   },
-  passwordReset: (context, payload) => {
+  passwordReset (context, payload) {
     return api.passwordReset(context, payload)
       .then(response => {
         // if (response.status === 200) context.commit("logIn", response)
@@ -48,7 +48,7 @@ export const actions = {
         console.log(error)
       })
   },
-  passwordResetVerification: (context, payload) => {
+  passwordResetVerification (context, payload) {
     return api.passwordResetVerification(context, payload)
       .then(response => {
         // if (response.status === 200) context.commit("logIn", response)
@@ -58,7 +58,7 @@ export const actions = {
         console.log(error)
       })
   },
-  signUp: (context, payload) => {
+  signUp (context, payload) {
     console.log(context.state)
     return api.signUp(context, payload)
       .then(response => {

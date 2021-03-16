@@ -5,13 +5,13 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setPages: (state, payload) => {
+  setPages (state, payload) {
     state.list = payload.data.pages
   },
-  pageNew: (state, payload) => {
+  pageNew (state, payload) {
     state.list.push(payload.data)
   },
-  pageEdit: (state, payload) => {
+  pageEdit (state, payload) {
     const page = state.list.filter(r => r.id === payload.data.id)[0]
     // console.log(page)
     if (page) {
@@ -23,17 +23,17 @@ export const mutations = {
 }
 
 export const actions = {
-  fetch: (context, payload) => {
-    return api.fetchPages(context, payload)
+  async fetch () {
+    return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/pages')
       .then(response => {
-        context.commit("setPages", response.data)
+        this.commit("pages/setPages", response)
         return response
       })
       .catch(({ response: error }) => {
         console.log(error)
       })
   },
-  new: (context, payload) => {
+  new (context, payload) {
     // console.log(context.state.data.user)
     return api.pageNew(context, payload)
       .then(response => {
@@ -46,18 +46,31 @@ export const actions = {
         console.log(error)
       })
   },
-  edit: (context, payload) => {
-    // console.log(context.state.data.user)
-    return api.pageEdit(context, payload)
-      .then(response => {
-        if (response.status === 200) {
-          context.commit("pageEdit", response)
-        }
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async edit (context, payload) {
+    console.log(this)
+    console.log(context)
+    console.log(payload)
+    const FormData = require('form-data');
+    const formData = new FormData();
+    formData.append('title', payload.title);
+    formData.append('content', payload.content);
+    formData.append('locale', payload.locale);
+    console.log(formData)
+    // this.$axios.setToken(this.state.users.sessions.authorization.authorizationToken, 'Bearer')
+    this.$axios.setHeader('Authorization', `Bearer ${ this.state.users.sessions.authorization.authorizationToken }`)
+    this.$axios.setHeader('Content-Type', 'multipart/form-data')
+    return await this.$axios.$patch(`https://api.cuisinierrebelle.com/v1/pages/${ payload.id }`, formData, {})
+    .then(response => {
+      console.log(response)
+      if (response.status === 204) {
+        this.commit("pageEdit", response)
+        this.$axios.setHeader('Content-Type', false)
+      }
+      return response
+    })
+    .catch(({ response: error }) => {
+      console.log(error)
+    })
   },
 }
 

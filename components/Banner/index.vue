@@ -6,49 +6,18 @@
       class="banner-background banner-height d-flex flex-column w-100 justify-content-between bg-light"
     >
       <BannerCta />
-      <LazyBannerUnsplash :image="image" />
+      <BannerUnsplash :image="image" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-// import { mapGetters } from 'vuex'
-// import { fetchBannerPicture } from '../api'
-// import Unsplash, { toJson } from 'unsplash-js';
-// const unsplash = new Unsplash({ accessKey: 'nHSH2XMCvdAgrKbLMHs1M1u7vWUW8vxEmyHvDsTOLTs' });
-// import { unsplash, getBannerPicture } from '../util/unsplash'
 
 export default {
   name: 'Banner',
-  // props: ['bannerImage'],
-  // data () {
-  //   return {
-  //     bannerImage: {
-  //       id: null,
-  //       link: {
-  //         download: null,
-  //       },
-  //       url: null,
-  //       user: {
-  //         name: null,
-  //         username: null
-  //       }
-  //     },
-  //   }
-  // },
   async fetch() {
     await this.getBannerImage()
-    // if (this.storeImage.id == null) {
-      // const bannerData = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
-      // console.log(bannerData)
-      // this.bannerImage = bannerData.data.bannerImage
-      // this.$store.commit("banner/setBannerImage", this.bannerImage)
-    // }
-    // else {
-    //   console.log(this.storeImage)
-    //   this.bannerImage = this.storeImage
-    // }
   },
   methods: {
     ...mapActions({
@@ -75,17 +44,5 @@ export default {
       return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
   },
-  // async created () {
-  //   await this.getBannerImage()
-  // },
-  // mounted () {
-  //   this.$nextTick(() => {
-  //     // this.$refs.banner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('${ this.imageUrl }')`
-  //     // this.setImage()
-  //     // const preload = document.querySelector('#banner-skeleton')
-  //     // if (preload) preload.replaceWith(this.$refs.banner)
-  //     // if (preload) preload.insertAdjacentHTML('afterbegin', this.$refs.banner.innerHTML)
-  //   })
-  // }
 }
 </script>

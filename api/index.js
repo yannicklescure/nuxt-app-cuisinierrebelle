@@ -406,28 +406,6 @@ export const users = async (context, payload) => {
   })
 }
 
-export const fetchBannerImage = async (context, payload) => {
-  return await axios({
-    validateStatus: status => {
-      // console.log(status)
-      return status < 500; // Resolve only if the status code is less than 500
-    },
-    method: 'get',
-    url: `${ apiUrl }/${ version }/unsplash_images`,
-  })
-}
-
-export const fetchPages = async (context, payload) => {
-  return await axios({
-    validateStatus: status => {
-      // console.log(status)
-      return status < 500; // Resolve only if the status code is less than 500
-    },
-    method: 'get',
-    url: `${ apiUrl }/${ version }/pages`,
-  })
-}
-
 export const pageNew = async (context, payload) => {
   // console.log(payload)
   const FormData = require('form-data');

@@ -15,15 +15,10 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setBannerImage: (state, payload) => {
+  set (state, payload) {
     // console.log(payload)
     // state.bannerImage = payload
-    state.image = payload
-  },
-  set: (state, payload) => {
-    // console.log(payload)
-    // state.bannerImage = payload
-    state.image = payload.bannerImage
+    state.image = payload.data.bannerImage
   },
 }
 
@@ -33,7 +28,7 @@ export const actions = {
     return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
       .then(response => {
         console.log(response)
-        this.commit('banner/set', response.data)
+        this.commit('banner/set', response)
         return response
       })
       .catch(({ response: error }) => {

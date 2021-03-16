@@ -6,13 +6,13 @@ export const state = () => ({
 })
 
 export const mutations = {
-  recipes: (state, payload) => {
+  recipes (state, payload) {
     state.recipes = payload.data.recipes
   },
 }
 
 export const actions = {
-  query: (context, payload) => {
+  query (context, payload) {
     // console.log(payload)
     return api.search(context, payload)
       .then(response => {

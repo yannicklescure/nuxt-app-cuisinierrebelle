@@ -12,18 +12,18 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setStoreData: (state, payload) => {
+  setStoreData (state, payload) {
     state.lastUpdated = payload.data.lastUpdated
     state.timestamp = payload.data.timestamp
   },
-  navbarHeight: (state, payload) => {
+  navbarHeight (state, payload) {
     state.render.navbarHeight = payload
     // context.commit("navbarHeight", navbarHeight)
   },
 }
 
 export const actions = {
-  getStoreData: (context, payload) => {
+  getStoreData (context, payload) {
     // console.log('get store data')
     return api.getStoreData(context, payload)
       .then(response => {
@@ -38,7 +38,7 @@ export const actions = {
         console.log(error)
       })
   },
-  registrationConfirmation: (context, payload) => {
+  registrationConfirmation (context, payload) {
     return api.confirmRegistration(context, payload)
       .then(response => {
         console.log(response)
@@ -48,7 +48,7 @@ export const actions = {
         console.log(error)
       })
   },
-  resendConfirmationInstructions: (context, payload) => {
+  resendConfirmationInstructions (context, payload) {
     return api.resendConfirmationInstructions(context, payload)
       .then(response => {
         return response
@@ -57,7 +57,7 @@ export const actions = {
         console.log(error)
       })
   },
-  navbarHeight: (context, payload) => {
+  navbarHeight (context, payload) {
     context.commit("navbarHeight", payload)
   },
 }

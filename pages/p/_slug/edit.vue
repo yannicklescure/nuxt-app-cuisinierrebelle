@@ -113,7 +113,7 @@ export default {
       }
       return true
     },
-    postPageEdit () {
+    async postPageEdit () {
       const checkForm = this.checkForm()
       if (checkForm) {
         // console.log(this)
@@ -125,7 +125,7 @@ export default {
           content: this.content,
         }
         console.log(payload)
-        this.$store.dispatch('pages/edit', payload)
+        await this.$store.dispatch('pages/edit', payload)
           .then(response => {
             console.log(response)
             if (response.status === 200) {

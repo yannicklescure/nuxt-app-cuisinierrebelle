@@ -5,10 +5,10 @@ export const state = () => ({
 })
 
 export const mutations = {
-  logOut: (state, payload) => {
+  logOut (state, payload) {
     state.list = []
   },
-  notifications: (state, payload) => {
+  notifications (state, payload) {
     state.list = payload.data
     // for (const [key, value] of Object.entries(payload.data)) {
     //   state.list[key] = value
@@ -17,7 +17,7 @@ export const mutations = {
 }
 
 export const actions = {
-  list: (context, payload) => {
+  list (context, payload) {
     // console.log(payload)
     return api.notifications(context, payload)
       .then(response => {

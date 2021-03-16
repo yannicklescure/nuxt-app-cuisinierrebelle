@@ -23,22 +23,22 @@ export const state = () => ({
 })
 
 export const mutations = {
-  replyLike: (state, payload) => {
+  replyLike (state, payload) {
     state.user.replyLikes.push(payload.reply_id)
   },
-  replyUnlike: (state, payload) => {
+  replyUnlike (state, payload) {
     const position = state.user.replyLikes.findIndex(item => item === payload.reply_id)
     state.user.replyLikes.splice(position, 1)
   },
-  commentLike: (state, payload) => {
+  commentLike (state, payload) {
     state.user.commentLikes.push(payload.comment_id)
   },
-  commentUnlike: (state, payload) => {
+  commentUnlike (state, payload) {
     const el = state.user.commentLikes.findIndex(r => r === payload.comment_id)
     const position = state.user.commentLikes.indexOf(el)
     state.user.commentLikes.splice(position, 1)
   },
-  bookmark: (state, payload) => {
+  bookmark (state, payload) {
     // console.log(payload)
     // console.log(state)
     state.user.bookmarks.push(payload)
@@ -47,7 +47,7 @@ export const mutations = {
     // const position = state.recipes.findIndex(recipe => recipe.recipe.id === payload.recipe_id)
     // state.recipes[position].recipe.bookmarks += 1
   },
-  unbookmark: (state, payload) => {
+  unbookmark (state, payload) {
     // console.log(payload)
     // console.log(state)
     const position = state.user.bookmarks.findIndex(bookmark => bookmark.recipe_id === payload.recipe_id)
@@ -57,7 +57,7 @@ export const mutations = {
     // const  position = state.recipes.findIndex(recipe => recipe.recipe.id === payload.recipe_id)
     // state.recipes[position].recipe.bookmarks -= 1
   },
-  follow: (state, payload) => {
+  follow (state, payload) {
     // console.log(payload)
     state.user.following.count += 1
     state.user.following.data.push(payload.data.user)
@@ -66,7 +66,7 @@ export const mutations = {
     state.users[position].followers.count += 1
     state.users[position].followers.data.push(payload.data.user)
   },
-  unfollow: (state, payload) => {
+  unfollow (state, payload) {
     // console.log(payload)
     state.user.following.count -= 1
     let user = state.user.following.data.filter(user => user.slug === payload.user)[0]
@@ -77,7 +77,7 @@ export const mutations = {
     state.users[position].followers.count -= 1
     state.users[position].followers.data.splice(position, 1)
   },
-  like: (state, payload) => {
+  like (state, payload) {
     // console.log(payload)
     // console.log(state)
     state.user.likes.push(payload)
@@ -87,7 +87,7 @@ export const mutations = {
     // const position = state.recipes.indexOf(recipe)
     // state.recipes[position].recipe.likes += 1
   },
-  unlike: (state, payload) => {
+  unlike (state, payload) {
     // console.log(payload)
     // console.log(state)
     const position = state.user.likes.findIndex(like => like.recipe_id === payload.recipe_id)
@@ -98,7 +98,7 @@ export const mutations = {
     // position = state.recipes.indexOf(recipe)
     // state.recipes[position].recipe.likes -= 1
   },
-  logOut: (state, payload) => {
+  logOut (state, payload) {
     state.authorization = {
       authorizationToken: null,
       expireAt: null,
@@ -119,7 +119,7 @@ export const mutations = {
       locale: 'fr',
     }
   },
-  logIn: (state, payload) => {
+  logIn (state, payload) {
     // console.log(state)
     // console.log(payload)
     state.user = payload.data
@@ -131,21 +131,21 @@ export const mutations = {
       }
     }
   },
-  refreshAccessToken: (state, payload) => {
+  refreshAccessToken (state, payload) {
     state.authorization = {
       authorizationToken: payload.headers['access-token'],
       refreshToken: payload.headers['refresh-token'],
       expireAt: payload.headers['expire-at']
     }
   },
-  notifications: (state, payload) => {
+  notifications (state, payload) {
     // console.log(payload.data.notification)
     state.user.notification = payload.data.notification
   },
 }
 
 export const actions = {
-  delete: (context, payload) => {
+  delete (context, payload) {
     console.log(context.state.data)
     return api.userDelete(context, payload)
       .then(response => {
@@ -157,7 +157,7 @@ export const actions = {
         console.log(error)
       })
   },
-  followers: (context, payload) => {
+  followers (context, payload) {
     // console.log(payload)
     return api.followers(context, payload)
       .then(response => {
@@ -169,7 +169,7 @@ export const actions = {
         console.log(error)
       })
   },
-  follow: (context, payload) => {
+  follow (context, payload) {
     // console.log(payload)
     return api.follow(context, payload)
       .then(response => {
@@ -182,7 +182,7 @@ export const actions = {
         console.log(error)
       })
   },
-  unfollow: (context, payload) => {
+  unfollow (context, payload) {
     // console.log(payload)
     return api.unfollow(context, payload)
       .then(response => {
@@ -195,10 +195,10 @@ export const actions = {
         console.log(error)
       })
   },
-  clearUserSession: (context, payload) => {
+  clearUserSession (context, payload) {
     context.commit("logOut", payload)
   },
-  logIn: (context, payload) => {
+  logIn (context, payload) {
     return api.login(context, payload)
       .then(response => {
         console.log(response)
@@ -212,7 +212,7 @@ export const actions = {
         console.log(error)
       })
   },
-  logOut: (context, payload) => {
+  logOut (context, payload) {
     return api.logout(context, payload)
       .then(response => {
         console.log(response)
@@ -227,7 +227,7 @@ export const actions = {
         console.log(error)
       })
   },
-  refreshAccessToken: (context, payload) =>  {
+  refreshAccessToken (context, payload)  {
     return api.refreshAccessToken(context, payload)
       .then(response => {
         // console.log(response.data.message)
@@ -238,7 +238,7 @@ export const actions = {
         console.log(error)
       })
   },
-  notifications: (context, payload) => {
+  notifications (context, payload) {
     // console.log(payload)
     return api.userNotifications(context, payload)
       .then(response => {
