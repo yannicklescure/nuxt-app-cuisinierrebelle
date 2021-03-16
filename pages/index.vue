@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner v-if="isAuthenticated == false" :bannerImage="bannerImage" />
+    <Banner v-if="isAuthenticated == false" />
     <LazyCards v-if="show" />
   </div>
 </template>
@@ -15,12 +15,12 @@ export default {
       show: false,
     }
   },
-  async asyncData(context) {
-    // await context.store.dispatch('getStoreData')
-    const bannerData = await context.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
-    const bannerImage = bannerData.data.bannerImage
-    return { bannerImage }
-  },
+  // async asyncData(context) {
+  //   // await context.store.dispatch('getStoreData')
+  //   const bannerData = await context.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
+  //   const bannerImage = bannerData.data.bannerImage
+  //   return { bannerImage }
+  // },
   // middleware: 'authenticated',
   // asyncData(context) {
   //   console.log(context)
@@ -42,8 +42,8 @@ export default {
     //   return this.isAuthenticated ? this.getItems : this.getItems.slice(0, 24)
     // }
   },
-  async fetch () {
-    this.$store.commit("banner/setBannerImage", this.bannerImage)
+  async created () {
+    // this.$store.commit("banner/setBannerImage", this.bannerImage)
     await this.getStoreData()
     if (this.isAuthenticated) this.fetchNotifications()
   },

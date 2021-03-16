@@ -21,15 +21,34 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Banner',
-  props: ['bannerImage'],
-  // data () {
-  //   return {
-  //     loading: true,
-  //   }
-  // },
-  // async fetch () {
-  //   await this.getBannerImage()
-  // },
+  // props: ['bannerImage'],
+  data () {
+    return {
+      bannerImage: {
+        id: null,
+        link: {
+          download: null,
+        },
+        url: null,
+        user: {
+          name: null,
+          username: null
+        }
+      },
+    }
+  },
+  async fetch() {
+    if (this.storeImage.id == null) {
+      const bannerData = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
+      console.log(bannerData)
+      this.bannerImage = bannerData.data.bannerImage
+      this.$store.commit("banner/setBannerImage", this.bannerImage)
+    }
+    else {
+      console.log(this.storeImage)
+      this.bannerImage = this.storeImage
+    }
+  },
   methods: {
     ...mapActions({
       getBannerImage: 'banner/getBannerImage'
@@ -38,7 +57,7 @@ export default {
   computed: {
     ...mapGetters({
       navbarHeight: 'navbarHeight',
-      // bannerImage: 'banner/bannerImage',
+      storeImage: 'banner/bannerImage',
     }),
     viewport () {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
@@ -55,10 +74,8 @@ export default {
       return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
   },
-  // created() {
-  //   this.loadImg()
-  // },
-  // beforeMount () {
+  // async created () {
+  //   await this.getBannerImage()
   // },
   // mounted () {
   //   this.$nextTick(() => {

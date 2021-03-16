@@ -23,7 +23,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'CardSmall',
-  // props: ['componentKey'],
+  props: ['number'],
   data () {
     return {
       componentKey: 0,
@@ -49,17 +49,20 @@ export default {
       recipes: 'recipes/listSorted',
       isMobile: 'isMobile'
     }),
+    // item () {
+    //   const getRandomInt = (max) => {
+    //     max = max > 0 ? max - 1 : 0
+    //     const result = Math.floor(Math.random() * Math.floor(max))
+    //     // console.log(result)
+    //     return result
+    //   }
+    //   const num = getRandomInt(this.recipes.length)
+    //   const randomRecipe = this.recipes[num]
+    //   // console.log(randomRecipe)
+    //   return randomRecipe
+    // },
     item () {
-      const getRandomInt = (max) => {
-        max = max > 0 ? max - 1 : 0
-        const result = Math.floor(Math.random() * Math.floor(max))
-        // console.log(result)
-        return result
-      }
-      const num = getRandomInt(this.recipes.length)
-      const randomRecipe = this.recipes[num]
-      // console.log(randomRecipe)
-      return randomRecipe
+      return this.recipes[this.number]
     },
     description () {
       return this.tuncateString(this.item.recipe.description, this.isMobile ? 100 : 200)

@@ -19,6 +19,9 @@
 
       <LazyComments :item="item" />
     </div>
+    <div v-else>
+      {{ item }}
+    </div>
   </div>
 </template>
 
@@ -34,7 +37,7 @@ export default {
         width: 0,
         height: 0
       },
-      // item: undefined
+      item: undefined,
     }
   },
   // async asyncData({ $axios, params }) {
@@ -43,39 +46,39 @@ export default {
   //   const item = await $axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ params.slug }`)
   //   return { item }
   // },
-  // async fetch () {
-  //   console.log(this.$route.params.slug)
-  //   this.item = await fetch(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`).then((res) => res.json())
-  //   console.log(this.item)
-  //   this.$store.commit("recipes/recipe", { data: this.item })
-  //   // await this.fetchRecipe(this.$route.params.slug)
-  // },
+  async fetch () {
+    console.log(this.$route.params.slug)
+    this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
+    console.log(this.item)
+    this.$store.commit("recipes/recipe", { data: this.item })
+    // await this.fetchRecipe(this.$route.params.slug)
+  },
   computed: {
     ...mapGetters({
-      currentUser: 'users/sessions/current',
+      // currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
-      recipe: 'recipes/recipe',
-      items: 'recipes/listSorted',
+      // recipe: 'recipes/recipe',
+      // items: 'recipes/listSorted',
     }),
-    item () {
-      return this.recipe(this.$route.params.slug)
-    }
+    // item () {
+    //   return this.recipe(this.$route.params.slug)
+    // }
   },
   methods: {
-    ...mapActions({
-      getStoreData: 'getStoreData',
-      fetchRecipe: 'recipes/recipe',
-    }),
+    // ...mapActions({
+      // getStoreData: 'getStoreData',
+      // fetchRecipe: 'recipes/recipe',
+    // }),
     matchInfoBox () {
       this.dimension.width = this.$refs.recipe.clientWidth
       this.dimension.height = parseInt(this.dimension.width * 2 / 3)
     }
   },
   async created () {
-    await this.fetchRecipe(this.$route.params.slug)
-    this.$store.commit("recipes/recipe", { data: this.item })
+    // await this.fetchRecipe(this.$route.params.slug)
+    // this.$store.commit("recipes/recipe", { data: this.item })
 
-    if (this.items.length < 2) this.getStoreData()
+    // if (this.items.length < 2) this.getStoreData()
     if (process.client) {
       window.addEventListener("resize", this.matchInfoBox);
     }
