@@ -297,6 +297,6 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'https://www.cuisinierrebelle.com'
+    baseUrl: process.env.BASE_URL || 'https://cuisinierrebelle.com'
   }
 }
