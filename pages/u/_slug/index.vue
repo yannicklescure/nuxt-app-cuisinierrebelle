@@ -36,23 +36,23 @@ export default {
       // componentKey: 0,
       // data: [],
       // busy: false,
-      // user: undefined
+      theUser: undefined
     }
   },
-  async asyncData(context) {
-    // await context.store.dispatch('users/getUser', context.params.slug)
-    const userData = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`)
-    console.log(userData)
-    const theUser = userData.data
-    return { theUser }
-  },
-  // async fetch () {
-  //   console.log(this.$route.params.slug)
-  //   const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
-  //   this.user = userData.data
-
-  //   this.$store.commit("users/user", { data: this.user })
+  // async asyncData(context) {
+  //   // await context.store.dispatch('users/getUser', context.params.slug)
+  //   const userData = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`)
+  //   console.log(userData)
+  //   const theUser = userData.data
+  //   return { theUser }
   // },
+  async fetch () {
+    console.log(this.$route.params.slug)
+    const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
+    this.theUser = userData.data
+
+    // this.$store.commit("users/user", { data: this.user })
+  },
   async created () {
     await this.getUser(this.$route.params.slug)
     if (this.recipes.length == 0) this.getStoreData()
