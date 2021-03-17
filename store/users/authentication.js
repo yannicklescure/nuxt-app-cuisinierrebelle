@@ -11,60 +11,32 @@ export const mutations = {
 }
 
 export const actions = {
-  isAuthenticated (context, payload) {
-    return api.isAuthenticated(context, payload)
-      .then(response => {
-        console.log(response)
-        this.commit("users/authentication/isAuthenticated", response)
-        if (response.data.isAuthenticated) {
-          // console.log('User is authenticated.')
-        }
-        else {
-          this.commit('users/sessions/logOut', payload)
-        }
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async isAuthenticated (context, payload) {
+    const response = await api.isAuthenticated(context, payload)
+    console.log(response)
+    this.commit("users/authentication/isAuthenticated", response)
+    if (!response.data.isAuthenticated) {
+      this.commit('users/sessions/logOut', payload)
+    }
+    return response
   },
-  requestPasswordReset (context, payload) {
-    return api.requestPasswordReset(context, payload)
-      .then(response => {
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async requestPasswordReset (context, payload) {
+    const response = await api.requestPasswordReset(context, payload)
+    return response
   },
-  passwordReset (context, payload) {
-    return api.passwordReset(context, payload)
-      .then(response => {
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async passwordReset (context, payload) {
+    const response = await api.passwordReset(context, payload)
+    return response
   },
-  passwordResetVerification (context, payload) {
-    return api.passwordResetVerification(context, payload)
-      .then(response => {
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async passwordResetVerification (context, payload) {
+    const response = await api.passwordResetVerification(context, payload)
+    return response
   },
-  signUp (context, payload) {
+  async signUp (context, payload) {
     console.log(context.state)
-    return api.signUp(context, payload)
-      .then(response => {
-        console.log(response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.signUp(context, payload)
+    console.log(response)
+    return response
   },
 }
 

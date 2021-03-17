@@ -26,27 +26,17 @@ export const mutations = {
 }
 
 export const actions = {
-  getUser (context, payload) {
+  async getUser (context, payload) {
     // console.log(context.state.data.user)
-    return api.user(context, payload)
-      .then(response => {
-        this.commit("users/user", response.data)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.user(context, payload)
+    this.commit("users/user", response.data)
+    return response
   },
-  getUsers (context, payload) {
+  async getUsers (context, payload) {
     // console.log(context.state.data.user)
-    return api.users(context, payload)
-      .then(response => {
-        this.commit("users/setStoreData", response.data)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.users(context, payload)
+    this.commit("users/setStoreData", response.data)
+    return response
   },
 }
 

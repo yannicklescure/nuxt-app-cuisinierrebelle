@@ -36,39 +36,14 @@ export const actions = {
     this.dispatch('users/authentication/isAuthenticated', null)
     return response
   },
-  // getStoreData (context, payload) {
-  //   // console.log('get store data')
-  //   return api.getStoreData(context, payload)
-  //     .then(response => {
-  //       // console.log(response)
-  //       this.commit("setStoreData", response.data)
-  //       this.commit('recipes/setStoreData', response.data)
-  //       this.commit('users/setStoreData', response.data)
-  //       this.dispatch('users/authentication/isAuthenticated', null)
-  //       return response
-  //     })
-  //     .catch(({ response: error }) => {
-  //       console.log(error)
-  //     })
-  // },
-  registrationConfirmation (context, payload) {
-    return api.confirmRegistration(context, payload)
-      .then(response => {
-        console.log(response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async registrationConfirmation (context, payload) {
+    const response = await api.confirmRegistration(context, payload)
+    console.log(response)
+    return response
   },
-  resendConfirmationInstructions (context, payload) {
-    return api.resendConfirmationInstructions(context, payload)
-      .then(response => {
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async resendConfirmationInstructions (context, payload) {
+    const response = await api.resendConfirmationInstructions(context, payload)
+    return response
   },
   navbarHeight (context, payload) {
     this.commit("navbarHeight", payload)

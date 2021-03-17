@@ -145,110 +145,66 @@ export const mutations = {
 }
 
 export const actions = {
-  delete (context, payload) {
+  async delete (context, payload) {
     console.log(context.state.data)
-    return api.userDelete(context, payload)
-      .then(response => {
-        console.log(response)
-        // this.commit("logOut", {})
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.userDelete(context, payload)
+    console.log(response)
+    // this.commit("logOut", {})
+    return response
   },
-  followers (context, payload) {
+  async followers (context, payload) {
     // console.log(payload)
-    return api.followers(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        // this.commit("users/sessions/followers", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.followers(context, payload)
+    console.log(`response.status ${response.status}`)
+    // this.commit("users/sessions/followers", payload)
+    return response
   },
-  follow (context, payload) {
+  async follow (context, payload) {
     // console.log(payload)
-    return api.follow(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        console.log(response)
-        this.commit("users/sessions/follow", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.follow(context, payload)
+    console.log(`response.status ${response.status}`)
+    console.log(response)
+    this.commit("users/sessions/follow", response)
+    return response
   },
-  unfollow (context, payload) {
+  async unfollow (context, payload) {
     // console.log(payload)
-    return api.unfollow(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        console.log(response)
-        this.commit("users/sessions/unfollow", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.unfollow(context, payload)
+    console.log(`response.status ${response.status}`)
+    console.log(response)
+    this.commit("users/sessions/unfollow", payload)
+    return response
   },
-  clearUserSession (context, payload) {
+  async clearUserSession (context, payload) {
     this.commit("users/sessions/logOut", payload)
   },
-  logIn (context, payload) {
-    return api.login(context, payload)
-      .then(response => {
-        console.log(response)
-        if (response.status === 200) {
-          this.commit("users/sessions/logIn", response)
-          this.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: true } })
-        }
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async logIn (context, payload) {
+    const response = await api.login(context, payload)
+    console.log(response)
+    this.commit("users/sessions/logIn", response)
+    this.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: true } })
+    return response
   },
-  logOut (context, payload) {
-    return api.logout(context, payload)
-      .then(response => {
-        console.log(response)
-        if (response && response.status === 200) {
-          this.commit("users/sessions/logOut", payload)
-          this.commit("notifications/logOut", null)
-          this.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: false } })
-          return response
-        }
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async logOut (context, payload) {
+    const response = await api.logout(context, payload)
+    console.log(response)
+    this.commit("users/sessions/logOut", payload)
+    this.commit("notifications/logOut", null)
+    this.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: false } })
+    return response
   },
-  refreshAccessToken (context, payload)  {
-    return api.refreshAccessToken(context, payload)
-      .then(response => {
-        // console.log(response.data.message)
-        this.commit("users/sessions/refreshAccessToken", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async refreshAccessToken (context, payload)  {
+    const response = await api.refreshAccessToken(context, payload)
+    // console.log(response.data.message)
+    this.commit("users/sessions/refreshAccessToken", response)
+    return response
   },
-  notifications (context, payload) {
+  async notifications (context, payload) {
     // console.log(payload)
-    return api.userNotifications(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("users/sessions/notifications", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.userNotifications(context, payload)
+    // console.log(`response.status ${response.status}`)
+    this.commit("users/sessions/notifications", response)
+    return response
   },
 }
 

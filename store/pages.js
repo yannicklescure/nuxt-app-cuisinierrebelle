@@ -19,14 +19,9 @@ export const mutations = {
 
 export const actions = {
   async get () {
-    return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/pages')
-      .then(response => {
-        this.commit("pages/setPages", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/pages')
+    this.commit("pages/setPages", response)
+    return response
   },
   async new (context, payload) {
     const FormData = require('form-data');
@@ -38,16 +33,11 @@ export const actions = {
     // this.$axios.setToken(this.state.users.sessions.authorization.authorizationToken, 'Bearer')
     this.$axios.setHeader('Authorization', `Bearer ${ this.state.users.sessions.authorization.authorizationToken }`)
     this.$axios.setHeader('Content-Type', 'multipart/form-data')
-    return await this.$axios.$post(`https://api.cuisinierrebelle.com/v1/pages/`, formData, {})
-    .then(response => {
-      console.log(response)
-      this.commit("pages/new", response)
-      this.$axios.setHeader('Content-Type', false)
-      return response
-    })
-    .catch(({ response: error }) => {
-      console.log(error)
-    })
+    const response = await this.$axios.$post(`https://api.cuisinierrebelle.com/v1/pages/`, formData, {})
+    console.log(response)
+    this.commit("pages/new", response)
+    this.$axios.setHeader('Content-Type', false)
+    return response
   },
   async edit (context, payload) {
     const FormData = require('form-data');
@@ -59,16 +49,11 @@ export const actions = {
     // this.$axios.setToken(this.state.users.sessions.authorization.authorizationToken, 'Bearer')
     this.$axios.setHeader('Authorization', `Bearer ${ this.state.users.sessions.authorization.authorizationToken }`)
     this.$axios.setHeader('Content-Type', 'multipart/form-data')
-    return await this.$axios.$patch(`https://api.cuisinierrebelle.com/v1/pages/${ payload.id }`, formData, {})
-    .then(response => {
-      console.log(response)
-      this.commit("pages/edit", response)
-      this.$axios.setHeader('Content-Type', false)
-      return response
-    })
-    .catch(({ response: error }) => {
-      console.log(error)
-    })
+    const response = await this.$axios.$patch(`https://api.cuisinierrebelle.com/v1/pages/${ payload.id }`, formData, {})
+    console.log(response)
+    this.commit("pages/edit", response)
+    this.$axios.setHeader('Content-Type', false)
+    return response
   },
 }
 

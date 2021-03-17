@@ -105,250 +105,150 @@ export const mutations = {
 }
 
 export const actions = {
-  replyLike (context, payload) {
+  async replyLike (context, payload) {
     // console.log(payload)
-    return api.replyLike(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/replyLike", payload)
-        this.commit("users/sessions/replyLike", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.replyLike(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/replyLike", payload)
+    this.commit("users/sessions/replyLike", payload)
+    return response
   },
-  replyUnlike (context, payload) {
+  async replyUnlike (context, payload) {
     // console.log(payload)
-    return api.replyUnlike(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/replyUnlike", payload)
-        this.commit("users/sessions/replyUnlike", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.replyUnlike(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/replyUnlike", payload)
+    this.commit("users/sessions/replyUnlike", payload)
+    return response
   },
-  replyEdit (context, payload) {
+  async replyEdit (context, payload) {
     // console.log(payload)
-    return api.replyEdit(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/replyEdit", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.replyEdit(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/replyEdit", response)
+    return response
   },
-  replyDelete (context, payload) {
+  async replyDelete (context, payload) {
     // console.log(payload)
-    return api.replyDelete(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/replyDelete", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.replyDelete(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/replyDelete", payload)
+    return response
   },
-  replyNew (context, payload) {
+  async replyNew (context, payload) {
     // console.log(payload)
-    return api.replyNew(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/replyNew", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.replyNew(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/replyNew", response)
+    return response
   },
-  commentLike (context, payload) {
+  async commentLike (context, payload) {
     // console.log(payload)
-    return api.commentLike(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/commentLike", payload)
-        this.commit("users/sessions/commentLike", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.commentLike(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/commentLike", payload)
+    this.commit("users/sessions/commentLike", payload)
+    return response
   },
-  commentUnlike (context, payload) {
+  async commentUnlike (context, payload) {
     // console.log(payload)
-    return api.commentUnlike(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/commentUnlike", payload)
-        this.commit("users/sessions/commentUnlike", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.commentUnlike(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/commentUnlike", payload)
+    this.commit("users/sessions/commentUnlike", payload)
+    return response
   },
-  commentEdit (context, payload) {
+  async commentEdit (context, payload) {
     // console.log(payload)
-    return api.commentEdit(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/commentEdit", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.commentEdit(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/commentEdit", response)
+    return response
   },
-  commentNew (context, payload) {
+  async commentNew (context, payload) {
     // console.log(payload)
-    return api.commentNew(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/commentNew", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.commentNew(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/commentNew", response)
+    return response
   },
-  commentDelete (context, payload) {
+  async commentDelete (context, payload) {
     // console.log(payload)
-    return api.commentDelete(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/commentDelete", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.commentDelete(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/commentDelete", payload)
+    return response
   },
-  bookmark (context, payload) {
+  async bookmark (context, payload) {
     // console.log(payload)
-    return api.bookmark(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/bookmark", payload)
-        this.commit("users/sessions/bookmark", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.bookmark(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/bookmark", payload)
+    this.commit("users/sessions/bookmark", payload)
+    return response
   },
-  unbookmark (context, payload) {
+  async unbookmark (context, payload) {
     // console.log(payload)
-        return api.unbookmark(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        this.commit("recipes/unbookmark", payload)
-        this.commit("users/sessions/unbookmark", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.unbookmark(context, payload)
+    console.log(`response.status ${response.status}`)
+    this.commit("recipes/unbookmark", payload)
+    this.commit("users/sessions/unbookmark", payload)
+    return response
   },
-  like (context, payload) {
+  async like (context, payload) {
     // console.log(payload)
-    return api.like(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        console.log(response)
-        this.commit("recipes/like", payload)
-        this.commit("users/sessions/like", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.like(context, payload)
+    console.log(`response.status ${response.status}`)
+    console.log(response)
+    this.commit("recipes/like", payload)
+    this.commit("users/sessions/like", payload)
+    return response
   },
-  unlike (context, payload) {
+  async unlike (context, payload) {
     console.log(payload)
-    return api.unlike(context, payload)
-      .then(response => {
-        console.log(`response.status ${response.status}`)
-        console.log(response)
-        this.commit("recipes/unlike", payload)
-        this.commit("users/sessions/unlike", payload)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.unlike(context, payload)
+    console.log(`response.status ${response.status}`)
+    console.log(response)
+    this.commit("recipes/unlike", payload)
+    this.commit("users/sessions/unlike", payload)
+    return response
   },
-  list (context, payload) {
-    return api.recipes(context, payload)
-      .then(response => {
-        this.commit("recipes/list", response.data)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+  async list (context, payload) {
+    const response = await api.recipes(context, payload)
+    this.commit("recipes/list", response.data)
+    return response
   },
-  recipe (context, payload) {
+  async recipe (context, payload) {
     // console.log(context.state.data.user)
-    return api.recipe(context, payload)
-      .then(response => {
-        this.commit("recipes/recipe", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.recipe(context, payload)
+    this.commit("recipes/recipe", response)
+    return response
   },
-  delete (context, payload) {
+  async delete (context, payload) {
     // console.log(context.state.data.user)
-    return api.recipeDelete(context, payload)
-      .then(response => {
-        console.log(response)
-        this.commit("recipes/delete", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.recipeDelete(context, payload)
+    console.log(response)
+    this.commit("recipes/delete", response)
+    return response
   },
-  edit (context, payload) {
+  async edit (context, payload) {
     // console.log(context.state.data.user)
-    return api.recipeEdit(context, payload)
-      .then(response => {
-        console.log(response)
-        this.commit("recipes/edit", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.recipeEdit(context, payload)
+    console.log(response)
+    this.commit("recipes/edit", response)
+    return response
   },
-  new (context, payload) {
+  async new (context, payload) {
     // console.log(context.state.data.user)
-    return api.recipeNew(context, payload)
-      .then(response => {
-        this.commit("recipes/new", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.recipeNew(context, payload)
+    this.commit("recipes/new", response)
+    return response
   },
-  log (context, payload) {
+  async log (context, payload) {
     console.log(context.state.data.user)
-    return api.recipeLog(context, payload)
-      .then(response => {
-        this.commit("recipes/log", { data: payload, views: response.data.views })
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.recipeLog(context, payload)
+    this.commit("recipes/log", { data: payload, views: response.data.views })
+    return response
   },
 }
 

@@ -12,16 +12,11 @@ export const mutations = {
 }
 
 export const actions = {
-  query (context, payload) {
+  async query (context, payload) {
     // console.log(payload)
-    return api.search(context, payload)
-      .then(response => {
-        this.commit("search/recipes", response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.search(context, payload)
+    this.commit("search/recipes", response)
+    return response
   },
 }
 

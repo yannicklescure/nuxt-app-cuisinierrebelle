@@ -8,7 +8,7 @@ export const mutations = {
   logOut (state, payload) {
     state.list = []
   },
-  notifications (state, payload) {
+  set (state, payload) {
     state.list = payload.data
     // for (const [key, value] of Object.entries(payload.data)) {
     //   state.list[key] = value
@@ -17,17 +17,12 @@ export const mutations = {
 }
 
 export const actions = {
-  list (context, payload) {
+  async list (context, payload) {
     // console.log(payload)
-    return api.notifications(context, payload)
-      .then(response => {
-        console.log(response)
-        if (response.status === 200) context.commit("notifications", response.data)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await api.notifications(context, payload)
+      console.log(response)
+      this.commit("notifications/set", response.data)
+      return response
   },
 }
 
