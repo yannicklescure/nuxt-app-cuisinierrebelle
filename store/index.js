@@ -22,6 +22,21 @@ export const mutations = {
 }
 
 export const actions = {
+  async get ({ commit }, payload) {
+    console.log(this)
+    return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/state')
+      .then(response => {
+        console.log(response)
+        this.commit("setStoreData", response.data)
+        this.commit('recipes/setStoreData', response.data)
+        this.commit('users/setStoreData', response.data)
+        this.dispatch('users/authentication/isAuthenticated', null)
+        return response
+      })
+      .catch(({ response: error }) => {
+        console.log(error)
+      })
+  },
   getStoreData (context, payload) {
     // console.log('get store data')
     return api.getStoreData(context, payload)
