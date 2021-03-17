@@ -9,6 +9,17 @@ export const state = () => ({
     navbarHeight: 0,
   },
   timestamp: null,
+  banner: {
+    id: null,
+    link: {
+      download: null,
+    },
+    url: null,
+    user: {
+      name: null,
+      username: null
+    }
+  },
 })
 
 export const mutations = {
@@ -19,15 +30,19 @@ export const mutations = {
   navbarHeight (state, payload) {
     state.render.navbarHeight = payload
   },
+  banner (state, payload) {
+    console.log(payload)
+    state.banner = payload.data.bannerImage
+  },
 }
 
 export const actions = {
-  async banner ({ commit }, payload) {
+  async getBanner ({ commit }, payload) {
     console.log(this)
     return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
       .then(response => {
         console.log(response)
-        this.commit('banner/set', response)
+        commit('banner', response)
         return response
       })
       .catch(({ response: error }) => {
@@ -89,10 +104,13 @@ export const actions = {
 }
 
 export const getters = {
-  timestamp () {
+  banner (state) {
+    return state.banner
+  },
+  timestamp (state) {
     return state.timestamp
   },
-  isMobile () {
+  isMobile (state) {
     return isMobile
   },
   navbarHeight (state) {
