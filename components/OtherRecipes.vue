@@ -37,10 +37,10 @@ export default {
       }
     }
   },
-  async created() {
-    if (this.items.length < 2) await this.getStoreData()
+  async fetch() {
+    await this.getStoreData()
   },
-  beforeMount() {
+  mounted() {
     this.getRandomNumbers(this.items.length)
   }
 }
