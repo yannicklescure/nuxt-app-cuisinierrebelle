@@ -15,7 +15,7 @@
 
       <!-- <LazyRecipeAds /> -->
 
-      <!-- <LazyOtherRecipes /> -->
+      <LazyOtherRecipes />
 
       <LazyComments :item="item" />
     </div>
@@ -53,8 +53,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      // getStoreData: 'getStoreData',
-      fetchRecipe: 'recipes/recipe',
+      getStoreData: 'getStoreData',
+      getRecipe: 'recipes/recipe',
     }),
     matchInfoBox () {
       this.dimension.width = this.$refs.recipe.clientWidth
@@ -63,7 +63,8 @@ export default {
   },
   async created() {
     console.log(this.$route.params.slug)
-    await this.fetchRecipe(this.$route.params.slug)
+    await this.getRecipe(this.$route.params.slug)
+    await this.getStoreData()
   // },
   // created() {
     if (process.client) {

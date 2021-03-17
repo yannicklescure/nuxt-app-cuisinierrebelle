@@ -22,12 +22,12 @@ export default {
       // currentUser: 'users/sessions/current',
       // isMobile: 'isMobile',
       // recipe: 'recipes/recipe',
-      items: 'recipes/listSorted',
+      recipes: 'recipes/listSorted',
     }),
   },
   methods: {
     ...mapActions({
-      getStoreData: 'getStoreData',
+      // getStoreData: 'getStoreData',
       // fetchRecipe: 'recipes/recipe',
     }),
     getRandomNumbers (max) {
@@ -37,11 +37,11 @@ export default {
       }
     }
   },
-  async fetch() {
-    await this.getStoreData()
-  },
+  // async fetch() {
+  //   await this.getStoreData()
+  // },
   mounted() {
-    this.getRandomNumbers(this.items.length)
+    this.getRandomNumbers(this.recipes.length)
   }
 }
 </script>
