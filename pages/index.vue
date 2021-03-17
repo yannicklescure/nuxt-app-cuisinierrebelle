@@ -27,7 +27,7 @@ export default {
       fetchNotifications: 'notifications/list'
     }),
   },
-  async created() {
+  async fetch() {
     await this.getStoreData()
     if (this.isAuthenticated) await this.fetchNotifications()
   },
