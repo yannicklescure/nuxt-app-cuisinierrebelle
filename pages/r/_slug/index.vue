@@ -15,7 +15,7 @@
 
       <!-- <LazyRecipeAds /> -->
 
-      <LazyOtherRecipes />
+      <LazyOtherRecipes v-if="recipes.length > 2" :recipes="recipes" />
 
       <LazyComments :item="item" />
     </div>
@@ -45,7 +45,7 @@ export default {
       // currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
       recipe: 'recipes/recipe',
-      // items: 'recipes/listSorted',
+      recipes: 'recipes/listSorted',
     }),
     item () {
       return this.recipe(this.$route.params.slug)

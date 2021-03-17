@@ -12,9 +12,10 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'OtherRecipes',
+  props: ['recipes'],
   data() {
     return {
-      numbers: []
+      numbers: [],
     }
   },
   computed: {
@@ -22,7 +23,7 @@ export default {
       // currentUser: 'users/sessions/current',
       // isMobile: 'isMobile',
       // recipe: 'recipes/recipe',
-      recipes: 'recipes/listSorted',
+      // recipes: 'recipes/listSorted',
     }),
   },
   methods: {
