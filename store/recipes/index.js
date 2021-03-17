@@ -380,6 +380,3 @@ export const getters = {
     return state.list.slice().sort((a, b) => (a.recipe.views > b.recipe.views) ? 1 : -1).reverse().slice(0, 100)
   },
 }
-
-export const plugins = [
-]

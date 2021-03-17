@@ -30,5 +30,3 @@ export const getters = {
     return state.recipes
   },
 }
-
-export const plugins = []

@@ -60,4 +60,3 @@ export const getters = {
     return state.list
   },
 }
-export const plugins = []

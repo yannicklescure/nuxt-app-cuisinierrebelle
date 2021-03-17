@@ -37,21 +37,21 @@ export const actions = {
         console.log(error)
       })
   },
-  getStoreData (context, payload) {
-    // console.log('get store data')
-    return api.getStoreData(context, payload)
-      .then(response => {
-        // console.log(response)
-        this.commit("setStoreData", response.data)
-        this.commit('recipes/setStoreData', response.data)
-        this.commit('users/setStoreData', response.data)
-        this.dispatch('users/authentication/isAuthenticated', null)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
-  },
+  // getStoreData (context, payload) {
+  //   // console.log('get store data')
+  //   return api.getStoreData(context, payload)
+  //     .then(response => {
+  //       // console.log(response)
+  //       this.commit("setStoreData", response.data)
+  //       this.commit('recipes/setStoreData', response.data)
+  //       this.commit('users/setStoreData', response.data)
+  //       this.dispatch('users/authentication/isAuthenticated', null)
+  //       return response
+  //     })
+  //     .catch(({ response: error }) => {
+  //       console.log(error)
+  //     })
+  // },
   registrationConfirmation (context, payload) {
     return api.confirmRegistration(context, payload)
       .then(response => {

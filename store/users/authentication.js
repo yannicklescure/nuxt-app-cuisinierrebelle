@@ -73,5 +73,3 @@ export const getters = {
     return state.isAuthenticated
   },
 }
-
-export const plugins = []

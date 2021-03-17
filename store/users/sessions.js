@@ -274,5 +274,3 @@ export const getters = {
     return state.user.facebookAuth
   },
 }
-
-export const plugins = []
