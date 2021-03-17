@@ -18,7 +18,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetch () {
+  async get () {
     return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/pages')
       .then(response => {
         this.commit("pages/setPages", response)

@@ -15,12 +15,12 @@ export const actions = {
     return api.isAuthenticated(context, payload)
       .then(response => {
         console.log(response)
-        context.commit("isAuthenticated", response)
+        this.commit("users/authentication/isAuthenticated", response)
         if (response.data.isAuthenticated) {
           // console.log('User is authenticated.')
         }
         else {
-          context.commit('users/sessions/logOut', payload, { root: true })
+          this.commit('users/sessions/logOut', payload)
         }
         return response
       })
@@ -31,7 +31,6 @@ export const actions = {
   requestPasswordReset (context, payload) {
     return api.requestPasswordReset(context, payload)
       .then(response => {
-        // if (response.status === 200) context.commit("logIn", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -41,7 +40,6 @@ export const actions = {
   passwordReset (context, payload) {
     return api.passwordReset(context, payload)
       .then(response => {
-        // if (response.status === 200) context.commit("logIn", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -51,7 +49,6 @@ export const actions = {
   passwordResetVerification (context, payload) {
     return api.passwordResetVerification(context, payload)
       .then(response => {
-        // if (response.status === 200) context.commit("logIn", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -63,10 +60,6 @@ export const actions = {
     return api.signUp(context, payload)
       .then(response => {
         console.log(response)
-        // const token = response.headers.authorization.split('Bearer ')[1]
-        // console.log(token)
-        // console.log(jwt.decode(token))
-        // if (response.status === 200) context.commit("SIGN_UP", response)
         return response
       })
       .catch(({ response: error }) => {

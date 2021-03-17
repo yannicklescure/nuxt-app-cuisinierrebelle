@@ -16,25 +16,9 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Banner',
-  data () {
-    return {
-      image: {
-        id: null,
-        link: {
-          download: null,
-        },
-        url: null,
-        user: {
-          name: null,
-          username: null
-        }
-      },
-    }
-  },
   computed: {
     ...mapGetters({
-      navbarHeight: 'navbarHeight',
-      storeImage: 'banner/image',
+      image: 'banner/image',
     }),
     viewport () {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
@@ -44,28 +28,26 @@ export default {
         width: vw,
       }
     },
-    // image () {
-    //   return this.storeImage
-    // },
     imageUrl () {
       return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
   },
   methods: {
     ...mapActions({
-      getBannerImage: 'banner/getBannerImage'
+      getBannerImage: 'banner/get'
     }),
   },
   async fetch() {
     console.log('fetch')
-    if(this.$store.state.banner.image.id == null) {
-      const banner = await this.getBannerImage()
-      console.log(banner)
-      this.image = banner.data.bannerImage
-    }
-    else {
-      this.image = this.$store.state.banner.image
-    }
+    await this.getBannerImage()
+    // if(this.$store.state.banner.image.id == null) {
+    //   const banner = await this.getBannerImage()
+    //   console.log(banner)
+    //   this.image = banner.data.bannerImage
+    // }
+    // else {
+    //   this.image = this.$store.state.banner.image
+    // }
   },
 }
 </script>

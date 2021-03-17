@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchItems: 'pages/fetch'
+      fetchItems: 'pages/get'
     }),
   },
   async fetch () {

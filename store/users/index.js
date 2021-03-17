@@ -29,7 +29,7 @@ export const actions = {
     // console.log(context.state.data.user)
     return api.user(context, payload)
       .then(response => {
-        context.commit("user", response.data)
+        this.commit("users/user", response.data)
         return response
       })
       .catch(({ response: error }) => {
@@ -40,7 +40,7 @@ export const actions = {
     // console.log(context.state.data.user)
     return api.users(context, payload)
       .then(response => {
-        context.commit("setStoreData", response.data)
+        this.commit("users/setStoreData", response.data)
         return response
       })
       .catch(({ response: error }) => {

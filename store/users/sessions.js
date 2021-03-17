@@ -150,7 +150,7 @@ export const actions = {
     return api.userDelete(context, payload)
       .then(response => {
         console.log(response)
-        // if (response.status === 204 || response.status === 200) context.commit("logOut", {})
+        // this.commit("logOut", {})
         return response
       })
       .catch(({ response: error }) => {
@@ -162,7 +162,7 @@ export const actions = {
     return api.followers(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        // if (response.status === 200) context.commit("followers", payload)
+        // this.commit("users/sessions/followers", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -175,7 +175,7 @@ export const actions = {
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
-        if (response.status === 200) context.commit("follow", response)
+        this.commit("users/sessions/follow", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -188,7 +188,7 @@ export const actions = {
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
-        if (response.status === 200) context.commit("unfollow", payload)
+        this.commit("users/sessions/unfollow", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -196,15 +196,15 @@ export const actions = {
       })
   },
   clearUserSession (context, payload) {
-    context.commit("logOut", payload)
+    this.commit("users/sessions/logOut", payload)
   },
   logIn (context, payload) {
     return api.login(context, payload)
       .then(response => {
         console.log(response)
         if (response.status === 200) {
-          context.commit("logIn", response)
-          context.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: true } }, { root: true })
+          this.commit("users/sessions/logIn", response)
+          this.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: true } })
         }
         return response
       })
@@ -217,9 +217,9 @@ export const actions = {
       .then(response => {
         console.log(response)
         if (response && response.status === 200) {
-          context.commit("logOut", payload)
-          context.commit("notifications/logOut", null, { root: true })
-          context.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: false } }, { root: true })
+          this.commit("users/sessions/logOut", payload)
+          this.commit("notifications/logOut", null)
+          this.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: false } })
           return response
         }
       })
@@ -231,7 +231,7 @@ export const actions = {
     return api.refreshAccessToken(context, payload)
       .then(response => {
         // console.log(response.data.message)
-        context.commit("refreshAccessToken", response)
+        this.commit("users/sessions/refreshAccessToken", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -243,7 +243,7 @@ export const actions = {
     return api.userNotifications(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("notifications", response)
+        this.commit("users/sessions/notifications", response)
         return response
       })
       .catch(({ response: error }) => {

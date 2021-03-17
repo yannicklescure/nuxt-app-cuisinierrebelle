@@ -16,8 +16,7 @@ export const actions = {
     // console.log(payload)
     return api.search(context, payload)
       .then(response => {
-        console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("recipes", response)
+        this.commit("search/recipes", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -32,5 +31,4 @@ export const getters = {
   },
 }
 
-export const plugins = [
-]
+export const plugins = []
