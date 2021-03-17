@@ -61,7 +61,7 @@ export default {
       this.dimension.height = parseInt(this.dimension.width * 2 / 3)
     }
   },
-  async created() {
+  async fetch() {
     console.log(this.$route.params.slug)
     await this.fetchRecipe(this.$route.params.slug)
   },

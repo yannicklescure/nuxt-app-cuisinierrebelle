@@ -97,7 +97,7 @@ export default {
   //     await this.fetchItem()
   //   }
   // },
-  async created() {
+  async fetch() {
     this.fetchItems()
   },
   mounted() {

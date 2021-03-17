@@ -219,7 +219,7 @@ export default {
         })
     },
   },
-  async created() {
+  async fetch() {
     console.log(this.token)
     await this.requestResetVerification()
   },
