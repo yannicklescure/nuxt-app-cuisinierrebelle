@@ -681,6 +681,14 @@ export const search = async (context, payload) => {
   })
 }
 
+export const getBannerImage = async (context, payload) => {
+  // console.log(`https://api.cuisinierrebelle.com/v1/state`)
+  return await axios({
+    method: 'get',
+    url: `https://api.cuisinierrebelle.com/v1/unsplash_images`,
+  })
+}
+
 export const getStoreData = async (context, payload) => {
   // console.log(`https://api.cuisinierrebelle.com/v1/state`)
   return await axios({

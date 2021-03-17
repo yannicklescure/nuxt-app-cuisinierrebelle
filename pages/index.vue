@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getBannerImage: 'banner/get',
+      getBannerImage: 'banner/getBannerImage',
       getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
     }),

@@ -35,6 +35,18 @@ export const actions = {
         console.log(error)
       })
   },
+  getBannerImage (context, payload) {
+    // console.log('get store data')
+    return api.getBannerImage(context, payload)
+      .then(response => {
+        // console.log(response)
+        this.commit('banner/set', response.data)
+        return response
+      })
+      .catch(({ response: error }) => {
+        console.log(error)
+      })
+  },
 }
 
 export const getters = {
