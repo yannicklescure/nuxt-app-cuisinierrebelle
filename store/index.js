@@ -27,9 +27,9 @@ export const actions = {
     return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/state')
       .then(response => {
         console.log(response)
-        this.commit("setStoreData", response.data)
-        this.commit('recipes/setStoreData', response.data)
-        this.commit('users/setStoreData', response.data)
+        this.commit("setStoreData", response)
+        this.commit('recipes/setStoreData', response)
+        this.commit('users/setStoreData', response)
         this.dispatch('users/authentication/isAuthenticated', null)
         return response
       })
