@@ -23,7 +23,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async getBannerImage() {
+  async getBannerImage (context, payload) {
     console.log(this)
     return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
       .then(response => {
