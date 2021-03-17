@@ -83,7 +83,7 @@ export default {
       }
       return true
     },
-    postNewPage () {
+    async postNewPage () {
       const checkForm = this.checkForm()
       if (checkForm) {
         // console.log(this)
@@ -96,17 +96,17 @@ export default {
           locale: this.locale
         }
         console.log(payload)
-        this.$store.dispatch('pages/new', payload)
+        await this.$store.dispatch('pages/new', payload)
           .then(response => {
             console.log(response)
-            if (response.status === 200) {
+            // if (response.status === 200) {
               this.$router.push({
-                path: `/p/${ response.data.slug }`,
+                path: `/p/${ response.slug }`,
                 // params: {
                   // id: response.data.slug
                 // }
               })
-            }
+            // }
           })
       }
       else {

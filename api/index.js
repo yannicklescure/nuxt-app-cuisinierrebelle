@@ -406,52 +406,6 @@ export const users = async (context, payload) => {
   })
 }
 
-export const pageNew = async (context, payload) => {
-  // console.log(payload)
-  const FormData = require('form-data');
-  const formData = new FormData();
-  formData.append('title', payload.title);
-  formData.append('content', payload.content);
-  formData.append('locale', payload.locale);
-  return await axios({
-    validateStatus: status => {
-      // console.log(status)
-      return status < 500; // Resolve only if the status code is less than 500
-    },
-    method: 'post',
-    url: `${ apiUrl }/${ version }/pages`,
-    headers: {
-      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
-      // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
-      'Content-Type': 'multipart/form-data',
-    },
-    data: formData
-  })
-}
-
-export const pageEdit = async (context, payload) => {
-  // console.log(payload)
-  const FormData = require('form-data');
-  const formData = new FormData();
-  formData.append('title', payload.title);
-  formData.append('content', payload.content);
-  formData.append('locale', payload.locale);
-  return await axios({
-    validateStatus: status => {
-      // console.log(status)
-      return status < 500; // Resolve only if the status code is less than 500
-    },
-    method: 'patch',
-    url: `${ apiUrl }/${ version }/pages/${ payload.id }`,
-    headers: {
-      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
-      // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
-      'Content-Type': 'multipart/form-data',
-    },
-    data: formData
-  })
-}
-
 export const recipeDelete = async (context, payload) => {
   // console.log(payload)
   return await axios({

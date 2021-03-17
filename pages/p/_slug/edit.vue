@@ -128,14 +128,14 @@ export default {
         await this.$store.dispatch('pages/edit', payload)
           .then(response => {
             console.log(response)
-            if (response.status === 200) {
+            // if (response.status === 200) {
               this.$router.push({
                 path: `/p/${ this.item.slug }`,
                 // params: {
                 //   id: response.data.slug
                 // }
               })
-            }
+            // }
           })
       }
       else {
