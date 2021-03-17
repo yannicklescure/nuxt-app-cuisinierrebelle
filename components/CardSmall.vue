@@ -69,10 +69,9 @@ export default {
     }
   },
   mounted() {
-    this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
-    // this.$nextTick(() => {
-      // this.forceRerender()
-    // })
+    this.$nextTick(() => {
+      this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
+    })
   }
 }
 </script>

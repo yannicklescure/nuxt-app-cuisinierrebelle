@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-none d-print-block mt-3 mb-5 text-center">∾&nbsp;www.CuisinierRebelle.com&nbsp;∾</div>
+    <div class="d-none d-print-block mt-3 mb-5 text-center">&nbsp;www.CuisinierRebelle.com&nbsp;</div>
     <div class="my-md-5 order-1 order-md-1 d-flex flex-column justify-content-center align-items-center">
       <div class="text-center">
         <div class="h1">{{ item.recipe.title }}</div>
@@ -37,8 +37,9 @@ export default {
     }),
   },
   mounted() {
-    this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
-    // this.$nextTick(() => {})
+    this.$nextTick(() => {
+      this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
+    })
   }
 }
 </script>

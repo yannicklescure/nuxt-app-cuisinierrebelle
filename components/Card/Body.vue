@@ -20,7 +20,9 @@ export default {
   name: 'CardBody',
   props: ['item', 'dimension'],
   mounted() {
-    this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
+    this.$nextTick(() => {
+      this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
+    })
   }
 }
 </script>
