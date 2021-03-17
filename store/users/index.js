@@ -24,6 +24,7 @@ export const mutations = {
     // })
   }
 }
+
 export const actions = {
   getUser (context, payload) {
     // console.log(context.state.data.user)

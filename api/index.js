@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const apiUrl = 'https://api.cuisinierrebelle.com'
-const version = 'v1'
+// const apiUrl = 'https://api.cuisinierrebelle.com'
+// const version = 'v1'
 
 export const userNotifications = async (context, payload) => {
   return await axios({
@@ -10,7 +10,7 @@ export const userNotifications = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'patch',
-    url: `${ apiUrl }/${ version }/notification/${payload.id}`,
+    url: `https://api.cuisinierrebelle.com/v1/notification/${ payload.id }`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -28,7 +28,7 @@ export const notifications = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'get',
-    url: `${ apiUrl }/${ version }/notifications`,
+    url: `https://api.cuisinierrebelle.com/v1/notifications`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -43,7 +43,7 @@ export const commentLike = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/likes`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.comment_id }/likes`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -61,7 +61,7 @@ export const commentUnlike = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'delete',
-    url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/likes/0`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.comment_id }/likes/0`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -79,7 +79,7 @@ export const commentDelete = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'delete',
-    url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.comment_id }`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -97,7 +97,7 @@ export const replyLike = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies/${ payload.reply_id }/likes`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.comment_id }/replies/${ payload.reply_id }/likes`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -118,7 +118,7 @@ export const replyUnlike = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'delete',
-    url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies/${ payload.reply_id }/likes/0`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.comment_id }/replies/${ payload.reply_id }/likes/0`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -139,7 +139,7 @@ export const replyEdit = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'patch',
-    url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies/${ payload.id }`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.comment_id }/replies/${ payload.id }`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -160,7 +160,7 @@ export const replyDelete = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'delete',
-    url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies/${ payload.id }`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.comment_id }/replies/${ payload.id }`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -178,7 +178,7 @@ export const replyNew = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/comments/${ payload.comment_id }/replies`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.comment_id }/replies`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -204,7 +204,7 @@ export const commentEdit = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'patch',
-    url: `${ apiUrl }/${ version }/comments/${ payload.id }`,
+    url: `https://api.cuisinierrebelle.com/v1/comments/${ payload.id }`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -229,7 +229,7 @@ export const commentNew = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/comments`,
+    url: `https://api.cuisinierrebelle.com/v1/comments`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -254,7 +254,7 @@ export const bookmark = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/bookmarks`,
+    url: `https://api.cuisinierrebelle.com/v1/bookmarks`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -277,7 +277,7 @@ export const unbookmark = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'delete',
-    url: `${ apiUrl }/${ version }/bookmarks/${payload.recipe_id}`,
+    url: `https://api.cuisinierrebelle.com/v1/bookmarks/${payload.recipe_id}`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -293,7 +293,7 @@ export const follow = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/users/${ payload.user }/follow`,
+    url: `https://api.cuisinierrebelle.com/v1/users/${ payload.user }/follow`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -311,7 +311,7 @@ export const unfollow = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/users/${ payload.user }/unfollow`,
+    url: `https://api.cuisinierrebelle.com/v1/users/${ payload.user }/unfollow`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -329,7 +329,7 @@ export const like = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/likes`,
+    url: `https://api.cuisinierrebelle.com/v1/likes`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -353,7 +353,7 @@ export const unlike = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'delete',
-    url: `${ apiUrl }/${ version }/likes/${payload.recipe_id}`,
+    url: `https://api.cuisinierrebelle.com/v1/likes/${payload.recipe_id}`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -369,7 +369,7 @@ export const followers = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'get',
-    url: `${ apiUrl }/${ version }/users/${payload}/followers`,
+    url: `https://api.cuisinierrebelle.com/v1/users/${ payload }/followers`,
   })
 }
 
@@ -380,7 +380,7 @@ export const recipe = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'get',
-    url: `${ apiUrl }/${ version }/recipes/${payload}`,
+    url: `https://api.cuisinierrebelle.com/v1/recipes/${ payload }`,
   })
 }
 
@@ -391,7 +391,7 @@ export const user = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'get',
-    url: `${ apiUrl }/${ version }/users/${ payload }`,
+    url: `https://api.cuisinierrebelle.com/v1/users/${ payload }`,
   })
 }
 
@@ -402,7 +402,7 @@ export const users = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'get',
-    url: `${ apiUrl }/${ version }/users`,
+    url: `https://api.cuisinierrebelle.com/v1/users`,
   })
 }
 
@@ -414,7 +414,7 @@ export const recipeDelete = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'delete',
-    url: `${ apiUrl }/${ version }/recipes/${ payload.id }`,
+    url: `https://api.cuisinierrebelle.com/v1/recipes/${ payload.id }`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -440,7 +440,7 @@ export const recipeEdit = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'patch',
-    url: `${ apiUrl }/${ version }/recipes/${ payload.id }`,
+    url: `https://api.cuisinierrebelle.com/v1/recipes/${ payload.id }`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -467,7 +467,7 @@ export const recipeNew = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/recipes`,
+    url: `https://api.cuisinierrebelle.com/v1/recipes`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -484,7 +484,7 @@ export const recipes = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'get',
-    url: `${ apiUrl }/${ version }/recipes`,
+    url: `https://api.cuisinierrebelle.com/v1/recipes`,
   })
 }
 
@@ -497,7 +497,7 @@ export const recipeLog = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/recipe_logs`,
+    url: `https://api.cuisinierrebelle.com/v1/recipe_logs`,
     headers: {
       //
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
@@ -517,10 +517,10 @@ export const recipeLog = async (context, payload) => {
 }
 
 export const confirmRegistration = async (context, payload) => {
-  // console.log(`${ apiUrl }/${ version }/search`)
+  // console.log(`https://api.cuisinierrebelle.com/v1/search`)
   return await axios({
     method: 'get',
-    url: `${ apiUrl }/${ version }/users/confirmation`,
+    url: `https://api.cuisinierrebelle.com/v1/users/confirmation`,
     headers: {
       //
     },
@@ -537,7 +537,7 @@ export const signUp = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/api/${ version }/users`,
+    url: `https://api.cuisinierrebelle.com/api/${ version }/users`,
     headers: {
     },
     data: payload
@@ -551,7 +551,7 @@ export const facebookLogin = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'get',
-    url: `${ apiUrl }/${ version }/facebook`,
+    url: `https://api.cuisinierrebelle.com/v1/facebook`,
     headers: {
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
     },
@@ -566,7 +566,7 @@ export const passwordResetVerification = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/users/password/reset_verification`,
+    url: `https://api.cuisinierrebelle.com/v1/users/password/reset_verification`,
     headers: {
     },
     data: payload
@@ -580,7 +580,7 @@ export const passwordReset = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/users/password/reset`,
+    url: `https://api.cuisinierrebelle.com/v1/users/password/reset`,
     headers: {
     },
     data: payload
@@ -596,7 +596,7 @@ export const requestPasswordReset = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/${ version }/users/password/request`,
+    url: `https://api.cuisinierrebelle.com/v1/users/password/request`,
     headers: {
     },
     data: payload
@@ -610,7 +610,7 @@ export const resendConfirmationInstructions = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/users/resend_confirmation_instructions`,
+    url: `https://api.cuisinierrebelle.com/users/resend_confirmation_instructions`,
     headers: {
     },
     data: payload
@@ -620,7 +620,7 @@ export const resendConfirmationInstructions = async (context, payload) => {
 export const refreshAccessToken = async (context, payload) => {
   return await axios({
     method: 'post',
-    url: `${ apiUrl }/users/tokens`,
+    url: `https://api.cuisinierrebelle.com/users/tokens`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken
@@ -635,7 +635,7 @@ export const login = async (context, payload) => {
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `${ apiUrl }/users/sign_in`,
+    url: `https://api.cuisinierrebelle.com/users/sign_in`,
     headers: {
     },
     data: payload
@@ -645,7 +645,7 @@ export const login = async (context, payload) => {
 export const logout = async (context, payload) => {
   return await axios({
     method: 'delete',
-    url: `${ apiUrl }/users/sign_out`,
+    url: `https://api.cuisinierrebelle.com/users/sign_out`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -658,8 +658,8 @@ export const logout = async (context, payload) => {
 export const userDelete = async (context, payload) => {
   return await axios({
     method: 'delete',
-    // url: `${ apiUrl }/api/${ version }/users`,
-    url: `${ apiUrl }/users/delete`,
+    // url: `https://api.cuisinierrebelle.com/api/${ version }/users`,
+    url: `https://api.cuisinierrebelle.com/users/delete`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
@@ -671,10 +671,10 @@ export const userDelete = async (context, payload) => {
 }
 
 export const search = async (context, payload) => {
-  // console.log(`${ apiUrl }/${ version }/search`)
+  // console.log(`https://api.cuisinierrebelle.com/v1/search`)
   return await axios({
     method: 'get',
-    url: `${ apiUrl }/${ version }/search`,
+    url: `https://api.cuisinierrebelle.com/v1/search`,
     params: {
       query: payload.query
     },
@@ -682,21 +682,17 @@ export const search = async (context, payload) => {
 }
 
 export const getStoreData = async (context, payload) => {
-  // console.log(`${ apiUrl }/${ version }/state`)
+  // console.log(`https://api.cuisinierrebelle.com/v1/state`)
   return await axios({
     method: 'get',
-    url: `${ apiUrl }/${ version }/state`,
-    headers: {
-      // 'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
-      // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
-    },
+    url: `https://api.cuisinierrebelle.com/v1/state`,
   })
 }
 
 export const isAuthenticated = async (context, payload) => {
   return await axios({
     method: 'get',
-    url: `${ apiUrl }/${ version }/users/status`,
+    url: `https://api.cuisinierrebelle.com/v1/users/status`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
       // 'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken,
