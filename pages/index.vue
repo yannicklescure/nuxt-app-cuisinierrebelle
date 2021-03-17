@@ -15,15 +15,15 @@ export default {
       show: false,
     }
   },
+  computed: {
+    ...mapGetters({
+      isAuthenticated: 'users/authentication/isAuthenticated',
+    }),
+  },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
-    }),
-  },
-  computed: {
-    ...mapGetters({
-      isAuthenticated: 'users/authentication/isAuthenticated',
     }),
   },
   async fetch () {

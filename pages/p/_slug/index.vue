@@ -23,24 +23,10 @@ export default {
   data () {
     return {
       componentKey: 0,
-      // data: {
-      //   content: null,
-      // },
     }
   },
   components: {
     VueMarkdownPlus,
-  },
-  // async asyncData(context) {
-  //   await context.store.dispatch('pages/fetch', context.params.slug)
-  // },
-  async created () {
-    await this.fetchItems()
-  },
-  methods: {
-    ...mapActions({
-      fetchItems: 'pages/fetch'
-    }),
   },
   computed: {
     ...mapGetters({
@@ -51,6 +37,14 @@ export default {
     item () {
       return this.page(this.$route.params.slug)
     }
+  },
+  methods: {
+    ...mapActions({
+      fetchItems: 'pages/fetch'
+    }),
+  },
+  async fetch () {
+    await this.fetchItems()
   },
 }
 </script>

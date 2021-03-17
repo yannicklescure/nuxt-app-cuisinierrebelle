@@ -41,25 +41,6 @@ export default {
       }
     }
   },
-  // async asyncData(context) {
-  //   const userData = await context.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ context.params.slug }`)
-  //   console.log(userData)
-  //   const theUser = userData.data
-  //   return { theUser }
-  // },
-  async fetch () {
-    // await this.$store.dispatch('users/getUser', this.$route.params.slug)
-    await this.getUser(this.$route.params.slug)
-    if (this.recipes.length == 0) await this.getStoreData()
-    // console.log(this.$route.params.slug)
-    // const userData = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
-    // this.theUser = userData.data
-
-    // this.$store.commit("users/user", { data: this.user })
-  },
-  // async created () {
-    // await this.getUser(this.$route.params.slug)
-  // },
   computed: {
     ...mapGetters({
       // currentUser: 'users/sessions/current',
@@ -80,11 +61,11 @@ export default {
     ...mapActions({
       getStoreData: 'getStoreData',
       getUser: 'users/getUser',
-      // fetchItems: 'notifications/list'
     }),
-    // setItem () {
-    //   this.items = this.recipes(this.$route.params.slug)
-    // },
+  },
+  async fetch () {
+    await this.getUser(this.$route.params.slug)
+    if (this.recipes.length == 0) await this.getStoreData()
   },
   mounted () {
     this.show = true

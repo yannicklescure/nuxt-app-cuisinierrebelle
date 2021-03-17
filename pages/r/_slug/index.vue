@@ -40,19 +40,6 @@ export default {
       // item: undefined,
     }
   },
-  // async asyncData({ $axios, params }) {
-  //   // console.log(context)
-  //   // await context.store.dispatch('recipes/recipe', context.params.slug)
-  //   const item = await $axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ params.slug }`)
-  //   return { item }
-  // },
-  async fetch () {
-    console.log(this.$route.params.slug)
-    // this.item = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ this.$route.params.slug }`)
-    // console.log(this.item)
-    // this.$store.commit("recipes/recipe", { data: this.item })
-    await this.fetchRecipe(this.$route.params.slug)
-  },
   computed: {
     ...mapGetters({
       // currentUser: 'users/sessions/current',
@@ -73,6 +60,10 @@ export default {
       this.dimension.width = this.$refs.recipe.clientWidth
       this.dimension.height = parseInt(this.dimension.width * 2 / 3)
     }
+  },
+  async fetch () {
+    console.log(this.$route.params.slug)
+    await this.fetchRecipe(this.$route.params.slug)
   },
   async created () {
     // await this.fetchRecipe(this.$route.params.slug)

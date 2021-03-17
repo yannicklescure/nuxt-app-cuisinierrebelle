@@ -31,22 +31,6 @@ export default {
       },
     }
   },
-  async fetch() {
-    console.log('fetch')
-    if(this.$store.state.banner.image.id == null) {
-      const banner = await this.getBannerImage()
-      console.log(banner)
-      this.image = banner.data.bannerImage
-    }
-    else {
-      this.image = this.$store.state.banner.image
-    }
-  },
-  methods: {
-    ...mapActions({
-      getBannerImage: 'banner/getBannerImage'
-    }),
-  },
   computed: {
     ...mapGetters({
       navbarHeight: 'navbarHeight',
@@ -66,6 +50,22 @@ export default {
     imageUrl () {
       return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
-  }
+  },
+  methods: {
+    ...mapActions({
+      getBannerImage: 'banner/getBannerImage'
+    }),
+  },
+  async fetch() {
+    console.log('fetch')
+    if(this.$store.state.banner.image.id == null) {
+      const banner = await this.getBannerImage()
+      console.log(banner)
+      this.image = banner.data.bannerImage
+    }
+    else {
+      this.image = this.$store.state.banner.image
+    }
+  },
 }
 </script>
