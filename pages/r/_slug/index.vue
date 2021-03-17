@@ -15,7 +15,7 @@
 
       <!-- <LazyRecipeAds /> -->
 
-      <LazyOtherRecipes />
+      <!-- <LazyOtherRecipes /> -->
 
       <LazyComments :item="item" />
     </div>
