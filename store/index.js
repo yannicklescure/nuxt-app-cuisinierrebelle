@@ -39,30 +39,20 @@ export const mutations = {
 export const actions = {
   async getBanner ({ commit }, payload) {
     console.log(this)
-    return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
-      .then(response => {
-        console.log(response)
-        this.commit('banner', response)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
+    console.log(response)
+    this.commit('banner', response)
+    return response
   },
   async getStoreData ({ commit }, payload) {
     console.log(this)
-    return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/state')
-      .then(response => {
-        console.log(response)
-        this.commit("setStoreData", response)
-        this.commit('recipes/setStoreData', response)
-        this.commit('users/setStoreData', response)
-        this.dispatch('users/authentication/isAuthenticated', null)
-        return response
-      })
-      .catch(({ response: error }) => {
-        console.log(error)
-      })
+    const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/state')
+    console.log(response)
+    this.commit("setStoreData", response)
+    this.commit('recipes/setStoreData', response)
+    this.commit('users/setStoreData', response)
+    this.dispatch('users/authentication/isAuthenticated', null)
+    return response
   },
   // getStoreData (context, payload) {
   //   // console.log('get store data')
