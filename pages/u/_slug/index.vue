@@ -60,7 +60,7 @@ export default {
       getUser: 'users/getUser',
     }),
   },
-  async fetch() {
+  async created() {
     await this.getUser(this.$route.params.slug)
     if (this.recipes.length == 0) await this.getStoreData()
   },

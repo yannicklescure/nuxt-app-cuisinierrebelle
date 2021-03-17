@@ -37,7 +37,7 @@ export default {
       }
     }
   },
-  async fetch() {
+  async created() {
     if (this.items.length < 2) await this.getStoreData()
   },
   beforeMount() {

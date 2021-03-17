@@ -34,7 +34,7 @@ export default {
   methods: {
     ...mapActions(['getStoreData']),
   },
-  async fetch() {
+  async created() {
     if (this.items.length == 0) await this.getStoreData()
   },
 }

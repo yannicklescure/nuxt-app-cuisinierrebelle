@@ -61,11 +61,11 @@ export default {
       this.dimension.height = parseInt(this.dimension.width * 2 / 3)
     }
   },
-  async fetch() {
+  async created() {
     console.log(this.$route.params.slug)
     await this.fetchRecipe(this.$route.params.slug)
-  },
-  created() {
+  // },
+  // created() {
     if (process.client) {
       window.addEventListener("resize", this.matchInfoBox);
     }

@@ -37,7 +37,7 @@ export default {
   //     // fetchItems: 'notifications/list'
   //   }),
   // },
-  // async fetch() {
+  // async created() {
   //   if (this.items.length == 0) this.getStoreData()
   //   // if (this.isAuthenticated) this.fetchItems()
   // },
