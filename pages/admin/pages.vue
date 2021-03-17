@@ -65,7 +65,7 @@ export default {
       fetchItems: 'pages/get'
     }),
   },
-  async fetch() {
+  async created() {
     if (this.pages.length == 0) await this.fetchItems()
   }
 }

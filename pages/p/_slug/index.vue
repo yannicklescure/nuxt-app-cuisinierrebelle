@@ -43,7 +43,7 @@ export default {
       fetchItems: 'pages/get'
     }),
   },
-  async fetch() {
+  async created() {
     await this.fetchItems()
   },
 }

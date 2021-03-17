@@ -129,7 +129,7 @@ export default {
       // }
       return true
     },
-    resendConfirmationInstructions () {
+    async resendConfirmationInstructions () {
       this.errors = []
       if (!this.email) {
         this.errors.push(this.$t('signUp.errors.email'))
@@ -152,7 +152,7 @@ export default {
             // password: this.password
           }
         }
-        this.$store.dispatch('resendConfirmationInstructions', payload)
+        await this.$store.dispatch('resendConfirmationInstructions', payload)
           .then(result => {
             console.log(result)
             if (result.status === 200) {

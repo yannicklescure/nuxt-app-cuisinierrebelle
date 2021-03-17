@@ -34,7 +34,7 @@ export const actions = {
     this.commit('recipes/setStoreData', response)
     this.commit('users/setStoreData', response)
     this.dispatch('users/authentication/isAuthenticated', null)
-    return response
+    // return response
   },
   async registrationConfirmation (context, payload) {
     const response = await api.confirmRegistration(context, payload)
