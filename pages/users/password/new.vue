@@ -1,4 +1,4 @@
-<!-- <template> -->
+<template>
   <div class="container d-flex cr-vh100">
     <div class="d-flex flex-grow-1 flex-column justify-content-center align-items-center">
       <div :class="[isMobile ? 'h2' : 'h1', 'text-center']">{{ $t('login.password.request.title') }}</div>
@@ -118,6 +118,6 @@ export default {
         })
       }
     },
-  },
+  }
 }
 </script>
