@@ -22,13 +22,15 @@ export default {
   },
   methods: {
     ...mapActions({
+      getBannerImage: 'banner/get',
       getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
     }),
   },
   async fetch () {
     await this.getStoreData()
-    if (this.isAuthenticated) this.fetchNotifications()
+    await this.getBannerImage()
+    if (this.isAuthenticated) await this.fetchNotifications()
   },
   mounted () {
     this.$nextTick(() => {
