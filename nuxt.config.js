@@ -137,7 +137,7 @@ export default {
     '~/plugins/axios.js',
     '~/plugins/vuejs-dialog.client',
     { src: '~/plugins/vuex-persist', ssr: false },
-    { src: '~/plugins/vuex-cache.js', ssr: false },
+    // { src: '~/plugins/vuex-cache.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
