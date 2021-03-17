@@ -49,7 +49,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Notifications',
-  data () {
+  data() {
     return {
       componentKey: 0,
       show: false,
@@ -97,16 +97,12 @@ export default {
   //     await this.fetchItem()
   //   }
   // },
-  created () {
-    if (this.items.length == 0) {
-      this.fetchItems().then( response => {
-        console.log(response)
-      })
-    }
-    this.show = true
+  async fetch() {
+    this.fetchItems()
   },
-  // mounted () {
-  //   this.$nextTick(() => {})
-  // },
+  mounted() {
+    this.show = true
+    // this.$nextTick(() => {})
+  },
 }
 </script>

@@ -15,18 +15,12 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Cards',
+  // middleware: 'authenticated',
   data() {
     return {
       // items: [],
       // fetchedData: null
     }
-  },
-  // middleware: 'authenticated',
-  methods: {
-    ...mapActions({
-      getStoreData: 'getStoreData',
-      // fetchItems: 'notifications/list'
-    }),
   },
   computed: {
     ...mapGetters({
@@ -37,9 +31,15 @@ export default {
       return this.isAuthenticated ? this.getItems : this.getItems.slice(0, 12)
     }
   },
-  async created () {
-    if (this.items.length == 0) this.getStoreData()
-    // if (this.isAuthenticated) this.fetchItems()
-  },
+  // methods: {
+  //   ...mapActions({
+  //     getStoreData: 'getStoreData',
+  //     // fetchItems: 'notifications/list'
+  //   }),
+  // },
+  // async fetch() {
+  //   if (this.items.length == 0) this.getStoreData()
+  //   // if (this.isAuthenticated) this.fetchItems()
+  // },
 }
 </script>

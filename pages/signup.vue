@@ -56,7 +56,7 @@ const capitalize = (s) => {
 
 export default {
   name: 'Signup',
-  data () {
+  data() {
     return {
       disabled: true,
       firstName: null,
@@ -70,11 +70,11 @@ export default {
   // components: {
   //   // Navbar
   // },
-  computed: {
-    ...mapGetters({
-      // navbarHeight: 'navbarHeight',
-    }),
-  },
+  // computed: {
+  //   ...mapGetters({
+  //     // navbarHeight: 'navbarHeight',
+  //   }),
+  // },
   methods: {
     showPassword1 () {
       if (this.$refs.password1.type === "text") {
@@ -190,7 +190,7 @@ export default {
       }
     },
   },
-  // beforeMount () {
+  // beforeMount() {
   //   // this.signUpNew()
   // }
 }

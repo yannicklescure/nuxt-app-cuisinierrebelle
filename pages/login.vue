@@ -57,7 +57,7 @@ const capitalize = (s) => {
 
 export default {
   name: 'Login',
-  data () {
+  data() {
     return {
       connecting: false,
       disabled: true,

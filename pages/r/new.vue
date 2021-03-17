@@ -49,12 +49,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 import imageCompression from 'browser-image-compression'
 
 export default {
   name: 'RecipeNew',
-  data () {
+  data() {
     return {
       // componentKey: 0,
       // navbarHeight: 0,
@@ -71,6 +71,9 @@ export default {
       errors: [],
     }
   },
+  // computed: {
+  //   ...mapGetters({}),
+  // },
   methods: {
     // processFile (event) {
     //   this.photo = event.target.files[0]
@@ -182,9 +185,6 @@ export default {
         })
       }
     },
-  },
-  computed: {
-    ...mapGetters({}),
   },
 }
 </script>

@@ -17,7 +17,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Top100',
-  // data () {
+  // data() {
   //   return {
   //     // componentKey: 0,
   //     // data: [],
@@ -25,17 +25,17 @@ export default {
   //   }
   // },
   middleware: 'authenticated',
-  methods: {
-    ...mapActions(['getStoreData']),
-  },
   computed: {
     ...mapGetters({
       navbarHeight: 'navbarHeight',
       items: 'recipes/top100',
     }),
   },
-  created () {
-    if (this.items.length == 0) this.getStoreData()
+  methods: {
+    ...mapActions(['getStoreData']),
+  },
+  async fetch() {
+    if (this.items.length == 0) await this.getStoreData()
   },
 }
 </script>

@@ -28,10 +28,15 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Footer',
-  data () {
+  data() {
     return {
       // message: 'false',
     }
+  },
+  computed: {
+    year () {
+      return new Date().getFullYear()
+    },
   },
   methods: {
     ...mapActions({
@@ -41,10 +46,5 @@ export default {
       this.fetchPages()
     },
   },
-  computed: {
-    year () {
-      return new Date().getFullYear()
-    },
-  }
 }
 </script>

@@ -14,7 +14,7 @@ const capitalize = (s) => {
 
 export default {
   name: 'RegistrationConfirmation',
-  data () {
+  data() {
     return {
       // componentKey: 0,
       // navbarHeight: 0,
@@ -54,13 +54,13 @@ export default {
   //     'navbarHeight',
   //   ]),
   // },
-  beforeMount () {
+  beforeMount() {
     if (this.$route.query.confirmation_token) this.confirmRegistration()
     else {
       this.$router.push({ path: '/login' })
     }
   },
-  // mounted () {
+  // mounted() {
   //   // this.navbarHeight = this.getNavbarHeight()
   // }
 }

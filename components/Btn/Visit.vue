@@ -12,11 +12,11 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'BtnVisit',
   props: ['item'],
-  data () {
-    return {
-      // views: 0,
-    }
-  },
+  // data() {
+  //   return {
+  //     // views: 0,
+  //   }
+  // },
   computed: {
     ...mapGetters(['isMobile']),
     // isMobile () {
@@ -39,11 +39,11 @@ export default {
         })
     },
   },
-  beforeMount () {
-    // this.recipeLog()
-  },
-  updated () {
-    // this.recipeLog()
-  }
+  // beforeMount() {
+  //   // this.recipeLog()
+  // },
+  // updated () {
+  //   // this.recipeLog()
+  // }
 }
 </script>

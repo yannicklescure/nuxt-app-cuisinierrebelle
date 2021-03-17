@@ -24,24 +24,9 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'CardSmall',
   props: ['number'],
-  data () {
+  data() {
     return {
       componentKey: 0,
-    }
-  },
-  methods: {
-    forceRerender () {
-      this.componentKey += 1;
-    },
-    tuncateString (str, length) {
-      const arr = str.split('')
-      // console.log(arr)
-      while ((/\s/).test(arr[length]) == false) {
-        // console.log(arr[length])
-        length -= 1
-      }
-      if ((/\W/).test(arr[length-1])) length -= 1
-      return str.length <= length ? str : str.slice(0, length) + '&hellip;'
     }
   },
   computed: {
@@ -68,7 +53,22 @@ export default {
       return this.tuncateString(this.item.recipe.description, this.isMobile ? 100 : 200)
     }
   },
-  mounted () {
+  methods: {
+    forceRerender () {
+      this.componentKey += 1;
+    },
+    tuncateString (str, length) {
+      const arr = str.split('')
+      // console.log(arr)
+      while ((/\s/).test(arr[length]) == false) {
+        // console.log(arr[length])
+        length -= 1
+      }
+      if ((/\W/).test(arr[length-1])) length -= 1
+      return str.length <= length ? str : str.slice(0, length) + '&hellip;'
+    }
+  },
+  mounted() {
     this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
     // this.$nextTick(() => {
       // this.forceRerender()

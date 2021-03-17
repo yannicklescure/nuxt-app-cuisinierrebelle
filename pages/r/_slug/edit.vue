@@ -58,7 +58,7 @@ export default {
   name: 'RecipeEdit',
   middleware: ['authenticated', 'authorization'],
   // props: ['item'],
-  data () {
+  data() {
     return {
       componentKey: 0,
       show: false,
@@ -241,17 +241,18 @@ export default {
         });
     },
   },
-  beforeMount () {
-    if (this.currentUser.slug != this.item.user.slug) {
-      console.log('ALERT')
-      this.$router.push({
-        path: '/'
-      })
-    }
-  },
-  async mounted () {
-    // this.navbarHeight = this.getNavbarHeight()
+  // beforeMount() {
+  //   if (this.currentUser.slug != this.item.user.slug) {
+  //     console.log('ALERT')
+  //     this.$router.push({
+  //       path: '/'
+  //     })
+  //   }
+  // },
+  async fetch() {
     await this.setData()
+  },
+  mounted() {
     this.show = true
   }
 }

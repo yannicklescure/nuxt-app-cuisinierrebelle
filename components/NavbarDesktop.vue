@@ -76,7 +76,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'NavbarLarge',
-  data () {
+  data() {
     return {
       componentKey: 0,
       loading: false,
@@ -87,15 +87,14 @@ export default {
       }
     }
   },
-  created () {
-    if (process.client) {
-      window.addEventListener('scroll', this.handleScroll);
-    }
-  },
-  destroyed () {
-    if (process.client) {
-      window.removeEventListener('scroll', this.handleScroll);
-    }
+  watch: {
+    notifications (oldValue, newValue) {
+      if (oldValue.length != newValue.length) {
+        // console.log(oldValue)
+        // console.log(newValue)
+        this.icons.notifications = 'notifications'
+      }
+    },
   },
   computed: {
     ...mapGetters({
@@ -111,15 +110,6 @@ export default {
     // },
     isScrollTop () {
       return true
-    },
-  },
-  watch: {
-    notifications (oldValue, newValue) {
-      if (oldValue.length != newValue.length) {
-        // console.log(oldValue)
-        // console.log(newValue)
-        this.icons.notifications = 'notifications'
-      }
     },
   },
   methods: {
@@ -224,7 +214,17 @@ export default {
       this.$store.dispatch('navbarHeight', parseInt(this.$refs.navbar.offsetHeight))
     },
   },
-  mounted () {
+  created() {
+    if (process.client) {
+      window.addEventListener('scroll', this.handleScroll);
+    }
+  },
+  destroyed () {
+    if (process.client) {
+      window.removeEventListener('scroll', this.handleScroll);
+    }
+  },
+  mounted() {
     this.navbarHeight()
     this.handleScroll()
   }

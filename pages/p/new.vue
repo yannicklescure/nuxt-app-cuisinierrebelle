@@ -37,7 +37,7 @@ export default {
   name: 'PageNew',
   middleware: ['authenticated', 'admin'],
   // props: ['item'],
-  data () {
+  data() {
     return {
       componentKey: 0,
       // navbarHeight: 0,
@@ -58,7 +58,6 @@ export default {
     }),
   },
   methods: {
-
     allowPost () {
       // if (this.title && this.direction && this.photo) {
       //   this.disabled = false

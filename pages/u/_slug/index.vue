@@ -30,15 +30,12 @@ export default {
   //   const slug = params.slug
   //   return { slug }
   // },
-  data () {
+  data() {
     return {
       show: false,
       // componentKey: 0,
       // data: [],
       // busy: false,
-      theUser: {
-        name: ''
-      }
     }
   },
   computed: {
@@ -63,11 +60,11 @@ export default {
       getUser: 'users/getUser',
     }),
   },
-  async fetch () {
+  async fetch() {
     await this.getUser(this.$route.params.slug)
     if (this.recipes.length == 0) await this.getStoreData()
   },
-  mounted () {
+  mounted() {
     this.show = true
   }
 }

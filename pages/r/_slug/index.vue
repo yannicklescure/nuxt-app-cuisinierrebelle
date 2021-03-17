@@ -30,7 +30,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Recipe',
-  data () {
+  data() {
     return {
       componentKey: 0,
       dimension: {
@@ -61,15 +61,11 @@ export default {
       this.dimension.height = parseInt(this.dimension.width * 2 / 3)
     }
   },
-  async fetch () {
+  async fetch() {
     console.log(this.$route.params.slug)
     await this.fetchRecipe(this.$route.params.slug)
   },
-  async created () {
-    // await this.fetchRecipe(this.$route.params.slug)
-    // this.$store.commit("recipes/recipe", { data: this.item })
-
-    // if (this.items.length < 2) this.getStoreData()
+  created() {
     if (process.client) {
       window.addEventListener("resize", this.matchInfoBox);
     }
@@ -79,7 +75,7 @@ export default {
       window.removeEventListener("resize", this.matchInfoBox);
     }
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
       this.matchInfoBox()
     })

@@ -27,18 +27,12 @@ export default {
       fetchNotifications: 'notifications/list'
     }),
   },
-  async fetch () {
+  async fetch() {
     await this.getStoreData()
     if (this.isAuthenticated) await this.fetchNotifications()
   },
-  mounted () {
-    this.$nextTick(() => {
-      this.show = true
-      // if (this.isAuthenticated) this.show = true
-      // else setTimeout(() => {
-      //   this.show = true
-      // }, 1000)
-    })
+  mounted() {
+    this.show = true
   }
 }
 </script>

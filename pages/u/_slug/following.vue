@@ -26,7 +26,7 @@ export default {
   //   const slug = params.slug
   //   return { slug }
   // },
-  data () {
+  data() {
     return {
       componentKey: 0,
       data: [],
@@ -51,10 +51,10 @@ export default {
       return this.user.following.data.slice(0, 100)
     }
   },
-  created () {
+  beforeMount() {
     this.getUser(this.$route.params.slug)
   },
-  mounted () {
+  mounted() {
     this.show = true
   }
 }

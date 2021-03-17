@@ -18,7 +18,7 @@ export default {
   // components: {
   //   SocialSharingModal,
   // },
-  data () {
+  data() {
     return {
       // views: 0,
     }
@@ -46,7 +46,7 @@ export default {
       console.log(shareData)
     },
   },
-  // beforeMount () {
+  // beforeMount() {
   //   // this.recipeLog()
   // },
   // updated () {

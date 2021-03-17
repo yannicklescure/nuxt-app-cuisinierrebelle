@@ -47,16 +47,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Pages',
   middleware: ['authenticated', 'admin'],
-  data () {
+  data() {
     return {
       componentKey: 0,
       locale: 'fr',
     }
-  },
-  methods: {
-    ...mapActions({
-      fetchItems: 'pages/fetch'
-    }),
   },
   computed: {
     ...mapGetters({
@@ -65,7 +60,12 @@ export default {
       // isMobile: 'isMobile',
     }),
   },
-  async created () {
+  methods: {
+    ...mapActions({
+      fetchItems: 'pages/fetch'
+    }),
+  },
+  async fetch() {
     if (this.pages.length == 0) await this.fetchItems()
   }
 }

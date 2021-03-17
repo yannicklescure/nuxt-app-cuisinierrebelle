@@ -12,10 +12,18 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'OtherRecipes',
-  data () {
+  data() {
     return {
       numbers: []
     }
+  },
+  computed: {
+    ...mapGetters({
+      // currentUser: 'users/sessions/current',
+      // isMobile: 'isMobile',
+      // recipe: 'recipes/recipe',
+      items: 'recipes/listSorted',
+    }),
   },
   methods: {
     ...mapActions({
@@ -29,17 +37,11 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapGetters({
-      // currentUser: 'users/sessions/current',
-      // isMobile: 'isMobile',
-      // recipe: 'recipes/recipe',
-      items: 'recipes/listSorted',
-    }),
-  },
-  async created () {
+  async fetch() {
     if (this.items.length < 2) await this.getStoreData()
-    this.getRandomNumbers(this.items.length)
   },
+  beforeMount() {
+    this.getRandomNumbers(this.items.length)
+  }
 }
 </script>

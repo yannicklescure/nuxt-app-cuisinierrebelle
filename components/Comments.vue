@@ -52,7 +52,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Comments',
-  data () {
+  data() {
     return {
       // forceRecomputeCounter: 0,
       componentKey: 0,
@@ -157,7 +157,7 @@ export default {
       // this.show = [...new Array(this.item.comments.length)].map(() => false)
     }
   },
-  async mounted () {
+  mounted() {
     // await this.loadComments()
     this.$nextTick(() => {
       this.initShow()

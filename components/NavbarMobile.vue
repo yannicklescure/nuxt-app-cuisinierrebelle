@@ -65,7 +65,7 @@ import ClickOutside from 'vue-click-outside'
 
 export default {
   name: 'NavbarSmall',
-  data () {
+  data() {
     return {
       componentKey: 0,
       loading: false,
@@ -214,7 +214,7 @@ export default {
       this.$store.dispatch('navbarHeight', parseInt(this.$refs.navbar.offsetHeight))
     },
   },
-  created () {
+  created() {
     if (process.client) {
       window.addEventListener('scroll', this.handleScroll);
     }
@@ -224,10 +224,10 @@ export default {
       window.removeEventListener('scroll', this.handleScroll);
     }
   },
-  beforeMount () {
+  beforeMount() {
     this.forceRerender()
   },
-  mounted () {
+  mounted() {
     this.navbarHeight()
     // this.handleScroll()
   }

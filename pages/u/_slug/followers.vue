@@ -26,19 +26,12 @@ export default {
   //   const slug = params.slug
   //   return { slug }
   // },
-  data () {
+  data() {
     return {
       componentKey: 0,
       data: [],
       show: false,
     }
-  },
-  methods: {
-    ...mapActions({
-      getStoreData: 'getStoreData',
-      getUser: 'users/getUser',
-      // fetchItems: 'notifications/list'
-    }),
   },
   computed: {
     ...mapGetters({
@@ -51,10 +44,17 @@ export default {
       return this.user.followers.data.slice(0, 100)
     }
   },
-  created () {
+  methods: {
+    ...mapActions({
+      getStoreData: 'getStoreData',
+      getUser: 'users/getUser',
+      // fetchItems: 'notifications/list'
+    }),
+  },
+  beforeMount() {
     this.getUser(this.$route.params.slug)
   },
-  mounted () {
+  mounted() {
     this.show = true
   }
 }

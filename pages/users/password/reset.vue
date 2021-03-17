@@ -50,7 +50,7 @@ const capitalize = (s) => {
 
 export default {
   name: 'PasswordReset',
-  data () {
+  data() {
     return {
       disabled: true,
       token: this.$route.query.token,
@@ -61,17 +61,13 @@ export default {
       errors: [],
     }
   },
-  components: {
-  },
+  // components: {
+  // },
   computed: {
     ...mapGetters({
       isMobile: 'isMobile',
       // navbarHeight: 'navbarHeight',
     }),
-  },
-  beforeMount () {
-    console.log(this.token)
-    this.requestResetVerification()
   },
   methods: {
     showPassword1 () {
@@ -222,6 +218,10 @@ export default {
           }
         })
     },
+  },
+  async fetch() {
+    console.log(this.token)
+    await this.requestResetVerification()
   },
 }
 </script>

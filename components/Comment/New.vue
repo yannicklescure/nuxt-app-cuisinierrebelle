@@ -30,7 +30,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'CommentNew',
   props: ['item'],
-  data () {
+  data() {
     return {
       disabled: true,
       content: null,

@@ -19,7 +19,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'BtnLike',
   props: ['item'],
-  data () {
+  data() {
     return {
       likes: this.item.recipe.likes,
       liked: false,
@@ -59,7 +59,7 @@ export default {
       }
     },
   },
-  mounted () {
+  beforeMount() {
     this.isLiked()
   }
 }

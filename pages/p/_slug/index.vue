@@ -20,7 +20,7 @@ import VueMarkdownPlus from 'vue-markdown-plus'
 
 export default {
   name: 'Page',
-  data () {
+  data() {
     return {
       componentKey: 0,
     }
@@ -43,7 +43,7 @@ export default {
       fetchItems: 'pages/get'
     }),
   },
-  async fetch () {
+  async fetch() {
     await this.fetchItems()
   },
 }

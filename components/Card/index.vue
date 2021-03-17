@@ -43,12 +43,12 @@ export default {
       window.removeEventListener("resize", this.matchInfoBox);
     }
   },
-  mounted () {
-    this.$nextTick(() => {
+  mounted() {
+    // this.$nextTick(() => {
       // console.log('card ready')
       this.matchInfoBox()
       this.$emit('cardReady', this.item.recipe.id)
-    })
+    // })
   }
 }
 </script>

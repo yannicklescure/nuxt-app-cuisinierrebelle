@@ -10,14 +10,13 @@
 export default {
   name: 'BtnPrint',
   props: ['item'],
-  data () {
-    return {}
-  },
+  // data() {
+  //   return {}
+  // },
   // computed: {
   //   // ...mapGetters(['isAuthenticated', 'user']),
   // },
   methods: {
-
     googleAdsNoPrint () {
       const googleAutoPlacedAds = this.$el.querySelectorAll('.google-auto-placed');
       if (googleAutoPlacedAds) {

@@ -19,7 +19,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'BtnBookmark',
   props: ['item'],
-  data () {
+  data() {
     return {
       bookmarks: this.item.recipe.bookmarks,
       bookmarked: false,
@@ -60,7 +60,7 @@ export default {
       }
     },
   },
-  mounted () {
+  beforeMount() {
     this.isBookmarked()
   }
 }

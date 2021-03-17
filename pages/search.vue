@@ -18,7 +18,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Search',
-  // data () {
+  // data() {
   //   return {
   //     // componentKey: 0,
   //     // data: [],
@@ -26,16 +26,18 @@ export default {
   //   }
   // },
   // middleware: 'authenticated',
-  methods: {
-    ...mapActions(['getStoreData']),
-  },
+  // methods: {
+  //   ...mapActions({
+  //     getStoreData: 'getStoreData'
+  //   }),
+  // },
   computed: {
     ...mapGetters({
       navbarHeight: 'navbarHeight',
       items: 'search/result',
     }),
   },
-  // created () {
+  // created() {
     // if (this.items.length == 0) this.getStoreData()
   // },
 }

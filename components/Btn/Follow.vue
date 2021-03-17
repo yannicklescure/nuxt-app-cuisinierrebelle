@@ -20,7 +20,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Follow',
   props: ['item'],
-  data () {
+  data() {
     return {}
   },
   computed: {

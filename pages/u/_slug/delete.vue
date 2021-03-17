@@ -33,12 +33,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// const UserNotifications = () => import('../components/UserNotifications.vue')
 
 export default {
   name: 'UserDelete',
   middleware: ['authenticated', 'authorization'],
-  data () {
+  data() {
     return {
       componentKey: 0,
       errors: [],
@@ -50,9 +49,11 @@ export default {
       show: false,
     }
   },
-  // components: {
-  //   UserNotifications,
-  // },
+  computed: {
+    ...mapGetters({
+      currentUser: 'users/sessions/current',
+    }),
+  },
   methods: {
     checkForm () {
       // console.log(`checked ${!this.checked}`)
@@ -115,12 +116,7 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapGetters({
-      currentUser: 'users/sessions/current',
-    }),
-  },
-  mounted () {
+  mounted() {
     this.show = true
   }
 }

@@ -19,9 +19,9 @@
 export default {
   name: 'UsersCard',
   props: ['item'],
-  data () {
-    return {}
-  },
+  // data() {
+  //   return {}
+  // },
   // components: {
   //   Follow,
   // },
