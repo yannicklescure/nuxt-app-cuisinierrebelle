@@ -6,7 +6,7 @@
       class="banner-background banner-height d-flex flex-column w-100 justify-content-between bg-light"
     >
       <BannerCta />
-      <!-- <BannerUnsplash :image="image" /> -->
+      <BannerUnsplash :image="image" />
     </div>
   </div>
 </template>
@@ -18,8 +18,7 @@ export default {
   name: 'Banner',
   computed: {
     ...mapGetters({
-      image: 'banner',
-      // image: 'banner/image',
+      image: 'banner/image',
     }),
     viewport () {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
@@ -35,8 +34,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      // getBannerImage: 'banner/get'
-      getBannerImage: 'getBanner'
+      getBannerImage: 'banner/get'
     }),
   },
   async fetch() {
