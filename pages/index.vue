@@ -23,15 +23,12 @@ export default {
   methods: {
     ...mapActions({
       // getBannerImage: 'banner/getBannerImage',
-      // getStoreData: 'getStoreData',
-      getStoreData: 'get',
-      getBannerImage: 'banner/get',
+      getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
     }),
   },
   async fetch () {
     await this.getStoreData()
-    await this.getBannerImage()
     if (this.isAuthenticated) await this.fetchNotifications()
   },
   mounted () {

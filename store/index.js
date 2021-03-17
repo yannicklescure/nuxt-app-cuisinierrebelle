@@ -22,7 +22,19 @@ export const mutations = {
 }
 
 export const actions = {
-  async get ({ commit }, payload) {
+  async banner ({ commit }, payload) {
+    console.log(this)
+    return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
+      .then(response => {
+        console.log(response)
+        this.commit('banner/set', response)
+        return response
+      })
+      .catch(({ response: error }) => {
+        console.log(error)
+      })
+  },
+  async getStoreData ({ commit }, payload) {
     console.log(this)
     return await this.$axios.$get('https://api.cuisinierrebelle.com/v1/state')
       .then(response => {

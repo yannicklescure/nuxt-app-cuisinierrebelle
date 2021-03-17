@@ -35,11 +35,12 @@ export default {
   methods: {
     ...mapActions({
       // getBannerImage: 'banner/get'
+      getBannerImage: 'banner'
     }),
   },
   async fetch() {
     console.log('fetch')
-    // await this.getBannerImage()
+    await this.getBannerImage()
     // if(this.$store.state.banner.image.id == null) {
     //   const banner = await this.getBannerImage()
     //   console.log(banner)
