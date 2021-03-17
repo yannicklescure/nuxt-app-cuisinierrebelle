@@ -16,8 +16,30 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Banner',
+  data () {
+    return {
+      image: {
+        id: null,
+        link: {
+          download: null,
+        },
+        url: null,
+        user: {
+          name: null,
+          username: null
+        }
+      },
+    }
+  },
   async fetch() {
-    await this.getBannerImage()
+    if(this.$store.state.banner.image.id == null) {
+      const banner = await this.getBannerImage()
+      console.log(banner)
+      this.image = banner.data.bannerImage
+    }
+    else {
+      this.image = this.$store.state.banner.image
+    }
   },
   methods: {
     ...mapActions({
@@ -37,9 +59,9 @@ export default {
         width: vw,
       }
     },
-    image () {
-      return this.storeImage
-    },
+    // image () {
+    //   return this.storeImage
+    // },
     imageUrl () {
       return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
     },
