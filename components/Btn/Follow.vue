@@ -19,10 +19,10 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Follow',
+  props: ['item'],
   data () {
     return {}
   },
-  props: ['item'],
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',

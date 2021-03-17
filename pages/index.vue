@@ -1,7 +1,7 @@
 <template>
   <div>
     <Banner v-if="isAuthenticated == false" />
-    <LazyCards v-if="show" />
+    <Cards v-if="show" />
   </div>
 </template>
 

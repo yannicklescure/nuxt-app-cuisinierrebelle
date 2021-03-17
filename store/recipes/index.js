@@ -110,10 +110,8 @@ export const actions = {
     return api.replyLike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) {
-          context.commit("replyLike", payload)
-          context.commit("users/sessions/replyLike", payload, { root: true })
-        }
+        this.commit("recipes/replyLike", payload)
+        this.commit("users/sessions/replyLike", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -125,10 +123,8 @@ export const actions = {
     return api.replyUnlike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 204) {
-          context.commit("replyUnlike", payload)
-          context.commit("users/sessions/replyUnlike", payload, { root: true })
-        }
+        this.commit("recipes/replyUnlike", payload)
+        this.commit("users/sessions/replyUnlike", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -140,7 +136,7 @@ export const actions = {
     return api.replyEdit(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("replyEdit", response)
+        this.commit("recipes/replyEdit", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -152,7 +148,7 @@ export const actions = {
     return api.replyDelete(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 204) context.commit("replyDelete", payload)
+        this.commit("recipes/replyDelete", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -164,7 +160,7 @@ export const actions = {
     return api.replyNew(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("replyNew", response)
+        this.commit("recipes/replyNew", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -176,10 +172,8 @@ export const actions = {
     return api.commentLike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) {
-          context.commit("commentLike", payload)
-          context.commit("users/sessions/commentLike", payload, { root: true })
-        }
+        this.commit("recipes/commentLike", payload)
+        this.commit("users/sessions/commentLike", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -191,10 +185,8 @@ export const actions = {
     return api.commentUnlike(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 204) {
-          context.commit("commentUnlike", payload)
-          context.commit("users/sessions/commentUnlike", payload, { root: true })
-        }
+        this.commit("recipes/commentUnlike", payload)
+        this.commit("users/sessions/commentUnlike", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -206,7 +198,7 @@ export const actions = {
     return api.commentEdit(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("commentEdit", response)
+        this.commit("recipes/commentEdit", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -218,7 +210,7 @@ export const actions = {
     return api.commentNew(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) context.commit("commentNew", response)
+        this.commit("recipes/commentNew", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -230,7 +222,7 @@ export const actions = {
     return api.commentDelete(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 204) context.commit("commentDelete", payload)
+        this.commit("recipes/commentDelete", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -242,11 +234,8 @@ export const actions = {
     return api.bookmark(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 200) {
-          context.commit("bookmark", payload)
-          context.commit("users/sessions/bookmark", payload, { root: true })
-
-        }
+        this.commit("recipes/bookmark", payload)
+        this.commit("users/sessions/bookmark", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -258,10 +247,8 @@ export const actions = {
         return api.unbookmark(context, payload)
       .then(response => {
         console.log(`response.status ${response.status}`)
-        if (response.status === 204) {
-          context.commit("unbookmark", payload)
-          context.commit("users/sessions/unbookmark", payload, { root: true })
-        }
+        this.commit("recipes/unbookmark", payload)
+        this.commit("users/sessions/unbookmark", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -274,10 +261,8 @@ export const actions = {
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
-        if (response.status == 200) {
-          context.commit("like", payload)
-          context.commit("users/sessions/like", payload, { root: true })
-        }
+        this.commit("recipes/like", payload)
+        this.commit("users/sessions/like", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -290,10 +275,8 @@ export const actions = {
       .then(response => {
         console.log(`response.status ${response.status}`)
         console.log(response)
-        if (response.status == 204) {
-          context.commit("unlike", payload)
-          context.commit("users/sessions/unlike", payload, { root: true })
-        }
+        this.commit("recipes/unlike", payload)
+        this.commit("users/sessions/unlike", payload)
         return response
       })
       .catch(({ response: error }) => {
@@ -303,7 +286,7 @@ export const actions = {
   list (context, payload) {
     return api.recipes(context, payload)
       .then(response => {
-        if (response.status == 200) context.commit("list", response.data)
+        this.commit("recipes/list", response.data)
         return response
       })
       .catch(({ response: error }) => {
@@ -314,7 +297,7 @@ export const actions = {
     // console.log(context.state.data.user)
     return api.recipe(context, payload)
       .then(response => {
-        if (response.status == 200) context.commit("recipe", response)
+        this.commit("recipes/recipe", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -326,7 +309,7 @@ export const actions = {
     return api.recipeDelete(context, payload)
       .then(response => {
         console.log(response)
-        if (response.status == 200) context.commit("delete", response)
+        this.commit("recipes/delete", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -338,7 +321,7 @@ export const actions = {
     return api.recipeEdit(context, payload)
       .then(response => {
         console.log(response)
-        if (response.status == 200) context.commit("edit", response)
+        this.commit("recipes/edit", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -349,7 +332,7 @@ export const actions = {
     // console.log(context.state.data.user)
     return api.recipeNew(context, payload)
       .then(response => {
-        if (response.status == 200) context.commit("new", response)
+        this.commit("recipes/new", response)
         return response
       })
       .catch(({ response: error }) => {
@@ -360,7 +343,7 @@ export const actions = {
     console.log(context.state.data.user)
     return api.recipeLog(context, payload)
       .then(response => {
-        if (response.status == 200) context.commit("log", { data: payload, views: response.data.views })
+        this.commit("recipes/log", { data: payload, views: response.data.views })
         return response
       })
       .catch(({ response: error }) => {

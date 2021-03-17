@@ -18,7 +18,6 @@ export const mutations = {
   },
   navbarHeight (state, payload) {
     state.render.navbarHeight = payload
-    // context.commit("navbarHeight", navbarHeight)
   },
 }
 
@@ -28,10 +27,10 @@ export const actions = {
     return api.getStoreData(context, payload)
       .then(response => {
         // console.log(response)
-        context.commit("setStoreData", response.data)
-        context.commit('recipes/setStoreData', response.data, { root: true })
-        context.commit('users/setStoreData', response.data, { root: true })
-        context.dispatch('users/authentication/isAuthenticated', null, { root: true })
+        this.commit("setStoreData", response.data)
+        this.commit('recipes/setStoreData', response.data)
+        this.commit('users/setStoreData', response.data)
+        this.dispatch('users/authentication/isAuthenticated', null)
         return response
       })
       .catch(({ response: error }) => {
@@ -58,7 +57,7 @@ export const actions = {
       })
   },
   navbarHeight (context, payload) {
-    context.commit("navbarHeight", payload)
+    this.commit("navbarHeight", payload)
   },
 }
 
