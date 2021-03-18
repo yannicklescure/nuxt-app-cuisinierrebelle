@@ -51,6 +51,9 @@ export default {
       return this.userRecipes(this.$route.params.slug)
     }
   },
+  watch: {
+    '$route.params': '$fetch'
+  },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
