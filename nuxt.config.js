@@ -134,9 +134,10 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/axios.js',
-    '~/plugins/vuejs-dialog.client',
-    { src: '~/plugins/vuex-persist', ssr: false },
+    { src: '~/plugins/axios.js' },
+    { src: '~/plugins/vuejs-dialog.client.js' },
+    { src: '~/plugins/persistedState.client.js' },
+    // { src: '~/plugins/vuex-persist.js', ssr: false },
     // { src: '~/plugins/vuex-cache.js', ssr: false },
   ],
 
@@ -156,11 +157,11 @@ export default {
     ]
   ],
 
-  publicRuntimeConfig: {
-    axios: {
-      baseURL: 'https://api.cuisinierrebelle.com'
-    }
-  },
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     baseURL: 'https://api.cuisinierrebelle.com'
+  //   }
+  // },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   // Modules - https://www.cuisinierrebelle.com/docs/2.x/directory-structure/modules
@@ -173,6 +174,7 @@ export default {
     'nuxt-i18n',
     'bootstrap-vue/nuxt',
     'nuxt-webfontloader',
+    'nuxt-material-design-icons',
     '@nuxtjs/toast',
     'vue-social-sharing/nuxt',
     '@nuxtjs/google-adsense',
@@ -183,13 +185,13 @@ export default {
   webfontloader: {
     custom: {
       families: [
-        'Material+Icons',
+        // 'Material+Icons',
         'Roboto:n3,n4,n7'
       ],
       urls: [
         // for each Google Fonts add url + options you want
         // here add font-display option
-        'https://fonts.googleapis.com/icon?family=Material+Icons',
+        // 'https://fonts.googleapis.com/icon?family=Material+Icons',
         'https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap'
       ]
     }

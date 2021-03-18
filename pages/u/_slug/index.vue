@@ -1,6 +1,5 @@
 <template>
   <div v-if="show">
-    <span v-if="theUser.name != null">{{ theUser.name }}</span>
     <SocialHead
       v-if="user"
       :title="user.name"
@@ -30,9 +29,6 @@ export default {
       // componentKey: 0,
       // data: [],
       // busy: false,
-      theUser: {
-        name: null
-      }
     }
   },
   computed: {
@@ -59,10 +55,6 @@ export default {
       getStoreData: 'getStoreData',
       getUser: 'users/getUser',
     }),
-  },
-  async fetch() {
-    const user = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
-    this.theUser = user.data
   },
   async created() {
     await this.getUser(this.$route.params.slug)
