@@ -16,10 +16,11 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Banner',
+  props: ['image'],
   computed: {
-    ...mapGetters({
-      image: 'banner/image',
-    }),
+    // ...mapGetters({
+    //   image: 'banner/image',
+    // }),
     viewport () {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
@@ -38,8 +39,7 @@ export default {
     }),
   },
   async created() {
-    console.log('fetch')
-    await this.getBannerImage()
+    // await this.getBannerImage()
     // if(this.$store.state.banner.image.id == null) {
     //   const banner = await this.getBannerImage()
     //   console.log(banner)

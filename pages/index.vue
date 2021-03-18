@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner v-if="isAuthenticated == false" />
+    <Banner v-if="isAuthenticated == false" :image="image" />
     <Cards v-if="show" />
   </div>
 </template>
@@ -13,6 +13,17 @@ export default {
   data() {
     return {
       show: false,
+      image: {
+        id: null,
+        link: {
+          download: null,
+        },
+        url: null,
+        user: {
+          name: null,
+          username: null
+        }
+      },
     }
   },
   computed: {
@@ -26,6 +37,10 @@ export default {
       getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
     }),
+  },
+  async fetch() {
+    const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
+    this.image = response.data.bannerImage
   },
   async created() {
     await this.getStoreData()
