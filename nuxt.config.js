@@ -174,7 +174,6 @@ export default {
     'nuxt-i18n',
     'bootstrap-vue/nuxt',
     'nuxt-webfontloader',
-    'nuxt-material-design-icons',
     '@nuxtjs/toast',
     'vue-social-sharing/nuxt',
     '@nuxtjs/google-adsense',
@@ -185,13 +184,13 @@ export default {
   webfontloader: {
     custom: {
       families: [
-        // 'Material+Icons',
+        'Material+Icons',
         'Roboto:n3,n4,n7'
       ],
       urls: [
         // for each Google Fonts add url + options you want
         // here add font-display option
-        // 'https://fonts.googleapis.com/icon?family=Material+Icons',
+        'https://fonts.googleapis.com/icon?family=Material+Icons',
         'https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap'
       ]
     }

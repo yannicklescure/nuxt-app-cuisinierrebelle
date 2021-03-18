@@ -34,7 +34,6 @@
     "nuxt": "^2.14.12",
     "nuxt-brotli": "^1.1.7",
     "nuxt-i18n": "^6.20.4",
-    "nuxt-material-design-icons": "^1.0.4",
     "nuxt-vuex-router-sync": "^0.0.3",
     "nuxt-webfontloader": "^1.1.0",
     "postcss-hexrgba": "^2.0.1",
