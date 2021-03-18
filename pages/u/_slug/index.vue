@@ -1,6 +1,6 @@
 <template>
   <div v-if="show">
-    <!-- <span>{{ theUser.name }}</span> -->
+    <span>{{ theUser.name }}</span>
     <SocialHead
       v-if="user"
       :title="user.name"
@@ -21,21 +21,18 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
-// const Cards = () => import('../components/Cards.vue')
-
 export default {
   name: 'User',
   // middleware: 'authenticated',
-  // async asyncData({ params }) {
-  //   const slug = params.slug
-  //   return { slug }
-  // },
   data() {
     return {
       show: false,
       // componentKey: 0,
       // data: [],
       // busy: false,
+      theUser: {
+        name: ''
+      }
     }
   },
   computed: {
@@ -59,6 +56,10 @@ export default {
       getStoreData: 'getStoreData',
       getUser: 'users/getUser',
     }),
+  },
+  async fetch() {
+    const user = await this.$axios.$get(`https://api.cuisinierrebelle.com/v1/users/${ this.$route.params.slug }`)
+    this.theUser = user.data
   },
   async created() {
     await this.getUser(this.$route.params.slug)
