@@ -38,11 +38,9 @@ export default {
       fetchNotifications: 'notifications/list'
     }),
   },
-  async fetch() {
+  async created() {
     const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
     this.image = response.data.bannerImage
-  },
-  async created() {
     await this.getStoreData()
     if (this.isAuthenticated) await this.fetchNotifications()
   },
