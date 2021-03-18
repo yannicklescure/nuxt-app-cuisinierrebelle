@@ -26,9 +26,6 @@ export default {
   data() {
     return {
       show: false,
-      // componentKey: 0,
-      // data: [],
-      // busy: false,
     }
   },
   computed: {

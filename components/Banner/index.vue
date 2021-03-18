@@ -38,7 +38,7 @@ export default {
       getBannerImage: 'banner/get'
     }),
   },
-  async created() {
+  async fetch() {
     // await this.getBannerImage()
     if(this.$store.state.banner.image.id == null) {
       await this.getBannerImage()
