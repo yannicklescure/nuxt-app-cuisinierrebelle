@@ -28,8 +28,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      navbarHeight: 'navbarHeight',
-      items: 'recipes/top100',
+      // navbarHeight: 'navbarHeight',
+      items: 'users/sessions/bookmarks',
     }),
   },
   async fetch() {
