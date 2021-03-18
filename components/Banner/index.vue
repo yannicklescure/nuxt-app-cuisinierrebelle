@@ -16,6 +16,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Banner',
+  // props: ['image'],
   computed: {
     ...mapGetters({
       image: 'banner/image',
@@ -37,14 +38,14 @@ export default {
       getBannerImage: 'banner/get'
     }),
   },
-  async created() {
-    console.log('fetch')
-    await this.getBannerImage()
-    // if(this.$store.state.banner.image.id == null) {
-    //   const banner = await this.getBannerImage()
-    //   console.log(banner)
-    //   this.image = banner.data.bannerImage
-    // }
+  async fetch() {
+    // await this.getBannerImage()
+    if(this.$store.state.banner.image.id == null) {
+      await this.getBannerImage()
+      // const banner = await this.getBannerImage()
+      // console.log(banner)
+      // this.image = banner.data.bannerImage
+    }
     // else {
     //   this.image = this.$store.state.banner.image
     // }

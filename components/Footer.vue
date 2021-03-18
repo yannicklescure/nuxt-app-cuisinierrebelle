@@ -4,13 +4,11 @@
       <NuxtLink
         :to="`/p/${ $t('footer.url.privacyPolicy') }`"
         class="text-light text-decoration-none"
-        @click.native="getPages"
       >{{ $t('footer.privacyPolicy') }}</NuxtLink>
       <div class="mx-1">|</div>
       <NuxtLink
         :to="`/p/${ $t('footer.url.sitemap') }`"
         class="text-light text-decoration-none"
-        @click.native="getPages"
       >{{ $t('footer.sitemap') }}</NuxtLink>
     </div>
     <div class="d-flex order-1 order-md-0 align-items-center">
@@ -28,22 +26,9 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Footer',
-  data() {
-    return {
-      // message: 'false',
-    }
-  },
   computed: {
     year () {
       return new Date().getFullYear()
-    },
-  },
-  methods: {
-    ...mapActions({
-      fetchPages: 'pages/fetch'
-    }),
-    getPages () {
-      this.fetchPages()
     },
   },
 }

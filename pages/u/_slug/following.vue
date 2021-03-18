@@ -51,8 +51,8 @@ export default {
       return this.user.following.data.slice(0, 100)
     }
   },
-  beforeMount() {
-    this.getUser(this.$route.params.slug)
+  async created() {
+    await this.getUser(this.$route.params.slug)
   },
   mounted() {
     this.show = true

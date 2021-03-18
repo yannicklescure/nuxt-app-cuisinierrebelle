@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner v-if="isAuthenticated == false" />
+    <Banner v-if="!isAuthenticated" />
     <Cards v-if="show" />
   </div>
 </template>
@@ -13,6 +13,17 @@ export default {
   data() {
     return {
       show: false,
+      image: {
+        id: null,
+        link: {
+          download: null,
+        },
+        url: null,
+        user: {
+          name: null,
+          username: null
+        }
+      },
     }
   },
   computed: {
@@ -27,7 +38,7 @@ export default {
       fetchNotifications: 'notifications/list'
     }),
   },
-  async created() {
+  async fetch() {
     await this.getStoreData()
     if (this.isAuthenticated) await this.fetchNotifications()
   },

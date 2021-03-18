@@ -97,8 +97,8 @@ export default {
   //     await this.fetchItem()
   //   }
   // },
-  async created() {
-    this.fetchItems()
+  async fetch() {
+    await this.fetchItems()
   },
   mounted() {
     this.show = true

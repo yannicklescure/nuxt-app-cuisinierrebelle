@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       disabled: true,
-      token: this.$route.query.token,
+      // token: this.$route.query.token,
       email: null,
       firstName: null,
       confirmation: null,
@@ -68,6 +68,9 @@ export default {
       isMobile: 'isMobile',
       // navbarHeight: 'navbarHeight',
     }),
+    token () {
+      return this.$route.query.token
+    }
   },
   methods: {
     showPassword1 () {
@@ -219,9 +222,8 @@ export default {
         })
     },
   },
-  async created() {
-    console.log(this.token)
-    await this.requestResetVerification()
+  async fetch() {
+    if (this.token) await this.requestResetVerification()
   },
 }
 </script>

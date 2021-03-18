@@ -13,7 +13,7 @@
 
       <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-      <LazyRecipeAds />
+      <!-- <LazyRecipeAds /> -->
 
       <LazyOtherRecipes v-if="recipes.length > 2" :recipes="recipes" />
 
@@ -61,12 +61,12 @@ export default {
       this.dimension.height = parseInt(this.dimension.width * 2 / 3)
     }
   },
-  async created() {
+  async fetch() {
     console.log(this.$route.params.slug)
     await this.getRecipe(this.$route.params.slug)
-    await this.getStoreData()
-  // },
-  // created() {
+    if (this.recipes.length == 0) await this.getStoreData()
+  },
+  created() {
     if (process.client) {
       window.addEventListener("resize", this.matchInfoBox);
     }

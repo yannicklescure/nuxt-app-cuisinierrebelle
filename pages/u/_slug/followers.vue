@@ -51,8 +51,8 @@ export default {
       // fetchItems: 'notifications/list'
     }),
   },
-  beforeMount() {
-    this.getUser(this.$route.params.slug)
+  async created() {
+    await this.getUser(this.$route.params.slug)
   },
   mounted() {
     this.show = true
