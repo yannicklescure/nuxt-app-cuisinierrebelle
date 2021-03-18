@@ -70,11 +70,6 @@ export default {
   // components: {
     // FacebookLogin,
   // },
-  created (store) {
-    if (this.$store.state.users.authentication.isAuthenticated) {
-      this.$router.push({ path: '/' })
-    }
-  },
   computed: {
     ...mapGetters([
       'navbarHeight',
@@ -229,6 +224,11 @@ export default {
         })
       }
     },
+  },
+  beforeMount () {
+    if (this.$store.state.users.authentication.isAuthenticated) {
+      this.$router.push({ path: '/' })
+    }
   },
 }
 </script>
