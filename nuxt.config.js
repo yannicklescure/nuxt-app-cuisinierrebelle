@@ -149,6 +149,7 @@ export default {
   buildModules: [
     '@nuxtjs/google-analytics',
     '@nuxtjs/pwa',
+    '@aceforth/nuxt-optimized-images',
     ['@nuxtjs/fontawesome', {
         icons: {
           brands: ['faFacebookF', 'faTelegramPlane', 'faTwitter', 'faVk', 'faWhatsapp'],
@@ -157,6 +158,10 @@ export default {
       }
     ]
   ],
+
+  optimizedImages: {
+    optimizeImages: true
+  },
 
   // publicRuntimeConfig: {
   //   axios: {
