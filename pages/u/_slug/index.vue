@@ -1,6 +1,6 @@
 <template>
   <div v-if="show">
-    <span>{{ theUser.name }}</span>
+    <span v-if="theUser.name != null">{{ theUser.name }}</span>
     <SocialHead
       v-if="user"
       :title="user.name"
@@ -31,7 +31,7 @@ export default {
       // data: [],
       // busy: false,
       theUser: {
-        name: ''
+        name: null
       }
     }
   },
