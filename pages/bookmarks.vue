@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="row">
-        <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
-          <Card :item="item" />
-        </div>
+  <div class="container">
+    <div class="row">
+      <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
+        <Card :item="item" />
       </div>
     </div>
   </div>

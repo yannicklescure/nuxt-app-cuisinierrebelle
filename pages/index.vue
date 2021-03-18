@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner v-if="isAuthenticated == false" :image="image" />
+    <Banner v-if="!isAuthenticated" />
     <Cards v-if="show" />
   </div>
 </template>
@@ -39,8 +39,6 @@ export default {
     }),
   },
   async created() {
-    const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
-    this.image = response.data.bannerImage
     await this.getStoreData()
     if (this.isAuthenticated) await this.fetchNotifications()
   },

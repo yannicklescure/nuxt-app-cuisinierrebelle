@@ -181,8 +181,10 @@ export const actions = {
   async logIn (context, payload) {
     const response = await api.login(context, payload)
     console.log(response)
-    this.commit("users/sessions/logIn", response)
-    this.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: true } })
+    if (response.status == 200) {
+      this.commit("users/sessions/logIn", response)
+      this.commit("users/authentication/isAuthenticated", { data: { isAuthenticated: true } })
+    }
     return response
   },
   async logOut (context, payload) {
