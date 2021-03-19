@@ -31,9 +31,5 @@ export default {
       return new Date().getFullYear()
     },
   },
-  mounted() {
-    this.$refs.footer.style.position = 'relative'
-    this.$refs.footer.style.marginTop = `-${ this.$refs.footer.offsetHeight }px`
-  }
 }
 </script>
