@@ -228,7 +228,7 @@ export default {
 
   'google-adsense': {
     id: 'ca-pub-9223566768445571',
-    analyticsUacct: 'UA-100564203-2',
+    analyticsUacct: 'UA-155962082-1',
     onPageLoad: true
   },
 
@@ -297,7 +297,7 @@ export default {
   },
 
   googleAnalytics: {
-    id: 'UA-100564203-2'
+    id: 'UA-155962082-1'
   },
 
   env: {
