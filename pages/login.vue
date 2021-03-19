@@ -22,7 +22,12 @@
               </div>
             </div>
             <div class="d-flex justify-content-end">
+              <b-button v-if="loging" variant="dark w-100" disabled>
+                <b-spinner small></b-spinner>
+                <span class="sr-only">Loading...</span>
+              </b-button>
               <button
+                v-else
                 @click.stop.prevent="login"
                 type="submit"
                 class="btn btn-dark my-2 w-100"
@@ -65,6 +70,7 @@ export default {
       password: null,
       errors: [],
       error: false,
+      loging: false
     }
   },
   // components: {
@@ -180,6 +186,7 @@ export default {
       const checkForm = this.checkForm()
       if (checkForm) {
         this.disabled = true
+        this.loging = true
         console.log(this.email)
         const payload = {
           // user: {
