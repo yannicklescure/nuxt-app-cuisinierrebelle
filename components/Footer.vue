@@ -1,5 +1,5 @@
 <template>
-  <div ref="footer" class="d-print-none mt-5 py-4 px-3 bg-dark text-light d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center">
+  <div ref="footer" class="d-print-none py-4 px-3 bg-dark text-light d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center">
     <div class="d-flex order-0 order-md-1 align-items-center my-3">
       <NuxtLink
         :to="`/p/${ $t('footer.url.privacyPolicy') }`"
@@ -31,5 +31,9 @@ export default {
       return new Date().getFullYear()
     },
   },
+  mounted() {
+    this.$refs.footer.style.position = 'relative'
+    this.$refs.footer.style.marginTop = `-${ this.$refs.footer.offsetHeight }px`
+  }
 }
 </script>
