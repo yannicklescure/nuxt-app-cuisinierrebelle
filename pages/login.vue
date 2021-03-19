@@ -215,6 +215,7 @@ export default {
           .then(() => {
             if (this.errors.length > 0) {
               this.error = true
+              this.loging = false
               console.log(this.errors)
               this.$toast.error(this.errors[0], {
                 position: 'bottom-center',
