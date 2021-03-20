@@ -1,5 +1,5 @@
 <template>
-  <div class="d-print-none mt-5">
+  <div class="d-print-none mt-3">
     <div class="h4 mb-3">{{ $t('recipe.otherRecipes') }}</div>
     <div v-for="number, index in numbers" :key="'cs' + index">
       <CardSmall :number="number" />

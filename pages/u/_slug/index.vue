@@ -7,13 +7,7 @@
       :image="user.image.openGraph.url"
     />
     <UsersBanner v-if="user" :user="user" />
-    <div class="container">
-      <div class="row">
-        <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
-          <Card :item="item" />
-        </div>
-      </div>
-    </div>
+    <Cards v-if="recipes.length > 0" :recipes="userRecipes" />
   </div>
 </template>
 
@@ -33,15 +27,15 @@ export default {
       // currentUser: 'users/sessions/current',
       // isMobile: 'isMobile',
       recipes: 'recipes/list',
-      userRecipes: 'recipes/user',
+      getUserRecipes: 'recipes/user',
       usersFilter: 'users/filter',
       users: 'users/list',
     }),
     user () {
       return this.usersFilter(this.$route.params.slug)
     },
-    items () {
-      return this.userRecipes(this.$route.params.slug)
+    userRecipes () {
+      return this.getUserRecipes(this.$route.params.slug)
     }
   },
   methods: {

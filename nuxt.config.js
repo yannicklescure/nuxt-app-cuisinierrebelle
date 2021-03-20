@@ -180,8 +180,9 @@ export default {
     'nuxt-i18n',
     'bootstrap-vue/nuxt',
     'nuxt-webfontloader',
-    '@nuxtjs/toast',
+    '@forked-prs/nuxt-infinite-scroll-module',
     'vue-social-sharing/nuxt',
+    '@nuxtjs/toast',
     '@nuxtjs/google-adsense',
     "@nuxtjs/robots",
     '@nuxtjs/sitemap'
