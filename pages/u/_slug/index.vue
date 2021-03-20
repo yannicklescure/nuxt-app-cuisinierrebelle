@@ -1,12 +1,12 @@
 <template>
-  <div v-if="show">
+  <div>
     <SocialHead
-      v-if="user"
+      v-if="show"
       :title="user.name"
       :description="'Partagez vos recettes dès maintenant en toute simplicité'"
       :image="user.image.openGraph.url"
     />
-    <UsersBanner v-if="user" :user="user" />
+    <UsersBanner v-if="show" :user="user" />
     <Cards v-if="recipes.length > 0" :recipes="userRecipes" />
   </div>
 </template>
@@ -16,7 +16,6 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'User',
-  // middleware: 'authenticated',
   data() {
     return {
       show: false,
@@ -36,7 +35,7 @@ export default {
     },
     userRecipes () {
       return this.getUserRecipes(this.$route.params.slug)
-    }
+    },
   },
   methods: {
     ...mapActions({
@@ -45,11 +44,11 @@ export default {
     }),
   },
   async fetch() {
-    await this.getUser(this.$route.params.slug)
+    console.log(this.user)
+    const response = await this.getUser(this.$route.params.slug)
+    console.log(response)
+    if (response.status == 200) this.show = true
     if (this.recipes.length == 0) await this.getStoreData()
   },
-  mounted() {
-    this.show = true
-  }
 }
 </script>

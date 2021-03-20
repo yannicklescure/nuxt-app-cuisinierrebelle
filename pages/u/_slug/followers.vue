@@ -1,10 +1,11 @@
 <template>
   <div>
-    <UsersBanner :user="user" />
-    <div class="container" ref="container">
+    <UsersBanner v-if="show" :user="user" />
+    <div v-if="show" class="container" ref="container">
       <div class="px-md-3 px-md-5">
         <table class="table table-borderless">
           <tbody
+            v-if="items.length > 0"
             v-for="(item, index) in items"
             :key="item.id"
           >
@@ -22,15 +23,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'UserFollowers',
   middleware: 'authenticated',
-  // async asyncData({ params }) {
-  //   const slug = params.slug
-  //   return { slug }
-  // },
   data() {
     return {
-      componentKey: 0,
-      data: [],
-      show: false,
+      show: false
     }
   },
   computed: {
@@ -46,16 +41,13 @@ export default {
   },
   methods: {
     ...mapActions({
-      getStoreData: 'getStoreData',
       getUser: 'users/getUser',
-      // fetchItems: 'notifications/list'
     }),
   },
   async fetch() {
-    await this.getUser(this.$route.params.slug)
+    const response = await this.getUser(this.$route.params.slug)
+    console.log(response)
+    if (response.status == 200) this.show = true
   },
-  mounted() {
-    this.show = true
-  }
 }
 </script>

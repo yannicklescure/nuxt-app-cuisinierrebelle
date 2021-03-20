@@ -7,6 +7,11 @@ export const state = () => ({
     refreshToken: null,
   },
   user: {
+    image: {
+      openGraph: {
+        url: null
+      }
+    },
     authentication_token: null,
     email: null,
     facebookAuth: false,
