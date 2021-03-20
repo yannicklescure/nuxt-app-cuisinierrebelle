@@ -51,7 +51,7 @@ export default {
       return this.user.following.data.slice(0, 100)
     }
   },
-  async created() {
+  async fetch() {
     await this.getUser(this.$route.params.slug)
   },
   mounted() {

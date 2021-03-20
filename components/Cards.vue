@@ -29,11 +29,15 @@ export default {
       pageSize: 10,
     }
   },
-  // watch: {
-  //   recipes () {
-  //     this.items = this.items.concat(this.recipes.slice(0, 12))
-  //   }
-  // },
+  watch: {
+    recipes () {
+      this.items = []
+      this.enough = false
+      this.page = 1
+      this.pageSize = 10
+      this.getData()
+    }
+  },
   // computed: {
   //   ...mapGetters({
   //     // isAuthenticated: 'users/authentication/isAuthenticated',

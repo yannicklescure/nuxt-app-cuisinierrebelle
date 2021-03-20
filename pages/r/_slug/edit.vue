@@ -249,7 +249,7 @@ export default {
   //     })
   //   }
   // },
-  async created() {
+  async fetch() {
     await this.setData()
   },
   mounted() {

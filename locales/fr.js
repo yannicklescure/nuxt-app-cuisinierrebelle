@@ -73,6 +73,9 @@ export default async (context, locale) => {
     },
     user: {
       publications: 'Publications',
+      banner: {
+        memberSince: 'Membre depuis {date}',
+      }
     },
     page: {
       new: {

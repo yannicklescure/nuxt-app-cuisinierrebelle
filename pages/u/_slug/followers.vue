@@ -51,7 +51,7 @@ export default {
       // fetchItems: 'notifications/list'
     }),
   },
-  async created() {
+  async fetch() {
     await this.getUser(this.$route.params.slug)
   },
   mounted() {
