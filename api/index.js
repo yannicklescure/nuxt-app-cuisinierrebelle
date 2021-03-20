@@ -520,7 +520,7 @@ export const confirmRegistration = async (context, payload) => {
   // console.log(`https://api.cuisinierrebelle.com/v1/search`)
   return await axios({
     method: 'get',
-    url: `https://api.cuisinierrebelle.com/v1/users/confirmation`,
+    url: `https://api.cuisinierrebelle.com/api/v1/users/confirmation`,
     headers: {
       //
     },

@@ -70,11 +70,8 @@ export default {
       }
     },
     logout () {
-      this.$store.dispatch('users/sessions/logOut', {})
-        .then(response => {
-          console.log(response)
-          if (response.status === 204 && this.$route.path != '/') this.$router.push({ path: '/' })
-        })
+      this.$store.commit('users/sessions/logOut', {})
+      if (this.$route.path != '/') this.$router.push({ path: '/' })
     },
     deleteAccount () {
       const checkForm = this.checkForm()

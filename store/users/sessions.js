@@ -12,6 +12,7 @@ export const state = () => ({
         url: null
       }
     },
+    bookmarks: [],
     authentication_token: null,
     email: null,
     facebookAuth: false,
