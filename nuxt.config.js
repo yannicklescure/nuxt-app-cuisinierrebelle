@@ -1,14 +1,8 @@
 export default {
 
-  // ssr: true,
-  // Target: https://go.nuxtjs.dev/config-target
-  // target: 'static',
   resourceHints: true,
 
   router: {
-    // base: '/',
-    // routeNameSplitter: '/',
-    // middleware: 'trailingSlashRedirect',
     trailingSlash: false,
     extendRoutes(routes, resolve) {
       routes.push({
@@ -231,7 +225,7 @@ export default {
     id: 'ca-pub-9223566768445571',
     analyticsDomainName: 'cuisinierrebelle.com',
     analyticsUacct: 'UA-155962082-1',
-    onPageLoad: true,
+    // onPageLoad: true,
   },
 
   i18n: {
