@@ -1,6 +1,6 @@
 <template>
   <div ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
-    <div v-if="item">
+    <div v-if="show">
       <SocialHead
         :title="item.recipe.title"
         :description="item.recipe.description"
@@ -21,9 +21,6 @@
 
       <LazyComments :item="item" />
     </div>
-    <div v-else>
-      {{ item }}
-    </div>
   </div>
 </template>
 
@@ -43,13 +40,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
       recipe: 'recipes/recipe',
-      recipes: 'recipes/listSorted',
+      recipes: 'recipes/list',
     }),
     item () {
       return this.recipe(this.$route.params.slug)
+    },
+    show () {
+      return this.item != undefined
     },
     isProduction () {
       return location.hostname != 'localhost'
@@ -60,9 +59,14 @@ export default {
       getStoreData: 'getStoreData',
       getRecipe: 'recipes/recipe',
     }),
+    loadItem () {
+      this.item = this.recipe(this.$route.params.slug)
+    },
     matchInfoBox () {
-      this.dimension.width = this.$refs.recipe.clientWidth
-      this.dimension.height = parseInt(this.dimension.width * 2 / 3)
+      if (this.$refs.recipe) {
+        this.dimension.width = this.$refs.recipe.clientWidth
+        this.dimension.height = parseInt(this.dimension.width * 2 / 3)
+      }
     }
   },
   async fetch() {
@@ -81,6 +85,7 @@ export default {
     }
   },
   mounted() {
+    // this.loadItem()
     this.$nextTick(() => {
       this.matchInfoBox()
     })

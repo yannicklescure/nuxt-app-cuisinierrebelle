@@ -141,8 +141,8 @@ export default {
       this.$store
         .dispatch(`recipes/${ this.type }Delete`, payload)
         .then( response => {
-          console.log(response)
           if (response.status == 204) {
+            console.log(response)
             this.$emit('commentDestroyed', payload)
           }
         })

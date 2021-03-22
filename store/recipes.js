@@ -51,16 +51,19 @@ export const mutations = {
     const recipe = state.list.findIndex(item => item.recipe.id === payload.recipe_id)
     const comment = state.list[recipe].comments.findIndex(item => item.id === payload.comment_id)
     state.list[recipe].comments.splice(comment, 1)
+    console.log(state.list[recipe].comments)
   },
   commentEdit (state, payload) {
     const recipe = state.list.findIndex(item => item.recipe.id === payload.data.recipe.id)
     const comment = state.list[recipe].comments.findIndex(item => item.id === payload.data.id)
     state.list[recipe].comments[comment] = payload.data
+    console.log(state.list[recipe].comments)
   },
   commentNew (state, payload) {
     const recipe = state.list.findIndex(item => item.recipe.id === payload.data.recipe.id)
     state.list[recipe].comments.push(payload.data)
     state.list[recipe].comments.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
+    console.log(state.list[recipe].comments)
   },
   bookmark (state, payload) {
     const position = state.list.findIndex(recipe => recipe.recipe.id === payload.recipe_id)
@@ -253,30 +256,30 @@ export const actions = {
 }
 
 export const getters = {
-  listSorted (state, getters, rootState, rootGetters) {
+  listSorted: (state, getters, rootState, rootGetters) => {
     // console.log(state)
     return state.list.slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
   },
-  list (state, getters, rootState, rootGetters) {
+  list: (state, getters, rootState, rootGetters) => {
     // console.log(state)
     return state.list
   },
-  comments (state, getters, rootState, rootGetters) {
+  comments: (state, getters, rootState, rootGetters) => {
     return keyword => state.list.filter( item => {
       return item.recipe.slug == keyword
     })[0].comments
   },
-  recipe (state, getters, rootState, rootGetters) {
+  recipe: (state, getters, rootState, rootGetters) => {
     return keyword => state.list.filter( item => {
       return item.recipe.slug == keyword
     })[0]
   },
-  user (state, getters, rootState, rootGetters) {
+  user: (state, getters, rootState, rootGetters) => {
     return keyword => state.list.filter( item => {
       return item.user.slug == keyword
     }).slice().sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).reverse()
   },
-  top100 (state, getters, rootState, rootGetters) {
+  top100: (state, getters, rootState, rootGetters) => {
     return state.list.slice().sort((a, b) => (a.recipe.views > b.recipe.views) ? 1 : -1).reverse().slice(0, 100)
   },
 }
