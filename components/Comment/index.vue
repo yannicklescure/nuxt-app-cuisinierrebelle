@@ -22,6 +22,7 @@
         :text="item.content"
         v-on:commentEditResponse="commentEditResponse"
         v-on:commentDrop="commentDrop"
+        v-on:commentNew="commentNew"
       />
     </div>
     <div v-else class="pt-2">
@@ -32,6 +33,7 @@
       :type="type"
       v-on:commentEdit="commentEdit"
       v-on:commentReply="commentReply"
+      v-on:commentDestroyed="commentDestroyed"
     />
     <div v-if="reply">
       <CommentForm
@@ -48,12 +50,6 @@
 <script>
 import VueMarkdownPlus from 'vue-markdown-plus'
 import { mapGetters } from 'vuex'
-// import { isMobile } from 'mobile-device-detect'
-// import CommentForm from './Form.vue'
-// import CommentLike from '../buttons/CommentLike.vue'
-// const CommentButtons = () => import('./Buttons.vue')
-// const CommentForm = () => import('./Form.vue')
-// const CommentLike = () => import('../buttons/CommentLike.vue')
 
 export default {
   name: 'Comment',
@@ -80,12 +76,20 @@ export default {
     },
   },
   methods: {
+    commentNew (payload) {
+      this.$emit('commentNew', payload)
+    },
+    commentDestroyed (value) {
+      this.$emit('commentDestroyed', value)
+    },
     commentEdit (value) {
       this.edit = value
+      this.$emit('commentEdit', true)
     },
     commentReply (value) {
       // console.log('reply')
       this.reply = value
+      this.$emit('commentReply', true)
     },
     editActionAttr () {
       if (this.item.commentId) return 'replyEdit'

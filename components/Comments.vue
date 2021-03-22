@@ -77,12 +77,15 @@ export default {
       this.$emit('lastCommentMounted', value)
     },
     commentNew (payload) {
+      this.$emit('refresh', true)
       console.log(payload)
     },
     commentReplyNew (payload) {
+      this.$emit('refresh', true)
       console.log(payload)
     },
     commentDestroyed (payload) {
+      this.$emit('refresh', true)
       console.log(payload)
     },
     showReplies (index) {

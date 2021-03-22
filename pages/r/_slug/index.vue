@@ -19,7 +19,10 @@
 
       <LazyOtherRecipes v-if="recipes.length > 2" :recipes="recipes" />
 
-      <LazyComments :item="item" />
+      <Comments
+        :item="item"
+        v-on:refresh="$fetch"
+      />
     </div>
   </div>
 </template>
@@ -59,6 +62,9 @@ export default {
       getStoreData: 'getStoreData',
       getRecipe: 'recipes/recipe',
     }),
+    refresh() {
+      this.$fetch()
+    },
     loadItem () {
       this.item = this.recipe(this.$route.params.slug)
     },
