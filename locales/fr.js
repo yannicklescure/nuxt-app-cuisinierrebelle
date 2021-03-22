@@ -73,6 +73,9 @@ export default async (context, locale) => {
     },
     user: {
       publications: 'Publications',
+      banner: {
+        memberSince: 'Membre depuis {date}',
+      }
     },
     page: {
       new: {
@@ -139,7 +142,7 @@ export default async (context, locale) => {
       tools: 'Matériel de cuisine',
       top_100: 'Top 100',
       bookmarks: 'Mes favoris',
-      search: 'Rechercher',
+      search: 'Rechercher une recette',
       // top_100_html: <i class="material-icons md-18">whatshot</i>
     },
     login: {

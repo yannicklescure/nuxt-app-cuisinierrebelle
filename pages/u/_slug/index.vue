@@ -1,19 +1,13 @@
 <template>
-  <div v-if="show">
+  <div>
     <SocialHead
-      v-if="user"
+      v-if="show"
       :title="user.name"
       :description="'Partagez vos recettes dès maintenant en toute simplicité'"
       :image="user.image.openGraph.url"
     />
-    <UsersBanner v-if="user" :user="user" />
-    <div class="container">
-      <div class="row">
-        <div v-for="item in items" :key="item.timestamp" class="col-12 col-md-4 col-lg-3">
-          <Card :item="item" />
-        </div>
-      </div>
-    </div>
+    <UsersBanner v-if="show" :user="user" />
+    <Cards v-if="recipes.length > 0" :recipes="userRecipes" />
   </div>
 </template>
 
@@ -22,7 +16,6 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'User',
-  // middleware: 'authenticated',
   data() {
     return {
       show: false,
@@ -33,16 +26,16 @@ export default {
       // currentUser: 'users/sessions/current',
       // isMobile: 'isMobile',
       recipes: 'recipes/list',
-      userRecipes: 'recipes/user',
+      getUserRecipes: 'recipes/user',
       usersFilter: 'users/filter',
       users: 'users/list',
     }),
     user () {
       return this.usersFilter(this.$route.params.slug)
     },
-    items () {
-      return this.userRecipes(this.$route.params.slug)
-    }
+    userRecipes () {
+      return this.getUserRecipes(this.$route.params.slug)
+    },
   },
   methods: {
     ...mapActions({
@@ -51,11 +44,11 @@ export default {
     }),
   },
   async fetch() {
-    await this.getUser(this.$route.params.slug)
+    console.log(this.user)
+    const response = await this.getUser(this.$route.params.slug)
+    console.log(response)
+    if (response.status == 200) this.show = true
     if (this.recipes.length == 0) await this.getStoreData()
   },
-  mounted() {
-    this.show = true
-  }
 }
 </script>

@@ -10,7 +10,8 @@ export const state = () => ({
     user: {
       name: null,
       username: null
-    }
+    },
+    timestamp: 0
   },
 })
 
@@ -18,6 +19,7 @@ export const mutations = {
   set (state, payload) {
     // console.log(payload)
     state.image = payload.data.bannerImage
+    state.image.timestamp = new Date().getTime()
   },
 }
 

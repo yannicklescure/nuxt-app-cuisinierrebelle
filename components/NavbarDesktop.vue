@@ -13,7 +13,7 @@
         <span>{{ $t('navbar.brand') }}</span>
       </div>
     </div>
-    <div class="input-group d-flex w-25">
+    <div class="form-group  d-flex flex-grow-1 mx-5">
       <input
         v-model="searchQuery"
         v-on:keyup.enter="validSearchQuery"

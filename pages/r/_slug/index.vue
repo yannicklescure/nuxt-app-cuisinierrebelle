@@ -13,7 +13,9 @@
 
       <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-      <!-- <LazyRecipeAds /> -->
+      <div class="w-100 mt-3">
+        <LazyRecipeAds />
+      </div>
 
       <LazyOtherRecipes v-if="recipes.length > 2" :recipes="recipes" />
 
@@ -37,7 +39,6 @@ export default {
         width: 0,
         height: 0
       },
-      // item: undefined,
     }
   },
   computed: {
@@ -49,6 +50,9 @@ export default {
     }),
     item () {
       return this.recipe(this.$route.params.slug)
+    },
+    isProduction () {
+      return location.hostname != 'localhost'
     }
   },
   methods: {

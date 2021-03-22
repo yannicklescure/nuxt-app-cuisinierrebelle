@@ -32,7 +32,7 @@ export default {
       this.registrationConfirmation({ token: this.$route.query.confirmation_token })
         .then(response => {
           console.log(response)
-          if (response.status && response.status === 200) {
+          if (response.status == 200) {
             this.$toast.info(this.$t('RegistrationConfirmation.success', { firstName: capitalize(response.data.first_name) }), {
               position: 'bottom-center',
               duration: 3000,

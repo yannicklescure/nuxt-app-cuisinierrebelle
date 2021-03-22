@@ -39,16 +39,10 @@ export default {
     }),
   },
   async fetch() {
-    // await this.getBannerImage()
-    if(this.$store.state.banner.image.id == null) {
+    const obj = this.$store.state.banner.image
+    if(obj.id == null || !obj.timestamp || parseInt((new Date().getTime() - obj.timestamp) / 1000) > 1000 * 60 * 60 * 24) {
       await this.getBannerImage()
-      // const banner = await this.getBannerImage()
-      // console.log(banner)
-      // this.image = banner.data.bannerImage
     }
-    // else {
-    //   this.image = this.$store.state.banner.image
-    // }
   },
 }
 </script>

@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       disabled: true,
-      // token: this.$route.query.token,
+      token: this.$route.query.token,
       email: null,
       firstName: null,
       confirmation: null,
@@ -68,9 +68,9 @@ export default {
       isMobile: 'isMobile',
       // navbarHeight: 'navbarHeight',
     }),
-    token () {
-      return this.$route.query.token
-    }
+    // token () {
+    //   return this.$route.query.token
+    // }
   },
   methods: {
     showPassword1 () {

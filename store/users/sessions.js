@@ -8,6 +8,7 @@ export const state = () => ({
   },
   user: {
     authentication_token: null,
+    bookmarks: [],
     email: null,
     facebookAuth: false,
     followers: {
@@ -17,6 +18,11 @@ export const state = () => ({
     following: {
       count: 0,
       data: [],
+    },
+    image: {
+      openGraph: {
+        url: null
+      }
     },
     locale: 'fr',
   }
@@ -106,6 +112,7 @@ export const mutations = {
     },
     state.user = {
       authentication_token: null,
+      bookmarks: [],
       email: null,
       facebookAuth: false,
       followers: {
@@ -115,6 +122,11 @@ export const mutations = {
       following: {
         count: 0,
         data: [],
+      },
+      image: {
+        openGraph: {
+          url: null
+        }
       },
       locale: 'fr',
     }

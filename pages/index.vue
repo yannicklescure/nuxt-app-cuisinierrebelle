@@ -1,7 +1,7 @@
 <template>
   <div>
     <Banner v-if="!isAuthenticated" />
-    <Cards v-if="show" />
+    <Cards v-if="recipes.length > 0" :recipes="recipes" />
   </div>
 </template>
 
@@ -13,27 +13,16 @@ export default {
   data() {
     return {
       show: false,
-      image: {
-        id: null,
-        link: {
-          download: null,
-        },
-        url: null,
-        user: {
-          name: null,
-          username: null
-        }
-      },
     }
   },
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
+      recipes: 'recipes/listSorted',
     }),
   },
   methods: {
     ...mapActions({
-      // getBannerImage: 'banner/getBannerImage',
       getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list'
     }),

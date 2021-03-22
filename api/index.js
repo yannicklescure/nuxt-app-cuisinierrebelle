@@ -520,7 +520,7 @@ export const confirmRegistration = async (context, payload) => {
   // console.log(`https://api.cuisinierrebelle.com/v1/search`)
   return await axios({
     method: 'get',
-    url: `https://api.cuisinierrebelle.com/v1/users/confirmation`,
+    url: `https://api.cuisinierrebelle.com/api/v1/users/confirmation`,
     headers: {
       //
     },
@@ -531,13 +531,14 @@ export const confirmRegistration = async (context, payload) => {
 }
 
 export const signUp = async (context, payload) => {
+  console.log(payload)
   return await axios({
     validateStatus: status => {
       // console.log(status)
       return status < 500; // Resolve only if the status code is less than 500
     },
     method: 'post',
-    url: `https://api.cuisinierrebelle.com/api/${ version }/users`,
+    url: `https://api.cuisinierrebelle.com/api/v1/users`,
     headers: {
     },
     data: payload
@@ -658,7 +659,7 @@ export const logout = async (context, payload) => {
 export const userDelete = async (context, payload) => {
   return await axios({
     method: 'delete',
-    // url: `https://api.cuisinierrebelle.com/api/${ version }/users`,
+    // url: `https://api.cuisinierrebelle.com/api/v1/users`,
     url: `https://api.cuisinierrebelle.com/users/delete`,
     headers: {
       'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,

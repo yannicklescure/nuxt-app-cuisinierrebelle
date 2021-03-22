@@ -2,7 +2,7 @@
   <div ref="default" id="default">
     <div
       v-if="show"
-      class="d-flex flex-column justify-content-between"
+      class="d-flex flex-column justify-content-between align-items-between"
     >
       <NavbarMobile v-if="isMobile" />
       <NavbarDesktop v-else />

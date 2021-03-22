@@ -10,11 +10,11 @@
               <i class="material-icons md-16">verified_user</i>
             </span>
           </div>
+          <div class="small text-secondary">{{ $t('user.banner.memberSince', { date: userCreatedAt(user.createdAt) }) }}</div>
           <div>
             <NuxtLink
               :to="`/u/${ user.slug }/followers`"
-              @click.native="getUsers"
-              class="d-flex align-items-center text-decoration-none text-muted"
+              class="d-flex align-items-center text-decoration-none text-secondary"
             >
               <small>{{ $tc('userBanner.followers', countFollowers) }}</small>
             </NuxtLink>
@@ -59,12 +59,15 @@ export default {
     }
   },
   methods: {
-    getUsers () {
-      // this.$store
-      //   .dispatch('users/getUsers', {})
-      //   .then(response => {
-      //     console.log(response)
-      //   })
+    userCreatedAt: (timestamp) => {
+      // console.log(timestamp)
+      if (!timestamp) return null
+      const date = new Date(timestamp)
+      const year = new Intl.DateTimeFormat('fr', { year: 'numeric' }).format(date)
+      const month = new Intl.DateTimeFormat('fr', { month: 'long' }).format(date)
+      const day = new Intl.DateTimeFormat('fr', { day: '2-digit' }).format(date)
+
+      return `${month} ${year}`
     },
     userSettings () {
       this.$router.push({ path: `/u/${ this.currentUser.slug }/settings` })
