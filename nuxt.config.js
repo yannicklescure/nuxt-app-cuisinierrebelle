@@ -177,7 +177,7 @@ export default {
     '@forked-prs/nuxt-infinite-scroll-module',
     'vue-social-sharing/nuxt',
     '@nuxtjs/toast',
-    '@nuxtjs/google-adsense',
+    // '@nuxtjs/google-adsense',
     "@nuxtjs/robots",
     '@nuxtjs/sitemap'
   ],
@@ -221,12 +221,12 @@ export default {
     // ]
   },
 
-  'google-adsense': {
-    id: 'ca-pub-9223566768445571',
-    analyticsDomainName: 'cuisinierrebelle.com',
-    analyticsUacct: 'UA-155962082-1',
-    // onPageLoad: true,
-  },
+  // 'google-adsense': {
+  //   id: 'ca-pub-9223566768445571',
+  //   analyticsDomainName: 'cuisinierrebelle.com',
+  //   analyticsUacct: 'UA-155962082-1',
+  //   // onPageLoad: true,
+  // },
 
   i18n: {
     locales: [
