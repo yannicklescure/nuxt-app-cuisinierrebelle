@@ -178,13 +178,7 @@ export default {
     '@forked-prs/nuxt-infinite-scroll-module',
     'vue-social-sharing/nuxt',
     '@nuxtjs/toast',
-    // '@nuxtjs/google-adsense',
-    // ['@nuxtjs/google-adsense', {
-    //   id: 'ca-pub-9223566768445571',
-    //   analyticsDomainName: 'cuisinierrebelle.com',
-    //   analyticsUacct: 'UA-155962082-1',
-    //   onPageLoad: true,
-    // }],
+    '@nuxtjs/google-adsense',
     "@nuxtjs/robots",
     '@nuxtjs/sitemap'
   ],
@@ -216,24 +210,14 @@ export default {
     exclude: [
       '/admin/**'
     ],
-    // routes: [
-    //   '/page/1',
-    //   '/page/2',
-    //   {
-    //     url: '/page/3',
-    //     changefreq: 'daily',
-    //     priority: 1,
-    //     lastmod: '2017-06-30T13:30:00.000Z'
-    //   }
-    // ]
   },
 
-  // 'google-adsense': {
-  //   id: 'ca-pub-9223566768445571',
-  //   analyticsDomainName: 'cuisinierrebelle.com',
-  //   analyticsUacct: 'UA-155962082-1',
-  //   // onPageLoad: true,
-  // },
+  'google-adsense': {
+    id: 'ca-pub-9223566768445571',
+    analyticsDomainName: 'cuisinierrebelle.com',
+    analyticsUacct: 'UA-155962082-1',
+    // onPageLoad: true,
+  },
 
   i18n: {
     locales: [
@@ -246,34 +230,12 @@ export default {
 
   toast: {
     position: 'bottom-center',
-    // register: [ // Register custom toasts
-    //   {
-    //     name: 'my-error',
-    //     message: 'Oops...Something went wrong',
-    //     options: {
-    //       type: 'error'
-    //     }
-    //   }
-    // ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    // analyze: true,
     extractCSS: true,
     optimizeCSS: true,
-    // postcss: {
-    //   plugins: {
-    //     'postcss-import': {},
-    //     'postcss-url': {},
-    //     'postcss-preset-env': this.preset,
-    //     'cssnano': { preset: 'default' } // disabled in dev mode
-    //   },
-    //   order: 'presetEnvAndCssnanoLast',
-    //   preset: {
-    //     stage: 2
-    //   }
-    // },
     terser: {
       // https://github.com/terser/terser#compress-options
       terserOptions: {
