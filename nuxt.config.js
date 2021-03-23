@@ -205,7 +205,7 @@ export default {
 
   robots: {
     UserAgent: "*",
-    Disallow: "/"
+    Disallow: "/admin"
   },
 
   sitemap: {
