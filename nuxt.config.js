@@ -1,16 +1,17 @@
 export default {
 
+  ssr: true,
   resourceHints: true,
 
   router: {
     trailingSlash: false,
-    extendRoutes(routes, resolve) {
-      routes.push({
-        name: 'custom',
-        path: '*',
-        component: resolve(__dirname, 'pages/404.vue')
-      })
-    }
+    // extendRoutes(routes, resolve) {
+    //   routes.push({
+    //     name: 'custom',
+    //     path: '*',
+    //     component: resolve(__dirname, 'pages/404.vue')
+    //   })
+    // }
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head

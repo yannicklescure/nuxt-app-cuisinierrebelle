@@ -1,6 +1,10 @@
 <template>
   <div ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
-    <div v-if="show">
+    <div v-if="$fetchState.pending">{{ $t('init.loading') }}</div>
+    <div v-else-if="$fetchState.error">
+      <NotFound />
+    </div>
+    <div v-else>
       <SocialHead
         :title="item.recipe.title"
         :description="item.recipe.description"
