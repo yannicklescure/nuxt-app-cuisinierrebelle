@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-center mt-5 d-print-none">
+  <div class="d-flex justify-content-center my-5 d-print-none">
     <ShareNetwork
       v-for="network in networks"
       :network="network.network"

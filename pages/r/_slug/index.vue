@@ -17,7 +17,7 @@
 
       <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
 
-      <div class="w-100 mt-3">
+      <div class="w-100 my-5">
         <LazyRecipeAds />
       </div>
 
