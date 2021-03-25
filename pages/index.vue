@@ -1,7 +1,13 @@
 <template>
   <div>
-    <Banner v-if="!isAuthenticated" />
-    <Cards v-if="recipes.length > 0" :recipes="recipes" />
+    <div v-if="$fetchState.pending">{{ $t('init.loading') }}</div>
+    <div v-else-if="$fetchState.error">
+      <NotFound />
+    </div>
+    <div v-else>
+      <Banner v-if="!isAuthenticated" />
+      <Cards v-if="recipes.length > 0" :recipes="recipes" />
+    </div>
   </div>
 </template>
 
@@ -28,7 +34,7 @@ export default {
     }),
   },
   async fetch() {
-    await this.getStoreData()
+    if (this.recipes.length == 0) await this.getStoreData()
     if (this.isAuthenticated) await this.fetchNotifications()
   },
   mounted() {

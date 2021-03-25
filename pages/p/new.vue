@@ -23,7 +23,17 @@
           </select>
         </div>
         <div class="d-flex justify-content-end">
-          <button v-on:click.stop.prevent="postNewPage" type="submit" class="btn btn-dark mb-3" :disabled="disabled">{{ $t('page.new.submit') }}</button>
+          <b-button v-if="posting" variant="dark mb-3" disabled>
+            <b-spinner small></b-spinner>
+            <span class="sr-only">Loading...</span>
+          </b-button>
+          <button
+            v-else
+            @click.stop.prevent="postNewPage"
+            type="submit"
+            class="btn btn-dark mb-3"
+            :disabled="disabled"
+          >{{ $t('page.new.submit') }}</button>
         </div>
       </form>
     </div>
@@ -46,6 +56,7 @@ export default {
       content: '',
       locale: 'fr',
       disabled: false,
+      posting: false,
       max: 50000,
       errors: [],
     }
@@ -87,6 +98,7 @@ export default {
       if (checkForm) {
         // console.log(this)
         this.disabled = true
+        this.posting = true
         const payload = {
           id: this.id,
           slug: this.$route.params.id,
@@ -97,6 +109,7 @@ export default {
         console.log(payload)
         await this.$store.dispatch('pages/new', payload)
           .then(response => {
+            this.posting = false
             console.log(response)
             // if (response.status === 200) {
               this.$router.push({
@@ -110,6 +123,7 @@ export default {
       }
       else {
         console.log(this.errors)
+        this.posting = false
         this.$toast.error(this.errors[0], {
             position: 'bottom-center',
             duration: 3000, // Visibility duration in milliseconds

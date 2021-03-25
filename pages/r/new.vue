@@ -41,7 +41,17 @@
           </small>
         </div>
         <div class="d-flex justify-content-end">
-          <button v-on:click.stop.prevent="postRecipe" type="submit" class="btn btn-dark mb-3" :disabled="disabled">{{ $t('recipe.new.submit') }}</button>
+          <b-button v-if="posting" variant="dark mb-3" disabled>
+            <b-spinner small></b-spinner>
+            <span class="sr-only">Loading...</span>
+          </b-button>
+          <button
+            v-else
+            @click.stop.prevent="postRecipe"
+            type="submit"
+            class="btn btn-dark mb-3"
+            :disabled="disabled"
+          >{{ $t('recipe.new.submit') }}</button>
         </div>
       </form>
     </div>
@@ -67,6 +77,7 @@ export default {
       photo: null,
       tagList: null,
       disabled: true,
+      posting: false,
       max: 280,
       errors: [],
     }
@@ -152,6 +163,7 @@ export default {
       if (checkForm) {
         // console.log(this)
         this.disabled = true
+        this.posting = true
         const payload = {
           title: this.title,
           subtitle: this.subtitle,
@@ -166,6 +178,7 @@ export default {
         console.log(payload)
         this.$store.dispatch('recipes/new', payload)
           .then(response => {
+            this.posting = false
             console.log(response)
             if (response.status === 200) {
               this.$router.push({
@@ -179,6 +192,7 @@ export default {
       }
       else {
         console.log(this.errors)
+        this.posting = false
         this.$toast.error(this.errors[0], {
             position: 'bottom-center',
             duration: 3000, // Visibility duration in milliseconds

@@ -1,14 +1,21 @@
 <template>
-  <div
-    class="container"
-    :key="componentKey"
-  >
-    <div v-if="item">
-      <div v-if="!isMobile && currentUser.admin" class="d-flex justify-content-center align-items-center my-3">
-        <NuxtLink :to="`/p/${ $route.params.slug }/edit`" class="text-body text-capitalize text-decoration-none" >{{ $t('pages.edit') }}</NuxtLink>
-      </div>
-      <div>
-        <vue-markdown-plus :source="item.content" />
+  <div>
+    <div v-if="$fetchState.pending">{{ $t('init.loading') }}</div>
+    <div v-else-if="$fetchState.error">
+      <NotFound />
+    </div>
+    <div
+      v-else
+      class="container"
+      :key="componentKey"
+    >
+      <div v-if="item">
+        <div v-if="!isMobile && currentUser.admin" class="d-flex justify-content-center align-items-center my-3">
+          <NuxtLink :to="`/p/${ $route.params.slug }/edit`" class="text-body text-capitalize text-decoration-none" >{{ $t('pages.edit') }}</NuxtLink>
+        </div>
+        <div>
+          <vue-markdown-plus :source="item.content" />
+        </div>
       </div>
     </div>
   </div>

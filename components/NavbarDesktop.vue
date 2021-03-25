@@ -158,9 +158,9 @@ export default {
           window.scrollTo(scrollOptions)
         }
         if (window.scrollY > 0) await scroll()
-        await this.fetchRecipes()
+        // await this.fetchRecipes()
         if (this.isAuthenticated) {
-          this.fetchNotifications()
+          // this.fetchNotifications()
           this.refreshAccessToken()
         }
         // this.loading = true

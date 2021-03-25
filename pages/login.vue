@@ -22,7 +22,7 @@
               </div>
             </div>
             <div class="d-flex justify-content-end">
-              <b-button v-if="loging" variant="dark w-100" disabled>
+              <b-button v-if="posting" variant="dark w-100" disabled>
                 <b-spinner small></b-spinner>
                 <span class="sr-only">Loading...</span>
               </b-button>
@@ -70,7 +70,7 @@ export default {
       password: null,
       errors: [],
       error: false,
-      loging: false
+      posting: false
     }
   },
   // components: {
@@ -186,7 +186,7 @@ export default {
       const checkForm = this.checkForm()
       if (checkForm) {
         this.disabled = true
-        this.loging = true
+        this.posting = true
         console.log(this.email)
         const payload = {
           // user: {
@@ -215,7 +215,7 @@ export default {
           .then(() => {
             if (this.errors.length > 0) {
               this.error = true
-              this.loging = false
+              this.posting = false
               console.log(this.errors)
               this.$toast.error(this.errors[0], {
                 position: 'bottom-center',

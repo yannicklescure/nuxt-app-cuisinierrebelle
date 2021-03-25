@@ -44,7 +44,17 @@
         </div>
         <div class="d-flex justify-content-between">
           <button v-on:click.stop.prevent="deleteRecipe" type="submit" class="btn btn-link mb-3">{{ $t('recipe.delete.submit') }}</button>
-          <button v-on:click.stop.prevent="postRecipe" type="submit" class="btn btn-dark mb-3" :disabled="disabled">{{ $t('recipe.new.submit') }}</button>
+          <b-button v-if="posting" variant="dark mb-3" disabled>
+            <b-spinner small></b-spinner>
+            <span class="sr-only">Loading...</span>
+          </b-button>
+          <button
+            v-else
+            @click.stop.prevent="postRecipe"
+            type="submit"
+            class="btn btn-dark mb-3"
+            :disabled="disabled"
+          >{{ $t('recipe.new.submit') }}</button>
         </div>
       </form>
     </div>
@@ -74,6 +84,7 @@ export default {
       tagList: null,
       // disabled: true,
       disabled: false,
+      posting: false,
       max: 280,
       errors: [],
     }
@@ -166,6 +177,7 @@ export default {
       if (checkForm) {
         // console.log(this)
         this.disabled = true
+        this.posting = true
         const payload = {
           id: this.id,
           title: this.title,
@@ -181,6 +193,7 @@ export default {
         console.log(payload)
         this.$store.dispatch('recipes/edit', payload)
           .then(response => {
+            this.posting = false
             console.log(response)
             if (response.status === 200) {
               this.$router.push({
@@ -194,6 +207,7 @@ export default {
       }
       else {
         console.log(this.errors)
+        this.posting = false
         this.$toast.open({
             message: this.errors[0],
             type: 'error', // success, info, warning, error, default
