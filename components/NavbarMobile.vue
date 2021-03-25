@@ -97,7 +97,7 @@ export default {
   methods: {
     ...mapActions({
       notifications: 'notifications/list',
-      refreshAccessToken: 'users/sessions/refreshAccessToken',
+      // refreshAccessToken: 'users/sessions/refreshAccessToken',
     }),
     getNotifications () {
       this.notifications()
@@ -148,25 +148,8 @@ export default {
           };
           window.scrollTo(scrollOptions)
         }
-        const refresh = () => {
-          this.$store
-            .dispatch('recipes/list', {})
-            .then(response => {
-              // this.loading = false
-            })
-        }
         if (window.scrollY > 0) await scroll()
-        await refresh()
-        if (this.isAuthenticated) {
-          this.refreshAccessToken()
-          // this.$store
-          //   .dispatch('users/sessions/refreshAccessToken', {
-          //     authorizationToken: this.authorization.authorizationToken,
-          //     refreshToken: this.authorization.refreshToken,
-          //     expireAt: this.authorization.expireAt
-          //   })
-        }
-        // this.loading = true
+        this.$store.dispatch('recipes/list', {})
       }
       else {
         this.$router.push({ path: '/' })
