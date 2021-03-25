@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       componentKey: 0,
-      iconMenu: 'menu',
+      // iconMenu: 'menu',
       loading: false,
       show: false,
       searchQuery: '',
@@ -90,6 +90,9 @@ export default {
     isScrollTop () {
       return true
     },
+    iconMenu () {
+      return this.show ? 'clear' : 'menu'
+    },
   },
   methods: {
     ...mapActions({
@@ -107,10 +110,10 @@ export default {
         // this.$refs.searchInput.value = ''
         this.searchQuery = ''
         this.$refs.searchInput.blur()
-        this.iconMenu = 'clear'
+        // this.iconMenu = 'clear'
       }
       else {
-        this.iconMenu = 'menu'
+        // this.iconMenu = 'menu'
       }
       return true
     },
@@ -129,6 +132,7 @@ export default {
     collapseMenu () {
       this.inputMode()
       this.show = !this.show
+      // this.iconMenu = this.show ? 'clear' : 'menu'
     },
     collapse () {
       this.inputMode()
