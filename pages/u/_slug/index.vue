@@ -1,13 +1,22 @@
 <template>
   <div>
-    <SocialHead
-      v-if="show"
-      :title="user.name"
-      :description="'Partagez vos recettes dès maintenant en toute simplicité'"
-      :image="user.image.openGraph.url"
-    />
-    <UsersBanner v-if="show" :user="user" />
-    <Cards v-if="recipes.length > 0" :recipes="userRecipes" />
+    <div v-if="$fetchState.pending">{{ $t('init.loading') }}</div>
+    <div v-else-if="$fetchState.error">
+      <NotFound />
+    </div>
+    <div v-else>
+      <div
+        v-if="show"
+      >
+        <SocialHead
+          :title="user.name"
+          :description="'Partagez vos recettes dès maintenant en toute simplicité'"
+          :image="user.image.openGraph.url"
+        />
+        <UsersBanner :user="user" />
+      </div>
+      <Cards v-if="recipes.length > 0" :recipes="userRecipes" />
+    </div>
   </div>
 </template>
 
