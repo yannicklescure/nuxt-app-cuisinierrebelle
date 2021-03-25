@@ -116,7 +116,6 @@ export default {
     ...mapActions({
       fetchNotifications: 'notifications/list',
       fetchRecipes: 'recipes/list',
-      refreshAccessToken: 'users/sessions/refreshAccessToken',
     }),
     dropdownClick () {
       console.log('click')
@@ -124,11 +123,6 @@ export default {
     },
     getUsers () {
       this.$refs.dropdown.hide(true)
-      // this.$store
-      //   .dispatch('users/getUsers', {})
-      //   .then(response => {
-      //     console.log(response)
-      //   })
     },
     getNotifications () {
       console.log('getNotifications')
@@ -158,12 +152,6 @@ export default {
           window.scrollTo(scrollOptions)
         }
         if (window.scrollY > 0) await scroll()
-        // await this.fetchRecipes()
-        if (this.isAuthenticated) {
-          // this.fetchNotifications()
-          this.refreshAccessToken()
-        }
-        // this.loading = true
       }
       else {
         this.$router.push({ path: '/' })

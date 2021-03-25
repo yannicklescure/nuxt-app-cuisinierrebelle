@@ -14,7 +14,8 @@ export const state = () => ({
 export const mutations = {
   setStoreData (state, payload) {
     state.lastUpdated = payload.data.lastUpdated
-    state.timestamp = payload.data.timestamp
+    // state.timestamp = payload.data.timestamp
+    state.timestamp = new Date().getTime()
   },
   navbarHeight (state, payload) {
     state.render.navbarHeight = payload

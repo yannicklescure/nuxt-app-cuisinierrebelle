@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <div v-if="$fetchState.pending">{{ $t('init.loading') }}</div>
-    <div v-else-if="$fetchState.error">
+  <div class="container">
+    <div v-if="$fetchState.error">
       <NotFound />
     </div>
     <div

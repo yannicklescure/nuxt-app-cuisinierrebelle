@@ -1,9 +1,9 @@
 <template>
   <div :key="componentKey">
-    <div v-if="show == false" class="d-flex justify-content-center m-5">
-      <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" variant="muted"></b-spinner>
+    <div v-if="$fetchState.error">
+      <NotFound />
     </div>
-    <div v-if="show" class="container py-2">
+    <div v-else class="container py-2">
       <div v-for="item, i in items" class="d-flex flex-column">
         <div class="d-flex align-items-start rounded bg-light my-2 p-2">
           <NuxtLink :to="`/u/${ item.user.slug }`">
@@ -40,6 +40,11 @@
           </div>
         </div>
       </div>
+      <InfiniteScroll :enough="enough" @load-more="getData()">
+        <template>
+          <span>{{ $t('init.loading') }}</span>
+        </template>
+      </InfiniteScroll>
     </div>
   </div>
 </template>
@@ -52,6 +57,8 @@ export default {
   data() {
     return {
       componentKey: 0,
+      enough: false,
+      items: [],
       show: false,
     }
   },
@@ -59,7 +66,7 @@ export default {
   computed: {
     ...mapGetters({
       currentUser: 'users/sessions/current',
-      items: 'notifications/listSorted',
+      notifications: 'notifications/listSorted',
     }),
   },
   methods: {
@@ -80,29 +87,18 @@ export default {
         return this.$tc('comments.years', Math.trunc(between / 311004000))
       }
     },
-    // fetchItems () {
-    //   console.log('fetching notifications data')
-    //   this.show = false
-    //   this.$store
-    //     .dispatch('notifications/list', {})
-    //     .then( response => {
-    //       console.log(response)
-    //       this.show = true
-    //     })
-    // },
+    getData () {
+      const qty = this.items.length + 20 > this.notifications.length ? this.notifications.length - this.items.length : 20
+      if (qty != 20) this.enough = true
+      this.items = this.items.concat(this.notifications.slice(this.items.length, this.items.length + qty))
+    }
   },
-  // watch: {
-  //   async '$route' () {
-  //     console.log(this.$route.params.id)
-  //     await this.fetchItem()
-  //   }
-  // },
   async fetch() {
     await this.fetchItems()
+    this.show = true
   },
   mounted() {
-    this.show = true
-    // this.$nextTick(() => {})
+    this.getData()
   },
 }
 </script>

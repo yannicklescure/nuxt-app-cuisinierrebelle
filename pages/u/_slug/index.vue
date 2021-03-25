@@ -1,20 +1,15 @@
 <template>
-  <div>
-    <div v-if="$fetchState.pending">{{ $t('init.loading') }}</div>
-    <div v-else-if="$fetchState.error">
+  <div class="container">
+    <div v-if="$fetchState.error">
       <NotFound />
     </div>
-    <div v-else>
-      <div
-        v-if="show"
-      >
-        <SocialHead
-          :title="user.name"
-          :description="'Partagez vos recettes dès maintenant en toute simplicité'"
-          :image="user.image.openGraph.url"
-        />
-        <UsersBanner :user="user" />
-      </div>
+    <div v-else-if="show">
+      <SocialHead
+        :title="user.name"
+        :description="'Partagez vos recettes dès maintenant en toute simplicité'"
+        :image="user.image.openGraph.url"
+      />
+      <UsersBanner :user="user" />
       <Cards v-if="recipes.length > 0" :recipes="userRecipes" />
     </div>
   </div>
@@ -32,12 +27,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // currentUser: 'users/sessions/current',
-      // isMobile: 'isMobile',
       recipes: 'recipes/list',
       getUserRecipes: 'recipes/user',
       usersFilter: 'users/filter',
       users: 'users/list',
+      timestamp: 'timestamp',
     }),
     user () {
       return this.usersFilter(this.$route.params.slug)
@@ -54,10 +48,11 @@ export default {
   },
   async fetch() {
     console.log(this.user)
-    const response = await this.getUser(this.$route.params.slug)
-    console.log(response)
-    if (response.status == 200) this.show = true
-    if (this.recipes.length == 0) await this.getStoreData()
+    await this.getUser(this.$route.params.slug)
+    let refresh = true
+    if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
+    if (refresh) await this.getStoreData()
+    this.show = true
   },
 }
 </script>

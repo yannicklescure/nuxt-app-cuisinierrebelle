@@ -1,10 +1,9 @@
 <template>
-  <div ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
-    <div v-if="$fetchState.pending">{{ $t('init.loading') }}</div>
-    <div v-else-if="$fetchState.error">
+  <div>
+    <div v-if="$fetchState.error">
       <NotFound />
     </div>
-    <div v-else>
+    <div v-else ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
       <SocialHead
         :title="item.recipe.title"
         :description="item.recipe.description"
@@ -50,6 +49,7 @@ export default {
       isMobile: 'isMobile',
       recipe: 'recipes/recipe',
       recipes: 'recipes/list',
+      timestamp: 'timestamp',
     }),
     item () {
       return this.recipe(this.$route.params.slug)
@@ -81,8 +81,12 @@ export default {
   },
   async fetch() {
     console.log(this.$route.params.slug)
+    // TO DO
+    // check if recipe exists in store or fetch
     await this.getRecipe(this.$route.params.slug)
-    if (this.recipes.length == 0) await this.getStoreData()
+    let refresh = true
+    if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
+    if (refresh) await this.getStoreData()
   },
   created() {
     if (process.client) {

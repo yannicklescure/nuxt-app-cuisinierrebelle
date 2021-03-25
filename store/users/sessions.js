@@ -209,7 +209,7 @@ export const actions = {
   },
   async refreshAccessToken (context, payload)  {
     const response = await api.refreshAccessToken(context, payload)
-    // console.log(response.data.message)
+    console.log(response.data.message)
     this.commit("users/sessions/refreshAccessToken", response)
     return response
   },

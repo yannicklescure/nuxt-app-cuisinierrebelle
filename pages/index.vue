@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div v-if="$fetchState.pending">{{ $t('init.loading') }}</div>
-    <div v-else-if="$fetchState.error">
+    <div v-if="$fetchState.error">
       <NotFound />
     </div>
     <div v-else>
@@ -25,17 +24,24 @@ export default {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
       recipes: 'recipes/listSorted',
+      timestamp: 'timestamp',
     }),
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      fetchNotifications: 'notifications/list'
+      fetchNotifications: 'notifications/list',
+      refreshAccessToken: 'users/sessions/refreshAccessToken',
     }),
   },
   async fetch() {
-    if (this.recipes.length == 0) await this.getStoreData()
-    if (this.isAuthenticated) await this.fetchNotifications()
+    if (this.isAuthenticated) {
+      await this.refreshAccessToken()
+      this.fetchNotifications()
+    }
+    let refresh = true
+    if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
+    if (refresh) await this.getStoreData()
   },
   mounted() {
     this.show = true

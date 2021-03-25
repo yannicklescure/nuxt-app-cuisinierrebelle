@@ -21,15 +21,17 @@ export default {
   middleware: 'authenticated',
   computed: {
     ...mapGetters({
-      navbarHeight: 'navbarHeight',
       recipes: 'recipes/top100',
+      timestamp: 'timestamp'
     }),
   },
   methods: {
     ...mapActions(['getStoreData']),
   },
   async fetch() {
-    if (this.recipes.length == 0) await this.getStoreData()
+    let refresh = true
+    if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
+    if (refresh) await this.getStoreData()
   },
 }
 </script>

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Cards v-if="recipes.length > 0" :recipes="recipes" />
+    <div v-if="$fetchState.error">
+      <NotFound />
+    </div>
+    <Cards v-else-if="recipes.length > 0" :recipes="recipes" />
   </div>
 </template>
 
@@ -16,10 +19,13 @@ export default {
   computed: {
     ...mapGetters({
       recipes: 'users/sessions/bookmarks',
+      timestamp: 'timestamp',
     }),
   },
   async fetch() {
-    if (this.recipes.length == 0) await this.getStoreData()
+    let refresh = true
+    if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
+    if (refresh) await this.getStoreData()
   },
 }
 </script>

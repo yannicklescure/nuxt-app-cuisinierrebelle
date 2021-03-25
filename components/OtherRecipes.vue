@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-
 export default {
   name: 'OtherRecipes',
   props: ['recipes'],
@@ -18,19 +16,7 @@ export default {
       numbers: [],
     }
   },
-  computed: {
-    ...mapGetters({
-      // currentUser: 'users/sessions/current',
-      // isMobile: 'isMobile',
-      // recipe: 'recipes/recipe',
-      // recipes: 'recipes/listSorted',
-    }),
-  },
   methods: {
-    ...mapActions({
-      // getStoreData: 'getStoreData',
-      // fetchRecipe: 'recipes/recipe',
-    }),
     getRandomNumbers (max) {
       while(this.numbers.length < 5){
         const num = Math.floor(Math.random() * Math.floor(max > 0 ? max - 1 : 0))
@@ -38,9 +24,6 @@ export default {
       }
     }
   },
-  // async fetch() {
-  //   await this.getStoreData()
-  // },
   mounted() {
     this.getRandomNumbers(this.recipes.length)
   }
