@@ -98,11 +98,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      authorization: 'users/sessions/authorization',
+      // authorization: 'users/sessions/authorization',
       bookmarks: 'users/sessions/bookmarks',
       currentUser: 'users/sessions/current',
       isAuthenticated: 'users/authentication/isAuthenticated',
-      isMobile: 'isMobile',
+      // isMobile: 'isMobile',
       notifications: 'notifications/listSorted',
     }),
     // user () {
@@ -116,6 +116,7 @@ export default {
     ...mapActions({
       fetchNotifications: 'notifications/list',
       fetchRecipes: 'recipes/list',
+      refreshAccessToken: 'users/sessions/refreshAccessToken',
     }),
     dropdownClick () {
       console.log('click')
@@ -125,9 +126,7 @@ export default {
       this.$refs.dropdown.hide(true)
     },
     getNotifications () {
-      console.log('getNotifications')
       this.icons.notifications = 'notifications_none'
-      this.fetchNotifications()
     },
     searchQuery () {
       if (this.query.length > 0) {
@@ -211,6 +210,12 @@ export default {
   destroyed () {
     if (process.client) {
       window.removeEventListener('scroll', this.handleScroll);
+    }
+  },
+  async fetch() {
+    if (this.isAuthenticated) {
+      await this.refreshAccessToken()
+      this.fetchNotifications()
     }
   },
   mounted() {

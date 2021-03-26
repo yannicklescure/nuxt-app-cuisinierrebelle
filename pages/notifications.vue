@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchItems: 'notifications/list'
+      fetchNotifications: 'notifications/list'
     }),
     timeAgo (time) {
       const between = Math.trunc((new Date().getTime() - time) / 1000)
@@ -94,7 +94,7 @@ export default {
     }
   },
   async fetch() {
-    await this.fetchItems()
+    await this.fetchNotifications()
     this.show = true
   },
   mounted() {

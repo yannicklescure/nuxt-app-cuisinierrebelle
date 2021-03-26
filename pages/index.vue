@@ -31,14 +31,9 @@ export default {
     ...mapActions({
       getStoreData: 'getStoreData',
       fetchNotifications: 'notifications/list',
-      refreshAccessToken: 'users/sessions/refreshAccessToken',
     }),
   },
   async fetch() {
-    if (this.isAuthenticated) {
-      await this.refreshAccessToken()
-      this.fetchNotifications()
-    }
     let refresh = true
     if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
     if (refresh) await this.getStoreData()

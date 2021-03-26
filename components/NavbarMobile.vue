@@ -17,8 +17,8 @@
         </NuxtLink>
       </div>
       <div class="d-flex align-items-center">
-        <NuxtLink v-if="!show" to="/notifications" @click="getNotifications" class="nav-item mx-2 text-body text-decoration-none">
-          <i class="material-icons md-24 d-flex">notifications_none</i>
+        <NuxtLink v-if="!show" to="/notifications" class="nav-item mx-2 text-body text-decoration-none">
+          <i class="material-icons md-24 d-flex">{{ icons.notifications }}</i>
         </NuxtLink>
         <div v-on:click="collapseMenu">
           <i class="material-icons md-24 d-flex">{{ iconMenu }}</i>
@@ -72,20 +72,30 @@ export default {
       loading: false,
       show: false,
       searchQuery: '',
+      icons: {
+        notifications: 'notifications_none'
+      }
     }
   },
   directives: {
     ClickOutside
   },
-  // components: {
-  //   FacebookLogin,
-  // },
+  watch: {
+    notifications (oldValue, newValue) {
+      if (oldValue.length != newValue.length) {
+        // console.log(oldValue)
+        // console.log(newValue)
+        this.icons.notifications = 'notifications'
+      }
+    },
+  },
   computed: {
     ...mapGetters({
-      isAuthenticated: 'users/authentication/isAuthenticated',
       authorization: 'users/sessions/authorization',
       currentUser: 'users/sessions/current',
-      isMobile: 'isMobile',
+      isAuthenticated: 'users/authentication/isAuthenticated',
+      // isMobile: 'isMobile',
+      notifications: 'notifications/listSorted',
     }),
     isScrollTop () {
       return true
@@ -96,11 +106,11 @@ export default {
   },
   methods: {
     ...mapActions({
-      notifications: 'notifications/list',
-      // refreshAccessToken: 'users/sessions/refreshAccessToken',
+      fetchNotifications: 'notifications/list',
+      refreshAccessToken: 'users/sessions/refreshAccessToken',
     }),
     getNotifications () {
-      this.notifications()
+      this.icons.notifications = 'notifications_none'
     },
     inputMode () {
       // this.$refs.searchInput.inputMode = 'search'
@@ -198,10 +208,9 @@ export default {
           console.log('Clicked on cancel')
         });
     },
-    forceRerender () {
-      this.componentKey += 1;
-    },
-
+    // forceRerender () {
+    //   this.componentKey += 1;
+    // },
     navbarHeight () {
       this.$store.dispatch('navbarHeight', parseInt(this.$refs.navbar.offsetHeight))
     },
@@ -216,8 +225,14 @@ export default {
       window.removeEventListener('scroll', this.handleScroll);
     }
   },
-  beforeMount() {
-    this.forceRerender()
+  // beforeMount() {
+  //   this.forceRerender()
+  // },
+  async fetch() {
+    if (this.isAuthenticated) {
+      await this.refreshAccessToken()
+      this.fetchNotifications()
+    }
   },
   mounted() {
     this.navbarHeight()
