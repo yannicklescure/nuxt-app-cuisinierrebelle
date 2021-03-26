@@ -15,8 +15,8 @@
     </div>
     <div class="form-group  d-flex flex-grow-1 mx-5">
       <input
-        v-model="searchQuery"
-        v-on:keyup.enter="validSearchQuery"
+        v-model="query"
+        v-on:keyup.enter="searchQuery"
         type="search"
         class="form-control"
         :placeholder="$t('navbar.search')"
@@ -80,7 +80,7 @@ export default {
     return {
       componentKey: 0,
       loading: false,
-      searchQuery: '',
+      query: '',
       icons: {
         bookmarks: 'bookmark',
         notifications: 'notifications_none'
@@ -129,17 +129,18 @@ export default {
       this.icons.notifications = 'notifications_none'
       this.fetchNotifications()
     },
-    validSearchQuery () {
-      // this.$refs.searchInput.value = ''
-      console.log(this.searchQuery)
-      this.$store.dispatch('search/query', { query: this.searchQuery })
-        .then(response => {
-          console.log(response)
-          if (response.status === 200) {
-            this.$router.push({ path: '/search', query: { r: this.searchQuery } })
-            this.searchQuery = ''
-          }
-        })
+    searchQuery () {
+      if (this.query.length > 0) {
+        console.log(this.query)
+        this.$store.dispatch('search/query', { query: this.query })
+          .then(response => {
+            console.log(response)
+            if (response.status === 200) {
+              this.$router.push({ path: '/search', query: { r: this.query } })
+              this.query = ''
+            }
+          })
+      }
     },
     async scroll2Top () {
       if (this.$route.path == '/') {
