@@ -1,49 +1,56 @@
 <template>
-  <div class="container d-flex cr-vh100 justify-content-center align-items-center">
-    <div class="d-flex py-3 justify-content-center align-items-center">
-      <div class="d-flex flex-column w-md-50">
-        <form>
-          <div class="form-group mb-3">
-            <label for="inputFirstName">{{ $t('signUp.firstName') }}</label>
-            <input v-model="firstName" type="text" class="form-control" id="inputFirstName">
-          </div>
-          <div class="form-group mb-3">
-            <label for="inputLastName">{{ $t('signUp.lastName') }}</label>
-            <input v-model="lastName" type="text" class="form-control" id="inputLastName">
-          </div>
-          <div class="form-group mb-3">
-            <label for="inputEmail">{{ $t('signUp.email') }}</label>
-            <input v-model="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">{{ $t('signUp.disclaimer') }}</small>
-          </div>
-          <label for="inputPassword">{{ $t('signUp.password') }}</label>
-          <div class="input-group mb-3">
-            <input v-model="password" ref="password1" type="password" class="form-control" aria-describedby="button-password1">
-            <div class="input-group-append">
-              <button v-on:click="showPassword1" class="btn btn-outline-form" type="button" id="button-password1">
-                <i ref="password1Icon" class="material-icons md-18 d-flex">visibility_off</i>
-              </button>
+  <div>
+    <SocialHead
+      :title="'Recettes Sociales !'"
+      :description="'Partagez vos recettes dès maintenant en toute simplicité'"
+      :image="'https://media.cuisinierrebelle.com/images/cr_icon_1200x1200.jpg'"
+    />
+    <div class="container d-flex cr-vh100 justify-content-center align-items-center">
+      <div class="d-flex py-3 justify-content-center align-items-center">
+        <div class="d-flex flex-column w-md-50">
+          <form>
+            <div class="form-group mb-3">
+              <label for="inputFirstName">{{ $t('signUp.firstName') }}</label>
+              <input v-model="firstName" type="text" class="form-control" id="inputFirstName">
             </div>
-          </div>
-          <label for="inputPassword">{{ $t('signUp.confirmation') }}</label>
-          <div class="input-group mb-3">
-            <input v-model="confirmation" v-on:input="allowPost" v-on:touchend="allowPost" ref="password2" type="password" class="form-control" aria-describedby="button-password2">
-            <div class="input-group-append">
-              <button v-on:click="showPassword2" class="btn btn-outline-form" type="button" id="button-password2">
-                <i ref="password2Icon" class="material-icons md-18 d-flex">visibility_off</i>
-              </button>
+            <div class="form-group mb-3">
+              <label for="inputLastName">{{ $t('signUp.lastName') }}</label>
+              <input v-model="lastName" type="text" class="form-control" id="inputLastName">
             </div>
+            <div class="form-group mb-3">
+              <label for="inputEmail">{{ $t('signUp.email') }}</label>
+              <input v-model="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+              <small id="emailHelp" class="form-text text-muted">{{ $t('signUp.disclaimer') }}</small>
+            </div>
+            <label for="inputPassword">{{ $t('signUp.password') }}</label>
+            <div class="input-group mb-3">
+              <input v-model="password" ref="password1" type="password" class="form-control" aria-describedby="button-password1">
+              <div class="input-group-append">
+                <button v-on:click="showPassword1" class="btn btn-outline-form" type="button" id="button-password1">
+                  <i ref="password1Icon" class="material-icons md-18 d-flex">visibility_off</i>
+                </button>
+              </div>
+            </div>
+            <label for="inputPassword">{{ $t('signUp.confirmation') }}</label>
+            <div class="input-group mb-3">
+              <input v-model="confirmation" v-on:input="allowPost" v-on:touchend="allowPost" ref="password2" type="password" class="form-control" aria-describedby="button-password2">
+              <div class="input-group-append">
+                <button v-on:click="showPassword2" class="btn btn-outline-form" type="button" id="button-password2">
+                  <i ref="password2Icon" class="material-icons md-18 d-flex">visibility_off</i>
+                </button>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button v-on:click.stop.prevent="signUp" type="submit" class="btn btn-dark mb-3 w-100" :disabled="disabled">{{ $t('signUp.submit') }}</button>
+            </div>
+          </form>
+          <div class="d-flex justify-content-center my-3">
+            <NuxtLink to="/login">{{ $t('signUp.login') }}</NuxtLink>
           </div>
-          <div class="d-flex justify-content-end">
-            <button v-on:click.stop.prevent="signUp" type="submit" class="btn btn-dark mb-3 w-100" :disabled="disabled">{{ $t('signUp.submit') }}</button>
-          </div>
-        </form>
-        <div class="d-flex justify-content-center my-3">
-          <NuxtLink to="/login">{{ $t('signUp.login') }}</NuxtLink>
         </div>
       </div>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>

@@ -1,54 +1,61 @@
 <template>
-  <div class="container d-flex cr-vh100">
-    <div class="d-flex flex-grow-1 justify-content-center align-items-center">
-      <div class="d-flex flex-column align-items-center w-md-50">
-        <!-- <div class="my-3"> -->
-          <!-- <facebook-login v-on:isConnecting="isConnecting"/> -->
-        <!-- </div> -->
-        <div v-if="!connecting">
-          <form>
-            <div class="form-group my-2">
-              <label for="inputEmail">{{ $t('login.email') }}</label>
-              <input v-model="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted">{{ $t('login.disclaimer') }}</small>
-            </div>
-            <label for="inputPassword">{{ $t('signUp.password') }}</label>
-            <div class="input-group mb-3">
-              <input v-model="password" v-on:input="allowPost" v-on:touchend="allowPost" ref="password" type="password" class="form-control" aria-describedby="button-password">
-              <div class="input-group-append">
-                <button v-on:click="showPassword" class="btn btn-outline-form" type="button" id="button-password">
-                  <i ref="passwordIcon" class="material-icons md-18 d-flex">visibility_off</i>
-                </button>
+  <div>
+    <SocialHead
+      :title="'Recettes Sociales !'"
+      :description="'Partagez vos recettes dès maintenant en toute simplicité'"
+      :image="'https://media.cuisinierrebelle.com/images/cr_icon_1200x1200.jpg'"
+    />
+    <div class="container d-flex cr-vh100">
+      <div class="d-flex flex-grow-1 justify-content-center align-items-center">
+        <div class="d-flex flex-column align-items-center w-md-50">
+          <!-- <div class="my-3"> -->
+            <!-- <facebook-login v-on:isConnecting="isConnecting"/> -->
+          <!-- </div> -->
+          <div v-if="!connecting">
+            <form>
+              <div class="form-group my-2">
+                <label for="inputEmail">{{ $t('login.email') }}</label>
+                <input v-model="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">{{ $t('login.disclaimer') }}</small>
               </div>
-            </div>
-            <div class="d-flex justify-content-end">
-              <b-button v-if="posting" variant="dark w-100" disabled>
-                <b-spinner small></b-spinner>
-                <span class="sr-only">Loading...</span>
-              </b-button>
+              <label for="inputPassword">{{ $t('signUp.password') }}</label>
+              <div class="input-group mb-3">
+                <input v-model="password" v-on:input="allowPost" v-on:touchend="allowPost" ref="password" type="password" class="form-control" aria-describedby="button-password">
+                <div class="input-group-append">
+                  <button v-on:click="showPassword" class="btn btn-outline-form" type="button" id="button-password">
+                    <i ref="passwordIcon" class="material-icons md-18 d-flex">visibility_off</i>
+                  </button>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end">
+                <b-button v-if="posting" variant="dark w-100" disabled>
+                  <b-spinner small></b-spinner>
+                  <span class="sr-only">Loading...</span>
+                </b-button>
+                <button
+                  v-else
+                  @click.stop.prevent="login"
+                  type="submit"
+                  class="btn btn-dark my-2 w-100"
+                  :disabled="disabled"
+                >{{ $t('login.submit') }}</button>
+              </div>
+            </form>
+            <div class="my-3 d-flex flex-column justify-content-center align-items-center">
               <button
-                v-else
-                @click.stop.prevent="login"
-                type="submit"
-                class="btn btn-dark my-2 w-100"
-                :disabled="disabled"
-              >{{ $t('login.submit') }}</button>
+                v-if="error"
+                @click.stop.prevent="resendConfirmationInstructions"
+                class="btn btn-link"
+              >{{ $t('login.password.request.resendConfirmationInstructions') }}</button>
+              <NuxtLink to="/users/password/new">{{ $t('login.forgetPassword') }}</NuxtLink>
+              <NuxtLink to="/signup">{{ $t('login.signup') }}</NuxtLink>
+              <p></p>
             </div>
-          </form>
-          <div class="my-3 d-flex flex-column justify-content-center align-items-center">
-            <button
-              v-if="error"
-              @click.stop.prevent="resendConfirmationInstructions"
-              class="btn btn-link"
-            >{{ $t('login.password.request.resendConfirmationInstructions') }}</button>
-            <NuxtLink to="/users/password/new">{{ $t('login.forgetPassword') }}</NuxtLink>
-            <NuxtLink to="/signup">{{ $t('login.signup') }}</NuxtLink>
-            <p></p>
           </div>
         </div>
       </div>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>

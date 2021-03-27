@@ -8,13 +8,16 @@
       class="container"
       :key="componentKey"
     >
-      <div v-if="item">
-        <div v-if="!isMobile && currentUser.admin" class="d-flex justify-content-center align-items-center my-3">
-          <NuxtLink :to="`/p/${ $route.params.slug }/edit`" class="text-body text-capitalize text-decoration-none" >{{ $t('pages.edit') }}</NuxtLink>
-        </div>
-        <div>
-          <vue-markdown-plus :source="item.content" />
-        </div>
+      <SocialHead
+        :title="item.title"
+        :description="'Partagez vos recettes dès maintenant en toute simplicité'"
+        :image="'https://media.cuisinierrebelle.com/images/cr_icon_1200x1200.jpg'"
+      />
+      <div v-if="!isMobile && currentUser.admin" class="d-flex justify-content-center align-items-center my-3">
+        <NuxtLink :to="`/p/${ $route.params.slug }/edit`" class="text-body text-capitalize text-decoration-none" >{{ $t('pages.edit') }}</NuxtLink>
+      </div>
+      <div>
+        <vue-markdown-plus :source="item.content" />
       </div>
     </div>
   </div>
@@ -29,6 +32,9 @@ export default {
   data() {
     return {
       componentKey: 0,
+      item: {
+        content: ''
+      }
     }
   },
   components: {
@@ -40,9 +46,9 @@ export default {
       currentUser: 'users/sessions/current',
       isMobile: 'isMobile',
     }),
-    item () {
-      return this.page(this.$route.params.slug)
-    }
+    // item () {
+    //   return this.page(this.$route.params.slug)
+    // }
   },
   methods: {
     ...mapActions({
@@ -51,6 +57,7 @@ export default {
   },
   async fetch() {
     await this.fetchItems()
+    this.item = this.page(this.$route.params.slug)
   },
 }
 </script>

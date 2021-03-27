@@ -23,9 +23,14 @@ export default {
       title: `Cuisinier Rebelle | ${ this.title }`,
       meta: [
         {
+          hid: 'description',
+          name: 'description',
+          content: this.description
+        },
+        {
           hid: 'twitter:title',
           name: 'twitter:title',
-          content: this.title
+          content: `Cuisinier Rebelle | ${ this.title }`
         },
         {
           hid: 'twitter:description',
@@ -50,7 +55,7 @@ export default {
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title
+          content: `Cuisinier Rebelle | ${ this.title }`
         },
         {
           hid: 'og:description',

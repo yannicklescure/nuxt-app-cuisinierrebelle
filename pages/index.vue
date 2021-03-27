@@ -4,6 +4,11 @@
       <NotFound />
     </div>
     <div v-else>
+      <SocialHead
+        :title="'Recettes Sociales !'"
+        :description="'Partagez vos recettes dès maintenant en toute simplicité'"
+        :image="'https://media.cuisinierrebelle.com/images/cr_icon_1200x1200.jpg'"
+      />
       <Banner v-if="!isAuthenticated" />
       <Cards v-if="recipes.length > 0" :recipes="recipes" />
     </div>
