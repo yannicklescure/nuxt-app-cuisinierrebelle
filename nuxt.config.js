@@ -221,11 +221,13 @@ export default {
 
   i18n: {
     locales: [
+      // { code: 'en', iso: 'en-US', file: 'en.js' },
       { code: 'fr', iso: 'fr-FR', file: 'fr.js' },
     ],
     lazy: true,
-    langDir: 'locales/',
-    defaultLocale: 'fr'
+    langDir: '~/locales/',
+    strategy: 'prefix_except_default',
+    defaultLocale: 'fr',
   },
 
   toast: {

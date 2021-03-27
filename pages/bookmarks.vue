@@ -13,6 +13,12 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Bookmarks',
   middleware: 'authenticated',
+  // nuxtI18n: {
+  //   paths: {
+  //     fr: '/favoris', // -> accessible at /favoris
+  //     en: '/bookmarks', // -> accessible at /en/bookmarks
+  //   }
+  // },
   methods: {
     ...mapActions(['getStoreData']),
   },
