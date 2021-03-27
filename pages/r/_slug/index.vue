@@ -1,14 +1,14 @@
 <template>
   <div>
+    <SocialHead
+      :title="post.recipe.title"
+      :description="post.recipe.description"
+      :image="post.recipe.photo.openGraph.url"
+    />
     <div v-if="$fetchState.error">
       <NotFound />
     </div>
     <div v-else ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
-      <SocialHead
-        :title="item.recipe.title"
-        :description="item.recipe.description"
-        :image="item.recipe.photo.openGraph.url"
-      />
       <RecipeHead :item="item" />
       <RecipeBody :item="item" :dimension="dimension" />
 
@@ -42,6 +42,12 @@ export default {
         width: 0,
         height: 0
       },
+    }
+  },
+  async asyncData({ $axios, params }) {
+    const post = await $axios.$get(`https://api.cuisinierrebelle.com/v1/recipes/${ params.slug }`)
+    return {
+      post
     }
   },
   computed: {
