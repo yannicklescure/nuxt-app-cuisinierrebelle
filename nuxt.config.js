@@ -61,6 +61,11 @@ export default {
 
       // Open Graph
       // Test on: https://developers.facebook.com/tools/debug/
+      {
+        hid: 'fb:app_id',
+        property: 'fb:app_id',
+        content: '570259036897585'
+      },
       { hid: 'og:site_name', property: 'og:site_name', content: 'Cuisinier_Rebelle' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {

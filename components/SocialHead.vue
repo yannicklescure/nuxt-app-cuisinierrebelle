@@ -48,11 +48,6 @@ export default {
           content: this.title
         },
         {
-          hid: 'fb:app_id',
-          property: 'fb:app_id',
-          content: '570259036897585'
-        },
-        {
           hid: 'og:title',
           property: 'og:title',
           content: `Cuisinier Rebelle | ${ this.title }`
