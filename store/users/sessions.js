@@ -234,6 +234,7 @@ export const actions = {
     const response = await this.$axios.$patch(`${ process.env.apiUrl }/v1/users/photo`, formData, {})
     console.log(response)
     this.commit("users/sessions/photo", response)
+    this.commit("recipes/userPhoto", response)
     this.$axios.setHeader('Content-Type', false)
     return response
   },

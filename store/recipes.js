@@ -105,6 +105,14 @@ export const mutations = {
     const position = state.list.findIndex(item => item.recipe.id == payload.data.recipe.id)
     state.list[position].recipe.views = payload.views
   },
+  userPhoto (state, payload) {
+    state.list.forEach(item => {
+      if (item.user.id === payload.user_id) {
+        console.log(item.recipe.title)
+        item.user.image = payload.image
+      }
+    })
+  },
 }
 
 export const actions = {
