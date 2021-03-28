@@ -1,21 +1,19 @@
 <template>
   <div class="container">
-    <div class="d-flex flex-column">
-      <div class="py-3">
-        <form v-on:input="allowPost" v-on:touchend="allowPost">
-          <div class="h1 mb-3">{{ $t('users.settings.photo.title') }}</div>
-          <div ref="photo" class="form-group mb-3">
-            <div class="custom-file">
-              <input v-on:change="processFile($event)" type="file" class="custom-file-input" id="photoFileLangHTML">
-              <label class="custom-file-label" for="photoFileLangHTML" :data-browse="$t('users.settings.photo.chooseFile')">{{ $t('users.settings.photo.browse') }}</label>
-            </div>
+    <div class="py-3 d-flex flex-column justify-content-center">
+      <form v-on:input="allowPost" v-on:touchend="allowPost">
+        <div class="h1 mb-3">{{ $t('users.settings.photo.title') }}</div>
+        <div ref="photo" class="form-group mb-3">
+          <div class="custom-file">
+            <input v-on:change="processFile($event)" type="file" class="custom-file-input" id="photoFileLangHTML">
+            <label class="custom-file-label" for="photoFileLangHTML" :data-browse="$t('users.settings.photo.chooseFile')">{{ $t('users.settings.photo.browse') }}</label>
           </div>
-          <div ref="preview"></div>
-          <div class="d-flex justify-content-end">
-            <button v-on:click.stop.prevent="postPicture" type="submit" class="btn btn-dark mb-3" :disabled="disabled">{{ $t('users.settings.photo.submit') }}</button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div ref="preview" class="d-flex justify-content-center mb-3"></div>
+        <div class="d-flex justify-content-end">
+          <button v-on:click.stop.prevent="postPicture" type="submit" :class="['btn btn-dark mb-3', { 'w-100': isMobile }]" :disabled="disabled">{{ $t('users.settings.photo.submit') }}</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -36,6 +34,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      isMobile: 'isMobile',
       currentUser: 'users/sessions/current',
     }),
   },
@@ -118,7 +117,7 @@ export default {
   mounted () {
     // this.navbarHeight = this.getNavbarHeight()
     this.$refs.preview.innerHTML = ''
-    this.$refs.preview.insertAdjacentHTML('afterbegin', `<div class="mb-3"><img src="${ this.currentUser.image.preview.url }" width="256" height="256" class="rounded img-fluid" alt="${ this.currentUser.slug }"></div>`);
+    this.$refs.preview.insertAdjacentHTML('afterbegin', `<img src="${ this.currentUser.image.preview.url }" width="256" height="256" class="rounded img-fluid" alt="${ this.currentUser.slug }">`);
   }
 }
 </script>
