@@ -667,6 +667,9 @@ export const getStoreData = async (context, payload) => {
   return await axios({
     method: 'get',
     url: `${ process.env.apiUrl }/v1/state`,
+    headers: {
+      'Authorization': `Bearer ${ context.rootState.users.sessions.authorization.authorizationToken }`,
+    },
   })
 }
 
