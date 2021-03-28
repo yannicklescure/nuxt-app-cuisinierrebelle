@@ -154,6 +154,10 @@ export const mutations = {
     // console.log(payload.data.notification)
     state.user.notification = payload.data.notification
   },
+  photo (state, payload) {
+    // console.log(payload.data.notification)
+    state.user.image = payload.image
+  },
 }
 
 export const actions = {
@@ -218,6 +222,19 @@ export const actions = {
     const response = await api.userNotifications(context, payload)
     // console.log(`response.status ${response.status}`)
     this.commit("users/sessions/notifications", response)
+    return response
+  },
+  async photo ({ commit }, payload) {
+    const FormData = require('form-data');
+    const formData = new FormData();
+    formData.append('image', payload.image);
+    console.log(formData)
+    this.$axios.setHeader('Authorization', `Bearer ${ this.state.users.sessions.authorization.authorizationToken }`)
+    this.$axios.setHeader('Content-Type', 'multipart/form-data')
+    const response = await this.$axios.$patch(`${ process.env.apiUrl }/v1/users/photo`, formData, {})
+    console.log(response)
+    this.commit("users/sessions/photo", response)
+    this.$axios.setHeader('Content-Type', false)
     return response
   },
 }

@@ -20,7 +20,7 @@ export default {
   },
   head() {
     return {
-      title: `Cuisinier Rebelle | ${ this.title }`,
+      title: this.title,
       meta: [
         {
           hid: 'description',

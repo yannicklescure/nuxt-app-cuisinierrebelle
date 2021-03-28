@@ -290,6 +290,29 @@ export default async (context, locale) => {
       text5: 'La suppression de votre compte supprimera le contenu des publications et des commentaires que vous avez faits sur Cuisinier Rebelle.',
       form: 'POURQUOI SUPPRIMEZ-VOUS CE COMPTE? (OPTIONNEL)',
       checkbox: 'Je comprends que supprimer mon compte est irréversible.',
+    },
+    users: {
+      settings: {
+        title: 'Paramètres',
+        back: 'Retour',
+        photo: {
+          browse: 'Ajouter une photo',
+          chooseFile: 'Chercher',
+          title: 'Changer ma photo de profile',
+          photo: 'Photo',
+          submit: 'Publier',
+          success: 'Vous avez changé votre photo de profile.',
+          errors: {
+            photo: 'La photo est obligatoire.',
+          },
+          errors: 'La photo est obligatoire.',
+        }
+      },
+      password:{
+        errors: {
+          exist: `Votre adresse courriel n'a pas été trouvé.`
+        }
+      }
     }
   })
 }

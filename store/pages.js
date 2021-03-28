@@ -19,7 +19,7 @@ export const mutations = {
 
 export const actions = {
   async get () {
-    const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/pages')
+    const response = await this.$axios.$get(`${ process.env.apiUrl }/v1/pages`)
     this.commit("pages/setPages", response)
     return response
   },
@@ -33,7 +33,7 @@ export const actions = {
     // this.$axios.setToken(this.state.users.sessions.authorization.authorizationToken, 'Bearer')
     this.$axios.setHeader('Authorization', `Bearer ${ this.state.users.sessions.authorization.authorizationToken }`)
     this.$axios.setHeader('Content-Type', 'multipart/form-data')
-    const response = await this.$axios.$post(`https://api.cuisinierrebelle.com/v1/pages/`, formData, {})
+    const response = await this.$axios.$post(`${ process.env.apiUrl }/v1/pages/`, formData, {})
     console.log(response)
     this.commit("pages/new", response)
     this.$axios.setHeader('Content-Type', false)
@@ -49,7 +49,7 @@ export const actions = {
     // this.$axios.setToken(this.state.users.sessions.authorization.authorizationToken, 'Bearer')
     this.$axios.setHeader('Authorization', `Bearer ${ this.state.users.sessions.authorization.authorizationToken }`)
     this.$axios.setHeader('Content-Type', 'multipart/form-data')
-    const response = await this.$axios.$patch(`https://api.cuisinierrebelle.com/v1/pages/${ payload.id }`, formData, {})
+    const response = await this.$axios.$patch(`${ process.env.apiUrl }/v1/pages/${ payload.id }`, formData, {})
     console.log(response)
     this.commit("pages/edit", response)
     this.$axios.setHeader('Content-Type', false)

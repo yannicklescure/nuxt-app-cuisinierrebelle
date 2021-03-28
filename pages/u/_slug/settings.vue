@@ -3,11 +3,14 @@
     class="container"
     :key="componentKey"
   >
-    <h1>{{ $t('userSettings.title') }}</h1>
+    <div class="h1 mb-3">{{ $t('userSettings.title') }}</div>
     <div class="mb-3">
       <UsersNotifications />
     </div>
-    <NuxtLink :to="`/u/${ currentUser.slug }/delete`">{{ $t('userSettings.deleteAccount') }}</NuxtLink>
+    <div class="d-flex flex-column">
+      <NuxtLink :to="`/u/${ currentUser.slug }/photo`">{{ $t('users.settings.photo.title') }}</NuxtLink>
+      <NuxtLink :to="`/u/${ currentUser.slug }/delete`">{{ $t('userSettings.deleteAccount') }}</NuxtLink>
+    </div>
   </div>
 </template>
 

@@ -66,7 +66,7 @@ export default {
       }
       return true
     },
-    sendRequestEmail () {
+    async sendRequestEmail () {
       const checkForm = this.checkForm()
       if (checkForm) {
         console.log(this.email)
@@ -75,40 +75,24 @@ export default {
             email: this.email,
           }
         }
-        this.$store.dispatch('users/authentication/requestPasswordReset', payload)
-          .then(response => {
-            console.log(response)
-            if (response.status === 200) {
-              console.log(response.data.user.email)
-              this.$toast.info(this.$t('login.password.email', { email: response.data.user.email }), {
-                position: 'bottom-center',
-                duration: 3000,
-              })
-              this.email = null
-              // this.$router.push({ name: 'Home' })
-            }
-            else if (response.response) {
-              // client received an error response (5xx, 4xx)
-              this.errors.push(response.status)
-            }
-            else if (response.request) {
-              // client never received a response, or request never left
-              this.errors.push(response.status)
-            }
-            else {
-              // anything else
-              this.errors.push(response)
-            }
-          })
-          .then(() => {
-            if (this.errors.length > 0) {
-              console.log(this.errors)
-              this.$toast.error(this.errors[0], {
-                position: 'bottom-center',
-                duration: 3000,
-              })
-            }
-          })
+        const response = await this.$store.dispatch('users/authentication/requestPasswordReset', payload)
+        console.log(response)
+          if (response.data.token != null) {
+            console.log(response.data.user.email)
+            this.$toast.info(this.$t('login.password.email', { email: response.data.user.email }), {
+              position: 'bottom-center',
+              duration: 3000,
+            })
+            this.email = null
+            // this.$router.push({ name: 'Home' })
+          }
+          else {
+            console.log(this.errors)
+            this.$toast.error(this.$t('users.password.errors.exist'), {
+              position: 'bottom-center',
+              duration: 3000,
+            })
+          }
       }
       else {
         console.log(this.errors)

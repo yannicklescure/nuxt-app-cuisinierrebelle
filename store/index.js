@@ -29,7 +29,7 @@ export const mutations = {
 export const actions = {
   async getStoreData ({ commit }, payload) {
     console.log(this)
-    const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/state')
+    const response = await this.$axios.$get(`${ process.env.apiUrl }/v1/state`)
     console.log(response)
     this.commit("setStoreData", response)
     this.commit('recipes/setStoreData', response)

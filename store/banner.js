@@ -26,7 +26,7 @@ export const mutations = {
 export const actions = {
   async get ({ commit }, payload) {
     // console.log(this)
-    const response = await this.$axios.$get('https://api.cuisinierrebelle.com/v1/unsplash_images')
+    const response = await this.$axios.$get(`${ process.env.apiUrl }/v1/unsplash_images`)
     console.log(response)
     this.commit('banner/set', response)
     return response
