@@ -41,7 +41,10 @@ export default {
   async fetch() {
     let refresh = true
     if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
-    if (refresh) await this.getStoreData()
+    if (refresh) {
+      const response = await this.getStoreData()
+      console.log(response)
+    }
   },
   mounted() {
     this.show = true

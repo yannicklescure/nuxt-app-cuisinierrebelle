@@ -108,7 +108,7 @@ export const mutations = {
   userPhoto (state, payload) {
     state.list.forEach(item => {
       if (item.user.id === payload.user_id) {
-        console.log(item.recipe.title)
+        // console.log(item.recipe.title)
         item.user.image = payload.image
       }
     })
