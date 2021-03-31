@@ -40,7 +40,7 @@ export default {
   },
   async fetch() {
     const obj = this.$store.state.banner.image
-    if(obj.id == null || !obj.timestamp || parseInt((new Date().getTime() - obj.timestamp) / 1000) > 1000 * 60 * 60 * 24) {
+    if(obj.id == null || !obj.timestamp || parseInt(new Date().getTime() - obj.timestamp) > 1000 * 60 * 60 * 24) {
       await this.getBannerImage()
     }
   },
