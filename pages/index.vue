@@ -20,7 +20,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Home',
-  data() {
+  data () {
     return {
       show: false,
     }
@@ -38,7 +38,7 @@ export default {
       fetchNotifications: 'notifications/list',
     }),
   },
-  async fetch() {
+  async fetch () {
     let refresh = true
     if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3 // 3 minutes
     if (refresh) {
@@ -46,7 +46,7 @@ export default {
       console.log(response)
     }
   },
-  mounted() {
+  mounted () {
     this.show = true
   }
 }

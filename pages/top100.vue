@@ -11,7 +11,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Top100',
-  // data() {
+  // data () {
   //   return {
   //     // componentKey: 0,
   //     // data: [],
@@ -28,7 +28,7 @@ export default {
   methods: {
     ...mapActions(['getStoreData']),
   },
-  async fetch() {
+  async fetch () {
     let refresh = true
     if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
     if (refresh) await this.getStoreData()

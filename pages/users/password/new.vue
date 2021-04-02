@@ -30,7 +30,7 @@ const capitalize = (s) => {
 
 export default {
   name: 'PasswordResetRequest',
-  data() {
+  data () {
     return {
       disabled: true,
       email: null,

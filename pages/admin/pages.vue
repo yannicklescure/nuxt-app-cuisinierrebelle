@@ -47,7 +47,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Pages',
   middleware: ['authenticated', 'admin'],
-  data() {
+  data () {
     return {
       componentKey: 0,
       locale: 'fr',
@@ -65,7 +65,7 @@ export default {
       fetchItems: 'pages/get'
     }),
   },
-  async fetch() {
+  async fetch () {
     if (this.pages.length == 0) await this.fetchItems()
   }
 }

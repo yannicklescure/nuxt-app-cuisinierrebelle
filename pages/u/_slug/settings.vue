@@ -25,7 +25,7 @@ export default {
   name: 'UserSettings',
   // middleware: 'authenticated',
   middleware: ['authenticated', 'authorization'],
-  data() {
+  data () {
     return {
       componentKey: 0,
       // navbarHeight: 0,
@@ -44,7 +44,7 @@ export default {
     //   return this.$store.getters.navbarHeight
     // },
   // },
-  // beforeMount() {
+  // beforeMount () {
   //   if (this.$route.params.slug === this.currentUser.slug) this.show = true
   //   else {
   //     console.log('ALERT')
@@ -53,7 +53,7 @@ export default {
   //     })
   //   }
   // },
-  // mounted() {
+  // mounted () {
     // this.navbarHeight = this.getNavbarHeight()
   // }
 }

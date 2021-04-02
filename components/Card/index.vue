@@ -14,7 +14,7 @@
 export default {
   name: 'card',
   props: ['item'],
-  data() {
+  data () {
     return {
       dimension: {
         width: 0,
@@ -43,7 +43,7 @@ export default {
       window.removeEventListener("resize", this.matchInfoBox);
     }
   },
-  mounted() {
+  mounted () {
     // this.$nextTick(() => {
       // console.log('card ready')
       this.matchInfoBox()

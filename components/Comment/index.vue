@@ -54,7 +54,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Comment',
   props: ['item', 'type', 'lastCommentId'],
-  data() {
+  data () {
     return {
       edit: false,
       reply: false,
@@ -160,7 +160,7 @@ export default {
       }
     },
   },
-  mounted() {
+  mounted () {
     console.log(`${this.type} ${this.item.id}`)
     if (this.$route.hash && this.item.id === parseInt(this.$route.hash.match(/(?:#comment|#reply?)(.+)/)[1])) this.scroll2Anchor()
     // if (this.type === 'comment' && this.item.id === this.lastCommentId) {

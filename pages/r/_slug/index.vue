@@ -35,7 +35,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Recipe',
-  data() {
+  data () {
     return {
       componentKey: 0,
       dimension: {
@@ -85,7 +85,7 @@ export default {
       }
     }
   },
-  async fetch() {
+  async fetch () {
     console.log(this.$route.params.slug)
     // TO DO
     // check if recipe exists in store or fetch
@@ -104,7 +104,7 @@ export default {
       window.removeEventListener("resize", this.matchInfoBox);
     }
   },
-  mounted() {
+  mounted () {
     // this.loadItem()
     this.$nextTick(() => {
       this.matchInfoBox()

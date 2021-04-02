@@ -23,7 +23,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'User',
-  data() {
+  data () {
     return {
       show: false,
     }
@@ -49,7 +49,7 @@ export default {
       getUser: 'users/getUser',
     }),
   },
-  async fetch() {
+  async fetch () {
     console.log(this.user)
     await this.getUser(this.$route.params.slug)
     let refresh = true

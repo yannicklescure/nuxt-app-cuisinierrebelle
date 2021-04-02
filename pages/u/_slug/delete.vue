@@ -37,7 +37,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'UserDelete',
   middleware: ['authenticated', 'authorization'],
-  data() {
+  data () {
     return {
       componentKey: 0,
       errors: [],
@@ -113,7 +113,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.show = true
   }
 }

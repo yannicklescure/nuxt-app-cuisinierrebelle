@@ -21,7 +21,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Cards',
   props: ['recipes'],
-  data() {
+  data () {
     return {
       items: [],
       enough: false,
@@ -54,7 +54,7 @@ export default {
       this.items = this.items.concat(this.recipes.slice(this.items.length, this.items.length + qty))
     }
   },
-  mounted() {
+  mounted () {
     this.getData()
   }
 }

@@ -50,7 +50,7 @@ const capitalize = (s) => {
 
 export default {
   name: 'PasswordReset',
-  data() {
+  data () {
     return {
       disabled: true,
       token: this.$route.query.token,
@@ -222,7 +222,7 @@ export default {
         })
     },
   },
-  async fetch() {
+  async fetch () {
     if (this.token) await this.requestResetVerification()
   },
 }

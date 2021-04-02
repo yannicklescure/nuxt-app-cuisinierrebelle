@@ -28,7 +28,7 @@ export default {
       timestamp: 'timestamp',
     }),
   },
-  async fetch() {
+  async fetch () {
     let refresh = true
     if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
     if (refresh) await this.getStoreData()

@@ -17,7 +17,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'CommentLike',
   props: ['item', 'type'],
-  data() {
+  data () {
     return {
       liked: false,
       likes: this.item.likes
@@ -56,7 +56,7 @@ export default {
       this.$store.dispatch(`recipes/${ this.type }${ this.liked ? 'Like' : 'Unlike' }`, payload)
     },
   },
-  beforeMount() {
+  beforeMount () {
     this.isUserLiked()
   }
 }

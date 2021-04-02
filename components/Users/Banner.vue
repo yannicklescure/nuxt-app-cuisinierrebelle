@@ -46,7 +46,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'UsersBanner',
   props: ['user', 'count'],
-  // data() {
+  // data () {
   //   return {}
   // },
   // components: {

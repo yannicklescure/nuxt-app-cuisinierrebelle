@@ -10,7 +10,7 @@
 export default {
   name: 'BtnPrint',
   props: ['item'],
-  // data() {
+  // data () {
   //   return {}
   // },
   // computed: {

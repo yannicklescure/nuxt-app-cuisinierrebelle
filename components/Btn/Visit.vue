@@ -12,7 +12,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'BtnVisit',
   props: ['item'],
-  // data() {
+  // data () {
   //   return {
   //     // views: 0,
   //   }
@@ -39,7 +39,7 @@ export default {
         })
     },
   },
-  // beforeMount() {
+  // beforeMount () {
   //   // this.recipeLog()
   // },
   // updated () {

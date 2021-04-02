@@ -63,7 +63,7 @@ const capitalize = (s) => {
 
 export default {
   name: 'Signup',
-  data() {
+  data () {
     return {
       disabled: true,
       firstName: null,
@@ -197,7 +197,7 @@ export default {
       }
     },
   },
-  // beforeMount() {
+  // beforeMount () {
   //   // this.signUpNew()
   // }
 }

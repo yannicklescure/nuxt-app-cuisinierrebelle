@@ -33,7 +33,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'UserFollowing',
   middleware: 'authenticated',
-  data() {
+  data () {
     return {
       enough: false,
       items: [],
@@ -61,11 +61,11 @@ export default {
       this.items = this.items.concat(this.users.slice(this.items.length, this.items.length + qty))
     }
   },
-  async fetch() {
+  async fetch () {
     await this.getUser(this.$route.params.slug)
     this.show = true
   },
-  mounted() {
+  mounted () {
     this.getData()
   }
 }

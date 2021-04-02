@@ -47,7 +47,7 @@ export default {
   name: 'PageEdit',
   middleware: ['authenticated', 'admin'],
   // props: ['item'],
-  data() {
+  data () {
     return {
       componentKey: 0,
       // navbarHeight: 0,
@@ -160,7 +160,7 @@ export default {
       }
     },
   },
-  mounted() {
+  mounted () {
     this.setData()
   }
 }

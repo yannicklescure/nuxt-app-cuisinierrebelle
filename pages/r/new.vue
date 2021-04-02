@@ -64,7 +64,7 @@ import imageCompression from 'browser-image-compression'
 
 export default {
   name: 'RecipeNew',
-  data() {
+  data () {
     return {
       // componentKey: 0,
       // navbarHeight: 0,

@@ -28,7 +28,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'CommentForm',
   props: ['item', 'actionAttr', 'text'],
-  data() {
+  data () {
     return {
       disabled: true,
       content: this.text,

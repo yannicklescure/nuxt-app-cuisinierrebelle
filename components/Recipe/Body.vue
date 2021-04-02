@@ -36,7 +36,7 @@ export default {
       isMobile: 'isMobile',
     }),
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
     })

@@ -11,7 +11,7 @@
 export default {
   name: 'OtherRecipes',
   props: ['recipes'],
-  data() {
+  data () {
     return {
       numbers: [],
     }
@@ -24,7 +24,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.getRandomNumbers(this.recipes.length)
   }
 }

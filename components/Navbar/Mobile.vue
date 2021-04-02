@@ -65,7 +65,7 @@ import ClickOutside from 'vue-click-outside'
 
 export default {
   name: 'NavbarSmall',
-  data() {
+  data () {
     return {
       componentKey: 0,
       // iconMenu: 'menu',
@@ -225,16 +225,16 @@ export default {
       window.removeEventListener('scroll', this.handleScroll);
     }
   },
-  // beforeMount() {
+  // beforeMount () {
   //   this.forceRerender()
   // },
-  async fetch() {
+  async fetch () {
     if (this.isAuthenticated) {
       await this.refreshAccessToken()
       this.fetchNotifications()
     }
   },
-  mounted() {
+  mounted () {
     this.navbarHeight()
     // this.handleScroll()
   }

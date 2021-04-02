@@ -16,7 +16,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {
       show: false,
     }
@@ -38,7 +38,7 @@ export default {
       this.$refs.default.style.minHeight = `100vh`
     }
   },
-  mounted() {
+  mounted () {
     this.adjustDivTop()
     this.show = true
     // this.$nextTick(() => {})

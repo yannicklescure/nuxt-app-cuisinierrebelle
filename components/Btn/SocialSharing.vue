@@ -37,7 +37,7 @@ export default {
   //   FontAwesomeIcon,
   //   FontAwesomeLayers,
   // },
-  data() {
+  data () {
     return {
       sharing: {
         url: `${ process.env.baseUrl }/r/${ this.item.recipe.slug }`,
@@ -64,7 +64,7 @@ export default {
       this.sharing.description = this.item.recipe.description.length >= 200 ? `${ this.item.recipe.description.substring(0, 197) }...` : this.item.recipe.description
     }
   },
-  beforeMount() {
+  beforeMount () {
     this.fixSharingData()
   },
 }

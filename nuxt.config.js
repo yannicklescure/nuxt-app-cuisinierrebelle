@@ -128,6 +128,8 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    // https://go.nuxtjs.dev/eslint
+    '@nuxtjs/eslint-module',
     '@nuxtjs/google-analytics',
     '@nuxtjs/pwa',
     '@aceforth/nuxt-optimized-images',
@@ -139,6 +141,10 @@ export default {
       }
     ]
   ],
+
+  eslint: {
+    fix: true
+  },
 
   optimizedImages: {
     optimizeImages: true

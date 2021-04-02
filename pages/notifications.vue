@@ -54,7 +54,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Notifications',
-  data() {
+  data () {
     return {
       componentKey: 0,
       enough: false,
@@ -93,11 +93,11 @@ export default {
       this.items = this.items.concat(this.notifications.slice(this.items.length, this.items.length + qty))
     }
   },
-  async fetch() {
+  async fetch () {
     await this.fetchNotifications()
     this.show = true
   },
-  mounted() {
+  mounted () {
     this.getData()
   },
 }

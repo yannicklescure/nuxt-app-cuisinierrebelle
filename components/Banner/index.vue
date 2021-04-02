@@ -19,30 +19,30 @@ export default {
   // props: ['image'],
   computed: {
     ...mapGetters({
-      image: 'banner/image',
+      image: 'banner/image'
     }),
     viewport () {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
       return {
         height: vh,
-        width: vw,
+        width: vw
       }
     },
     imageUrl () {
-      return `${ this.image.url }&w=${ this.viewport.width }&h=${ this.viewport.height }&fm=webp`
-    },
+      return `${this.image.url}&w=${this.viewport.width}&h=${this.viewport.height}&fm=webp`
+    }
   },
   methods: {
     ...mapActions({
       getBannerImage: 'banner/get'
-    }),
+    })
   },
-  async fetch() {
+  async fetch () {
     const obj = this.$store.state.banner.image
-    if(obj.id == null || !obj.timestamp || parseInt(new Date().getTime() - obj.timestamp) > 1000 * 60 * 60 * 24) {
+    if (obj.id == null || !obj.timestamp || parseInt(new Date().getTime() - obj.timestamp) > 1000 * 60 * 60 * 24) {
       await this.getBannerImage()
     }
-  },
+  }
 }
 </script>

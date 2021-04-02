@@ -76,7 +76,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'NavbarLarge',
-  data() {
+  data () {
     return {
       componentKey: 0,
       loading: false,
@@ -212,13 +212,13 @@ export default {
       window.removeEventListener('scroll', this.handleScroll);
     }
   },
-  async fetch() {
+  async fetch () {
     if (this.isAuthenticated) {
       await this.refreshAccessToken()
       this.fetchNotifications()
     }
   },
-  mounted() {
+  mounted () {
     this.navbarHeight()
     this.handleScroll()
   }

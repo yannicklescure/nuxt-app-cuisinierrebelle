@@ -18,7 +18,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'UserNotifications',
-  data() {
+  data () {
     return {
       // notifications: false,
     }
@@ -42,7 +42,7 @@ export default {
         .dispatch('users/sessions/notifications', payload)
     }
   },
-  // mounted() {
+  // mounted () {
   //   // this.notifications = this.checked
   // }
 }

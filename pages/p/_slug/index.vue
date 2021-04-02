@@ -29,7 +29,7 @@ import VueMarkdownPlus from 'vue-markdown-plus'
 
 export default {
   name: 'Page',
-  data() {
+  data () {
     return {
       componentKey: 0,
       item: {
@@ -55,7 +55,7 @@ export default {
       fetchItems: 'pages/get'
     }),
   },
-  async fetch() {
+  async fetch () {
     await this.fetchItems()
     this.item = this.page(this.$route.params.slug)
   },

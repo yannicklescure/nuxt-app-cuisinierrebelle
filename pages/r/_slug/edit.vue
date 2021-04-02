@@ -68,7 +68,7 @@ export default {
   name: 'RecipeEdit',
   middleware: ['authenticated', 'authorization'],
   // props: ['item'],
-  data() {
+  data () {
     return {
       componentKey: 0,
       show: false,
@@ -255,7 +255,7 @@ export default {
         });
     },
   },
-  // beforeMount() {
+  // beforeMount () {
   //   if (this.currentUser.slug != this.item.user.slug) {
   //     console.log('ALERT')
   //     this.$router.push({
@@ -263,10 +263,10 @@ export default {
   //     })
   //   }
   // },
-  async fetch() {
+  async fetch () {
     await this.setData()
   },
-  mounted() {
+  mounted () {
     this.show = true
   }
 }

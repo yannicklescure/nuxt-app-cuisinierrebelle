@@ -45,7 +45,7 @@
 export default {
   name: 'Comments',
   props: ['item'],
-  data() {
+  data () {
     return {
       show: [],
     }
@@ -97,7 +97,7 @@ export default {
       // this.show = [...new Array(this.item.comments.length)].map(() => false)
     }
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.initShow()
       this.$emit('commentsReady', true)

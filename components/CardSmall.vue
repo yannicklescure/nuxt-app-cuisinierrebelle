@@ -24,7 +24,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'CardSmall',
   props: ['number'],
-  data() {
+  data () {
     return {
       componentKey: 0,
     }
@@ -68,7 +68,7 @@ export default {
       return str.length <= length ? str : str.slice(0, length) + '&hellip;'
     }
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.$refs.lazyImage.src = this.$refs.lazyImage.dataset.src
     })
