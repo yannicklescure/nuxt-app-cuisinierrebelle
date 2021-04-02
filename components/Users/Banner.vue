@@ -11,7 +11,9 @@
             </span>
           </div>
           <div class="small text-secondary">{{ $t('user.banner.memberSince', { date: userCreatedAt(user.createdAt) }) }}</div>
-          <div>
+          <div class="d-flex align-items-center text-secondary">
+            <small>{{ $tc('userBanner.recipes', count) }}</small>
+            <span>&nbsp;/&nbsp;</span>
             <NuxtLink
               :to="`/u/${ user.slug }/followers`"
               class="d-flex align-items-center text-decoration-none text-secondary"
@@ -43,7 +45,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'UsersBanner',
-  props: ['user'],
+  props: ['user', 'count'],
   // data() {
   //   return {}
   // },

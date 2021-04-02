@@ -9,7 +9,10 @@
         :description="'Partagez vos recettes dès maintenant en toute simplicité'"
         :image="user.image.openGraph.url"
       />
-      <UsersBanner :user="user" />
+      <UsersBanner
+        :user="user"
+        :count="userRecipes.length"
+      />
       <Cards v-if="recipes.length > 0" :recipes="userRecipes" />
     </div>
   </div>

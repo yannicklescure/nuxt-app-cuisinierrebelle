@@ -205,6 +205,7 @@ export default async (context, locale) => {
     },
     userBanner: {
       followers: '0 Abonnés | 1 Abonné | {count} Abonnés',
+      recipes: '0 Recettes | 1 Recette | {count} Recettes',
       // apple: 'no apples | one apple | {count} apples',
     },
     recipe: {
