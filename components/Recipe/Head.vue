@@ -9,18 +9,25 @@
                 :to="`/u/${ item.user.slug }`"
                 class="text-body text-capitalize"
                 style="font-size: 90%"
-              ><img :src="item.user.image.thumb.url" width="24px" height="24px" class="rounded-circle mr-2" style="object-fit: cover;">{{ item.user.name }}</NuxtLink>
+              >
+                <img :src="item.user.image.thumb.url" width="24px" height="24px" class="rounded-circle mr-2" style="object-fit: cover;">
+                {{ item.user.name }}
+              </NuxtLink>
               <!-- <span v-if="item.user.checked" data-toggle="tooltip" data-placement="top" title="Verified" class="d-flex ml-1">
                 <i class="material-icons md-16">check_circle</i>
               </span> -->
             </div>
-            <div class="d-none mr-3 btn btn-dark btn-sm py-0">Follow</div>
+            <div class="d-none mr-3 btn btn-dark btn-sm py-0">
+              Follow
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div v-if="isMobile == false && (item.user.id === currentUser.id)" class="d-print-none">
-      <NuxtLink :to="`/r/${item.recipe.slug}/edit`" class="text-body text-capitalize text-decoration-none" >{{ $t('recipe.edit') }}</NuxtLink>
+      <NuxtLink :to="`/r/${item.recipe.slug}/edit`" class="text-body text-capitalize text-decoration-none">
+        {{ $t('recipe.edit') }}
+      </NuxtLink>
     </div>
     <div v-if="isMobile" class="d-flex order-0 align-items-start justify-content-between my-3 mb-md-0 d-print-none">
       <div class="d-flex order-0 align-items-start">
@@ -48,29 +55,20 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// const BtnBookmark = () => import('../buttons/Bookmark.vue')
-// const BtnComment = () => import('../buttons/Comment.vue')
-// const BtnLike = () => import('../buttons/Like.vue')
-// const BtnPrint = () => import('../buttons/Print.vue')
-// const BtnShare = () => import('../buttons/Share.vue')
-// const BtnVisit = () => import('../buttons/Visit.vue')
 
 export default {
   name: 'Head',
-  props: ['item'],
-  // components: {
-  //   BtnBookmark,
-  //   BtnComment,
-  //   BtnLike,
-  //   BtnPrint,
-  //   BtnShare,
-  //   BtnVisit,
-  // },
+  props: {
+    item: {
+      type: Object,
+      default: null
+    }
+  },
   computed: {
     ...mapGetters({
       currentUser: 'users/sessions/current',
-      isMobile: 'isMobile',
+      isMobile: 'isMobile'
     })
-  },
+  }
 }
 </script>
