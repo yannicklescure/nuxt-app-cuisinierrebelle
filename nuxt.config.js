@@ -261,7 +261,7 @@ export default {
 
   env: {
     baseUrl: process.env.BASE_URL || 'https://www.cuisinierrebelle.com',
-    // apiUrl: 'https://api.cuisinierrebelle.com'
-    apiUrl: 'http://localhost:5000'
+    apiUrl: 'https://api.cuisinierrebelle.com'
+    // apiUrl: 'http://localhost:5000'
   }
 }
