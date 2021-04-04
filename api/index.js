@@ -456,17 +456,6 @@ export const resendConfirmationInstructions = async (context, payload) => {
   })
 }
 
-// export const refreshAccessToken = async (context, payload) => {
-//   return await axios({
-//     method: 'post',
-//     url: `${process.env.apiUrl}/users/tokens`,
-//     headers: {
-//       Authorization: `Bearer ${context.rootState.users.sessions.authorization.authorizationToken}`,
-//       'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken
-//     }
-//   })
-// }
-
 export const userDelete = async (context, payload) => {
   return await axios({
     method: 'delete',
