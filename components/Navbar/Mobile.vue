@@ -99,11 +99,11 @@
       <div v-else class="mt-2 input-group d-flex w-100">
         <input
           ref="searchInput"
-          v-model="searchQuery"
+          v-model="query"
           type="search"
           class="form-control"
           :placeholder="$t('navbar.search')"
-          @keyup.enter="validSearchQuery"
+          @keyup.enter="searchQuery"
         >
       </div>
     </transition>
@@ -124,7 +124,7 @@ export default {
       componentKey: 0,
       loading: false,
       show: false,
-      searchQuery: '',
+      query: '',
       icons: {
         notifications: 'notifications_none'
       }
@@ -171,19 +171,17 @@ export default {
     },
     inputMode () {
       if (this.show === false) {
-        this.searchQuery = ''
+        this.query = ''
         this.$refs.searchInput.blur()
       }
       return true
     },
-    validSearchQuery () {
-      this.$store.dispatch('search/query', { query: this.searchQuery })
-        .then((response) => {
-          if (response.status === 200) {
-            this.$router.push({ path: '/search', query: { r: this.searchQuery } })
-            this.searchQuery = ''
-          }
-        })
+    async searchQuery () {
+      if (this.query.length > 0) {
+        await this.$store.dispatch('search/query', { query: this.query })
+        this.$router.push({ path: '/search', query: { r: this.query } })
+        this.query = ''
+      }
     },
     collapseMenu () {
       this.inputMode()
