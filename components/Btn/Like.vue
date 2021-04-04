@@ -17,7 +17,12 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'BtnLike',
-  props: ['item'],
+  props: {
+    item: {
+      type: Object,
+      default: null
+    }
+  },
   data () {
     return {
       likes: this.item.recipe.likes,
@@ -33,6 +38,9 @@ export default {
       return this.liked ? 'favorite' : 'favorite_border'
     }
   },
+  mounted () {
+    this.isLiked()
+  },
   methods: {
     isLiked () {
       if (this.isAuthenticated) {
@@ -42,23 +50,17 @@ export default {
         this.liked = false
       }
     },
-    likeIt () {
-      if (!this.liked) {
-        // console.log('like')
-        this.likes += 1
-        this.liked = true
-        this.$store.dispatch('recipes/like', { user_id: this.currentUser.id, recipe_id: this.item.recipe.id })
-        // .then(() => this.$emit('liked', true))
-      } else {
-        // console.log('unlike')
+    async likeIt () {
+      if (this.liked) {
         this.likes -= 1
         this.liked = false
-        this.$store.dispatch('recipes/unlike', { user_id: this.currentUser.id, recipe_id: this.item.recipe.id })
+        await this.$store.dispatch('recipes/unlike', { user_id: this.currentUser.id, recipe_id: this.item.recipe.id })
+      } else {
+        this.likes += 1
+        this.liked = true
+        await this.$store.dispatch('recipes/like', { user_id: this.currentUser.id, recipe_id: this.item.recipe.id })
       }
     }
-  },
-  beforeMount () {
-    this.isLiked()
   }
 }
 </script>

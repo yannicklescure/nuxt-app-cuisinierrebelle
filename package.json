@@ -51,9 +51,8 @@
     "vue-infinite-scroll": "^2.0.2",
     "vue-markdown-plus": "^2.0.17",
     "vue-script2": "^2.1.0",
-    "vue-social-sharing": "^3.0.5",
+    "vue-social-sharing": "^3.0.7",
     "vuejs-dialog": "^1.4.2",
-    "vuex-cache": "^3.3.0",
     "vuex-persistedstate": "^4.0.0-beta.3",
     "webp-loader": "^0.6.0"
   },

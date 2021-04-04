@@ -10592,7 +10592,7 @@ vue-server-renderer@^2.6.12:
     serialize-javascript "^3.1.0"
     source-map "0.5.6"
 
-vue-social-sharing@^3.0.5:
+vue-social-sharing@^3.0.7:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/vue-social-sharing/-/vue-social-sharing-3.0.7.tgz#8dee6a955ce72d0391481204dcb306804373c9f9"
   integrity sha512-6FS+9t9qJQXY/Km0oyfpJv7rtjhqvrQodpVc/cbBc6TvQdhXc64pHi4yoqa3Jv797veNAlFuLztYyir9jONhBg==
@@ -10632,11 +10632,6 @@ vuejs-dialog@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/vuejs-dialog/-/vuejs-dialog-1.4.2.tgz#33ef5a7669291c1bb09f2e958c4a438e54cdd293"
   integrity sha512-6kRse144WXDFBMKdeuqE43rHy0ZJ81uLOFh62r2d80ICKavQYHIvr+GlTFmoR23190lC4f2w+ZJ8cS4ljkCDMw==
-
-vuex-cache@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/vuex-cache/-/vuex-cache-3.3.0.tgz#327ce4692a5c30fc34e7c11b967180491bb46b92"
-  integrity sha512-z9VuO2TeP2/kBxR6eJR29wUiv1LM+iE35UgrPS561XP9DV2wXb27Wum6B+SdYXOaAuZZmJ1HPCdu9ZNfa02G3Q==
 
 vuex-persistedstate@^4.0.0-beta.3:
   version "4.0.0-beta.3"
