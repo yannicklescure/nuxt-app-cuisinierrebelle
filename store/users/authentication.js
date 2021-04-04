@@ -1,21 +1,22 @@
 import * as api from '~/api'
 
 export const state = () => ({
-  isAuthenticated: false,
+  isAuthenticated: false
 })
 
 export const mutations = {
   isAuthenticated (state, payload) {
-    state.isAuthenticated = payload.data.isAuthenticated
-  },
+    state.isAuthenticated = payload.isAuthenticated
+  }
 }
 
 export const actions = {
   async isAuthenticated (context, payload) {
-    const response = await api.isAuthenticated(context, payload)
-    console.log(response)
-    this.commit("users/authentication/isAuthenticated", response)
-    if (!response.data.isAuthenticated) {
+    // const response = await api.isAuthenticated(context, payload)
+    this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
+    const response = await this.$axios.$get(`${process.env.apiUrl}/v1/users/status`)
+    this.commit('users/authentication/isAuthenticated', response)
+    if (!response.isAuthenticated) {
       this.commit('users/sessions/logOut', payload)
     }
     return response
@@ -33,15 +34,13 @@ export const actions = {
     return response
   },
   async signUp (context, payload) {
-    console.log(context.state)
     const response = await api.signUp(context, payload)
-    console.log(response)
     return response
-  },
+  }
 }
 
 export const getters = {
   isAuthenticated (state, getters) {
     return state.isAuthenticated
-  },
+  }
 }

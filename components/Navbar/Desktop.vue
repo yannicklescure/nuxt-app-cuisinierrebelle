@@ -180,15 +180,11 @@ export default {
     getNotifications () {
       this.icons.notifications = 'notifications_none'
     },
-    searchQuery () {
+    async searchQuery () {
       if (this.query.length > 0) {
-        this.$store.dispatch('search/query', { query: this.query })
-          .then((response) => {
-            if (response.status === 200) {
-              this.$router.push({ path: '/search', query: { r: this.query } })
-              this.query = ''
-            }
-          })
+        await this.$store.dispatch('search/query', { query: this.query })
+        this.$router.push({ path: '/search', query: { r: this.query } })
+        this.query = ''
       }
     },
     async scroll2Top () {
