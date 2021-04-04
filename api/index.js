@@ -500,13 +500,3 @@ export const userDelete = async (context, payload) => {
     }
   })
 }
-
-// export const isAuthenticated = async (context, payload) => {
-//   return await axios({
-//     method: 'get',
-//     url: `${process.env.apiUrl}/v1/users/status`,
-//     headers: {
-//       Authorization: `Bearer ${context.rootState.users.sessions.authorization.authorizationToken}`
-//     }
-//   })
-// }

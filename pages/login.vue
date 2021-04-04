@@ -210,7 +210,7 @@ export default {
           })
       }
     },
-    login () {
+    async login () {
       const checkForm = this.checkForm()
       if (checkForm) {
         this.disabled = true
@@ -219,31 +219,15 @@ export default {
           email: this.email,
           password: this.password
         }
-        this.$store.dispatch('users/sessions/logIn', payload)
-          .then((response) => {
-            if (response.status === 200) {
-              const firstName = capitalize(response.data.first_name)
-              this.$toast.success(this.$t('login.welcome', { firstName }), {
-                position: 'bottom-center',
-                duration: 3000
-              })
-              this.email = null
-              this.password = null
-              this.$router.push({ path: '/' })
-            } else {
-              this.errors.push(response.data.error)
-            }
-          })
-          .then(() => {
-            if (this.errors.length > 0) {
-              this.error = true
-              this.posting = false
-              this.$toast.error(this.errors[0], {
-                position: 'bottom-center',
-                duration: 3000
-              })
-            }
-          })
+        const response = await this.$store.dispatch('users/sessions/logIn', payload)
+        const firstName = capitalize(response.first_name)
+        this.$toast.success(this.$t('login.welcome', { firstName }), {
+          position: 'bottom-center',
+          duration: 3000
+        })
+        this.email = null
+        this.password = null
+        this.$router.push({ path: '/' })
       } else {
         this.$toast.error(this.errors[0], {
           position: 'bottom-center',
