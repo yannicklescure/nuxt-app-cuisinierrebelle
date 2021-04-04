@@ -25,8 +25,19 @@ export default {
   name: 'User',
   data () {
     return {
-      show: false,
+      show: false
     }
+  },
+  async fetch () {
+    await this.getUser(this.$route.params.slug)
+    let refresh = true
+    if (this.timestamp != null) {
+      refresh = new Date().getTime() - this.timestamp > 60 * 1000 * 3
+    }
+    if (refresh) {
+      await this.getStoreData()
+    }
+    this.show = true
   },
   computed: {
     ...mapGetters({
@@ -34,28 +45,20 @@ export default {
       getUserRecipes: 'recipes/user',
       usersFilter: 'users/filter',
       users: 'users/list',
-      timestamp: 'timestamp',
+      timestamp: 'timestamp'
     }),
     user () {
       return this.usersFilter(this.$route.params.slug)
     },
     userRecipes () {
       return this.getUserRecipes(this.$route.params.slug)
-    },
+    }
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      getUser: 'users/getUser',
-    }),
-  },
-  async fetch () {
-    console.log(this.user)
-    await this.getUser(this.$route.params.slug)
-    let refresh = true
-    if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
-    if (refresh) await this.getStoreData()
-    this.show = true
-  },
+      getUser: 'users/getUser'
+    })
+  }
 }
 </script>

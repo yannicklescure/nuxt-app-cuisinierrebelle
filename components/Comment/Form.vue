@@ -4,19 +4,33 @@
       <div class="input-group my-3">
         <textarea
           id="new-user-registration"
-          class="form-control"
-          v-on:input="allowPost"
           v-model="content"
+          class="form-control"
           :placeholder="$t('recipe.comments.addPublicComment')"
           aria-label="With textarea"
-        ></textarea>
+          @input="allowPost"
+        />
       </div>
       <div class="input-group my-3">
-        <button v-on:click.stop.prevent="comment" class="btn btn-light" type="submit" :disabled="disabled">{{ $t('commentForm.comment') }}</button>
+        <button
+          class="btn btn-light"
+          type="submit"
+          :disabled="disabled"
+          @click.stop.prevent="comment"
+        >
+          {{ $t('commentForm.comment') }}
+        </button>
         <button class="d-none btn btn-light comment-photo-btn cr-p-6 ml-3">
           <i class="material-icons d-flex">add_photo_alternate</i>
         </button>
-        <button v-if="isEdit || isReply" v-on:click="commentEditDrop" type="button" class="btn btn-light ml-3">{{ $t('commentForm.cancel') }}</button>
+        <button
+          v-if="isEdit || isReply"
+          type="button"
+          class="btn btn-light ml-3"
+          @click="commentEditDrop"
+        >
+          {{ $t('commentForm.cancel') }}
+        </button>
       </div>
     </form>
   </div>
@@ -27,19 +41,29 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'CommentForm',
-  props: ['item', 'actionAttr', 'text'],
+  props: {
+    item: {
+      type: Object,
+      default: null
+    },
+    actionAttr: {
+      type: String,
+      default: null
+    },
+    text: {
+      type: Text,
+      default: null
+    }
+  },
   data () {
     return {
       disabled: true,
-      content: this.text,
+      content: this.text
     }
   },
-  // components: {
-  //   Follow,
-  // },
   computed: {
     ...mapGetters({
-      currentUser: 'users/sessions/current',
+      currentUser: 'users/sessions/current'
     }),
     isEdit () {
       return this.actionAttr === 'commentEdit'
@@ -49,7 +73,7 @@ export default {
     },
     isComment () {
       return this.actionAttr === 'commentNew'
-    },
+    }
   },
   methods: {
     commentEditDrop () {
@@ -59,7 +83,7 @@ export default {
       const payload = {
         recipe_id: this.item.recipeId ? this.item.recipeId : this.item.recipe.id,
         user_id: this.currentUser.id,
-        content: this.content,
+        content: this.content
       }
 
       if (this.actionAttr === 'commentEdit') {
@@ -75,13 +99,9 @@ export default {
         payload.comment_id = this.item.commentId ? this.item.commentId : this.item.id
       }
 
-      console.log(this.actionAttr)
-      console.log(payload)
-
       this.$store
-        .dispatch(`recipes/${ this.actionAttr }`, payload)
-        .then( response => {
-          console.log(response)
+        .dispatch(`recipes/${this.actionAttr}`, payload)
+        .then((response) => {
           if (response.status === 200) {
             if (this.actionAttr === 'replyNew') {
               this.$emit('commentReplyNew', response)
@@ -98,9 +118,12 @@ export default {
         })
     },
     allowPost () {
-      if (this.content) this.disabled = false
-      else this.disabled = true
-    },
-  },
+      if (this.content) {
+        this.disabled = false
+      } else {
+        this.disabled = true
+      }
+    }
+  }
 }
 </script>

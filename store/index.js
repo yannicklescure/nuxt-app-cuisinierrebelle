@@ -1,14 +1,12 @@
 import * as api from '~/api'
-import { isMobile } from 'mobile-device-detect'
-
 // export const strict = false
 
 export const state = () => ({
   lastUpdated: 0,
   render: {
-    navbarHeight: 0,
+    navbarHeight: 0
   },
-  timestamp: null,
+  timestamp: null
 })
 
 export const mutations = {
@@ -21,17 +19,14 @@ export const mutations = {
     state.render.navbarHeight = payload
   },
   banner (state, payload) {
-    console.log(payload)
     state.banner = payload.data.bannerImage
-  },
+  }
 }
 
 export const actions = {
   async getStoreData ({ commit }, payload) {
-    console.log(this)
-    const response = await this.$axios.$get(`${ process.env.apiUrl }/v1/state`)
-    console.log(response)
-    this.commit("setStoreData", response)
+    const response = await this.$axios.$get(`${process.env.apiUrl}/v1/state`)
+    this.commit('setStoreData', response)
     this.commit('recipes/setStoreData', response)
     this.commit('users/setStoreData', response)
     this.dispatch('users/authentication/isAuthenticated', null)
@@ -39,7 +34,6 @@ export const actions = {
   },
   async registrationConfirmation (context, payload) {
     const response = await api.confirmRegistration(context, payload)
-    console.log(response)
     return response
   },
   async resendConfirmationInstructions (context, payload) {
@@ -47,18 +41,15 @@ export const actions = {
     return response
   },
   navbarHeight (context, payload) {
-    this.commit("navbarHeight", payload)
-  },
+    this.commit('navbarHeight', payload)
+  }
 }
 
 export const getters = {
   timestamp (state) {
     return state.timestamp
   },
-  isMobile (state) {
-    return isMobile
-  },
   navbarHeight (state) {
     return state.render.navbarHeight
-  },
+  }
 }

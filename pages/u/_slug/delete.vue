@@ -1,8 +1,8 @@
 <template>
   <div
-    class="container"
-    :key="componentKey"
     v-if="show"
+    :key="componentKey"
+    class="container"
   >
     <h1>{{ $t('userDelete.title') }}</h1>
     <p>{{ $t('userDelete.text1') }}</p>
@@ -11,21 +11,30 @@
     <form>
       <div class="form-group mb-3">
         <label for="inputPageContent">{{ $t('userDelete.form') }}</label>
-        <textarea v-model="content" :maxlength="max" class="form-control" id="inputPageContent" rows="5"></textarea>
+        <textarea id="inputPageContent" v-model="content" :maxlength="max" class="form-control" rows="5" />
         <small id="contentHelpBlock" class="form-text text-muted">
           {{ $tc('page.new.contentHelp', (max - content.length)) }}
         </small>
       </div>
       <div class="form-group mb-3">
         <label for="inputEmail">{{ $t('userDelete.email') }}</label>
-        <input v-on:input="checkForm" v-model="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+        <input
+          id="inputEmail"
+          v-model="email"
+          type="email"
+          class="form-control"
+          aria-describedby="emailHelp"
+          @input="checkForm"
+        >
       </div>
       <div class="form-check mb-5">
-        <input v-on:change="checkForm" class="form-check-input" type="checkbox" id="checkbox" v-model="checked">
+        <input id="checkbox" v-model="checked" type="checkbox" class="form-check-input" @change="checkForm">
         <label for="checkbox" class="form-check-label">{{ $t('userDelete.checkbox') }}</label>
       </div>
       <div class="form-group mb-3 d-flex justify-content-center justify-content-md-start">
-        <button v-on:click.stop.prevent="deleteAccount" type="submit" class="btn btn-dark" :disabled="disabled">{{ $t('userDelete.submit') }}</button>
+        <button type="submit" class="btn btn-dark" :disabled="disabled" @click.stop.prevent="deleteAccount">
+          {{ $t('userDelete.submit') }}
+        </button>
       </div>
     </form>
   </div>
@@ -46,75 +55,66 @@ export default {
       email: '',
       content: '',
       max: 1000,
-      show: false,
+      show: false
     }
   },
   computed: {
     ...mapGetters({
-      currentUser: 'users/sessions/current',
-    }),
+      currentUser: 'users/sessions/current'
+    })
+  },
+  mounted () {
+    this.show = true
   },
   methods: {
     checkForm () {
-      // console.log(`checked ${!this.checked}`)
-      // console.log(this.email)
-      // console.log(this.currentUser.email)
-      // console.log(this.checked && (this.email === this.currentUser.email))
       if (this.checked === true && (this.email === this.currentUser.email)) {
         this.disabled = false
         return true
-      }
-      else {
+      } else {
         this.disabled = true
         return false
       }
     },
     logout () {
       this.$store.commit('users/sessions/logOut', {})
-      if (this.$route.path != '/') this.$router.push({ path: '/' })
+      if (this.$route.path !== '/') {
+        this.$router.push({ path: '/' })
+      }
     },
     deleteAccount () {
       const checkForm = this.checkForm()
       if (checkForm) {
         const payload = {
-          content: this.content,
+          content: this.content
         }
         this.$store.dispatch('users/sessions/delete', payload)
-          .then(response => {
-            console.log(response)
+          .then((response) => {
             if (response.status === 200) {
               this.$toast.info(this.$t('userDelete.success'), {
                 position: 'bottom-center',
-                duration: 3000, // Visibility duration in milliseconds
+                duration: 3000 // Visibility duration in milliseconds
               })
               // this.$router.push({ name: 'Home' })
               this.logout()
-            }
-            else if (response.response) {
+            } else if (response.response) {
               // client received an error response (5xx, 4xx)
               this.errors.push(response.response)
-            }
-            else if (response.request) {
+            } else if (response.request) {
               // client never received a response, or request never left
               this.errors.push(response.request)
-            }
-            else {
+            } else {
               // anything else
               this.errors.push(response)
             }
           })
-      }
-      else {
-        console.log(this.errors)
+      } else {
         this.$toast.error(this.errors[0], {
-            position: 'bottom-center',
-            duration: 3000, // Visibility duration in milliseconds
+          position: 'bottom-center',
+          duration: 3000 // Visibility duration in milliseconds
         })
       }
     }
-  },
-  mounted () {
-    this.show = true
   }
 }
 </script>

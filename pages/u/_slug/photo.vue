@@ -1,17 +1,31 @@
 <template>
   <div class="container">
     <div class="py-3 d-flex flex-column justify-content-center">
-      <form v-on:input="allowPost" v-on:touchend="allowPost">
-        <div class="h1 mb-3">{{ $t('users.settings.photo.title') }}</div>
+      <form @input="allowPost" @touchend="allowPost">
+        <div class="h1 mb-3">
+          {{ $t('users.settings.photo.title') }}
+        </div>
         <div ref="photo" class="form-group mb-3">
           <div class="custom-file">
-            <input v-on:change="processFile($event)" type="file" class="custom-file-input" id="photoFileLangHTML">
+            <input
+              id="photoFileLangHTML"
+              type="file"
+              class="custom-file-input"
+              @change="processFile($event)"
+            >
             <label class="custom-file-label" for="photoFileLangHTML" :data-browse="$t('users.settings.photo.chooseFile')">{{ $t('users.settings.photo.browse') }}</label>
           </div>
         </div>
-        <div ref="preview" class="d-flex justify-content-center mb-3"></div>
+        <div ref="preview" class="d-flex justify-content-center mb-3" />
         <div class="d-flex justify-content-end">
-          <button v-on:click.stop.prevent="postPicture" type="submit" :class="['btn btn-dark mb-3', { 'w-100': isMobile }]" :disabled="disabled">{{ $t('users.settings.photo.submit') }}</button>
+          <button
+            type="submit"
+            :class="['btn btn-dark mb-3', { 'w-100': $device.isMobile }]"
+            :disabled="disabled"
+            @click.stop.prevent="postPicture"
+          >
+            {{ $t('users.settings.photo.submit') }}
+          </button>
         </div>
       </form>
     </div>
@@ -29,32 +43,29 @@ export default {
     return {
       disabled: true,
       errors: [],
-      photo: null,
+      photo: null
     }
   },
   computed: {
     ...mapGetters({
-      isMobile: 'isMobile',
-      currentUser: 'users/sessions/current',
-    }),
+      currentUser: 'users/sessions/current'
+    })
+  },
+  mounted () {
+    // this.navbarHeight = this.getNavbarHeight()
+    this.$refs.preview.innerHTML = ''
+    this.$refs.preview.insertAdjacentHTML('afterbegin', `<img src="${this.currentUser.image.preview.url}" width="256" height="256" class="rounded img-fluid" alt="${this.currentUser.slug}">`)
   },
   methods: {
     async processFile (event) {
-      // console.log(event)
-      const imageFile = event.target.files[0];
-      console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
-      console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
-
+      const imageFile = event.target.files[0]
       const options = {
         maxSizeMB: 1,
         maxWidthOrHeight: 1920,
         useWebWorker: false
       }
       try {
-        const compressedFile = await imageCompression(imageFile, options);
-        console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
-        console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
-
+        const compressedFile = await imageCompression(imageFile, options)
         this.photo = await new File([compressedFile], imageFile.name, {
           lastModifiedDate: imageFile.lastModified,
           type: imageFile.type
@@ -62,17 +73,20 @@ export default {
         const reader = new FileReader()
         reader.onload = () => {
           this.$refs.preview.innerHTML = ''
-          this.$refs.preview.insertAdjacentHTML('afterbegin', `<div class="mb-3"><img src="${ reader.result }" width="256" height="256" class="rounded img-fluid" alt="${ this.photo.name }"></div>`);
+          this.$refs.preview.insertAdjacentHTML('afterbegin', `<div class="mb-3"><img src="${reader.result}" width="256" height="256" class="rounded img-fluid" alt="${this.photo.name}"></div>`)
         }
         reader.readAsDataURL(this.photo)
       } catch (error) {
-        console.log(error);
+        // console.log(error)
       }
       this.allowPost()
     },
     allowPost () {
-      if (this.photo) this.disabled = false
-      else this.disabled = true
+      if (this.photo) {
+        this.disabled = false
+      } else {
+        this.disabled = true
+      }
     },
     checkForm () {
       this.errors = []
@@ -88,36 +102,27 @@ export default {
         // console.log(this)
         this.disabled = true
         const payload = {
-          image: this.photo,
+          image: this.photo
         }
-        console.log(payload)
-        const response = await this.$store.dispatch('users/sessions/photo', payload)
-        console.log(response)
+        await this.$store.dispatch('users/sessions/photo', payload)
         this.$toast.info(this.$t('users.settings.photo.success'), {
           position: 'bottom-center',
-          duration: 3000,
+          duration: 3000
         })
         this.$router.push({
-          path: `/u/${ this.currentUser.slug }/settings`,
+          path: `/u/${this.currentUser.slug}/settings`
         })
-      }
-      else {
-        console.log(this.errors)
+      } else {
         this.$toast.open({
-            message: this.errors[0],
-            type: 'error', // success, info, warning, error, default
-            // all of other options may go here
-            position: 'bottom', // top, bottom, top-right, bottom-right,top-left, bottom-left
-            duration: 3000, // Visibility duration in milliseconds
-            dismissible: true,
+          message: this.errors[0],
+          type: 'error', // success, info, warning, error, default
+          // all of other options may go here
+          position: 'bottom', // top, bottom, top-right, bottom-right,top-left, bottom-left
+          duration: 3000, // Visibility duration in milliseconds
+          dismissible: true
         })
       }
-    },
-  },
-  mounted () {
-    // this.navbarHeight = this.getNavbarHeight()
-    this.$refs.preview.innerHTML = ''
-    this.$refs.preview.insertAdjacentHTML('afterbegin', `<img src="${ this.currentUser.image.preview.url }" width="256" height="256" class="rounded img-fluid" alt="${ this.currentUser.slug }">`);
+    }
   }
 }
 </script>

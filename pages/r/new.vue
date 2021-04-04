@@ -1,57 +1,97 @@
 <template>
   <div class="container">
     <div class="py-3">
-      <form v-on:input="allowPost" v-on:touchend="allowPost">
+      <form @input="allowPost" @touchend="allowPost">
         <div class="form-group mb-3">
           <label for="inputRecipeTitle">{{ $t('recipe.new.title') }}</label>
-          <input v-model="title" type="text" class="form-control" id="inputRecipeTitle">
+          <input
+            id="inputRecipeTitle"
+            v-model="title"
+            type="text"
+            class="form-control"
+          >
         </div>
         <div class="form-group mb-3">
           <label for="inputRecipeSubtitle">{{ $t('recipe.new.subtitle') }}</label>
-          <input v-model="subtitle" type="text" class="form-control" id="inputRecipeSubtitle">
+          <input
+            id="inputRecipeSubtitle"
+            v-model="subtitle"
+            type="text"
+            class="form-control"
+          >
         </div>
         <div class="form-group mb-3">
           <label for="inputRecipedescription">{{ $t('recipe.new.description') }}</label>
-          <textarea v-model="description" :maxlength="max" class="form-control" id="inputRecipedescription" rows="3"></textarea>
+          <textarea
+            id="inputRecipedescription"
+            v-model="description"
+            :maxlength="max"
+            class="form-control"
+            rows="3"
+          />
           <small id="descriptionHelpBlock" class="form-text text-muted">
             {{ $tc('recipe.new.descriptionHelp', (max - description.length)) }}
           </small>
         </div>
         <div class="form-group mb-3">
           <label for="inputRecipeDirection">{{ $t('recipe.new.direction') }}</label>
-          <textarea v-model="direction" class="form-control" id="inputRecipeDirection" rows="10"></textarea>
+          <textarea
+            id="inputRecipeDirection"
+            v-model="direction"
+            class="form-control"
+            rows="10"
+          />
         </div>
-        <div class="mb-2">{{ $t('recipe.new.photo') }}</div>
+        <div class="mb-2">
+          {{ $t('recipe.new.photo') }}
+        </div>
         <div ref="photo" class="form-group mb-3">
           <div class="custom-file">
-            <input v-on:change="processFile($event)" type="file" class="custom-file-input" id="photoFileLangHTML">
+            <input
+              id="photoFileLangHTML"
+              type="file"
+              class="custom-file-input"
+              @change="processFile($event)"
+            >
             <label class="custom-file-label" for="photoFileLangHTML" :data-browse="$t('recipe.new.chooseFile')">{{ $t('recipe.new.browse') }}</label>
           </div>
         </div>
-        <div ref="preview"></div>
+        <div ref="preview" />
         <div class="form-group mb-3">
           <label for="inputRecipeVideo">{{ $t('recipe.new.video') }}</label>
-          <input v-model="video" type="url" class="form-control" id="inputRecipeVideo">
+          <input
+            id="inputRecipeVideo"
+            v-model="video"
+            type="url"
+            class="form-control"
+          >
         </div>
         <label for="inputRecipeTags">{{ $t('recipe.new.tags') }}</label>
         <div class="form-group mb-3">
-          <textarea v-model="tagList" class="form-control" id="inputRecipeTags" rows="3"></textarea>
+          <textarea
+            id="inputRecipeTags"
+            v-model="tagList"
+            class="form-control"
+            rows="3"
+          />
           <small id="tagsHelpBlock" class="form-text text-muted">
             {{ $t('recipe.new.tagsHelp') }}
           </small>
         </div>
         <div class="d-flex justify-content-end">
           <b-button v-if="posting" variant="dark mb-3" disabled>
-            <b-spinner small></b-spinner>
+            <b-spinner small />
             <span class="sr-only">Loading...</span>
           </b-button>
           <button
             v-else
-            @click.stop.prevent="postRecipe"
             type="submit"
             class="btn btn-dark mb-3"
             :disabled="disabled"
-          >{{ $t('recipe.new.submit') }}</button>
+            @click.stop.prevent="postRecipe"
+          >
+            {{ $t('recipe.new.submit') }}
+          </button>
         </div>
       </form>
     </div>
@@ -59,47 +99,28 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
 import imageCompression from 'browser-image-compression'
 
 export default {
   name: 'RecipeNew',
   data () {
     return {
-      // componentKey: 0,
-      // navbarHeight: 0,
       title: null,
       subtitle: null,
       video: null,
       direction: '',
       description: '',
-      // image: null,
       photo: null,
       tagList: null,
       disabled: true,
       posting: false,
       max: 280,
-      errors: [],
+      errors: []
     }
   },
-  // computed: {
-  //   ...mapGetters({}),
-  // },
   methods: {
-    // processFile (event) {
-    //   this.photo = event.target.files[0]
-    //   const reader = new FileReader()
-    //   reader.onload = () => {
-    //     this.$refs.preview.innerHTML = ''
-    //     this.$refs.preview.insertAdjacentHTML('afterbegin', `<div class="mb-3"><img src="${reader.result}" class="rounded img-fluid" alt="${this.photo.name}"></div>`);
-    //   }
-    //   reader.readAsDataURL(this.photo)
-    //   this.allowPost()
-    // },
     async processFile (event) {
-      const imageFile = event.target.files[0];
-      console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
-      console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+      const imageFile = event.target.files[0]
 
       const options = {
         maxSizeMB: 1,
@@ -107,9 +128,7 @@ export default {
         useWebWorker: false
       }
       try {
-        const compressedFile = await imageCompression(imageFile, options);
-        console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
-        console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+        const compressedFile = await imageCompression(imageFile, options)
 
         this.photo = await new File([compressedFile], imageFile.name, {
           lastModifiedDate: imageFile.lastModified,
@@ -118,19 +137,18 @@ export default {
         const reader = new FileReader()
         reader.onload = () => {
           this.$refs.preview.innerHTML = ''
-          this.$refs.preview.insertAdjacentHTML('afterbegin', `<div class="mb-3"><img src="${ reader.result }" width="1920" height="1080" class="rounded img-fluid" alt="${ this.photo.name }"></div>`);
+          this.$refs.preview.insertAdjacentHTML('afterbegin', `<div class="mb-3"><img src="${reader.result}" width="1920" height="1080" class="rounded img-fluid" alt="${this.photo.name}"></div>`)
         }
         reader.readAsDataURL(this.photo)
       } catch (error) {
-        console.log(error);
+        // console.log(error)
       }
       this.allowPost()
     },
     allowPost () {
       if (this.title && this.direction && this.photo) {
         this.disabled = false
-      }
-      else {
+      } else {
         this.disabled = true
       }
     },
@@ -161,7 +179,6 @@ export default {
     postRecipe () {
       const checkForm = this.checkForm()
       if (checkForm) {
-        // console.log(this)
         this.disabled = true
         this.posting = true
         const payload = {
@@ -170,35 +187,26 @@ export default {
           video: this.video,
           direction: this.direction,
           description: this.description,
-          // image: null,
-          // user_id: 0,
           photo: this.photo,
-          tagList: this.tagList,
+          tagList: this.tagList
         }
-        console.log(payload)
         this.$store.dispatch('recipes/new', payload)
-          .then(response => {
+          .then((response) => {
             this.posting = false
-            console.log(response)
             if (response.status === 200) {
               this.$router.push({
-                path: `/r/${response.data.recipe.slug}`,
-                // params: {
-                  // slug: response.data.recipe.slug
-                // }
+                path: `/r/${response.data.recipe.slug}`
               })
             }
           })
-      }
-      else {
-        console.log(this.errors)
+      } else {
         this.posting = false
         this.$toast.error(this.errors[0], {
-            position: 'bottom-center',
-            duration: 3000, // Visibility duration in milliseconds
+          position: 'bottom-center',
+          duration: 3000 // Visibility duration in milliseconds
         })
       }
-    },
-  },
+    }
+  }
 }
 </script>

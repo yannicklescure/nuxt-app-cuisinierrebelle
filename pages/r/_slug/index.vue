@@ -3,7 +3,7 @@
     <div v-if="$fetchState.error">
       <NotFound />
     </div>
-    <div v-else ref="recipe" class="container py-3 mb-5 recipe" :key="componentKey">
+    <div v-else :key="componentKey" ref="recipe" class="container py-3 mb-5 recipe">
       <SocialHead
         :title="item.recipe.title"
         :description="item.recipe.description"
@@ -14,7 +14,7 @@
 
       <LazyYoutube :item="item" />
 
-      <LazyBtnSocialSharing v-if="isMobile == false" :item="item" />
+      <LazyBtnSocialSharing v-if="$device.isMobile == false" :item="item" />
 
       <div class="w-100 my-5">
         <LazyRecipeAds />
@@ -24,7 +24,7 @@
 
       <Comments
         :item="item"
-        v-on:refresh="$fetch"
+        @refresh="$fetch"
       />
     </div>
   </div>
@@ -41,38 +41,50 @@ export default {
       dimension: {
         width: 0,
         height: 0
-      },
+      }
     }
   },
-  // async asyncData({ $axios, params }) {
-  //   const post = await $axios.$get(`${ process.env.apiUrl }/v1/recipes/${ params.slug }`)
-  //   return {
-  //     post
-  //   }
-  // },
+  async fetch () {
+    // TO DO
+    // check if recipe exists in store or fetch
+    await this.getRecipe(this.$route.params.slug)
+    let refresh = true
+    if (this.timestamp !== null) {
+      refresh = new Date().getTime() - this.timestamp > 60 * 1000 * 3
+    }
+    if (refresh) {
+      await this.getStoreData()
+    }
+  },
   computed: {
     ...mapGetters({
-      isMobile: 'isMobile',
+      // isMobile: 'isMobile',
       recipe: 'recipes/recipe',
       recipes: 'recipes/list',
-      timestamp: 'timestamp',
+      timestamp: 'timestamp'
     }),
     item () {
       return this.recipe(this.$route.params.slug)
     },
     show () {
-      return this.item != undefined
+      return this.item !== undefined
     },
     isProduction () {
-      return location.hostname != 'localhost'
+      return location.hostname !== 'localhost'
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.matchInfoBox()
+    })
+    window.addEventListener('resize', this.matchInfoBox)
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      getRecipe: 'recipes/recipe',
+      getRecipe: 'recipes/recipe'
     }),
-    refresh() {
+    refresh () {
       this.$fetch()
     },
     loadItem () {
@@ -84,31 +96,6 @@ export default {
         this.dimension.height = parseInt(this.dimension.width * 2 / 3)
       }
     }
-  },
-  async fetch () {
-    console.log(this.$route.params.slug)
-    // TO DO
-    // check if recipe exists in store or fetch
-    await this.getRecipe(this.$route.params.slug)
-    let refresh = true
-    if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3
-    if (refresh) await this.getStoreData()
-  },
-  created() {
-    if (process.client) {
-      window.addEventListener("resize", this.matchInfoBox);
-    }
-  },
-  destroyed() {
-    if (process.client) {
-      window.removeEventListener("resize", this.matchInfoBox);
-    }
-  },
-  mounted () {
-    // this.loadItem()
-    this.$nextTick(() => {
-      this.matchInfoBox()
-    })
   }
 }
 </script>

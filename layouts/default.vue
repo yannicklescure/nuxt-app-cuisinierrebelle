@@ -1,10 +1,10 @@
 <template>
-  <div ref="default" id="default">
+  <div id="default" ref="default">
     <div
       v-if="show"
       class="d-flex flex-column justify-content-between align-items-between"
     >
-      <NavbarMobile v-if="isMobile" />
+      <NavbarMobile v-if="$device.isMobile" />
       <NavbarDesktop v-else />
       <Nuxt />
       <LazyFooter />
@@ -18,30 +18,29 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      show: false,
+      show: false
     }
   },
   computed: {
     ...mapGetters({
-      navbarHeight: 'navbarHeight',
-      isMobile: 'isMobile',
-    }),
+      navbarHeight: 'navbarHeight'
+    })
   },
   watch: {
     'navbarHeight' () {
       this.adjustDivTop()
     }
   },
-  methods: {
-    adjustDivTop () {
-      this.$refs.default.style.paddingTop = `${ parseInt(this.navbarHeight) }px`
-      this.$refs.default.style.minHeight = `100vh`
-    }
-  },
   mounted () {
     this.adjustDivTop()
     this.show = true
     // this.$nextTick(() => {})
+  },
+  methods: {
+    adjustDivTop () {
+      this.$refs.default.style.paddingTop = `${parseInt(this.navbarHeight)}px`
+      this.$refs.default.style.minHeight = '100vh'
+    }
   }
 }
 </script>

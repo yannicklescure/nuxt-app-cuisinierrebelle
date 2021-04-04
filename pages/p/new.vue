@@ -1,39 +1,51 @@
 <template>
-  <div class="container" :key="componentKey">
+  <div :key="componentKey" class="container">
     <div class="py-3">
-      <form v-on:input="allowPost" v-on:touchend="allowPost">
+      <form @input="allowPost" @touchend="allowPost">
         <div class="form-group mb-3">
-          <label for="inputPageTitle">{{ $t('page.new.title') }}</label>
-          <input v-model="title" type="text" class="form-control" id="inputPageTitle">
+          <label for="inputPageTitle">
+            {{ $t('page.new.title') }}
+          </label>
+          <input id="inputPageTitle" v-model="title" class="form-control" type="text">
         </div>
         <div class="form-group mb-3">
           <label for="inputPageContent">{{ $t('page.new.content') }}</label>
-          <textarea v-model="content" :maxlength="max" class="form-control" id="inputPageContent" rows="10"></textarea>
+          <textarea id="inputPageContent" v-model="content" class="form-control" :maxlength="max" rows="10" />
           <small id="contentHelpBlock" class="form-text text-muted">
             {{ $tc('page.new.contentHelp', (max - content.length)) }}
           </small>
         </div>
         <label for="inputPageLocale">{{ $t('page.new.locale') }}</label>
         <div class="input-group mb-3">
-          <select v-model="locale" class="custom-select" id="inputPageLocale" :aria-label="$t('page.edit.select')">
-            <option selected>{{ $t('page.edit.select') }}</option>
-            <option value="fr">Fr</option>
-            <option value="en">En</option>
-            <option value="es">Es</option>
+          <select id="inputPageLocale" v-model="locale" class="custom-select" :aria-label="$t('page.edit.select')">
+            <option selected>
+              {{ $t('page.edit.select') }}
+            </option>
+            <option value="fr">
+              Fr
+            </option>
+            <option value="en">
+              En
+            </option>
+            <option value="es">
+              Es
+            </option>
           </select>
         </div>
         <div class="d-flex justify-content-end">
           <b-button v-if="posting" variant="dark mb-3" disabled>
-            <b-spinner small></b-spinner>
+            <b-spinner small />
             <span class="sr-only">Loading...</span>
           </b-button>
           <button
             v-else
-            @click.stop.prevent="postNewPage"
             type="submit"
             class="btn btn-dark mb-3"
             :disabled="disabled"
-          >{{ $t('page.new.submit') }}</button>
+            @click.stop.prevent="postNewPage"
+          >
+            {{ $t('page.new.submit') }}
+          </button>
         </div>
       </form>
     </div>
@@ -46,11 +58,9 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'PageNew',
   middleware: ['authenticated', 'admin'],
-  // props: ['item'],
   data () {
     return {
       componentKey: 0,
-      // navbarHeight: 0,
       id: 0,
       title: '',
       content: '',
@@ -58,15 +68,13 @@ export default {
       disabled: false,
       posting: false,
       max: 50000,
-      errors: [],
+      errors: []
     }
   },
   computed: {
     ...mapGetters({
-      // page: 'pages/filter',
-      currentUser: 'users/sessions/current',
-      // isMobile: 'isMobile',
-    }),
+      currentUser: 'users/sessions/current'
+    })
   },
   methods: {
     allowPost () {
@@ -96,7 +104,6 @@ export default {
     async postNewPage () {
       const checkForm = this.checkForm()
       if (checkForm) {
-        // console.log(this)
         this.disabled = true
         this.posting = true
         const payload = {
@@ -106,30 +113,21 @@ export default {
           content: this.content,
           locale: this.locale
         }
-        console.log(payload)
         await this.$store.dispatch('pages/new', payload)
-          .then(response => {
+          .then((response) => {
             this.posting = false
-            console.log(response)
-            // if (response.status === 200) {
-              this.$router.push({
-                path: `/p/${ response.slug }`,
-                // params: {
-                  // id: response.data.slug
-                // }
-              })
-            // }
+            this.$router.push({
+              path: `/p/${response.slug}`
+            })
           })
-      }
-      else {
-        console.log(this.errors)
+      } else {
         this.posting = false
         this.$toast.error(this.errors[0], {
-            position: 'bottom-center',
-            duration: 3000, // Visibility duration in milliseconds
+          position: 'bottom-center',
+          duration: 3000 // Visibility duration in milliseconds
         })
       }
-    },
-  },
+    }
+  }
 }
 </script>

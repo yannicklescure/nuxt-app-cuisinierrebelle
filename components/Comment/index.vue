@@ -12,17 +12,19 @@
         :to="`/u/${ item.user.slug }`"
         class="mx-2 text-capitalize text-body"
         style="font-size: 90%"
-      >{{ item.user.name }}</NuxtLink>
+      >
+        {{ item.user.name }}
+      </NuxtLink>
       <small class="text-muted">{{ timeAgo(item.timestamp) }}</small>
     </div>
     <div v-if="edit">
       <CommentForm
         :item="item"
-        :actionAttr="editActionAttr()"
+        :action-attr="editActionAttr()"
         :text="item.content"
-        v-on:commentEditResponse="commentEditResponse"
-        v-on:commentDrop="commentDrop"
-        v-on:commentNew="commentNew"
+        @commentEditResponse="commentEditResponse"
+        @commentDrop="commentDrop"
+        @commentNew="commentNew"
       />
     </div>
     <div v-else class="pt-2">
@@ -31,17 +33,17 @@
     <CommentButtons
       :item="item"
       :type="type"
-      v-on:commentEdit="commentEdit"
-      v-on:commentReply="commentReply"
-      v-on:commentDestroyed="commentDestroyed"
+      @commentEdit="commentEdit"
+      @commentReply="commentReply"
+      @commentDestroyed="commentDestroyed"
     />
     <div v-if="reply">
       <CommentForm
         :item="item"
-        :actionAttr="'replyNew'"
+        :action-attr="'replyNew'"
         :text="null"
-        v-on:commentReplyNew="commentReplyNew"
-        v-on:commentDrop="commentDrop"
+        @commentReplyNew="commentReplyNew"
+        @commentDrop="commentDrop"
       />
     </div>
   </div>
@@ -53,27 +55,38 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Comment',
-  props: ['item', 'type', 'lastCommentId'],
+  components: {
+    VueMarkdownPlus
+  },
+  props: {
+    item: {
+      type: Object,
+      default: null
+    },
+    type: {
+      type: String,
+      default: null
+    },
+    lastCommentId: {
+      type: Number,
+      default: 0
+    }
+  },
   data () {
     return {
       edit: false,
-      reply: false,
+      reply: false
     }
-  },
-  components: {
-    // CommentButtons,
-    // CommentForm,
-    // CommentLike,
-    VueMarkdownPlus,
   },
   computed: {
     ...mapGetters({
-      navbarHeight: 'navbarHeight',
-      isMobile: 'isMobile',
-    }),
-    isMobile () {
-      return isMobile
-    },
+      navbarHeight: 'navbarHeight'
+    })
+  },
+  mounted () {
+    if (this.$route.hash && this.item.id === parseInt(this.$route.hash.match(/(?:#comment|#reply?)(.+)/)[1])) {
+      this.scroll2Anchor()
+    }
   },
   methods: {
     commentNew (payload) {
@@ -92,8 +105,11 @@ export default {
       this.$emit('commentReply', true)
     },
     editActionAttr () {
-      if (this.item.commentId) return 'replyEdit'
-      else return 'commentEdit'
+      if (this.item.commentId) {
+        return 'replyEdit'
+      } else {
+        return 'commentEdit'
+      }
     },
     commentDrop () {
       this.edit = false
@@ -101,25 +117,12 @@ export default {
       return false
     },
     commentReplyNew (payload) {
-      console.log(payload)
       this.$emit('commentReplyNew', payload)
       this.reply = false
       // this.item.content = value.data.content
     },
     commentEditResponse (payload) {
       this.edit = false
-      if (this.item.commentId) {
-        console.log(payload)
-        console.log(this.item)
-        // reply id : this.item.id
-        // reply content : this.item.content
-        // reply comment : this.item.commentId
-        // const reply = payload.data.replies.filter(r => r.id === this.item.id)[0]
-        // this.item.content = reply.content
-      }
-      else {
-        // this.item.content = payload.data.content
-      }
     },
     timeAgo (time) {
       const between = Math.trunc((new Date().getTime() - time) / 1000)
@@ -138,36 +141,19 @@ export default {
     scroll2Anchor () {
       // const currentPage = this.$route.fullpath
       const target = this.$route.hash
-      if(target) {
-        console.log(this.$refs)
-        console.log(this.$route)
-        console.log(target)
-        console.log(target.match(/(?:#)(.+)/)[1])
-        let element = this.$refs[target.match(/(?:#)(.+)/)[1]]
-        // let element = this.$el.querySelector(target)
-        // let element = this.$el
-        // if (target.match(/(?:#)(.+)/)[1] === 'comments') element = this.$refs.comments
-        console.log(element)
+      if (target) {
+        const element = this.$refs[target.match(/(?:#)(.+)/)[1]]
         if (element) {
           const scrollOptions = {
             top: element.offsetTop - this.navbarHeight,
             left: 0,
             behavior: 'smooth'
-          };
+          }
           window.scrollTo(scrollOptions)
-          window.history.pushState("object or string", "Title", this.$route.path)
+          window.history.pushState('object or string', 'Title', this.$route.path)
         }
       }
-    },
-  },
-  mounted () {
-    console.log(`${this.type} ${this.item.id}`)
-    if (this.$route.hash && this.item.id === parseInt(this.$route.hash.match(/(?:#comment|#reply?)(.+)/)[1])) this.scroll2Anchor()
-    // if (this.type === 'comment' && this.item.id === this.lastCommentId) {
-    //   console.log('all comments mounted')
-    //   console.log(this.$route)
-    //   this.$emit('lastCommentMounted', true)
-    // }
+    }
   }
 }
 </script>

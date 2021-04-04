@@ -1,9 +1,17 @@
 <template>
   <div v-if="isAuthenticated">
-    <div v-if="isFollowing" v-on:click="unfollow" class="btn btn-sm btn-secondary">
+    <div
+      v-if="isFollowing"
+      class="btn btn-sm btn-secondary"
+      @click="unfollow"
+    >
       {{ $t('follow.unfollow') }}
     </div>
-    <div v-else v-on:click="follow" class="btn btn-sm btn-dark">
+    <div
+      v-else
+      class="btn btn-sm btn-dark"
+      @click="follow"
+    >
       {{ $t('follow.follow') }}
     </div>
   </div>
@@ -19,33 +27,33 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Follow',
-  props: ['item'],
+  props: {
+    item: {
+      type: Object,
+      default: null
+    }
+  },
   data () {
     return {}
   },
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
-      currentUser: 'users/sessions/current',
+      currentUser: 'users/sessions/current'
     }),
-    // isFollower () {
-    //   return this.currentUser.followers.data.filter(f => f.slug === this.item.slug).length > 0
-    // },
     isFollowing () {
       return this.currentUser.following.data.filter(f => f.slug === this.item.slug).length > 0
     }
   },
   methods: {
     follow () {
-      console.log('follow')
       this.$store
         .dispatch('users/sessions/follow', { user: this.item.slug })
     },
     unfollow () {
-      console.log('unfollow')
       this.$store
         .dispatch('users/sessions/unfollow', { user: this.item.slug })
-    },
+    }
   }
 }
 </script>

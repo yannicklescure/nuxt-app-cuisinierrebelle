@@ -26,35 +26,38 @@ export default {
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
-      currentUser: 'users/sessions/current',
-      isMobile: 'isMobile',
-    }),
+      currentUser: 'users/sessions/current'
+    })
   },
   methods: {
     isUserLiked () {
       if (this.isAuthenticated) {
-        console.log(this.currentUser[`${ this.type }Likes`].findIndex(item => item == this.item.id))
-        this.liked = this.currentUser[`${ this.type }Likes`].findIndex(item => item == this.item.id) > -1
+        console.log(this.currentUser[`${this.type}Likes`].findIndex(item => item === this.item.id))
+        this.liked = this.currentUser[`${this.type}Likes`].findIndex(item => item === this.item.id) > -1
+      } else {
+        this.liked = false
       }
-      else this.liked = false
     },
     likeIt () {
       const payload = {}
-      if (this.type == 'comment') {
-        payload.comment_id = this.item.id,
+      if (this.type === 'comment') {
+        payload.comment_id = this.item.id
         payload.recipe_id = this.item.recipe.id
       }
-      if (this.type == 'reply') {
-        payload.reply_id = this.item.id,
-        payload.comment_id = this.item.commentId,
+      if (this.type === 'reply') {
+        payload.reply_id = this.item.id
+        payload.comment_id = this.item.commentId
         payload.recipe_id = this.item.recipeId
       }
       console.log(payload)
       this.liked = !this.liked
-      if (this.liked) this.likes += 1
-      else this.likes -= 1
-      this.$store.dispatch(`recipes/${ this.type }${ this.liked ? 'Like' : 'Unlike' }`, payload)
-    },
+      if (this.liked) {
+        this.likes += 1
+      } else {
+        this.likes -= 1
+      }
+      this.$store.dispatch(`recipes/${this.type}${this.liked ? 'Like' : 'Unlike'}`, payload)
+    }
   },
   beforeMount () {
     this.isUserLiked()
