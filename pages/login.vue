@@ -228,7 +228,7 @@ export default {
           })
           this.email = null
           this.password = null
-          this.$router.push({ path: '/' })
+          // this.$router.push({ path: '/' })
         }
       } else {
         this.$toast.error(this.errors[0], {

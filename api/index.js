@@ -467,16 +467,16 @@ export const refreshAccessToken = async (context, payload) => {
   })
 }
 
-export const login = async (context, payload) => {
-  return await axios({
-    validateStatus: (status) => {
-      return status < 500 // Resolve only if the status code is less than 500
-    },
-    method: 'post',
-    url: `${process.env.apiUrl}/users/sign_in`,
-    data: payload
-  })
-}
+// export const login = async (context, payload) => {
+//   return await axios({
+//     validateStatus: (status) => {
+//       return status < 500 // Resolve only if the status code is less than 500
+//     },
+//     method: 'post',
+//     url: `${process.env.apiUrl}/users/sign_in`,
+//     data: payload
+//   })
+// }
 
 export const logout = async (context, payload) => {
   return await axios({
