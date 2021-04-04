@@ -220,15 +220,17 @@ export default {
           password: this.password
         }
         const response = await this.$store.dispatch('users/sessions/logIn', payload)
-        if (response.status === 200) {
-          const firstName = capitalize(response.data.first_name)
+        if (response.email === payload.email) {
+          const firstName = capitalize(response.first_name)
           this.$toast.success(this.$t('login.welcome', { firstName }), {
             position: 'bottom-center',
             duration: 3000
           })
           this.email = null
           this.password = null
-          // this.$router.push({ path: '/' })
+          this.$router.push({ path: '/' })
+        } else {
+          this.disabled = false
         }
       } else {
         this.$toast.error(this.errors[0], {

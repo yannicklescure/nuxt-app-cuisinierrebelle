@@ -13,13 +13,9 @@ export default function ({ store, $axios, redirect }) {
     // console.log(response)
     if (response.status === 200) {
       if (response.headers['access-token']) {
-        store.state.users.sessions.authorization = {
-          authorizationToken: response.headers['access-token'],
-          refreshToken: response.headers['refresh-token'],
-          expireAt: response.headers['expire-at']
-        }
+        store.commit('users/sessions/refreshAccessToken', response)
       }
-      redirect('/')
+      // redirect('/')
     }
   })
 }

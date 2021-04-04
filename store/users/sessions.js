@@ -170,15 +170,18 @@ export const actions = {
     return response
   },
   async logOut (context, payload) {
-    const response = await api.logout(context, payload)
+    this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
+    const response = await this.$axios.$delete(`${process.env.apiUrl}/users/sign_out`)
     this.commit('users/sessions/logOut', payload)
     this.commit('notifications/logOut', null)
     this.commit('users/authentication/isAuthenticated', { isAuthenticated: false })
     return response
   },
   async refreshAccessToken (context, payload) {
-    const response = await api.refreshAccessToken(context, payload)
-    this.commit('users/sessions/refreshAccessToken', response)
+    this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
+    this.$axios.setHeader('Refresh-Token', this.state.users.sessions.authorization.refreshToken)
+    const response = await this.$axios.$post(`${process.env.apiUrl}/users/tokens`)
+    // this.commit('users/sessions/refreshAccessToken', response)
     return response
   },
   async notifications (context, payload) {

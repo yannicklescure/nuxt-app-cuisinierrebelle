@@ -456,37 +456,16 @@ export const resendConfirmationInstructions = async (context, payload) => {
   })
 }
 
-export const refreshAccessToken = async (context, payload) => {
-  return await axios({
-    method: 'post',
-    url: `${process.env.apiUrl}/users/tokens`,
-    headers: {
-      Authorization: `Bearer ${context.rootState.users.sessions.authorization.authorizationToken}`,
-      'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken
-    }
-  })
-}
-
-// export const login = async (context, payload) => {
+// export const refreshAccessToken = async (context, payload) => {
 //   return await axios({
-//     validateStatus: (status) => {
-//       return status < 500 // Resolve only if the status code is less than 500
-//     },
 //     method: 'post',
-//     url: `${process.env.apiUrl}/users/sign_in`,
-//     data: payload
+//     url: `${process.env.apiUrl}/users/tokens`,
+//     headers: {
+//       Authorization: `Bearer ${context.rootState.users.sessions.authorization.authorizationToken}`,
+//       'Refresh-Token': context.rootState.users.sessions.authorization.refreshToken
+//     }
 //   })
 // }
-
-export const logout = async (context, payload) => {
-  return await axios({
-    method: 'delete',
-    url: `${process.env.apiUrl}/users/sign_out`,
-    headers: {
-      Authorization: `Bearer ${context.rootState.users.sessions.authorization.authorizationToken}`
-    }
-  })
-}
 
 export const userDelete = async (context, payload) => {
   return await axios({
