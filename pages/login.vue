@@ -220,7 +220,7 @@ export default {
           password: this.password
         }
         const response = await this.$store.dispatch('users/sessions/logIn', payload)
-        const firstName = capitalize(response.first_name)
+        const firstName = capitalize(response.data.first_name)
         this.$toast.success(this.$t('login.welcome', { firstName }), {
           position: 'bottom-center',
           duration: 3000
