@@ -26,16 +26,10 @@ export default {
     }
   },
   async fetch () {
-    // let refresh = true
-    // if (this.timestamp != null) {
-    //   refresh = new Date().getTime() - this.timestamp > 60 * 1000 * 3 // 3 minutes
-    // }
-    const response = await this.getStoreData()
-    console.log(response)
-    // if (refresh) {
-    //   const response = await this.getStoreData()
-    //   console.log(response)
-    // }
+    const refresh = this.timestamp != null ? new Date().getTime() - this.timestamp > 60 * 1000 * 3 : true
+    if (refresh) {
+      await this.getStoreData()
+    }
   },
   computed: {
     ...mapGetters({

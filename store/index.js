@@ -30,12 +30,9 @@ export const actions = {
     this.commit('setStoreData', response)
     this.commit('recipes/setStoreData', response)
     this.commit('users/setStoreData', response)
-    console.log(this.state.users.authentication.isAuthenticated)
     await this.dispatch('users/authentication/isAuthenticated', null)
     if (this.state.users.authentication.isAuthenticated) {
-      console.log('currentState')
       this.dispatch('users/sessions/currentState', null)
-      // get datfronm api state user
     }
     return response
   },

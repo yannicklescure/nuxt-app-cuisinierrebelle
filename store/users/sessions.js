@@ -53,31 +53,20 @@ export const mutations = {
   unbookmark (state, payload) {
     const position = state.user.bookmarks.findIndex(bookmark => bookmark.recipe_id === payload.recipe_id)
     state.user.bookmarks.splice(position, 1)
-
     // const  position = state.recipes.findIndex(recipe => recipe.recipe.id === payload.recipe_id)
     // state.recipes[position].recipe.bookmarks -= 1
   },
   follow (state, payload) {
     state.user.following.count += 1
     state.user.following.data.push(payload.data.user)
-    const user = state.users.filter(user => user.slug === payload.data.user.slug)[0]
-    const position = state.users.indexOf(user)
-    state.users[position].followers.count += 1
-    state.users[position].followers.data.push(payload.data.user)
   },
   unfollow (state, payload) {
     state.user.following.count -= 1
-    let user = state.user.following.data.filter(user => user.slug === payload.user)[0]
-    let position = state.user.following.data.indexOf(user)
+    const position = state.user.following.data.findIndex(user => user.slug === payload.user)
     state.user.following.data.splice(position, 1)
-    user = state.users.filter(user => user.slug === payload.user)[0]
-    position = state.users.indexOf(user)
-    state.users[position].followers.count -= 1
-    state.users[position].followers.data.splice(position, 1)
   },
   like (state, payload) {
     state.user.likes.push(payload)
-
     // const recipe = state.recipes.filter(recipe => recipe.recipe.id === payload.recipe_id)[0]
     // const position = state.recipes.indexOf(recipe)
     // state.recipes[position].recipe.likes += 1
@@ -85,7 +74,6 @@ export const mutations = {
   unlike (state, payload) {
     const position = state.user.likes.findIndex(like => like.recipe_id === payload.recipe_id)
     state.user.likes.splice(position, 1)
-
     // const recipe = state.recipes.filter(recipe => recipe.recipe.id === payload.recipe_id)[0]
     // position = state.recipes.indexOf(recipe)
     // state.recipes[position].recipe.likes -= 1
@@ -152,11 +140,13 @@ export const actions = {
   },
   async follow (context, payload) {
     const response = await api.follow(context, payload)
+    this.commit('users/follow', response)
     this.commit('users/sessions/follow', response)
     return response
   },
   async unfollow (context, payload) {
     const response = await api.unfollow(context, payload)
+    this.commit('users/unfollow', payload)
     this.commit('users/sessions/unfollow', payload)
     return response
   },

@@ -2,7 +2,7 @@ export default function ({ store, $axios, redirect }) {
   $axios.onError((error) => {
     // console.log(error)
     if (error.response.status === 422) {
-      redirect('/login')
+      // redirect('/login')
     }
     if (error.response.status === 500) {
       redirect('/404')
