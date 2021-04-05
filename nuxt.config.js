@@ -1,6 +1,7 @@
 export default {
 
-  ssr: true,
+  // ssr: true,
+  target: 'static',
   resourceHints: true,
 
   router: {
