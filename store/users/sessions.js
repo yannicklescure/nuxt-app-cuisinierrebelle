@@ -155,12 +155,12 @@ export const actions = {
   },
   async currentState (context, payload) {
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
-    const response = await this.$axios.$get(`${process.env.apiUrl}/v1/users/current`)
+    const response = await this.$axios.$get('/v1/users/current')
     this.commit('users/sessions/currentState', response)
   },
   async logIn (context, payload) {
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
-    const response = await this.$axios.$post(`${process.env.apiUrl}/users/sign_in`, payload, {})
+    const response = await this.$axios.$post('/users/sign_in', payload, {})
     if (response.email === payload.email) {
       this.commit('users/sessions/logIn', response)
       this.commit('users/authentication/isAuthenticated', { isAuthenticated: true })
@@ -169,7 +169,7 @@ export const actions = {
   },
   async logOut (context, payload) {
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
-    const response = await this.$axios.$delete(`${process.env.apiUrl}/users/sign_out`)
+    const response = await this.$axios.$delete('/users/sign_out')
     this.commit('users/sessions/logOut', payload)
     this.commit('notifications/logOut', null)
     this.commit('users/authentication/isAuthenticated', { isAuthenticated: false })
@@ -178,7 +178,7 @@ export const actions = {
   async refreshAccessToken (context, payload) {
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
     this.$axios.setHeader('Refresh-Token', this.state.users.sessions.authorization.refreshToken)
-    const response = await this.$axios.$post(`${process.env.apiUrl}/users/tokens`)
+    const response = await this.$axios.$post('/users/tokens')
     // this.commit('users/sessions/refreshAccessToken', response)
     return response
   },
@@ -193,7 +193,7 @@ export const actions = {
     formData.append('image', payload.image)
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
     this.$axios.setHeader('Content-Type', 'multipart/form-data')
-    const response = await this.$axios.$patch(`${process.env.apiUrl}/v1/users/photo`, formData, {})
+    const response = await this.$axios.$patch('/v1/users/photo', formData, {})
     this.commit('users/sessions/photo', response)
     this.commit('recipes/userPhoto', response)
     this.$axios.setHeader('Content-Type', false)

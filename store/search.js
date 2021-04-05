@@ -11,7 +11,7 @@ export const mutations = {
 
 export const actions = {
   async query (context, payload) {
-    const response = await this.$axios.$get(`${process.env.apiUrl}/v1/search`, { params: payload }, {})
+    const response = await this.$axios.$get('/v1/search', { params: payload }, {})
     this.commit('search/recipes', response)
     return response
   }

@@ -93,11 +93,11 @@ export const mutations = {
     state.list.push(payload.data)
   },
   recipe (state, payload) {
-    const position = state.list.findIndex(item => item.recipe.id === payload.data.recipe.id)
+    const position = state.list.findIndex(item => item.recipe.id === payload.recipe.id)
     if (position > -1) {
-      state.list[position] = payload.data
+      state.list[position] = payload
     } else {
-      state.list.push(payload.data)
+      state.list.push(payload)
     }
   },
   log (state, payload) {
@@ -182,14 +182,14 @@ export const actions = {
   },
   async like (context, payload) {
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
-    const response = await this.$axios.$post(`${process.env.apiUrl}/v1/likes`, payload, {})
+    const response = await this.$axios.$post('/v1/likes', payload, {})
     this.commit('recipes/like', payload)
     this.commit('users/sessions/like', payload)
     return response
   },
   async unlike (context, payload) {
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
-    const response = await this.$axios.$delete(`${process.env.apiUrl}/v1/likes/${payload.recipe_id}`, payload, {})
+    const response = await this.$axios.$delete(`/v1/likes/${payload.recipe_id}`, payload, {})
     this.commit('recipes/unlike', payload)
     this.commit('users/sessions/unlike', payload)
     return response
@@ -200,7 +200,8 @@ export const actions = {
     return response
   },
   async recipe (context, payload) {
-    const response = await api.recipe(context, payload)
+    // const response = await api.recipe(context, payload)
+    const response = await this.$axios.$get(`/v1/recipes/${payload}`)
     this.commit('recipes/recipe', response)
     return response
   },

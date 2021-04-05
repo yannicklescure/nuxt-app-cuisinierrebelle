@@ -257,16 +257,6 @@ export const followers = async (context, payload) => {
   })
 }
 
-export const recipe = async (context, payload) => {
-  return await axios({
-    validateStatus: (status) => {
-      return status < 500 // Resolve only if the status code is less than 500
-    },
-    method: 'get',
-    url: `${process.env.apiUrl}/v1/recipes/${payload}`
-  })
-}
-
 export const user = async (context, payload) => {
   return await axios({
     validateStatus: (status) => {

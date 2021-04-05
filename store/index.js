@@ -26,7 +26,7 @@ export const mutations = {
 export const actions = {
   async getStoreData ({ commit }, payload) {
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
-    const response = await this.$axios.$get(`${process.env.apiUrl}/v1/state`)
+    const response = await this.$axios.$get('/v1/state')
     this.commit('setStoreData', response)
     this.commit('recipes/setStoreData', response)
     this.commit('users/setStoreData', response)

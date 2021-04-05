@@ -15,7 +15,7 @@ export const actions = {
     // const response = await api.isAuthenticated(context, payload)
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
     this.$axios.setHeader('Refresh-Token', this.state.users.sessions.authorization.refreshToken)
-    const response = await this.$axios.$get(`${process.env.apiUrl}/v1/users/status`)
+    const response = await this.$axios.$get('/v1/users/status')
     this.commit('users/authentication/isAuthenticated', response)
     if (!response.isAuthenticated) {
       this.commit('users/sessions/logOut', payload)

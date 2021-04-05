@@ -150,11 +150,11 @@ export default {
     optimizeImages: true
   },
 
-  // publicRuntimeConfig: {
-  //   axios: {
-  //     baseURL: 'https://api.cuisinierrebelle.com'
-  //   }
-  // },
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'https://api.cuisinierrebelle.com'
+    }
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   // Modules - https://www.cuisinierrebelle.com/docs/2.x/directory-structure/modules

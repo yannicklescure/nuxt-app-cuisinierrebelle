@@ -35,6 +35,10 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Recipe',
+  async asyncData ({ $axios, params }) {
+    const item = await $axios.$get(`/v1/recipes/${params.slug}`)
+    return { item }
+  },
   data () {
     return {
       componentKey: 0,
@@ -47,7 +51,7 @@ export default {
   async fetch () {
     // TO DO
     // check if recipe exists in store or fetch
-    await this.getRecipe(this.$route.params.slug)
+    // await this.getRecipe(this.$route.params.slug)
     let refresh = true
     if (this.timestamp !== null) {
       refresh = new Date().getTime() - this.timestamp > 60 * 1000 * 3
@@ -58,14 +62,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // isMobile: 'isMobile',
-      recipe: 'recipes/recipe',
+      // recipe: 'recipes/recipe',
       recipes: 'recipes/list',
       timestamp: 'timestamp'
     }),
-    item () {
-      return this.recipe(this.$route.params.slug)
-    },
+    // item () {
+    //   return this.recipe(this.$route.params.slug)
+    // },
     show () {
       return this.item !== undefined
     },
@@ -74,6 +77,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('recipes/recipe', this.item)
     this.$nextTick(() => {
       this.matchInfoBox()
     })

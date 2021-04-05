@@ -22,7 +22,7 @@ export const mutations = {
 
 export const actions = {
   async get ({ commit }, payload) {
-    const response = await this.$axios.$get(`${process.env.apiUrl}/v1/unsplash_images`)
+    const response = await this.$axios.$get('/v1/unsplash_images')
     this.commit('banner/set', response)
     return response
   }
