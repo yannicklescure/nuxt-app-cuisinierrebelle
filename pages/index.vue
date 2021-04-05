@@ -22,32 +22,36 @@ export default {
   name: 'Home',
   data () {
     return {
-      show: false,
+      show: false
     }
+  },
+  async fetch () {
+    // let refresh = true
+    // if (this.timestamp != null) {
+    //   refresh = new Date().getTime() - this.timestamp > 60 * 1000 * 3 // 3 minutes
+    // }
+    const response = await this.getStoreData()
+    console.log(response)
+    // if (refresh) {
+    //   const response = await this.getStoreData()
+    //   console.log(response)
+    // }
   },
   computed: {
     ...mapGetters({
       isAuthenticated: 'users/authentication/isAuthenticated',
       recipes: 'recipes/listSorted',
-      timestamp: 'timestamp',
-    }),
+      timestamp: 'timestamp'
+    })
+  },
+  mounted () {
+    this.show = true
   },
   methods: {
     ...mapActions({
       getStoreData: 'getStoreData',
-      fetchNotifications: 'notifications/list',
-    }),
-  },
-  async fetch () {
-    let refresh = true
-    if (this.timestamp != null) refresh = new Date().getTime() - this.timestamp > 60*1000*3 // 3 minutes
-    if (refresh) {
-      const response = await this.getStoreData()
-      console.log(response)
-    }
-  },
-  mounted () {
-    this.show = true
+      fetchNotifications: 'notifications/list'
+    })
   }
 }
 </script>

@@ -12,10 +12,9 @@ export default function ({ store, $axios, redirect }) {
   $axios.onResponse((response) => {
     // console.log(response)
     if (response.status === 200) {
-      if (response.headers['access-token']) {
+      if (response.headers['refresh-token']) {
         store.commit('users/sessions/refreshAccessToken', response)
       }
-      // redirect('/')
     }
   })
 }

@@ -121,6 +121,9 @@ export const mutations = {
   logIn (state, payload) {
     state.user = payload
   },
+  currentState (state, payload) {
+    state.user = payload
+  },
   refreshAccessToken (state, payload) {
     state.authorization = {
       authorizationToken: payload.headers['access-token'],
@@ -159,6 +162,11 @@ export const actions = {
   },
   clearUserSession (context, payload) {
     this.commit('users/sessions/logOut', payload)
+  },
+  async currentState (context, payload) {
+    this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
+    const response = await this.$axios.$get(`${process.env.apiUrl}/v1/users/current`)
+    this.commit('users/sessions/currentState', response)
   },
   async logIn (context, payload) {
     this.$axios.setHeader('Authorization', `Bearer ${this.state.users.sessions.authorization.authorizationToken}`)
